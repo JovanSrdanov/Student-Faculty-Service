@@ -8,9 +8,6 @@ import javax.swing.JPanel;
 
 public class MyFrame extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4070509246110827584L;
 
 	public MyFrame() {
@@ -25,6 +22,8 @@ public class MyFrame extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.cyan);
 		this.add(panel);
-		
+		MenuBar menu = new MenuBar();
+		this.setJMenuBar(menu);
+
 	}
 }
