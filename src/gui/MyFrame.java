@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MyFrame extends JFrame {
@@ -13,7 +12,7 @@ public class MyFrame extends JFrame {
 	private static final long serialVersionUID = 4070509246110827584L;
 
 	public MyFrame() {
-		//Inicijalizacija
+		
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		int screenHeight = screenSize.height;
@@ -24,7 +23,8 @@ public class MyFrame extends JFrame {
 		setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.cyan);		
+		Color boja = new Color(0, 95, 105);
+		panel.setBackground(boja);		
 	    this.add(panel);
 		
 		//Menu bar
