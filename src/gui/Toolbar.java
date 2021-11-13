@@ -1,11 +1,21 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.BorderLayout;
+import java.awt.*;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 
 public class Toolbar extends JToolBar{
 
@@ -22,21 +32,31 @@ public class Toolbar extends JToolBar{
 		
 		JButton addBtn = new JButton();
 		addBtn.setToolTipText("Dodaj");
-		//TODO dodaj dobru ikonicu za btn
-		addBtn.setIcon(new ImageIcon("icons/editPom.png"));
+		addBtn.setIcon(new ImageIcon("icons/new.png"));
 		add(addBtn);
 		
 		JButton editBtn = new JButton();
 		editBtn.setToolTipText("Izmeni");
-		//TODO dodaj dobru ikonicu za btn
 		editBtn.setIcon(new ImageIcon("icons/editPom.png"));
 		add(editBtn);
 		
 		JButton deleteBtn = new JButton();
-		deleteBtn.setToolTipText("Obrisi");
-		//TODO dodaj dobru ikonicu za btn
-		deleteBtn.setIcon(new ImageIcon("icons/editPom.png"));
+		deleteBtn.setToolTipText("Obriši");
+		deleteBtn.setIcon(new ImageIcon("icons/delete.png"));
 		add(deleteBtn);
+		
+		add(Box.createHorizontalGlue());
+		
+		JTextField searchBar = new JTextField();
+		searchBar.setToolTipText("Unesi reč za pretragu");
+		searchBar.setMaximumSize(new Dimension(9000,30));
+		add(searchBar);
+		
+		JButton searchBtn = new JButton();
+		searchBtn.setToolTipText("Pretraži");
+		searchBtn.setIcon(new ImageIcon("icons/search.png"));
+		add(searchBtn);
+		
 		
 	}
 	
