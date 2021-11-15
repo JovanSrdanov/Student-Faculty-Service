@@ -12,7 +12,7 @@ Java version: 15.0.1
 
 Strahinja Erakovic:  
 
-
+Ikonice preuzimane sa :https://iconscout.com/icons
 
 Model sistema - Jovan Srdanov RA 145 2019  
 Funkcionalnost 01 - Jovan Srdanov RA 145 2019  
