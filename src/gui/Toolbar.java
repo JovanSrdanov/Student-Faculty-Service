@@ -52,6 +52,8 @@ public class Toolbar extends JToolBar{
 		searchBar.setMaximumSize(new Dimension(9000,30));
 		add(searchBar);
 		
+		add(Box.createRigidArea(new Dimension(20, 0)));
+		
 		JButton searchBtn = new JButton();
 		searchBtn.setToolTipText("Pretraži");
 		searchBtn.setIcon(new ImageIcon("icons/search.png"));
