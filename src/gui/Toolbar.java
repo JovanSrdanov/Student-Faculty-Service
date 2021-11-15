@@ -2,20 +2,13 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.BorderLayout;
-import java.awt.*;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
+
 
 public class Toolbar extends JToolBar{
 
