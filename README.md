@@ -16,5 +16,5 @@ Ikonice preuzimane sa :https://iconscout.com/icons
 
 Model sistema - Jovan Srdanov RA 145 2019  
 Funkcionalnost 01 - Jovan Srdanov RA 145 2019  
-Funkcionalnost 02 - Jovan Srdanov RA 145 2019 
+Funkcionalnost 02 - Jovan Srdanov RA 145 2019  
 Funkcionalnost 03 - Strahinja Erakovic RA 152 2019
