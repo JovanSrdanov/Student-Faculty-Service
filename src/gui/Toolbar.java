@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 
 
 public class Toolbar extends JToolBar{
