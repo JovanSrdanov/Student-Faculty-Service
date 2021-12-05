@@ -10,9 +10,41 @@ import javax.swing.JPanel;
 public class MyFrame extends JFrame {
 
 	private static final long serialVersionUID = 4070509246110827584L;
+	
+	public static MyFrame instance = null;
 
-	public MyFrame() {
+	private MyFrame() 
+	{
+		this.initialise();
+		this.createMenuBar();
+		this.createToolbar();
+	}
+	
+	//Singleton
+	public static MyFrame getInstance()
+	{
+		if(instance == null)
+			instance = new MyFrame();
 		
+		return instance;
+	}
+	
+	private void createToolbar()
+	{
+		//Toolbar
+		Toolbar toolbar = new Toolbar();
+		this.add(toolbar, BorderLayout.NORTH);
+	}
+	
+	private void createMenuBar()
+	{
+		//Menu bar
+		MenuBar menu = new MenuBar();
+		this.setJMenuBar(menu);
+	}
+	
+	private void initialise()
+	{
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		int screenHeight = screenSize.height;
@@ -23,16 +55,7 @@ public class MyFrame extends JFrame {
 		setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
-		Color boja = new Color(0, 95, 105);
-		panel.setBackground(boja);		
+		panel.setBackground(new Color(0, 95, 105));		
 	    this.add(panel);
-		
-		//Menu bar
-		MenuBar menu = new MenuBar();
-		this.setJMenuBar(menu);
-		
-		Toolbar toolbar = new Toolbar();
-		this.add(toolbar, BorderLayout.NORTH);
-
 	}
 }

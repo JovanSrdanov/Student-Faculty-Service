@@ -30,27 +30,15 @@ public class Toolbar extends JToolBar{
 		add(toolBarPanel);
 		
 		JButton addBtn = new JButton();
-		addBtn.setToolTipText("Dodaj");
-		addBtn.setMaximumSize(new Dimension(50,50));
-		addBtn.setPreferredSize(new Dimension(50,50));
-		addBtn.setBackground(Color.white);
-		addBtn.setIcon(new ImageIcon("icons/new.png"));
-		toolBarPanel.add(addBtn);
-		
 		JButton editBtn = new JButton();
-		editBtn.setToolTipText("Izmeni");
-		editBtn.setMaximumSize(new Dimension(50,50));
-		editBtn.setPreferredSize(new Dimension(50,50));
-		editBtn.setBackground(Color.white);
-		editBtn.setIcon(new ImageIcon("icons/editPom.png"));
-		toolBarPanel.add(editBtn);
-		
 		JButton deleteBtn = new JButton();
-		deleteBtn.setToolTipText("Obriši");
-		deleteBtn.setMaximumSize(new Dimension(50,50));
-		deleteBtn.setPreferredSize(new Dimension(50,50));
-		deleteBtn.setBackground(Color.white);
-		deleteBtn.setIcon(new ImageIcon("icons/delete.png"));
+		
+		initBtn(addBtn, "Dodaj", new ImageIcon("icons/new.png"), 50);
+		initBtn(editBtn, "Izmeni", new ImageIcon("icons/editPom.png"), 50);
+		initBtn(deleteBtn, "Obriši", new ImageIcon("icons/delete.png"), 50);
+		
+		toolBarPanel.add(addBtn);
+		toolBarPanel.add(editBtn);
 		toolBarPanel.add(deleteBtn);
 		
 		toolBarPanel.add(Box.createHorizontalGlue());
@@ -62,14 +50,18 @@ public class Toolbar extends JToolBar{
 		
 		toolBarPanel.add(Box.createRigidArea(new Dimension(10, 0)));
 		
-		JButton searchBtn = new JButton();
-		searchBtn.setToolTipText("Pretraži");
-		searchBtn.setMaximumSize(new Dimension(30,30));
-		searchBtn.setPreferredSize(new Dimension(30,30));
-		searchBtn.setBackground(Color.white);
-		searchBtn.setIcon(new ImageIcon("icons/search.png"));
-		toolBarPanel.add(searchBtn);
-		
+		JButton searchBtn = new JButton();		
+		initBtn(searchBtn, "Pretraži", new ImageIcon("icons/search.png"), 30);
+		toolBarPanel.add(searchBtn);	
+	}
+	
+	private void initBtn(JButton btn, String toolTip, ImageIcon icon, int dim)
+	{
+		btn.setToolTipText(toolTip);
+		btn.setMaximumSize(new Dimension(dim,dim));
+		btn.setPreferredSize(new Dimension(dim,dim));
+		btn.setBackground(Color.white);
+		btn.setIcon(icon);
 		
 	}
 	
