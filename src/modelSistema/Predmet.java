@@ -31,6 +31,19 @@ public class Predmet {
 		this.spisakStudenataKojiSuPoloziliPredmet = spisakStudenataKojiSuPoloziliPredmet;
 		this.spisakStudenataKojiNisuPoloziliPredmet = spisakStudenataKojiNisuPoloziliPredmet;
 	}
+	
+	public Predmet(int sifrPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudijaUKojojSePredmetIzvodi,
+			Profesor predmetniProfesor, int brojESPBBodova) {
+		super();
+		this.sifrPredmeta = sifrPredmeta;
+		this.nazivPredmeta = nazivPredmeta;
+		this.semestar = semestar;
+		this.godinaStudijaUKojojSePredmetIzvodi = godinaStudijaUKojojSePredmetIzvodi;
+		this.predmetniProfesor = predmetniProfesor;
+		this.brojESPBBodova = brojESPBBodova;
+		this.spisakStudenataKojiSuPoloziliPredmet = new ArrayList<Student>();
+		this.spisakStudenataKojiNisuPoloziliPredmet = new ArrayList<Student>();
+	}
 
 	@Override
 	public String toString() {
@@ -57,8 +70,8 @@ public class Predmet {
 		this.nazivPredmeta = nazivPredmeta;
 	}
 
-	public Semestar getSemestar() {
-		return semestar;
+	public String getSemestar() {
+		return this.semestar.toString();
 	}
 
 	public void setSemestar(Semestar semestar) {
