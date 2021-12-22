@@ -55,8 +55,7 @@ public class Toolbar extends JToolBar{
 		toolBarPanel.add(searchBtn);	
 	}
 	
-	private void initBtn(JButton btn, String toolTip, ImageIcon icon, int dim)
-	{
+	private void initBtn(JButton btn, String toolTip, ImageIcon icon, int dim) {
 		btn.setToolTipText(toolTip);
 		btn.setMaximumSize(new Dimension(dim,dim));
 		btn.setPreferredSize(new Dimension(dim,dim));

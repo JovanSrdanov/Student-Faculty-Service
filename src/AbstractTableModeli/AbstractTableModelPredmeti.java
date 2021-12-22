@@ -1,12 +1,17 @@
 package AbstractTableModeli;
 
-import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
 import baza.BazaPredmeta;
 
 public class AbstractTableModelPredmeti extends AbstractTableModel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	@Override
 	public int getRowCount() {
 		if(BazaPredmeta.getInstance().getPredmeti() == null)
