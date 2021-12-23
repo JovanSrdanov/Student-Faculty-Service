@@ -42,7 +42,7 @@ public class Toolbar extends JToolBar{
 		addBtn.addActionListener(new ActionListener(){ 
 			@Override
 			public void actionPerformed(ActionEvent e){  
-	            	//TODO
+	            	PredmetiController.getInstance().dodajPredmet();
 				}
 			});
 		

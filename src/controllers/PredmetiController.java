@@ -1,9 +1,14 @@
 package controllers;
 
+import java.awt.Frame;
+
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import baza.BazaPredmeta;
 import gui.MyFrame;
+import gui.PredmetDialog;
 import modelSistema.Predmet;
 
 public class PredmetiController {
@@ -44,4 +49,10 @@ public class PredmetiController {
     	}
     	
     }
+	
+	public void dodajPredmet() {
+		PredmetDialog predmetDialog = new PredmetDialog(null, "Titl", true);
+		predmetDialog.setLocationRelativeTo(MyFrame.getInstance());
+		predmetDialog.setVisible(true);
+	}
 }
