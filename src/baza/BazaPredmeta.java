@@ -40,6 +40,7 @@ import modelSistema.Semestar;
 	private void initPredmete() {
 		predmeti = new ArrayList<Predmet>();
 		predmeti.add(new Predmet(1, "Gej", Semestar.ZIMSKI, 1, null, 1));
+		predmeti.add(new Predmet(2, "Gej2", Semestar.ZIMSKI, 1, null, 1));
 		
 	}
 
@@ -73,13 +74,13 @@ import modelSistema.Semestar;
 		case 0:
 			return Integer.toString(predmet.getSifrPredmeta());
 		case 1:
-			return  predmet.getNazivPredmeta();
+			return predmet.getNazivPredmeta();
 		case 2:
 			return Integer.toString(predmet.getBrojESPBBodova());
 		case 3:
 			return Integer.toString(predmet.getGodinaStudijaUKojojSePredmetIzvodi());
 		case 4:
-			return predmet.getSemestar();
+			return predmet.getSemestar().toString();
 		default:
 			return null;
 		}
@@ -97,6 +98,8 @@ import modelSistema.Semestar;
 				break;
 			}
 		}
+		//.i.
+		
 	}
 
 	public void izmeniPredmet(int sifrPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudijaUKojojSePredmetIzvodi,

@@ -2,6 +2,9 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -10,6 +13,9 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import baza.BazaPredmeta;
+import controllers.PredmetiController;
+import modelSistema.Semestar;
 
 
 public class Toolbar extends JToolBar{
@@ -32,6 +38,30 @@ public class Toolbar extends JToolBar{
 		JButton addBtn = new JButton();
 		JButton editBtn = new JButton();
 		JButton deleteBtn = new JButton();
+		
+		addBtn.addActionListener(new ActionListener(){ 
+			@Override
+			public void actionPerformed(ActionEvent e){  
+	            	//TODO
+				}
+			});
+		
+		editBtn.addActionListener(new ActionListener(){ 
+			@Override
+			public void actionPerformed(ActionEvent e){  
+	            	//TODO
+				}
+			});
+		
+		deleteBtn.addActionListener(new ActionListener(){ 
+			@Override
+			public void actionPerformed(ActionEvent e){  
+	            	MyFrame.getInstance();
+					//TODO
+					PredmetiController.getInstance().izbrisiPredmet(MyFrame.getTabelaPredmeta().getSelectedRow());
+				}
+			});
+		
 		
 		initBtn(addBtn, "Dodaj", new ImageIcon("icons/new.png"), 50);
 		initBtn(editBtn, "Izmeni", new ImageIcon("icons/editPom.png"), 50);

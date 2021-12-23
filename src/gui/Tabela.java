@@ -10,6 +10,11 @@ import javax.swing.table.TableCellRenderer;
 
 
 public class Tabela extends JTable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1376115565552551681L;
+
 	public Tabela(AbstractTableModel model) {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);

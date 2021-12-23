@@ -15,15 +15,16 @@ public class MyFrame extends JFrame {
 	private static final long serialVersionUID = 4070509246110827584L;
 	
 	public static MyFrame instance = null;
-	private Tabela tabelaPredmeta;
+	private static Tabela tabelaPredmeta;
 
 	private MyFrame()  {
 		this.initialise();
 		this.createMenuBar();
 		this.createToolbar();
+		this.createStatusBar();
 		this.createPredmetiTable();
 	}
-	
+
 	//Singleton
 	public static MyFrame getInstance() {
 		if(instance == null)
@@ -36,6 +37,12 @@ public class MyFrame extends JFrame {
 		//Toolbar
 		Toolbar toolbar = new Toolbar();
 		this.add(toolbar, BorderLayout.NORTH);
+	}
+	
+	private void createStatusBar() {
+		//Status bar
+		StatusBar statusBar = new StatusBar();
+		this.add(statusBar, BorderLayout.SOUTH);
 	}
 	
 	private void createMenuBar() {
@@ -69,8 +76,18 @@ public class MyFrame extends JFrame {
 		tabelaPredmeta = new Tabela(new AbstractTableModelPredmeti());
 
 		JScrollPane scrollPane = new JScrollPane(tabelaPredmeta);
+		
+		/*Toolkit kit = Toolkit.getDefaultToolkit();
+		Dimension screenSize = kit.getScreenSize();
+		int screenHeight = screenSize.height;
+		int screenWidith = screenSize.width;
+		tabelaPredmeta.setMaximumSize(new Dimension(screenWidith - 1000,screenHeight - 1000));*/
 		this.add(scrollPane, BorderLayout.CENTER);
 		
-		this.azurirajPrikazPredmeta(null, -1);
+		//this.azurirajPrikazPredmeta(null, -1);
+	}
+	
+	public static Tabela getTabelaPredmeta() {
+		return tabelaPredmeta;
 	}
 }
