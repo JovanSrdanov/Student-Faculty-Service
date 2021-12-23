@@ -1,9 +1,7 @@
-package AbstractTableModeli;
+package controller;
 
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
-
-import baza.BazaPredmeta;
 
 public class AbstractTableModelPredmeti extends AbstractTableModel {
 	

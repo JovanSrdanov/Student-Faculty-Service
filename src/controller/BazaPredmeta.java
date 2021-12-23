@@ -1,12 +1,12 @@
-package baza;
+package controller;
 
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelSistema.Predmet;
-import modelSistema.Profesor;
-import modelSistema.Semestar;
+import model.Predmet;
+import model.Profesor;
+import model.Semestar;
 
 
 	public class BazaPredmeta {

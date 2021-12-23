@@ -1,6 +1,6 @@
-package main;
+package controller;
 
-import gui.MyFrame;
+import view.MyFrame;
 
 public class MyApp {
 

@@ -1,4 +1,4 @@
-package gui;
+package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import AbstractTableModeli.AbstractTableModelPredmeti;
+import controller.AbstractTableModelPredmeti;
 
 public class MyFrame extends JFrame {
 
