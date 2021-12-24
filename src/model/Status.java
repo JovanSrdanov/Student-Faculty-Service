@@ -2,7 +2,7 @@ package model;
 
 public enum Status {
 
-	B(1), S(2);
+	BUDŽET(1), SAMOFINANRSIRANJE(2);
 
 	Status(int i) {
 	}

@@ -24,13 +24,13 @@ public class MyFrame extends JFrame {
 	private JPanel panelSouth;
 	private JPanel panelWest;
 	private JPanel panelEast;
-	private JPanel panelPROBA;
 
 	private MyFrame() {
 		this.createToolbar();
 		this.initialise();
 		this.createMenuBar();
 		this.createTabbedPane();
+		
 	}
 
 	// Singleton
@@ -102,6 +102,7 @@ public class MyFrame extends JFrame {
 
 		ImageIcon iconStudenti = createImageIcon("icons/studenti.png", true, 32, 32);
 		JPanel tabelaStduenti = new JPanel();
+	
 		tabelaStduenti.setBackground(Color.red);
 		tabbedPane.addTab("Studenti", iconStudenti, tabelaStduenti, "Prikaz studenata");
 
@@ -109,19 +110,21 @@ public class MyFrame extends JFrame {
 		JPanel tabelaProfesori= new JPanel();
 		tabelaProfesori.setBackground(Color.green);
 		tabbedPane.addTab("Profesori", iconProfesori, tabelaProfesori, "Prikaz profseora");
+	
 
 		ImageIcon iconPredmeti = createImageIcon("icons/predmeti.png", true, 32, 32);
 		JPanel tabelaPredmeti = new JPanel();
 		tabelaPredmeti.setBackground(Color.cyan);
 		tabbedPane.addTab("Predmeti", iconPredmeti, tabelaPredmeti, "Prikaz predmeta");
-
 		this.panelGlavni.add(this.tabbedPane, BorderLayout.CENTER);
+		
+
 	}
 
 
 	protected static ImageIcon createImageIcon(String path, boolean scaleImage, int width, int height) {
 		if (scaleImage) {
-
+			//kopirano iz materijala sa vezbi
 			ImageIcon imageIcon = new ImageIcon(path);
 			Image image = imageIcon.getImage();
 			Image newimg = image.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
