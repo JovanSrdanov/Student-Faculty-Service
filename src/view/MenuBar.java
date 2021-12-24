@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.Icon;
@@ -9,6 +10,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+
+import controller.StudentiController;
 
 public class MenuBar extends JMenuBar {
 
@@ -104,6 +107,17 @@ public class MenuBar extends JMenuBar {
 		delete.setAccelerator(KeyStroke.getKeyStroke(
 		        KeyEvent.VK_Y, ActionEvent.ALT_MASK));
 		delete.setMnemonic(KeyEvent.VK_L);
+		
+		delete.addActionListener(new ActionListener(){ 
+			@Override
+			public void actionPerformed(ActionEvent e){  
+					
+					
+					StudentiController.getInstance().izbrisiStudenta(MyFrame.getTabelaStduenti().getSelectedRow());
+				}
+			});
+		
+		
 
 		edit.add(editPom);
 		edit.addSeparator();

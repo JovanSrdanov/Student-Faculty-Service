@@ -21,8 +21,8 @@ public class MyFrame extends JFrame {
 	private Toolbar toolbar;
 	private MenuBar menu;
 	private MyTab tabbedPane;
-	private JTable tabelaStduenti;
-	
+	private static JTable tabelaStduenti;
+
 	private JPanel panelGlavni;
 	private JPanel panelNorth;
 	private JPanel panelSouth;
@@ -34,7 +34,7 @@ public class MyFrame extends JFrame {
 		this.initialise();
 		this.createMenuBar();
 		this.createTabbedPane();
-		
+
 	}
 
 	// Singleton
@@ -44,7 +44,6 @@ public class MyFrame extends JFrame {
 
 		return instance;
 	}
-	
 
 	private void createToolbar() {
 		// Toolbar
@@ -106,30 +105,32 @@ public class MyFrame extends JFrame {
 		this.tabbedPane = new MyTab();
 
 		ImageIcon iconStudenti = createImageIcon("icons/studenti.png", true, 32, 32);
-		this.tabelaStduenti = new Tabela(new AbstractTableModelStudenti());		
-		JScrollPane scrollPaneStudenti = new JScrollPane(this.tabelaStduenti);
+		tabelaStduenti = new Tabela(new AbstractTableModelStudenti());
+		JScrollPane scrollPaneStudenti = new JScrollPane(tabelaStduenti);
 		tabbedPane.addTab("Studenti", iconStudenti, scrollPaneStudenti, "Prikaz studenata");
-		
-		
+
 		ImageIcon iconProfesori = createImageIcon("icons/profesori.png", true, 32, 32);
-		JPanel tabelaProfesori= new JPanel();
+		JPanel tabelaProfesori = new JPanel();
 		tabelaProfesori.setBackground(Color.green);
 		tabbedPane.addTab("Profesori", iconProfesori, tabelaProfesori, "Prikaz profseora");
-	
 
 		ImageIcon iconPredmeti = createImageIcon("icons/predmeti.png", true, 32, 32);
 		JPanel tabelaPredmeti = new JPanel();
 		tabelaPredmeti.setBackground(Color.cyan);
 		tabbedPane.addTab("Predmeti", iconPredmeti, tabelaPredmeti, "Prikaz predmeta");
 		this.panelGlavni.add(this.tabbedPane, BorderLayout.CENTER);
-		
 
 	}
-
+	
+	public void azurirajPrikazProfesora(String akcija, int vrednost) {
+		AbstractTableModelStudenti model = (AbstractTableModelStudenti)tabelaStduenti.getModel();
+		model.fireTableDataChanged();
+		validate();
+	}
 
 	protected static ImageIcon createImageIcon(String path, boolean scaleImage, int width, int height) {
 		if (scaleImage) {
-			//kopirano iz materijala sa vezbi
+			// kopirano iz materijala sa vezbi
 			ImageIcon imageIcon = new ImageIcon(path);
 			Image image = imageIcon.getImage();
 			Image newimg = image.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
@@ -140,5 +141,10 @@ public class MyFrame extends JFrame {
 			return new ImageIcon(path);
 		}
 	}
+
+	public static JTable getTabelaStduenti() {
+		return tabelaStduenti;
+	}
+
 
 }
