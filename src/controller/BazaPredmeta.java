@@ -80,7 +80,7 @@ import model.Semestar;
 		case 3:
 			return Integer.toString(predmet.getGodinaStudijaUKojojSePredmetIzvodi());
 		case 4:
-			return predmet.getSemestar();
+			return predmet.getSemestar().toString();
 		default:
 			return null;
 		}

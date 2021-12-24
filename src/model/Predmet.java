@@ -70,8 +70,8 @@ public class Predmet {
 		this.nazivPredmeta = nazivPredmeta;
 	}
 
-	public String getSemestar() {
-		return this.semestar.toString();
+	public Semestar getSemestar() {
+		return this.semestar;
 	}
 
 	public void setSemestar(Semestar semestar) {

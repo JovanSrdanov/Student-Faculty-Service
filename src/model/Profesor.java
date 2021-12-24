@@ -1,15 +1,16 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Profesor {
 
 	private String prezime;
 	private String ime;
+	private LocalDate datumRodjenja;
 	private Adresa adresaStanovanja;
 	private int kontaktTelefon;
 	private String eMailAdresa;
-	private String brojIndexa;
 	private Adresa adresaKancelarije;
 	private int brojLicneKarte;
 	private Zvanje zvanje;
@@ -20,16 +21,16 @@ public class Profesor {
 		super();
 	}
 
-	public Profesor(String prezime, String ime, Adresa adresaStanovanja, int kontaktTelefon, String eMailAdresa,
-			String brojIndexa, Adresa adresaKancelarije, int brojLicneKarte, Zvanje zvanje, int godineStaza,
+	public Profesor(String prezime, String ime, LocalDate datumRodjenja, Adresa adresaStanovanja, int kontaktTelefon,
+			String eMailAdresa, Adresa adresaKancelarije, int brojLicneKarte, Zvanje zvanje, int godineStaza,
 			ArrayList<Predmet> spisakPredmetaNaKojimaJeProfesor) {
 		super();
 		this.prezime = prezime;
 		this.ime = ime;
+		this.datumRodjenja = datumRodjenja;
 		this.adresaStanovanja = adresaStanovanja;
 		this.kontaktTelefon = kontaktTelefon;
 		this.eMailAdresa = eMailAdresa;
-		this.brojIndexa = brojIndexa;
 		this.adresaKancelarije = adresaKancelarije;
 		this.brojLicneKarte = brojLicneKarte;
 		this.zvanje = zvanje;
@@ -77,12 +78,12 @@ public class Profesor {
 		this.eMailAdresa = eMailAdresa;
 	}
 
-	public String getBrojIndexa() {
-		return brojIndexa;
+	public LocalDate getDatumRodjenja() {
+		return datumRodjenja;
 	}
 
-	public void setBrojIndexa(String brojIndexa) {
-		this.brojIndexa = brojIndexa;
+	public void setDatumRodjenja(LocalDate datumRodjenja) {
+		this.datumRodjenja = datumRodjenja;
 	}
 
 	public Adresa getAdresaKancelarije() {
@@ -127,10 +128,10 @@ public class Profesor {
 
 	@Override
 	public String toString() {
-		return "Profesor [prezime=" + prezime + ", ime=" + ime + ", adresaStanovanja=" + adresaStanovanja
-				+ ", kontaktTelefon=" + kontaktTelefon + ", eMailAdresa=" + eMailAdresa + ", brojIndexa=" + brojIndexa
-				+ ", adresaKancelarije=" + adresaKancelarije + ", brojLicneKarte=" + brojLicneKarte + ", zvanje="
-				+ zvanje + ", godineStaza=" + godineStaza + ", spisakPredmetaNaKojimaJeProfesor="
+		return "Profesor [prezime=" + prezime + ", ime=" + ime + ", datumRodjenja=" + datumRodjenja
+				+ ", adresaStanovanja=" + adresaStanovanja + ", kontaktTelefon=" + kontaktTelefon + ", eMailAdresa="
+				+ eMailAdresa + ", adresaKancelarije=" + adresaKancelarije + ", brojLicneKarte=" + brojLicneKarte
+				+ ", zvanje=" + zvanje + ", godineStaza=" + godineStaza + ", spisakPredmetaNaKojimaJeProfesor="
 				+ spisakPredmetaNaKojimaJeProfesor + "]";
 	}
 
