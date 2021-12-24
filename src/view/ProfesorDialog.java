@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import model.Adresa;
+import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.Predmet;
 import model.Profesor;
@@ -78,7 +79,7 @@ public class ProfesorDialog extends JDialog {
 		
 		//Datum rodj
 		JPanel datPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel datLbl = new JLabel("Datum rodjenja (31/01/2001):");
+		JLabel datLbl = new JLabel("Datum rodjenja (d/m/god npr. 31/1/1999):");
 		datLbl.setPreferredSize(dim);
 		
 		datumTxt = new JTextField();
@@ -200,6 +201,7 @@ public class ProfesorDialog extends JDialog {
 			eMailTxt.setText(p.geteMailAdresa());
 			adresaKancTxt.setText(p.getAdresaKancelarije().toString());
 			brLicneTxt.setText(Integer.toString(p.getBrojLicneKarte()));
+			brLicneTxt.setEditable(false);
 			
 			int zvanjeIndex = 0;
 			if(p.getZvanje() == Zvanje.REDOVNI_PROFESOR)
@@ -300,7 +302,38 @@ public class ProfesorDialog extends JDialog {
 		if(!eMailTxt.getText().matches(".+@.+")) {
 			return false;
 		}
-		
+		if(!godineStazaTxt.getText().matches("[0-9]+")) {
+			return false;
+		}
+		if(!datumTxt.getText().matches("[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}")) {
+			return false;
+		}
+		else {
+			try{    
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+				LocalDate datumRodj = LocalDate.parse(datumTxt.getText(), formatter);
+				if(datumRodj.isAfter(LocalDate.now())) {
+					return false;
+				}
+				}catch(Exception e){
+					return false;
+				}   
+		}
+		if(!brLicneTxt.getText().matches("[0-9]+")) {
+			return false;
+		}
+		else if(tipA == 'u' && existsByLicna(Integer.parseInt(brLicneTxt.getText()))) {
+			return false;
+		}
+		else if(tipA == 'i' && !existsByLicna(Integer.parseInt(brLicneTxt.getText()))) {
+			return false;
+		}
+		if(!adresaTxt.getText().matches(".+,[0-9]+,.+,.+")) {
+			return false;
+		}
+		if(!adresaKancTxt.getText().matches(".+,[0-9]+,.+,.+")) {
+			return false;
+		}
 		//okBtn.setEnabled(true);
 		return true;
 	}
@@ -321,6 +354,14 @@ public class ProfesorDialog extends JDialog {
 			}
 			
 		});
+	}
+	private boolean existsByLicna(int licna) {
+		for(Profesor p: BazaProfesora.getInstance().getProfesori())
+		{
+			if(p.getBrojLicneKarte() == licna)
+				return true;
+		}
+		return false;
 	}
 	
 }

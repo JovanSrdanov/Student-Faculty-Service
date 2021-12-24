@@ -8,9 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import controller.AbstractTableModelPredmeti;
-import controller.AbstractTableModelProfesor;
-
 public class MyFrame extends JFrame {
 
 	private static final long serialVersionUID = 4070509246110827584L;
