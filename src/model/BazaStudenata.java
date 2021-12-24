@@ -57,7 +57,7 @@ public class BazaStudenata {
 		this.studenti = studenti;
 	}
 
-	public int getColumnCcoun() {
+	public int getColumnCount() {
 		return 6;
 	}
 

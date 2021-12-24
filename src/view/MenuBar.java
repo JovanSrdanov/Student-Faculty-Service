@@ -20,8 +20,8 @@ public class MenuBar extends JMenuBar {
 	public MenuBar() {
 		JMenu file = new JMenu("File");
 		file.setMnemonic(KeyEvent.VK_F);
-		Icon icon = new ImageIcon("icons/file.png");
-		file.setIcon(icon);
+		Icon icon = new ImageIcon();
+		
 
 		icon = new ImageIcon("icons/new.png");
 		JMenuItem miNew = new JMenuItem("New", icon);
@@ -90,8 +90,7 @@ public class MenuBar extends JMenuBar {
 
 		JMenu edit = new JMenu("Edit");
 		edit.setMnemonic(KeyEvent.VK_E);
-		icon = new ImageIcon("icons/edit.png");
-		edit.setIcon(icon);
+	
 
 		icon = new ImageIcon("icons/editPom.png");
 		JMenuItem editPom = new JMenuItem("Edit", icon);
@@ -113,8 +112,7 @@ public class MenuBar extends JMenuBar {
 
 		JMenu help = new JMenu("Help");
 		help.setMnemonic(KeyEvent.VK_H);
-		icon = new ImageIcon("icons/help.png");
-		help.setIcon(icon);
+	
 
 		icon = new ImageIcon("icons/helpPom.png");
 		JMenuItem helpPom = new JMenuItem("Help", icon);

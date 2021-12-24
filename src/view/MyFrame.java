@@ -9,6 +9,8 @@ import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class MyFrame extends JFrame {
 
@@ -19,6 +21,8 @@ public class MyFrame extends JFrame {
 	private Toolbar toolbar;
 	private MenuBar menu;
 	private MyTab tabbedPane;
+	private JTable tabelaStduenti;
+	
 	private JPanel panelGlavni;
 	private JPanel panelNorth;
 	private JPanel panelSouth;
@@ -40,6 +44,7 @@ public class MyFrame extends JFrame {
 
 		return instance;
 	}
+	
 
 	private void createToolbar() {
 		// Toolbar
@@ -101,11 +106,11 @@ public class MyFrame extends JFrame {
 		this.tabbedPane = new MyTab();
 
 		ImageIcon iconStudenti = createImageIcon("icons/studenti.png", true, 32, 32);
-		JPanel tabelaStduenti = new JPanel();
-	
-		tabelaStduenti.setBackground(Color.red);
-		tabbedPane.addTab("Studenti", iconStudenti, tabelaStduenti, "Prikaz studenata");
-
+		this.tabelaStduenti = new Tabela(new AbstractTableModelStudenti());		
+		JScrollPane scrollPaneStudenti = new JScrollPane(this.tabelaStduenti);
+		tabbedPane.addTab("Studenti", iconStudenti, scrollPaneStudenti, "Prikaz studenata");
+		
+		
 		ImageIcon iconProfesori = createImageIcon("icons/profesori.png", true, 32, 32);
 		JPanel tabelaProfesori= new JPanel();
 		tabelaProfesori.setBackground(Color.green);
