@@ -21,7 +21,7 @@ public class BazaStudenata {
 	private BazaStudenata() {
 
 		initStudente();
-
+		//provera da li sam na develop grani
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("INDEX");
 		this.kolone.add("IME");
