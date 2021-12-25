@@ -34,8 +34,12 @@ public class BazaProfesora {
 	
 	private void initProfesore() {
 		profesori = new ArrayList<Profesor>();
-		profesori.add(new Profesor("Detlic", "Pera", LocalDate.now(), new Adresa("ulica1", 69, "Kikinda", "Srbija"),
-				1, "Deste@gmail.com", new Adresa("ulicaKanc", 69, "Kikinda", "Srbija"), 123, Zvanje.REDOVNI_PROFESOR, 69, null));
+		
+		profesori.add(new Profesor("Detlic", "Pera", LocalDate.now(), new Adresa("Jovana Jovanovica Zmaja", 189, "Kikinda", "Srbija"),
+				1, "Deste@gmail.com", new Adresa("ulicaKanc", 2, "Kikinda", "Srbija"), 1, Zvanje.REDOVNI_PROFESOR, 69, null));
+		
+		profesori.add(new Profesor("Milan", "Rapajic", LocalDate.of(1980, 3, 13), new Adresa("Tajna ulica", 5, "Novi Sad", "Srbija"),
+				1, "rapaja@uns.ac.rs", new Adresa("Ulicica", 5, "Novi Sad", "Srbija"), 2, Zvanje.VANREDNI_PROFESOR, 69, null));
 		
 	}
 

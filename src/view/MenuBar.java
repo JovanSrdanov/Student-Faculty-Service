@@ -9,8 +9,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import controller.PredmetiController;
+import controller.ProfesorController;
 import controller.StudentiController;
 
 public class MenuBar extends JMenuBar {
@@ -33,7 +36,19 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				StudentiController.getInstance().dodajStudenta();
+				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
+				if(selectedTab == 0) {
+					//Student
+					StudentiController.getInstance().dodajStudenta();
+				}
+				else if(selectedTab == 1) {
+					//Profesor
+					ProfesorController.getInstance().dodajProfesora();
+				}
+				else if(selectedTab == 2) {
+					//Predmet
+					PredmetiController.getInstance().dodajPredmet();
+				}	
 			}
 		});
 
@@ -55,7 +70,7 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				 MyFrame.getTab().setSelectedIndex(0);
+				 MyFrame.getInstance().getTab().setSelectedIndex(0);
 			}
 		});
 
@@ -67,7 +82,7 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				 MyFrame.getTab().setSelectedIndex(1);
+				 MyFrame.getInstance().getTab().setSelectedIndex(2);
 			}
 		});
 
@@ -79,7 +94,7 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				 MyFrame.getTab().setSelectedIndex(2);
+				 MyFrame.getInstance().getTab().setSelectedIndex(1);
 			}
 		});
 
@@ -90,9 +105,9 @@ public class MenuBar extends JMenuBar {
 
 		open.add(Studenti);
 		open.addSeparator();
-		open.add(Predmeti);
-		open.addSeparator();
 		open.add(Profesori);
+		open.addSeparator();
+		open.add(Predmeti);
 		open.addSeparator();
 		open.add(Katedre);
 
@@ -121,8 +136,25 @@ public class MenuBar extends JMenuBar {
 		editPom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(MyFrame.getTabelaStduenti().getSelectedRow()>=0)
-				StudentiController.getInstance().izmeniStudenta();
+				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
+				if(selectedTab == 0) {
+					//Student
+					if(MyFrame.getTabelaStduenti().getSelectedRow() >= 0)
+						StudentiController.getInstance().izmeniStudenta();
+					else
+						JOptionPane.showMessageDialog(null, "Izaberi studenta za izmenu", "Poruka", JOptionPane.WARNING_MESSAGE);
+				}
+				else if(selectedTab == 1) {
+					//Profesor
+					if(MyFrame.getTabelaProfesora().getSelectedRow() >= 0)
+						ProfesorController.getInstance().izmeniProfesora();
+					else
+						JOptionPane.showMessageDialog(null, "Izaberi profesora za izmenu", "Poruka", JOptionPane.WARNING_MESSAGE);
+				}
+				else if(selectedTab == 2) {
+					//Predmet
+					//TODO
+				}
 			}
 		});
 
@@ -135,8 +167,17 @@ public class MenuBar extends JMenuBar {
 		delete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				StudentiController.getInstance().izbrisiStudenta(MyFrame.getTabelaStduenti().getSelectedRow());
+				
+				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
+				if(selectedTab == 0) {
+					StudentiController.getInstance().izbrisiStudenta(MyFrame.getTabelaStduenti().getSelectedRow());
+				}
+				else if(selectedTab == 1) {
+					ProfesorController.getInstance().izbrisiProfesora(MyFrame.getTabelaProfesora().getSelectedRow());
+				}
+				else if(selectedTab == 2) {
+					PredmetiController.getInstance().izbrisiPredmet(MyFrame.getTabelaPredmeta().getSelectedRow());
+				}
 			}
 		});
 
@@ -163,7 +204,7 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				System.out.println("Sad sam na tabu : " + MyFrame.getTab().getSelectedIndex());
+				System.out.println("Sad sam na tabu : " + MyFrame.getInstance().getTab().getSelectedIndex());
 			}
 		});
 

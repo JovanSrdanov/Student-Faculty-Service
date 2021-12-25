@@ -41,7 +41,7 @@ public class PredmetiController {
         	Predmet predmet = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
         	BazaPredmeta.getInstance().izbrisiPredmet(predmet.getSifrPredmeta());
     		// azuriranje prikaza
-    		MyFrame.getInstance().azurirajPrikazPredmeta(null, rowSelectedIndex);
+    		MyFrame.getInstance().azurirajPrikazPredmeta();
     	}
     	
     }

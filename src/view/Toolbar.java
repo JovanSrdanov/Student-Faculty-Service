@@ -15,7 +15,9 @@ import javax.swing.SwingConstants;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 
+import controller.PredmetiController;
 import controller.ProfesorController;
+import controller.StudentiController;
 
 
 public class Toolbar extends JToolBar{
@@ -42,8 +44,19 @@ public class Toolbar extends JToolBar{
 		addBtn.addActionListener(new ActionListener(){ 
 			@Override
 			public void actionPerformed(ActionEvent e){  
-	            	//PredmetiController.getInstance().dodajPredmet();
-					ProfesorController.getInstance().dodajProfesora();
+					int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
+					if(selectedTab == 0) {
+						//Student
+						StudentiController.getInstance().dodajStudenta();
+					}
+					else if(selectedTab == 1) {
+						//Profesor
+						ProfesorController.getInstance().dodajProfesora();
+					}
+					else if(selectedTab == 2) {
+						//Predmet
+						PredmetiController.getInstance().dodajPredmet();
+					}				
 				}
 			});
 		
@@ -51,18 +64,41 @@ public class Toolbar extends JToolBar{
 			@Override
 			public void actionPerformed(ActionEvent e){  
 	            	//TODO
-					if(MyFrame.getTabelaProfesora().getSelectedRow() >= 0)
-						ProfesorController.getInstance().izmeniProfesora();
-					else
-						JOptionPane.showMessageDialog(null, "Izaberi profesora za izmenu", "Izaberi profu", JOptionPane.WARNING_MESSAGE);
+					int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
+					if(selectedTab == 0) {
+						//Student
+						if(MyFrame.getTabelaStduenti().getSelectedRow() >= 0)
+							StudentiController.getInstance().izmeniStudenta();
+						else
+							JOptionPane.showMessageDialog(null, "Izaberi studenta za izmenu", "Poruka", JOptionPane.WARNING_MESSAGE);
+					}
+					else if(selectedTab == 1) {
+						//Profesor
+						if(MyFrame.getTabelaProfesora().getSelectedRow() >= 0)
+							ProfesorController.getInstance().izmeniProfesora();
+						else
+							JOptionPane.showMessageDialog(null, "Izaberi profesora za izmenu", "Poruka", JOptionPane.WARNING_MESSAGE);
+					}
+					else if(selectedTab == 2) {
+						//Predmet
+						//TODO
+					}
 				}
 			});
 		
 		deleteBtn.addActionListener(new ActionListener(){ 
 			@Override
 			public void actionPerformed(ActionEvent e){  
-					//TODO
-					ProfesorController.getInstance().izbrisiProfesora(MyFrame.getTabelaProfesora().getSelectedRow());
+					int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
+					if(selectedTab == 0) {
+						StudentiController.getInstance().izbrisiStudenta(MyFrame.getTabelaStduenti().getSelectedRow());
+					}
+					else if(selectedTab == 1) {
+						ProfesorController.getInstance().izbrisiProfesora(MyFrame.getTabelaProfesora().getSelectedRow());
+					}
+					else if(selectedTab == 2) {
+						PredmetiController.getInstance().izbrisiPredmet(MyFrame.getTabelaPredmeta().getSelectedRow());
+					}
 				}
 			});
 		

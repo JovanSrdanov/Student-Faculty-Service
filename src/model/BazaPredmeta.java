@@ -35,8 +35,8 @@ public class BazaPredmeta {
 	
 	private void initPredmete() {
 		predmeti = new ArrayList<Predmet>();
-		predmeti.add(new Predmet(1, "Gej", Semestar.ZIMSKI, 1, null, 1));
-		predmeti.add(new Predmet(2, "Gej2", Semestar.ZIMSKI, 1, null, 1));
+		predmeti.add(new Predmet(1, "Baze podataka 1", Semestar.ZIMSKI, 3, null, 6));
+		predmeti.add(new Predmet(2, "Operativni sistemi", Semestar.LETNJI, 2, null, 7));
 		
 	}
 

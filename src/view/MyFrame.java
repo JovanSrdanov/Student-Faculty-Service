@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class MyFrame extends JFrame {
 
@@ -20,6 +22,7 @@ public class MyFrame extends JFrame {
 
 	private Toolbar toolbar;
 	private MenuBar menu;
+	private StatusBar statusBar;
 	private static MyTab tabbedPane;
 	private static JTable tabelaStduenti;
 	private static Tabela tabelaPredmeta;
@@ -34,6 +37,7 @@ public class MyFrame extends JFrame {
 	private MyFrame() {
 		this.createToolbar();
 		this.initialise();
+		this.createStatusBar();
 		this.createMenuBar();
 		this.createTabbedPane();
 
@@ -57,6 +61,12 @@ public class MyFrame extends JFrame {
 		// Menu bar
 		this.menu = new MenuBar();
 		this.setJMenuBar(this.menu);
+	}
+	
+	private void createStatusBar() {
+		//Status bar
+		statusBar = new StatusBar();
+		this.add(statusBar, BorderLayout.SOUTH);
 	}
 
 	private void initialise() {
@@ -105,6 +115,14 @@ public class MyFrame extends JFrame {
 	private void createTabbedPane() {
 
 		tabbedPane = new MyTab();
+		tabbedPane.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				statusBar.setAktivniTab(tabbedPane.getSelectedIndex());
+			}
+			
+		});
 
 		ImageIcon iconStudenti = createImageIcon("icons/studenti.png", true, 32, 32);
 		tabelaStduenti = new Tabela(new AbstractTableModelStudenti());
@@ -125,17 +143,17 @@ public class MyFrame extends JFrame {
 
 	}
 
-	public void azurirajPrikazStudenata(String akcija, int vrednost) {
+	public void azurirajPrikazStudenata() {
 		AbstractTableModelStudenti model = (AbstractTableModelStudenti) tabelaStduenti.getModel();
 		model.fireTableDataChanged();
 		validate();
 	}
-	public void azurirajPrikazPredmeta(String akcija, int vrednost) {
+	public void azurirajPrikazPredmeta() {
 		AbstractTableModelPredmeti model = (AbstractTableModelPredmeti)tabelaPredmeta.getModel();
 		model.fireTableDataChanged();
 		validate();
 	}
-	public void azurirajPrikazProfesora(String akcija, int vrednost) {
+	public void azurirajPrikazProfesora() {
 		AbstractTableModelProfesor model = (AbstractTableModelProfesor)tabelaProfesora.getModel();
 		model.fireTableDataChanged();
 		validate();
@@ -167,7 +185,7 @@ public class MyFrame extends JFrame {
 		return tabelaProfesora;
 	}
 	
-	public static MyTab getTab() {
+	public MyTab getTab() {
 		return tabbedPane;
 	}
 

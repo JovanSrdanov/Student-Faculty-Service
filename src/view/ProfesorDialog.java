@@ -251,7 +251,7 @@ public class ProfesorDialog extends JDialog {
 							null);
 					}
 					
-					MyFrame.getInstance().azurirajPrikazProfesora(null, 1);
+					MyFrame.getInstance().azurirajPrikazProfesora();
 					dispose();
 				}
 				else {
@@ -300,7 +300,7 @@ public class ProfesorDialog extends JDialog {
 		if(!telTxt.getText().matches("[0-9]+")) {
 			return false;
 		}
-		if(!eMailTxt.getText().matches(".+@.+")) {
+		if(!eMailTxt.getText().matches("[^ ]+@[^ ]+[.][^ ]+")) {
 			return false;
 		}
 		if(!godineStazaTxt.getText().matches("[0-9]+")) {

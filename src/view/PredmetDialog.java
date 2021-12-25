@@ -63,7 +63,7 @@ public class PredmetDialog extends JDialog {
 						semestar = Semestar.LETNJI;
 					
 					BazaPredmeta.getInstance().dodajPredmet(sifra, naziv, semestar, godinaCb.getSelectedIndex() + 1, null, espb);
-					MyFrame.getInstance().azurirajPrikazPredmeta("dodat", 1);
+					MyFrame.getInstance().azurirajPrikazPredmeta();
 					dispose();
 				}
 				else

@@ -19,12 +19,13 @@ public class StatusBar extends JPanel{
 	private static final long serialVersionUID = 1696597433259221588L;
 	private static LocalDateTime now;
 	private JLabel datumVremeLab;
+	private JLabel imeAplikacijeLab;
 	private final String imeApp = "Studentska služba";
 
 	public StatusBar() {
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
-		JLabel imeAplikacijeLab = new JLabel(imeApp);
+		imeAplikacijeLab = new JLabel(imeApp);
 		imeAplikacijeLab.setHorizontalAlignment(SwingConstants.LEFT);
 		add(imeAplikacijeLab);
 		
@@ -48,8 +49,18 @@ public class StatusBar extends JPanel{
 		//
 	}
 	
-	public void setAktivniTab(String imeTaba) {
-		datumVremeLab.setText(imeApp + " - " + imeTaba);
+	public void setAktivniTab(int indexTaba) {
+		String imeTaba = "";
+		if(indexTaba == 0) {
+			imeTaba = "Studenti";
+		}
+		else if(indexTaba == 1) {
+			imeTaba =  "Profesori";
+		}
+		else if(indexTaba == 2) {
+			imeTaba = "Predmeti";
+		}
+		imeAplikacijeLab.setText(imeApp + " - " + imeTaba);
 	}
 	
 }

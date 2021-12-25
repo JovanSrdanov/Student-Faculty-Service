@@ -36,15 +36,15 @@ public class BazaStudenata {
 		this.studenti = new ArrayList<Student>();
 		Adresa a = new Adresa("Novosadska", 4, "Zrenjanin", "Srbija");
 		Student pom1 = new Student("Srdanov", "Jovan", LocalDate.now(), a, 38106354, "jovan@gmail.com", "ra-145-2019",
-				2019, 3, Status.BUDŽET, 0, null, null);
+				2019, 3, Status.BUDŽET, 7, null, null);
 		Student pom2 = new Student("Erakovic", "Strahinja", LocalDate.now(), a, 38146454, "strahinja@gmail.com",
-				"ra-146-2018", 2018, 3, Status.BUDŽET, 0, null, null);
+				"ra-146-2018", 2018, 3, Status.BUDŽET, 6.5, null, null);
 		Student pom3 = new Student("Prezimenic", "Imenko", LocalDate.now(), a, 38656454, "imenko@yahoo.com",
-				"sw-147-2017", 2017, 3, Status.BUDŽET, 0, null, null);
+				"sw-147-2017", 2017, 3, Status.BUDŽET, 10, null, null);
 		Student pom4 = new Student("Strasno", "Uzas", LocalDate.now(), a, 38107554, "mjau@gmail.com", "sw-148-2016",
-				2016, 2, Status.SAMOFINANRSIRANJE, 0, null, null);
+				2016, 2, Status.SAMOFINANRSIRANJE, 4.33, null, null);
 		Student pom5 = new Student("Kovačević", "Dragoslava", LocalDate.now(), a, 38107552, "dragoslava@gmail.com",
-				"ra-22-2019", 2019, 3, Status.SAMOFINANRSIRANJE, 0, null, null);
+				"ra-22-2019", 2019, 3, Status.SAMOFINANRSIRANJE, 7.32, null, null);
 		this.studenti.add(pom1);
 		this.studenti.add(pom2);
 		this.studenti.add(pom3);

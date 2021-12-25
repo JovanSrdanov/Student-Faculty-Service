@@ -40,7 +40,7 @@ public class ProfesorController {
 	    	Profesor profesor = BazaProfesora.getInstance().getRow(rowSelectedIndex);
 	    	BazaProfesora.getInstance().izbrisiProfesor(profesor.getBrojLicneKarte());
 			// azuriranje prikaza
-			MyFrame.getInstance().azurirajPrikazProfesora(null, input);
+			MyFrame.getInstance().azurirajPrikazProfesora();
 		}
 		
 	}

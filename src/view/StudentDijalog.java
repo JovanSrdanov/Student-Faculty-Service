@@ -213,7 +213,7 @@ public class StudentDijalog extends JDialog {
 
 					}
 
-					MyFrame.getInstance().azurirajPrikazStudenata(null, 1);
+					MyFrame.getInstance().azurirajPrikazStudenata();
 					dispose();
 				}
 
@@ -260,7 +260,7 @@ public class StudentDijalog extends JDialog {
 		if (!telTxt.getText().matches("[0-9]+")) {
 			return false;
 		}
-		if (!eMailTxt.getText().matches(".+@.+[.].+")) {
+		if (!eMailTxt.getText().matches("[^ ]+@[^ ]+[.][^ ]+")) {
 			return false;
 		}
 		if (!adresaTxt.getText().matches(".+,[0-9]+,.+,.+")) {
