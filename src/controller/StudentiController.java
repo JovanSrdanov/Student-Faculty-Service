@@ -34,7 +34,7 @@ public class StudentiController {
 			Student s = BazaStudenata.getInstance().getRow(rowSelectedIndex);
 			BazaStudenata.getInstance().izbrisiStudenta(s.getBrojIndexa());
 			// azuriranje prikaza
-			MyFrame.getInstance().azurirajPrikazProfesora(null, input);
+			MyFrame.getInstance().azurirajPrikazStudenata(null, input);
 		}
 
 	}

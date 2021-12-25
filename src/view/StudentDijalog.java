@@ -213,7 +213,7 @@ public class StudentDijalog extends JDialog {
 
 					}
 
-					MyFrame.getInstance().azurirajPrikazProfesora(null, 1);
+					MyFrame.getInstance().azurirajPrikazStudenata(null, 1);
 					dispose();
 				}
 
