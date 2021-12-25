@@ -184,15 +184,15 @@ public class StudentDijalog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				okBtn.setEnabled(proveraUpis(tip));
 				if (proveraUpis(tip)) {
-					String ime = imeTxt.getText();
-					String prezime = prezimeTxt.getText();
+					String ime = imeTxt.getText().trim();
+					String prezime = prezimeTxt.getText().trim();
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
 					LocalDate datumRodj = LocalDate.parse(datumTxt.getText(), formatter);
 					String[] deoAdr = adresaTxt.getText().split(",");
-					Adresa adresaStanovanja = new Adresa(deoAdr[0], Integer.parseInt(deoAdr[1]), deoAdr[2], deoAdr[3]);
+					Adresa adresaStanovanja = new Adresa(deoAdr[0].trim(), Integer.parseInt(deoAdr[1]), deoAdr[2].trim(), deoAdr[3].trim());
 					int kontaktTelefon = Integer.parseInt(telTxt.getText());
-					String eMailAdresa = eMailTxt.getText();
-					String brIndexa = brojIndexaTxt.getText();
+					String eMailAdresa = eMailTxt.getText().trim();
+					String brIndexa = brojIndexaTxt.getText().trim();
 					int godinaUpisa = Integer.parseInt(godinaUpisaTxt.getText());
 					int godinaStudija = godinaStudijaCB.getSelectedIndex() + 1;
 
@@ -250,39 +250,38 @@ public class StudentDijalog extends JDialog {
 	}
 
 	private boolean proveraUpis(char tipA) {
-		if(tip=='u' && existsByIndex(brojIndexaTxt.getText()))
+		if (tip == 'u' && existsByIndex(brojIndexaTxt.getText()))
 			return false;
-		
-		if(imeTxt.getText().isBlank()) {
-			return false;
-		}
-		if(prezimeTxt.getText().isBlank()) {
+
+		if (imeTxt.getText().isBlank()) {
 			return false;
 		}
-		if(!telTxt.getText().matches("[0-9]+")) {
+		if (prezimeTxt.getText().isBlank()) {
 			return false;
 		}
-		if(!eMailTxt.getText().matches(".+@.+[.].+")) {
+		if (!telTxt.getText().matches("[0-9]+")) {
 			return false;
 		}
-		if(!adresaTxt.getText().matches(".+,[0-9]+,.+,.+")) {
+		if (!eMailTxt.getText().matches(".+@.+[.].+")) {
 			return false;
 		}
-		if(!datumTxt.getText().matches("[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}")) {
+		if (!adresaTxt.getText().matches(".+,[0-9]+,.+,.+")) {
 			return false;
 		}
-		else {
-			try{    
+		if (!datumTxt.getText().matches("[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}")) {
+			return false;
+		} else {
+			try {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
 				LocalDate datumRodj = LocalDate.parse(datumTxt.getText(), formatter);
-				if(datumRodj.isAfter(LocalDate.now())) {
+				if (datumRodj.isAfter(LocalDate.now())) {
 					return false;
 				}
-				}catch(Exception e){
-					return false;
-				}   
+			} catch (Exception e) {
+				return false;
+			}
 		}
-		if(!brojIndexaTxt.getText().matches("[a-z]{2}-[1-9][0-9]{0,3}-[1-9][0-9]{3}")) {
+		if (!brojIndexaTxt.getText().matches("[a-z]{2}-[1-9][0-9]{0,3}-[1-9][0-9]{3}")) {
 			return false;
 		}
 
