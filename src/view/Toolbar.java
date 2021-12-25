@@ -15,10 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 
-import controller.PredmetiController;
 import controller.ProfesorController;
-import model.BazaPredmeta;
-import model.Semestar;
 
 
 public class Toolbar extends JToolBar{
@@ -57,7 +54,7 @@ public class Toolbar extends JToolBar{
 					if(MyFrame.getTabelaProfesora().getSelectedRow() >= 0)
 						ProfesorController.getInstance().izmeniProfesora();
 					else
-						JOptionPane.showMessageDialog(null, "Izaberi profu", "Izaberi profu", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Izaberi profesora za izmenu", "Izaberi profu", JOptionPane.WARNING_MESSAGE);
 				}
 			});
 		
@@ -65,7 +62,6 @@ public class Toolbar extends JToolBar{
 			@Override
 			public void actionPerformed(ActionEvent e){  
 					//TODO
-					//PredmetiController.getInstance().izbrisiPredmet(MyFrame.getTabelaPredmeta().getSelectedRow());
 					ProfesorController.getInstance().izbrisiProfesora(MyFrame.getTabelaProfesora().getSelectedRow());
 				}
 			});

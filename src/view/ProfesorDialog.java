@@ -10,28 +10,27 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.awt.FlowLayout;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import model.Adresa;
-import model.BazaPredmeta;
 import model.BazaProfesora;
-import model.Predmet;
 import model.Profesor;
 import model.Zvanje;
 
 
 public class ProfesorDialog extends JDialog {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5395350345430464127L;
+	
 	private JTextField imeTxt;
 	private JTextField prezimeTxt;
 	private JTextField adresaTxt;
@@ -39,7 +38,7 @@ public class ProfesorDialog extends JDialog {
 	private JTextField eMailTxt;
 	private JTextField adresaKancTxt;
 	private JTextField brLicneTxt;
-	private JComboBox zvanjeCb;
+	private JComboBox<String> zvanjeCb;
 	private JTextField godineStazaTxt;
 	private JTextField datumTxt;
 	private char tipAk;
@@ -153,7 +152,7 @@ public class ProfesorDialog extends JDialog {
 		zvanjeLbl.setPreferredSize(dim);
 		
 		String[] zvanja = {"Redovni", "Vandredni"};
-		zvanjeCb = new JComboBox(zvanja);
+		zvanjeCb = new JComboBox<String>(zvanja);
 		zvanjeCb.setPreferredSize(dim2);
 		
 		zvanjePnl.add(zvanjeLbl);
@@ -221,10 +220,10 @@ public class ProfesorDialog extends JDialog {
 				okBtn.setEnabled(proveraUpis(tipA));
 				if(proveraUpis(tipA)) {
 				
-					String prezime = prezimeTxt.getText();
-					String ime = imeTxt.getText();
+					String prezime = prezimeTxt.getText().trim();
+					String ime = imeTxt.getText().trim();
 					int kontaktTelefon = Integer.parseInt(telTxt.getText());
-					String eMailAdresa = eMailTxt.getText();
+					String eMailAdresa = eMailTxt.getText().trim();
 					int brojLicneKarte = Integer.parseInt(brLicneTxt.getText());
 					int godineStaza = Integer.parseInt(godineStazaTxt.getText());
 					Zvanje zvanje;
@@ -233,9 +232,9 @@ public class ProfesorDialog extends JDialog {
 					else
 						zvanje = Zvanje.VANREDNI_PROFESOR;
 					String[] deoAdr = adresaTxt.getText().split(",");
-					Adresa adresaKancelarije = new Adresa(deoAdr[0], Integer.parseInt(deoAdr[1]), deoAdr[2], deoAdr[3]);
+					Adresa adresaStanovanja = new Adresa(deoAdr[0].trim(), Integer.parseInt(deoAdr[1].trim()), deoAdr[2].trim(), deoAdr[3].trim());
 					String[] deoAdrKan = adresaKancTxt.getText().split(",");
-					Adresa adresaStanovanja = new Adresa(deoAdrKan[0], Integer.parseInt(deoAdrKan[1]), deoAdrKan[2], deoAdrKan[3]);
+					Adresa adresaKancelarije = new Adresa(deoAdrKan[0].trim(), Integer.parseInt(deoAdrKan[1].trim()), deoAdrKan[2].trim(), deoAdrKan[3].trim());
 					
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
 					LocalDate datumRodj = LocalDate.parse(datumTxt.getText(), formatter);

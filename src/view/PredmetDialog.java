@@ -22,9 +22,13 @@ import model.Predmet;
 import model.Semestar;
 
 public class PredmetDialog extends JDialog {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3432403525611046701L;
 	
-	private JComboBox godinaCb;
-	private JComboBox semsetarCb;
+	private JComboBox<String> godinaCb;
+	private JComboBox<String> semsetarCb;
 	private JTextField sifraTxt;
 	private JTextField nazivTxt;
 	private JTextField espbTxt;
@@ -77,11 +81,11 @@ public class PredmetDialog extends JDialog {
 		JLabel godinaLbl = new JLabel("Izaberite godinu u kojoj se predmet izvodi:");
 		
 		String[] godineOp = {"1", "2", "3", "4"};
-		godinaCb = new JComboBox(godineOp);
+		godinaCb = new JComboBox<String>(godineOp);
 		godinaCb.setMaximumSize(new Dimension(200,20));
 		
 		String[] semestarOp = {"ZIMSKI", "LETNJI"};
-		semsetarCb = new JComboBox(semestarOp);
+		semsetarCb = new JComboBox<String>(semestarOp);
 		semsetarCb.setMaximumSize(new Dimension(200,20));
 		
 		sifraTxt = new JTextField();

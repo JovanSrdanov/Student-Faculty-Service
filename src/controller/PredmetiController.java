@@ -1,10 +1,6 @@
 package controller;
 
-import java.awt.Frame;
-
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 import model.BazaPredmeta;
 import model.Predmet;

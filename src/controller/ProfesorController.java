@@ -3,10 +3,8 @@ package controller;
 import javax.swing.JOptionPane;
 
 import model.BazaProfesora;
-import model.Predmet;
 import model.Profesor;
 import view.MyFrame;
-import view.PredmetDialog;
 import view.ProfesorDialog;
 
 public class ProfesorController {
