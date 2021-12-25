@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.Icon;
@@ -10,8 +9,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
-
-import controller.StudentiController;
 
 public class MenuBar extends JMenuBar {
 
@@ -23,24 +20,18 @@ public class MenuBar extends JMenuBar {
 	public MenuBar() {
 		JMenu file = new JMenu("File");
 		file.setMnemonic(KeyEvent.VK_F);
-		Icon icon = new ImageIcon();
+		Icon icon = new ImageIcon("icons/file.png");
+		file.setIcon(icon);
 
 		icon = new ImageIcon("icons/new.png");
 		JMenuItem miNew = new JMenuItem("New", icon);
-		miNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK));
-		miNew.setMnemonic(KeyEvent.VK_W);
-		miNew.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				StudentiController.getInstance().dodajStudenta();
-			}
-		});
+		miNew.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_N, ActionEvent.ALT_MASK));
 
 		icon = new ImageIcon("icons/save.png");
 		JMenuItem save = new JMenuItem("Save", icon);
-		save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
-		save.setMnemonic(KeyEvent.VK_V);
+		save.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_S, ActionEvent.ALT_MASK));
 
 		JMenu open = new JMenu("Open");
 		open.setMnemonic(KeyEvent.VK_P);
@@ -49,44 +40,23 @@ public class MenuBar extends JMenuBar {
 
 		icon = new ImageIcon("icons/studenti.png");
 		JMenuItem Studenti = new JMenuItem("Studenti", icon);
-		Studenti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.ALT_MASK));
-		Studenti.setMnemonic(KeyEvent.VK_U);
-		Studenti.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				 MyFrame.getTab().setSelectedIndex(0);
-			}
-		});
+		Studenti.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_T, ActionEvent.ALT_MASK));
 
 		icon = new ImageIcon("icons/predmeti.png");
 		JMenuItem Predmeti = new JMenuItem("Predmeti", icon);
-		Predmeti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.ALT_MASK));
-		Predmeti.setMnemonic(KeyEvent.VK_J);
-		Predmeti.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				 MyFrame.getTab().setSelectedIndex(1);
-			}
-		});
+		Predmeti.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_M, ActionEvent.ALT_MASK));
 
 		icon = new ImageIcon("icons/profesori.png");
 		JMenuItem Profesori = new JMenuItem("Profesori", icon);
-		Profesori.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK));
-		Profesori.setMnemonic(KeyEvent.VK_L);
-		Profesori.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				 MyFrame.getTab().setSelectedIndex(2);
-			}
-		});
+		Profesori.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_R, ActionEvent.ALT_MASK));
 
 		icon = new ImageIcon("icons/katedra.png");
 		JMenuItem Katedre = new JMenuItem("Katedre", icon);
-		Katedre.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.ALT_MASK));
-		Katedre.setMnemonic(KeyEvent.VK_K);
+		Katedre.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_K, ActionEvent.ALT_MASK));
 
 		open.add(Studenti);
 		open.addSeparator();
@@ -98,8 +68,8 @@ public class MenuBar extends JMenuBar {
 
 		icon = new ImageIcon("icons/close.png");
 		JMenuItem close = new JMenuItem("Close", icon);
-		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.ALT_MASK));
-		close.setMnemonic(KeyEvent.VK_C);
+		close.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_C, ActionEvent.ALT_MASK));
 
 		file.add(miNew);
 		file.addSeparator();
@@ -113,32 +83,19 @@ public class MenuBar extends JMenuBar {
 
 		JMenu edit = new JMenu("Edit");
 		edit.setMnemonic(KeyEvent.VK_E);
+		icon = new ImageIcon("icons/edit.png");
+		edit.setIcon(icon);
 
 		icon = new ImageIcon("icons/editPom.png");
 		JMenuItem editPom = new JMenuItem("Edit", icon);
-		editPom.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.ALT_MASK));
-		editPom.setMnemonic(KeyEvent.VK_D);
-		editPom.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(MyFrame.getTabelaStduenti().getSelectedRow()>=0)
-				StudentiController.getInstance().izmeniStudenta();
-			}
-		});
+		editPom.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_D, ActionEvent.ALT_MASK));
 
 
 		icon = new ImageIcon("icons/delete.png");
 		JMenuItem delete = new JMenuItem("Delete", icon);
-		delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.ALT_MASK));
-		delete.setMnemonic(KeyEvent.VK_L);
-
-		delete.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				StudentiController.getInstance().izbrisiStudenta(MyFrame.getTabelaStduenti().getSelectedRow());
-			}
-		});
+		delete.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_L, ActionEvent.ALT_MASK));
 
 		edit.add(editPom);
 		edit.addSeparator();
@@ -147,25 +104,18 @@ public class MenuBar extends JMenuBar {
 
 		JMenu help = new JMenu("Help");
 		help.setMnemonic(KeyEvent.VK_H);
+		icon = new ImageIcon("icons/help.png");
+		help.setIcon(icon);
 
 		icon = new ImageIcon("icons/helpPom.png");
 		JMenuItem helpPom = new JMenuItem("Help", icon);
-		helpPom.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.ALT_MASK));
-		helpPom.setMnemonic(KeyEvent.VK_E);
+		helpPom.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_E, ActionEvent.ALT_MASK));
 
 		icon = new ImageIcon("icons/about.png");
 		JMenuItem about = new JMenuItem("About", icon);
-		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.ALT_MASK));
-		about.setMnemonic(KeyEvent.VK_B);
-		
-		
-		helpPom.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				System.out.println("Sad sam na tabu : " + MyFrame.getTab().getSelectedIndex());
-			}
-		});
+		about.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_B, ActionEvent.ALT_MASK));
 
 		help.add(helpPom);
 		help.addSeparator();

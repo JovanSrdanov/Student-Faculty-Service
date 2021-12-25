@@ -8,7 +8,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 
-public class Tabela extends JTable {
+
+public class Tabela extends JTable{
 	/**
 	 * 
 	 */
@@ -20,7 +21,7 @@ public class Tabela extends JTable {
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(model);
 	}
-
+	
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
 		Component c = super.prepareRenderer(renderer, row, column);
