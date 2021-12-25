@@ -160,9 +160,7 @@ public class StudentDijalog extends JDialog {
 			prezimeTxt.setText(s.getPrezime());
 			imeTxt.setText(s.getIme());
 			datumTxt.setText(s.getDatumRodjenja().format(DateTimeFormatter.ofPattern("d/M/yyyy")));
-
 			adresaTxt.setText(s.getAdresaStanovanja().toString());
-
 			telTxt.setText(Integer.toString(s.getKontaktTelefon()));
 			eMailTxt.setText(s.geteMailAdresa());
 			brojIndexaTxt.setText(s.getBrojIndexa());
