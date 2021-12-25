@@ -100,7 +100,7 @@ public class MenuBar extends JMenuBar {
 		editPom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				if(MyFrame.getTabelaStduenti().getSelectedRow()>=0)
 				StudentiController.getInstance().izmeniStudenta();
 			}
 		});

@@ -103,7 +103,7 @@ public class StudentDijalog extends JDialog {
 		mailPnl.add(eMailTxt);
 
 		JPanel brojIndexaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel brojIndexaLbl = new JLabel("Broj indexa (XX-YYY-GGGG) :");
+		JLabel brojIndexaLbl = new JLabel("Broj indexa (xx-yyy-zzzz) :");
 		brojIndexaLbl.setPreferredSize(dimLabela);
 		brojIndexaTxt = new JTextField();
 		brojIndexaTxt.setPreferredSize(dimTextBox);
@@ -250,6 +250,41 @@ public class StudentDijalog extends JDialog {
 	}
 
 	private boolean proveraUpis(char tipA) {
+		if(tip=='u' && existsByIndex(brojIndexaTxt.getText()))
+			return false;
+		
+		if(imeTxt.getText().isBlank()) {
+			return false;
+		}
+		if(prezimeTxt.getText().isBlank()) {
+			return false;
+		}
+		if(!telTxt.getText().matches("[0-9]+")) {
+			return false;
+		}
+		if(!eMailTxt.getText().matches(".+@.+[.].+")) {
+			return false;
+		}
+		if(!adresaTxt.getText().matches(".+,[0-9]+,.+,.+")) {
+			return false;
+		}
+		if(!datumTxt.getText().matches("[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}")) {
+			return false;
+		}
+		else {
+			try{    
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+				LocalDate datumRodj = LocalDate.parse(datumTxt.getText(), formatter);
+				if(datumRodj.isAfter(LocalDate.now())) {
+					return false;
+				}
+				}catch(Exception e){
+					return false;
+				}   
+		}
+		if(!brojIndexaTxt.getText().matches("[a-z]{2}-[1-9][0-9]{0,3}-[1-9][0-9]{3}")) {
+			return false;
+		}
 
 		return true;
 	}
@@ -293,7 +328,6 @@ public class StudentDijalog extends JDialog {
 		});
 	}
 
-	@SuppressWarnings("unused")
 	private boolean existsByIndex(String index) {
 		for (Student p : BazaStudenata.getInstance().getStudenti()) {
 			if (p.getBrojIndexa().equals(index))
