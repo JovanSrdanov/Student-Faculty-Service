@@ -20,7 +20,7 @@ public class MyFrame extends JFrame {
 
 	private Toolbar toolbar;
 	private MenuBar menu;
-	private MyTab tabbedPane;
+	private static MyTab tabbedPane;
 	private static JTable tabelaStduenti;
 
 	private JPanel panelGlavni;
@@ -102,7 +102,7 @@ public class MyFrame extends JFrame {
 
 	private void createTabbedPane() {
 
-		this.tabbedPane = new MyTab();
+		tabbedPane = new MyTab();
 
 		ImageIcon iconStudenti = createImageIcon("icons/studenti.png", true, 32, 32);
 		tabelaStduenti = new Tabela(new AbstractTableModelStudenti());
@@ -118,7 +118,8 @@ public class MyFrame extends JFrame {
 		JPanel tabelaPredmeti = new JPanel();
 		tabelaPredmeti.setBackground(Color.cyan);
 		tabbedPane.addTab("Predmeti", iconPredmeti, tabelaPredmeti, "Prikaz predmeta");
-		this.panelGlavni.add(this.tabbedPane, BorderLayout.CENTER);
+		
+		this.panelGlavni.add(tabbedPane, BorderLayout.CENTER);
 
 	}
 
@@ -144,6 +145,10 @@ public class MyFrame extends JFrame {
 
 	public static JTable getTabelaStduenti() {
 		return tabelaStduenti;
+	}
+	
+	public static MyTab getTab() {
+		return tabbedPane;
 	}
 
 }

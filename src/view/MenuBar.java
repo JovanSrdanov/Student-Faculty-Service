@@ -51,16 +51,37 @@ public class MenuBar extends JMenuBar {
 		JMenuItem Studenti = new JMenuItem("Studenti", icon);
 		Studenti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.ALT_MASK));
 		Studenti.setMnemonic(KeyEvent.VK_U);
+		Studenti.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				 MyFrame.getTab().setSelectedIndex(0);
+			}
+		});
 
 		icon = new ImageIcon("icons/predmeti.png");
 		JMenuItem Predmeti = new JMenuItem("Predmeti", icon);
 		Predmeti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.ALT_MASK));
 		Predmeti.setMnemonic(KeyEvent.VK_J);
+		Predmeti.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				 MyFrame.getTab().setSelectedIndex(1);
+			}
+		});
 
 		icon = new ImageIcon("icons/profesori.png");
 		JMenuItem Profesori = new JMenuItem("Profesori", icon);
 		Profesori.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK));
 		Profesori.setMnemonic(KeyEvent.VK_L);
+		Profesori.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				 MyFrame.getTab().setSelectedIndex(2);
+			}
+		});
 
 		icon = new ImageIcon("icons/katedra.png");
 		JMenuItem Katedre = new JMenuItem("Katedre", icon);
@@ -136,6 +157,15 @@ public class MenuBar extends JMenuBar {
 		JMenuItem about = new JMenuItem("About", icon);
 		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.ALT_MASK));
 		about.setMnemonic(KeyEvent.VK_B);
+		
+		
+		helpPom.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				System.out.println("Sad sam na tabu : " + MyFrame.getTab().getSelectedIndex());
+			}
+		});
 
 		help.add(helpPom);
 		help.addSeparator();
