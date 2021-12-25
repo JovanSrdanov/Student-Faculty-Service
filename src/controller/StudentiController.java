@@ -40,6 +40,7 @@ public class StudentiController {
 	}
 
 	public void dodajStudenta() {
+		System.out.println("uso");
 		StudentDijalog studentDijalog = new StudentDijalog(null, "Dodavanje studenta", true, 'u');
 		studentDijalog.setLocationRelativeTo(MyFrame.getInstance());
 		studentDijalog.setVisible(true);
