@@ -23,7 +23,7 @@ public class Ocena {
 		this.predmet = predmet;
 		this.brojcanaVrednostOcene = brojcanaVrednostOcene;
 		this.datumPolaganjaIspita = datumPolaganjaIspita;
-		
+
 	}
 
 	public Ocena() {

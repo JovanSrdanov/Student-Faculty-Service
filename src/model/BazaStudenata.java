@@ -34,16 +34,17 @@ public class BazaStudenata {
 
 	private void initStudente() {
 		this.studenti = new ArrayList<Student>();
-		Student pom1 = new Student("Srdanov", "Jovan", LocalDate.now(), null, 38106354, "nekimail", "ra-145-2019", 2019, 3,
-				Status.BUDŽET, 8.5, null, null);
-		Student pom2 = new Student("Erakovic", "Strahinja", LocalDate.now(), null, 38146454, "nekimail1", "ra-146-2018",
-				2018, 4, Status.BUDŽET, 8.4, null, null);
-		Student pom3 = new Student("Prezimenic", "Imenko", LocalDate.now(), null, 38656454, "nekimail2", "ra-147-2018", 2017,
-				5, Status.BUDŽET, 8.5, null, null);
-		Student pom4 = new Student("JaoDokleVise", "NMG", LocalDate.now(), null, 38107554, "nekimail3", "ra-148-2016", 2016,
-				6, Status.SAMOFINANRSIRANJE, 8.2, null, null);
-		Student pom5 = new Student("Kovačević", "Dragoslava", LocalDate.now(), null, 38107552, "nekimail3", "ra-22-2019", 2019,
-				3, Status.SAMOFINANRSIRANJE, 8.2, null, null);
+		Adresa a = new Adresa("Novosadska", 4, "Zrenjanin", "Srbija");
+		Student pom1 = new Student("Srdanov", "Jovan", LocalDate.now(), a, 38106354, "jovan@gmail.com", "ra-145-2019",
+				2019, 3, Status.BUDŽET, 0, null, null);
+		Student pom2 = new Student("Erakovic", "Strahinja", LocalDate.now(), a, 38146454, "strahinja@gmail.com",
+				"ra-146-2018", 2018, 3, Status.BUDŽET, 0, null, null);
+		Student pom3 = new Student("Prezimenic", "Imenko", LocalDate.now(), a, 38656454, "imenko@yahoo.com",
+				"sw-147-2017", 2017, 3, Status.BUDŽET, 0, null, null);
+		Student pom4 = new Student("Strasno", "Uzas", LocalDate.now(), a, 38107554, "mjau@gmail.com", "sw-148-2016",
+				2016, 2, Status.SAMOFINANRSIRANJE, 0, null, null);
+		Student pom5 = new Student("Kovačević", "Dragoslava", LocalDate.now(), a, 38107552, "dragoslava@gmail.com",
+				"ra-22-2019", 2019, 3, Status.SAMOFINANRSIRANJE, 0, null, null);
 		this.studenti.add(pom1);
 		this.studenti.add(pom2);
 		this.studenti.add(pom3);
@@ -92,7 +93,7 @@ public class BazaStudenata {
 		}
 	}
 
-	public void dodajStudnetne(Student s) {
+	public void dodajStudnetna(Student s) {
 		this.studenti.add(s);
 	}
 
@@ -105,9 +106,9 @@ public class BazaStudenata {
 		}
 	}
 
-	public void izmeniIgraca(String prezime, String ime, LocalDate datumRodjenja, Adresa adresaStanovanja,
+	public void izmeniStudenta(String prezime, String ime, LocalDate datumRodjenja, Adresa adresaStanovanja,
 			int kontaktTelefon, String eMailAdresa, String brojIndexa, int godinaUpisa, int trenutnaGodinaStudija,
-			Status status, double prosecnaOcena) {
+			Status status) {
 		for (Student s : studenti) {
 			if (s.getBrojIndexa().equals(brojIndexa)) {
 				s.setPrezime(prezime);
@@ -119,6 +120,8 @@ public class BazaStudenata {
 				s.setGodinaUpisa(godinaUpisa);
 				s.setTrenutnaGodinaStudija(trenutnaGodinaStudija);
 				s.setStatus(status);
+				s.setSpisakNePolozenihIspita(null);
+				s.setSpisakPolozenihIspita(null);
 
 			}
 		}

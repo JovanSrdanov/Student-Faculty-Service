@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import model.BazaStudenata;
 import model.Student;
 import view.MyFrame;
+import view.StudentDijalog;
 
 public class StudentiController {
 	private static StudentiController instance = null;
@@ -39,10 +40,15 @@ public class StudentiController {
 	}
 
 	public void dodajStudenta() {
+		StudentDijalog studentDijalog = new StudentDijalog(null, "Dodavanje studenta", true, 'u');
+		studentDijalog.setLocationRelativeTo(MyFrame.getInstance());
+		studentDijalog.setVisible(true);
 
 	}
 
 	public void izmeniStudenta() {
+		StudentDijalog studentDijalog = new StudentDijalog(null, "Izmena studenta", true, 'i');
+		studentDijalog.setLocationRelativeTo(MyFrame.getInstance());
+		studentDijalog.setVisible(true);
 	}
-
 }

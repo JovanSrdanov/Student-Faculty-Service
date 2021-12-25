@@ -31,7 +31,7 @@ public class Predmet {
 		this.spisakStudenataKojiSuPoloziliPredmet = spisakStudenataKojiSuPoloziliPredmet;
 		this.spisakStudenataKojiNisuPoloziliPredmet = spisakStudenataKojiNisuPoloziliPredmet;
 	}
-	
+
 	public Predmet(int sifrPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudijaUKojojSePredmetIzvodi,
 			Profesor predmetniProfesor, int brojESPBBodova) {
 		super();

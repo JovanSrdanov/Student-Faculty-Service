@@ -121,9 +121,9 @@ public class MyFrame extends JFrame {
 		this.panelGlavni.add(this.tabbedPane, BorderLayout.CENTER);
 
 	}
-	
+
 	public void azurirajPrikazProfesora(String akcija, int vrednost) {
-		AbstractTableModelStudenti model = (AbstractTableModelStudenti)tabelaStduenti.getModel();
+		AbstractTableModelStudenti model = (AbstractTableModelStudenti) tabelaStduenti.getModel();
 		model.fireTableDataChanged();
 		validate();
 	}
@@ -145,6 +145,5 @@ public class MyFrame extends JFrame {
 	public static JTable getTabelaStduenti() {
 		return tabelaStduenti;
 	}
-
 
 }

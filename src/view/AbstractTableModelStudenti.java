@@ -9,13 +9,12 @@ public class AbstractTableModelStudenti extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-    public int getRowCount() {
-        if(BazaStudenata.getInstance().getStudenti() == null)
-        {
-            return 1;
-        }
-        return BazaStudenata.getInstance().getStudenti().size();
-    }
+	public int getRowCount() {
+		if (BazaStudenata.getInstance().getStudenti() == null) {
+			return 1;
+		}
+		return BazaStudenata.getInstance().getStudenti().size();
+	}
 
 	@Override
 	public int getColumnCount() {
