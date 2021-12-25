@@ -19,8 +19,7 @@ import controller.PredmetiController;
 import controller.ProfesorController;
 import controller.StudentiController;
 
-
-public class Toolbar extends JToolBar{
+public class Toolbar extends JToolBar {
 
 	/**
 	 * 
@@ -29,111 +28,104 @@ public class Toolbar extends JToolBar{
 
 	public Toolbar() {
 		super(SwingConstants.HORIZONTAL);
-		
+
 		setBackground(Color.white);
 		setFloatable(false);
-		
+
 		JPanel toolBarPanel = new JPanel();
 		toolBarPanel.setLayout(new BoxLayout(toolBarPanel, BoxLayout.X_AXIS));
 		add(toolBarPanel);
-		
+
 		JButton addBtn = new JButton();
 		JButton editBtn = new JButton();
 		JButton deleteBtn = new JButton();
-		
-		addBtn.addActionListener(new ActionListener(){ 
+
+		addBtn.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e){  
-					int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
-					if(selectedTab == 0) {
-						//Student
-						StudentiController.getInstance().dodajStudenta();
-					}
-					else if(selectedTab == 1) {
-						//Profesor
-						ProfesorController.getInstance().dodajProfesora();
-					}
-					else if(selectedTab == 2) {
-						//Predmet
-						PredmetiController.getInstance().dodajPredmet();
-					}				
+			public void actionPerformed(ActionEvent e) {
+				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
+				if (selectedTab == 0) {
+					// Student
+					StudentiController.getInstance().dodajStudenta();
+				} else if (selectedTab == 1) {
+					// Profesor
+					ProfesorController.getInstance().dodajProfesora();
+				} else if (selectedTab == 2) {
+					// Predmet
+					PredmetiController.getInstance().dodajPredmet();
 				}
-			});
-		
-		editBtn.addActionListener(new ActionListener(){ 
+			}
+		});
+
+		editBtn.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e){  
-	            	//TODO
-					int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
-					if(selectedTab == 0) {
-						//Student
-						if(MyFrame.getTabelaStduenti().getSelectedRow() >= 0)
-							StudentiController.getInstance().izmeniStudenta();
-						else
-							JOptionPane.showMessageDialog(null, "Izaberi studenta za izmenu", "Poruka", JOptionPane.WARNING_MESSAGE);
-					}
-					else if(selectedTab == 1) {
-						//Profesor
-						if(MyFrame.getTabelaProfesora().getSelectedRow() >= 0)
-							ProfesorController.getInstance().izmeniProfesora();
-						else
-							JOptionPane.showMessageDialog(null, "Izaberi profesora za izmenu", "Poruka", JOptionPane.WARNING_MESSAGE);
-					}
-					else if(selectedTab == 2) {
-						//Predmet
-						//TODO
-					}
+			public void actionPerformed(ActionEvent e) {
+				// TODO
+				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
+				if (selectedTab == 0) {
+					// Student
+					if (MyFrame.getTabelaStduenti().getSelectedRow() >= 0)
+						StudentiController.getInstance().izmeniStudenta();
+					else
+						JOptionPane.showMessageDialog(null, "Izaberi studenta za izmenu", "Poruka",
+								JOptionPane.WARNING_MESSAGE);
+				} else if (selectedTab == 1) {
+					// Profesor
+					if (MyFrame.getTabelaProfesora().getSelectedRow() >= 0)
+						ProfesorController.getInstance().izmeniProfesora();
+					else
+						JOptionPane.showMessageDialog(null, "Izaberi profesora za izmenu", "Poruka",
+								JOptionPane.WARNING_MESSAGE);
+				} else if (selectedTab == 2) {
+					// Predmet
+					// TODO
 				}
-			});
-		
-		deleteBtn.addActionListener(new ActionListener(){ 
+			}
+		});
+
+		deleteBtn.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e){  
-					int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
-					if(selectedTab == 0) {
-						StudentiController.getInstance().izbrisiStudenta(MyFrame.getTabelaStduenti().getSelectedRow());
-					}
-					else if(selectedTab == 1) {
-						ProfesorController.getInstance().izbrisiProfesora(MyFrame.getTabelaProfesora().getSelectedRow());
-					}
-					else if(selectedTab == 2) {
-						PredmetiController.getInstance().izbrisiPredmet(MyFrame.getTabelaPredmeta().getSelectedRow());
-					}
+			public void actionPerformed(ActionEvent e) {
+				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
+				if (selectedTab == 0) {
+					StudentiController.getInstance().izbrisiStudenta(MyFrame.getTabelaStduenti().getSelectedRow());
+				} else if (selectedTab == 1) {
+					ProfesorController.getInstance().izbrisiProfesora(MyFrame.getTabelaProfesora().getSelectedRow());
+				} else if (selectedTab == 2) {
+					PredmetiController.getInstance().izbrisiPredmet(MyFrame.getTabelaPredmeta().getSelectedRow());
 				}
-			});
-		
-		
+			}
+		});
+
 		initBtn(addBtn, "Dodaj", new ImageIcon("icons/new.png"), 50);
 		initBtn(editBtn, "Izmeni", new ImageIcon("icons/editPom.png"), 50);
 		initBtn(deleteBtn, "Obriši", new ImageIcon("icons/delete.png"), 50);
-		
+
 		toolBarPanel.add(addBtn);
 		toolBarPanel.add(editBtn);
 		toolBarPanel.add(deleteBtn);
-		
+
 		toolBarPanel.add(Box.createHorizontalGlue());
-		
+
 		JTextField searchBar = new JTextField();
 		searchBar.setToolTipText("Unesi reč za pretragu");
-		searchBar.setMaximumSize(new Dimension(9000,30));
+		searchBar.setMaximumSize(new Dimension(9000, 30));
 		toolBarPanel.add(searchBar);
-		
+
 		toolBarPanel.add(Box.createRigidArea(new Dimension(10, 0)));
-		
-		JButton searchBtn = new JButton();		
+
+		JButton searchBtn = new JButton();
 		initBtn(searchBtn, "Pretraži", new ImageIcon("icons/search.png"), 30);
-		toolBarPanel.add(searchBtn);	
+		toolBarPanel.add(searchBtn);
 	}
-	
+
 	private void initBtn(JButton btn, String toolTip, ImageIcon icon, int dim) {
 		btn.setToolTipText(toolTip);
-		btn.setMaximumSize(new Dimension(dim,dim));
-		btn.setPreferredSize(new Dimension(dim,dim));
+		btn.setMaximumSize(new Dimension(dim, dim));
+		btn.setPreferredSize(new Dimension(dim, dim));
 		btn.setBackground(Color.white);
 		btn.setIcon(icon);
-		
+
 	}
-	
-	
 
 }

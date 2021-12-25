@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Timer;
@@ -11,8 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class StatusBar extends JPanel{
-	
+public class StatusBar extends JPanel {
+
 	/**
 	 * 
 	 */
@@ -24,43 +25,41 @@ public class StatusBar extends JPanel{
 
 	public StatusBar() {
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-		
+		this.setPreferredSize(new Dimension((int)this.getSize().getWidth(), 25));
 		imeAplikacijeLab = new JLabel(imeApp);
 		imeAplikacijeLab.setHorizontalAlignment(SwingConstants.LEFT);
 		add(imeAplikacijeLab);
-		
+
 		add(Box.createHorizontalGlue());
-		
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
 		now = LocalDateTime.now();
 		datumVremeLab = new JLabel(dtf.format(now));
 		add(datumVremeLab);
-		
-		//ja ukro ovo, link: https://www.codegrepper.com/code-examples/java/java+repeat+function+every+minute
+
+		// https://www.codegrepper.com/code-examples/java/java+repeat+function+every+minute
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
-		  @Override
-		  public void run() {
-		    //what you want to do
-			now = LocalDateTime.now();
-			datumVremeLab.setText(dtf.format(now));  
-		  }
+			@Override
+			public void run() {
+				// what you want to do
+				now = LocalDateTime.now();
+				datumVremeLab.setText(dtf.format(now));
+			}
 		}, 0, 1000);
 		//
 	}
-	
+
 	public void setAktivniTab(int indexTaba) {
 		String imeTaba = "";
-		if(indexTaba == 0) {
+		if (indexTaba == 0) {
 			imeTaba = "Studenti";
-		}
-		else if(indexTaba == 1) {
-			imeTaba =  "Profesori";
-		}
-		else if(indexTaba == 2) {
+		} else if (indexTaba == 1) {
+			imeTaba = "Profesori";
+		} else if (indexTaba == 2) {
 			imeTaba = "Predmeti";
 		}
 		imeAplikacijeLab.setText(imeApp + " - " + imeTaba);
 	}
-	
+
 }

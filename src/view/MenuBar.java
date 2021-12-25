@@ -37,18 +37,16 @@ public class MenuBar extends JMenuBar {
 			public void actionPerformed(ActionEvent e) {
 
 				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
-				if(selectedTab == 0) {
-					//Student
+				if (selectedTab == 0) {
+					// Student
 					StudentiController.getInstance().dodajStudenta();
-				}
-				else if(selectedTab == 1) {
-					//Profesor
+				} else if (selectedTab == 1) {
+					// Profesor
 					ProfesorController.getInstance().dodajProfesora();
-				}
-				else if(selectedTab == 2) {
-					//Predmet
+				} else if (selectedTab == 2) {
+					// Predmet
 					PredmetiController.getInstance().dodajPredmet();
-				}	
+				}
 			}
 		});
 
@@ -70,7 +68,7 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				 MyFrame.getInstance().getTab().setSelectedIndex(0);
+				MyFrame.getInstance().getTab().setSelectedIndex(0);
 			}
 		});
 
@@ -82,7 +80,7 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				 MyFrame.getInstance().getTab().setSelectedIndex(2);
+				MyFrame.getInstance().getTab().setSelectedIndex(2);
 			}
 		});
 
@@ -94,7 +92,7 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				 MyFrame.getInstance().getTab().setSelectedIndex(1);
+				MyFrame.getInstance().getTab().setSelectedIndex(1);
 			}
 		});
 
@@ -115,6 +113,12 @@ public class MenuBar extends JMenuBar {
 		JMenuItem close = new JMenuItem("Close", icon);
 		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.ALT_MASK));
 		close.setMnemonic(KeyEvent.VK_C);
+		close.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 
 		file.add(miNew);
 		file.addSeparator();
@@ -137,27 +141,26 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
-				if(selectedTab == 0) {
-					//Student
-					if(MyFrame.getTabelaStduenti().getSelectedRow() >= 0)
+				if (selectedTab == 0) {
+					// Student
+					if (MyFrame.getTabelaStduenti().getSelectedRow() >= 0)
 						StudentiController.getInstance().izmeniStudenta();
 					else
-						JOptionPane.showMessageDialog(null, "Izaberi studenta za izmenu", "Poruka", JOptionPane.WARNING_MESSAGE);
-				}
-				else if(selectedTab == 1) {
-					//Profesor
-					if(MyFrame.getTabelaProfesora().getSelectedRow() >= 0)
+						JOptionPane.showMessageDialog(null, "Izaberi studenta za izmenu", "Poruka",
+								JOptionPane.WARNING_MESSAGE);
+				} else if (selectedTab == 1) {
+					// Profesor
+					if (MyFrame.getTabelaProfesora().getSelectedRow() >= 0)
 						ProfesorController.getInstance().izmeniProfesora();
 					else
-						JOptionPane.showMessageDialog(null, "Izaberi profesora za izmenu", "Poruka", JOptionPane.WARNING_MESSAGE);
-				}
-				else if(selectedTab == 2) {
-					//Predmet
-					//TODO
+						JOptionPane.showMessageDialog(null, "Izaberi profesora za izmenu", "Poruka",
+								JOptionPane.WARNING_MESSAGE);
+				} else if (selectedTab == 2) {
+					// Predmet
+					// TODO
 				}
 			}
 		});
-
 
 		icon = new ImageIcon("icons/delete.png");
 		JMenuItem delete = new JMenuItem("Delete", icon);
@@ -167,15 +170,13 @@ public class MenuBar extends JMenuBar {
 		delete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
-				if(selectedTab == 0) {
+				if (selectedTab == 0) {
 					StudentiController.getInstance().izbrisiStudenta(MyFrame.getTabelaStduenti().getSelectedRow());
-				}
-				else if(selectedTab == 1) {
+				} else if (selectedTab == 1) {
 					ProfesorController.getInstance().izbrisiProfesora(MyFrame.getTabelaProfesora().getSelectedRow());
-				}
-				else if(selectedTab == 2) {
+				} else if (selectedTab == 2) {
 					PredmetiController.getInstance().izbrisiPredmet(MyFrame.getTabelaPredmeta().getSelectedRow());
 				}
 			}
@@ -198,13 +199,11 @@ public class MenuBar extends JMenuBar {
 		JMenuItem about = new JMenuItem("About", icon);
 		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.ALT_MASK));
 		about.setMnemonic(KeyEvent.VK_B);
-		
-		
+
 		helpPom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				System.out.println("Sad sam na tabu : " + MyFrame.getInstance().getTab().getSelectedIndex());
 			}
 		});
 

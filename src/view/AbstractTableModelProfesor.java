@@ -4,7 +4,7 @@ import javax.swing.table.AbstractTableModel;
 
 import model.BazaProfesora;
 
-public class AbstractTableModelProfesor extends AbstractTableModel{
+public class AbstractTableModelProfesor extends AbstractTableModel {
 	/**
 	 * 
 	 */
@@ -12,13 +12,12 @@ public class AbstractTableModelProfesor extends AbstractTableModel{
 
 	@Override
 	public int getRowCount() {
-		if(BazaProfesora.getInstance().getProfesori() == null)
-		{
+		if (BazaProfesora.getInstance().getProfesori() == null) {
 			return 1;
 		}
 		return BazaProfesora.getInstance().getProfesori().size();
 	}
-	
+
 	@Override
 	public int getColumnCount() {
 		return BazaProfesora.getInstance().getColumnCount();
@@ -28,7 +27,7 @@ public class AbstractTableModelProfesor extends AbstractTableModel{
 	public String getColumnName(int column) {
 		return BazaProfesora.getInstance().getColumnName(column);
 	}
-	
+
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		return BazaProfesora.getInstance().getValueAt(rowIndex, columnIndex);

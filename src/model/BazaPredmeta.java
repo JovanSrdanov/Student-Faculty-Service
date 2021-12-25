@@ -3,25 +3,21 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class BazaPredmeta {
 	private static BazaPredmeta instance = null;
-	
+
 	public static BazaPredmeta getInstance() {
 		if (instance == null) {
 			instance = new BazaPredmeta();
 		}
 		return instance;
 	}
-		
-	//private long generator;
 
 	private List<Predmet> predmeti;
 	private List<String> kolone;
-	
+
 	private BazaPredmeta() {
-		//generator = 0;
-	
+
 		initPredmete();
 
 		this.kolone = new ArrayList<String>();
@@ -32,12 +28,12 @@ public class BazaPredmeta {
 		this.kolone.add("Semestar na kojem se predmet izvodi");
 
 	}
-	
+
 	private void initPredmete() {
 		predmeti = new ArrayList<Predmet>();
 		predmeti.add(new Predmet(1, "Baze podataka 1", Semestar.ZIMSKI, 3, null, 6));
 		predmeti.add(new Predmet(2, "Operativni sistemi", Semestar.LETNJI, 2, null, 7));
-		
+
 	}
 
 	public List<Predmet> getPredmeti() {
@@ -47,10 +43,6 @@ public class BazaPredmeta {
 	public void setPredmeti(List<Predmet> predmeti) {
 		this.predmeti = predmeti;
 	}
-
-	/*private long generateId() {
-		return ++generator;
-	}*/
 
 	public int getColumnCount() {
 		return 5;
@@ -82,9 +74,10 @@ public class BazaPredmeta {
 		}
 	}
 
-	public void dodajPredmet(int sifrPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudijaUKojojSePredmetIzvodi,
-			Profesor predmetniProfesor, int brojESPBBodova) {
-		this.predmeti.add(new Predmet(sifrPredmeta, nazivPredmeta, semestar, godinaStudijaUKojojSePredmetIzvodi, predmetniProfesor, brojESPBBodova));
+	public void dodajPredmet(int sifrPredmeta, String nazivPredmeta, Semestar semestar,
+			int godinaStudijaUKojojSePredmetIzvodi, Profesor predmetniProfesor, int brojESPBBodova) {
+		this.predmeti.add(new Predmet(sifrPredmeta, nazivPredmeta, semestar, godinaStudijaUKojojSePredmetIzvodi,
+				predmetniProfesor, brojESPBBodova));
 	}
 
 	public void izbrisiPredmet(int sifrPredmeta) {
@@ -94,12 +87,11 @@ public class BazaPredmeta {
 				break;
 			}
 		}
-		//.i.
-		
+
 	}
 
-	public void izmeniPredmet(int sifrPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudijaUKojojSePredmetIzvodi,
-			Profesor predmetniProfesor, int brojESPBBodova) {
+	public void izmeniPredmet(int sifrPredmeta, String nazivPredmeta, Semestar semestar,
+			int godinaStudijaUKojojSePredmetIzvodi, Profesor predmetniProfesor, int brojESPBBodova) {
 		for (Predmet i : predmeti) {
 			if (i.getSifrPredmeta() == sifrPredmeta) {
 				i.setSifrPredmeta(sifrPredmeta);
@@ -108,7 +100,7 @@ public class BazaPredmeta {
 				i.setGodinaStudijaUKojojSePredmetIzvodi(godinaStudijaUKojojSePredmetIzvodi);
 				i.setPredmetniProfesor(predmetniProfesor);
 				i.setBrojESPBBodova(brojESPBBodova);
-				
+
 			}
 		}
 	}

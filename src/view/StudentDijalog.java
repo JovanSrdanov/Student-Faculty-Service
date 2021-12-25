@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
@@ -18,6 +19,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import model.Adresa;
@@ -41,12 +43,15 @@ public class StudentDijalog extends JDialog {
 	private JButton okBtn;
 	private JButton cancleBtn;
 	private char tip;
+	private String trenutniBrojIndexa;
+	private JTabbedPane zaSad;
 
 	public StudentDijalog(Frame owner, String title, boolean modal, char t) {
 		super(owner, title, modal);
-		setSize(600, 400);
+		setSize(600, 600);
 		setLocationRelativeTo(owner);
 		tip = t;
+		trenutniBrojIndexa = "";
 
 		JPanel centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
@@ -71,7 +76,7 @@ public class StudentDijalog extends JDialog {
 		imePnl.add(imeTxt);
 
 		JPanel datPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel datLbl = new JLabel("Datum rodjenja (DD/MM/GGGG):");
+		JLabel datLbl = new JLabel("Datum rođenja (DD/MM/GGGG):");
 		datLbl.setPreferredSize(dimLabela);
 		datumTxt = new JTextField();
 		datumTxt.setPreferredSize(dimTextBox);
@@ -87,7 +92,7 @@ public class StudentDijalog extends JDialog {
 		adrPnl.add(adresaTxt);
 
 		JPanel telPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel telLbl = new JLabel("Telefon:");
+		JLabel telLbl = new JLabel("Telefon (samo brojevi):");
 		telLbl.setPreferredSize(dimLabela);
 		telTxt = new JTextField();
 		telTxt.setPreferredSize(dimTextBox);
@@ -103,7 +108,7 @@ public class StudentDijalog extends JDialog {
 		mailPnl.add(eMailTxt);
 
 		JPanel brojIndexaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel brojIndexaLbl = new JLabel("Broj indexa (xx-yyy-zzzz) :");
+		JLabel brojIndexaLbl = new JLabel("Broj indeksa (xx-yyy-zzzz) :");
 		brojIndexaLbl.setPreferredSize(dimLabela);
 		brojIndexaTxt = new JTextField();
 		brojIndexaTxt.setPreferredSize(dimTextBox);
@@ -153,7 +158,7 @@ public class StudentDijalog extends JDialog {
 		dodajFocusListener(eMailTxt);
 		dodajFocusListener(brojIndexaTxt);
 		dodajFocusListener(godinaUpisaTxt);
-		///////////////////////////////////////////////////////////////////////////////////////////////////
+
 		int rowSelectedIndex = MyFrame.getTabelaStduenti().getSelectedRow();
 		if (tip == 'i' && rowSelectedIndex >= 0) {
 			Student s = BazaStudenata.getInstance().getRow(rowSelectedIndex);
@@ -164,7 +169,6 @@ public class StudentDijalog extends JDialog {
 			telTxt.setText(Integer.toString(s.getKontaktTelefon()));
 			eMailTxt.setText(s.geteMailAdresa());
 			brojIndexaTxt.setText(s.getBrojIndexa());
-			brojIndexaTxt.setEditable(false);
 			godinaUpisaTxt.setText(Integer.toString(s.getGodinaUpisa()));
 			godinaStudijaCB.setSelectedIndex(s.getTrenutnaGodinaStudija() - 1);
 			int statusIndex = 0;
@@ -172,6 +176,8 @@ public class StudentDijalog extends JDialog {
 				statusIndex = 0;
 			else
 				statusIndex = 1;
+
+			trenutniBrojIndexa = s.getBrojIndexa();
 
 			nacinFinansiranjaCB.setSelectedIndex(statusIndex);
 
@@ -187,7 +193,8 @@ public class StudentDijalog extends JDialog {
 					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
 					LocalDate datumRodj = LocalDate.parse(datumTxt.getText(), formatter);
 					String[] deoAdr = adresaTxt.getText().split(",");
-					Adresa adresaStanovanja = new Adresa(deoAdr[0].trim(), Integer.parseInt(deoAdr[1]), deoAdr[2].trim(), deoAdr[3].trim());
+					Adresa adresaStanovanja = new Adresa(deoAdr[0].trim(), Integer.parseInt(deoAdr[1]),
+							deoAdr[2].trim(), deoAdr[3].trim());
 					int kontaktTelefon = Integer.parseInt(telTxt.getText());
 					String eMailAdresa = eMailTxt.getText().trim();
 					String brIndexa = brojIndexaTxt.getText().trim();
@@ -209,7 +216,8 @@ public class StudentDijalog extends JDialog {
 					if (tip == 'i') {
 
 						BazaStudenata.getInstance().izmeniStudenta(prezime, ime, datumRodj, adresaStanovanja,
-								kontaktTelefon, eMailAdresa, brIndexa, godinaUpisa, godinaStudija, s);
+								kontaktTelefon, eMailAdresa, brIndexa, godinaUpisa, godinaStudija, s,
+								trenutniBrojIndexa);
 
 					}
 
@@ -219,8 +227,6 @@ public class StudentDijalog extends JDialog {
 
 			}
 		});
-
-		///////////////////////////////////////////////////////////////////////////////////////////////////
 
 		cancleBtn.addActionListener(new ActionListener() {
 			@Override
@@ -243,13 +249,32 @@ public class StudentDijalog extends JDialog {
 		centerPanel.add(nacinFinansiranjaPnl);
 		centerPanel.add(btnPnl);
 
-		this.add(centerPanel);
+		if (tip == 'i')
+		{
+			zaSad = new JTabbedPane();
+			zaSad.addTab("Informacije", centerPanel);
+			JPanel p1  = new JPanel();
+			p1.setBackground(Color.green);
+			JPanel p2  = new JPanel();
+			p2.setBackground(Color.red);
+			zaSad.addTab("Položeni predmeti", p1);
+			zaSad.addTab("Nepoloženi predmeti", p2);
+			this.add(zaSad);
+			
+		}
+		else 
+			this.add(centerPanel);
 
 	}
 
 	private boolean proveraUpis(char tipA) {
 		if (tip == 'u' && existsByIndex(brojIndexaTxt.getText()))
 			return false;
+
+		if (tip == 'i' && !trenutniBrojIndexa.equals(brojIndexaTxt.getText())) {
+			if (existsByIndex(brojIndexaTxt.getText()))
+				return false;
+		}
 
 		if (imeTxt.getText().isBlank()) {
 			return false;
@@ -258,6 +283,9 @@ public class StudentDijalog extends JDialog {
 			return false;
 		}
 		if (!telTxt.getText().matches("[0-9]+")) {
+			return false;
+		}
+		if (!godinaUpisaTxt.getText().matches("[0-9]+")) {
 			return false;
 		}
 		if (!eMailTxt.getText().matches("[^ ]+@[^ ]+[.][^ ]+")) {

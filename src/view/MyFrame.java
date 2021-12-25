@@ -43,7 +43,6 @@ public class MyFrame extends JFrame {
 
 	}
 
-	// Singleton
 	public static MyFrame getInstance() {
 		if (instance == null)
 			instance = new MyFrame();
@@ -52,19 +51,19 @@ public class MyFrame extends JFrame {
 	}
 
 	private void createToolbar() {
-		// Toolbar
+
 		this.toolbar = new Toolbar();
 		this.add(this.toolbar, BorderLayout.NORTH);
 	}
 
 	private void createMenuBar() {
-		// Menu bar
+
 		this.menu = new MenuBar();
 		this.setJMenuBar(this.menu);
 	}
-	
+
 	private void createStatusBar() {
-		//Status bar
+
 		statusBar = new StatusBar();
 		this.add(statusBar, BorderLayout.SOUTH);
 	}
@@ -121,7 +120,7 @@ public class MyFrame extends JFrame {
 			public void stateChanged(ChangeEvent e) {
 				statusBar.setAktivniTab(tabbedPane.getSelectedIndex());
 			}
-			
+
 		});
 
 		ImageIcon iconStudenti = createImageIcon("icons/studenti.png", true, 32, 32);
@@ -138,7 +137,7 @@ public class MyFrame extends JFrame {
 		tabelaPredmeta = new Tabela(new AbstractTableModelPredmeti());
 		JScrollPane scrollPanePredmeti = new JScrollPane(tabelaPredmeta);
 		tabbedPane.addTab("Predmeti", iconPredmeti, scrollPanePredmeti, "Prikaz predmeta");
-		
+
 		this.panelGlavni.add(tabbedPane, BorderLayout.CENTER);
 
 	}
@@ -148,13 +147,15 @@ public class MyFrame extends JFrame {
 		model.fireTableDataChanged();
 		validate();
 	}
+
 	public void azurirajPrikazPredmeta() {
-		AbstractTableModelPredmeti model = (AbstractTableModelPredmeti)tabelaPredmeta.getModel();
+		AbstractTableModelPredmeti model = (AbstractTableModelPredmeti) tabelaPredmeta.getModel();
 		model.fireTableDataChanged();
 		validate();
 	}
+
 	public void azurirajPrikazProfesora() {
-		AbstractTableModelProfesor model = (AbstractTableModelProfesor)tabelaProfesora.getModel();
+		AbstractTableModelProfesor model = (AbstractTableModelProfesor) tabelaProfesora.getModel();
 		model.fireTableDataChanged();
 		validate();
 	}
@@ -176,15 +177,15 @@ public class MyFrame extends JFrame {
 	public static JTable getTabelaStduenti() {
 		return tabelaStduenti;
 	}
-	
+
 	public static Tabela getTabelaPredmeta() {
 		return tabelaPredmeta;
 	}
-	
+
 	public static Tabela getTabelaProfesora() {
 		return tabelaProfesora;
 	}
-	
+
 	public MyTab getTab() {
 		return tabbedPane;
 	}
