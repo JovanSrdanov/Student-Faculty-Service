@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import model.Adresa;
@@ -42,7 +44,9 @@ public class ProfesorDialog extends JDialog {
 	private JTextField datumTxt;
 	private char tipAk;
 	private int trenutniBrojLicneKarte;
+	private JTabbedPane proferosTabbed;
 	JButton okBtn;
+
 
 	public ProfesorDialog(Frame owner, String title, boolean modal, char tipA) {
 		super(owner, title, modal);
@@ -279,7 +283,19 @@ public class ProfesorDialog extends JDialog {
 		centerPanel.add(telPnl);
 		centerPanel.add(zvanjePnl);
 		centerPanel.add(btnPnl);
-		this.add(centerPanel);
+		
+		if (tipA == 'i')
+		{
+			proferosTabbed = new JTabbedPane();
+			proferosTabbed.addTab("Informacije", centerPanel);
+			JPanel panInfo  = new JPanel();
+			panInfo.setBackground(Color.green);	
+			proferosTabbed.addTab("Predmeti", panInfo);
+			this.add(proferosTabbed);
+			
+		}
+		else 
+			this.add(centerPanel);
 	}
 
 	private boolean proveraUpis(char tipA) {
