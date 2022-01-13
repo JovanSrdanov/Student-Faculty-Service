@@ -9,7 +9,7 @@ public class Profesor {
 	private String ime;
 	private LocalDate datumRodjenja;
 	private Adresa adresaStanovanja;
-	private int kontaktTelefon;
+	private String kontaktTelefon;
 	private String eMailAdresa;
 	private Adresa adresaKancelarije;
 	private int brojLicneKarte;
@@ -21,7 +21,7 @@ public class Profesor {
 		super();
 	}
 
-	public Profesor(String prezime, String ime, LocalDate datumRodjenja, Adresa adresaStanovanja, int kontaktTelefon,
+	public Profesor(String prezime, String ime, LocalDate datumRodjenja, Adresa adresaStanovanja, String kontaktTelefon,
 			String eMailAdresa, Adresa adresaKancelarije, int brojLicneKarte, Zvanje zvanje, int godineStaza,
 			ArrayList<Predmet> spisakPredmetaNaKojimaJeProfesor) {
 		super();
@@ -62,11 +62,11 @@ public class Profesor {
 		this.adresaStanovanja = adresaStanovanja;
 	}
 
-	public int getKontaktTelefon() {
+	public String getKontaktTelefon() {
 		return kontaktTelefon;
 	}
 
-	public void setKontaktTelefon(int kontaktTelefon) {
+	public void setKontaktTelefon(String kontaktTelefon) {
 		this.kontaktTelefon = kontaktTelefon;
 	}
 

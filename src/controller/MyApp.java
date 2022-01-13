@@ -11,5 +11,3 @@ public class MyApp {
 
 }
 
-
-//Pocetak izmena zbog test fajlova

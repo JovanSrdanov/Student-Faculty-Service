@@ -9,7 +9,7 @@ public class Student {
 	private String ime;
 	private LocalDate datumRodjenja;
 	private Adresa adresaStanovanja;
-	private int kontaktTelefon;
+	private String kontaktTelefon;
 	private String eMailAdresa;
 	private String brojIndexa;
 	private int godinaUpisa;
@@ -23,7 +23,7 @@ public class Student {
 		super();
 	}
 
-	public Student(String prezime, String ime, LocalDate datumRodjenja, Adresa adresaStanovanja, int kontaktTelefon,
+	public Student(String prezime, String ime, LocalDate datumRodjenja, Adresa adresaStanovanja, String kontaktTelefon,
 			String eMailAdresa, String brojIndexa, int godinaUpisa, int trenutnaGodinaStudija, Status status,
 			double prosecnaOcena, ArrayList<Ocena> spisakPolozenihIspita, ArrayList<Ocena> spisakNePolozenihIspita) {
 		super();
@@ -74,11 +74,11 @@ public class Student {
 		this.adresaStanovanja = adresaStanovanja;
 	}
 
-	public int getKontaktTelefon() {
+	public String getKontaktTelefon() {
 		return kontaktTelefon;
 	}
 
-	public void setKontaktTelefon(int kontaktTelefon) {
+	public void setKontaktTelefon(String kontaktTelefon) {
 		this.kontaktTelefon = kontaktTelefon;
 	}
 

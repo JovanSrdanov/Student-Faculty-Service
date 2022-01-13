@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Katedra {
 
-	private int sifraKatedre;
+	private String sifraKatedre;
 	private String nazivKatedre;
 	private Profesor sefKatedre;
 	private ArrayList<Profesor> spisakProfesoraKojiSuNaKatedri;
@@ -15,11 +15,11 @@ public class Katedra {
 				+ ", spisakProfesoraKojiSuNaKatedri=" + spisakProfesoraKojiSuNaKatedri + "]";
 	}
 
-	public int getSifraKatedre() {
+	public String getSifraKatedre() {
 		return sifraKatedre;
 	}
 
-	public void setSifraKatedre(int sifraKatedre) {
+	public void setSifraKatedre(String sifraKatedre) {
 		this.sifraKatedre = sifraKatedre;
 	}
 
@@ -47,7 +47,7 @@ public class Katedra {
 		this.spisakProfesoraKojiSuNaKatedri = spisakProfesoraKojiSuNaKatedri;
 	}
 
-	public Katedra(int sifraKatedre, String nazivKatedre, Profesor sefKatedre,
+	public Katedra(String sifraKatedre, String nazivKatedre, Profesor sefKatedre,
 			ArrayList<Profesor> spisakProfesoraKojiSuNaKatedri) {
 		super();
 		this.sifraKatedre = sifraKatedre;

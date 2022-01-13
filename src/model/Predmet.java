@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Predmet {
 
-	private int sifrPredmeta;
+	private String sifrPredmeta;
 	private String nazivPredmeta;
 	private Semestar semestar;
 	private int godinaStudijaUKojojSePredmetIzvodi;
@@ -18,7 +18,7 @@ public class Predmet {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Predmet(int sifrPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudijaUKojojSePredmetIzvodi,
+	public Predmet(String sifrPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudijaUKojojSePredmetIzvodi,
 			Profesor predmetniProfesor, int brojESPBBodova, ArrayList<Student> spisakStudenataKojiSuPoloziliPredmet,
 			ArrayList<Student> spisakStudenataKojiNisuPoloziliPredmet) {
 		super();
@@ -32,7 +32,7 @@ public class Predmet {
 		this.spisakStudenataKojiNisuPoloziliPredmet = spisakStudenataKojiNisuPoloziliPredmet;
 	}
 
-	public Predmet(int sifrPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudijaUKojojSePredmetIzvodi,
+	public Predmet(String sifrPredmeta, String nazivPredmeta, Semestar semestar, int godinaStudijaUKojojSePredmetIzvodi,
 			Profesor predmetniProfesor, int brojESPBBodova) {
 		super();
 		this.sifrPredmeta = sifrPredmeta;
@@ -54,11 +54,11 @@ public class Predmet {
 				+ spisakStudenataKojiNisuPoloziliPredmet + "]";
 	}
 
-	public int getSifrPredmeta() {
+	public String getSifrPredmeta() {
 		return sifrPredmeta;
 	}
 
-	public void setSifrPredmeta(int sifrPredmeta) {
+	public void setSifrPredmeta(String sifrPredmeta) {
 		this.sifrPredmeta = sifrPredmeta;
 	}
 

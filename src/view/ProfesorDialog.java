@@ -47,7 +47,6 @@ public class ProfesorDialog extends JDialog {
 	private JTabbedPane proferosTabbed;
 	JButton okBtn;
 
-
 	public ProfesorDialog(Frame owner, String title, boolean modal, char tipA) {
 		super(owner, title, modal);
 		setSize(550, 400);
@@ -85,7 +84,7 @@ public class ProfesorDialog extends JDialog {
 
 		// Datum rodj
 		JPanel datPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel datLbl = new JLabel("Datum rođenja (DD/MM/GGGG):");
+		JLabel datLbl = new JLabel("Datum rođenja (DD.MM.GGGG):");
 		datLbl.setPreferredSize(dim);
 
 		datumTxt = new JTextField();
@@ -107,7 +106,7 @@ public class ProfesorDialog extends JDialog {
 
 		// Telefon
 		JPanel telPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel telLbl = new JLabel("Telefon (samo brojevi):");
+		JLabel telLbl = new JLabel("Telefon:");
 		telLbl.setPreferredSize(dim);
 
 		telTxt = new JTextField();
@@ -154,7 +153,7 @@ public class ProfesorDialog extends JDialog {
 		JLabel zvanjeLbl = new JLabel("Izaberite zvanje:");
 		zvanjeLbl.setPreferredSize(dim);
 
-		String[] zvanja = { "Redovni", "Vandredni" };
+		String[] zvanja = { "REDOVNI_PROFESOR", "VANREDNI_PROFESOR", "DOCENT" };
 		zvanjeCb = new JComboBox<String>(zvanja);
 		zvanjeCb.setPreferredSize(dim2);
 
@@ -191,6 +190,7 @@ public class ProfesorDialog extends JDialog {
 		dodajFocusListener(imeTxt);
 		dodajFocusListener(prezimeTxt);
 		dodajFocusListener(telTxt);
+		dodajFocusListener(datumTxt);
 
 		// Izmena ******
 		int rowSelectedIndex = MyFrame.getTabelaProfesora().getSelectedRow();
@@ -199,19 +199,22 @@ public class ProfesorDialog extends JDialog {
 
 			imeTxt.setText(p.getIme());
 			prezimeTxt.setText(p.getPrezime());
-			datumTxt.setText(p.getDatumRodjenja().format(DateTimeFormatter.ofPattern("d/M/yyyy")));
+			datumTxt.setText(p.getDatumRodjenja().format(DateTimeFormatter.ofPattern("d.M.yyyy")));
 			adresaTxt.setText(p.getAdresaStanovanja().toString());
-			telTxt.setText(Integer.toString(p.getKontaktTelefon()));
+			telTxt.setText(p.getKontaktTelefon());
 			eMailTxt.setText(p.geteMailAdresa());
 			adresaKancTxt.setText(p.getAdresaKancelarije().toString());
 			brLicneTxt.setText(Integer.toString(p.getBrojLicneKarte()));
 			trenutniBrojLicneKarte = p.getBrojLicneKarte();
 
 			int zvanjeIndex = 0;
+
 			if (p.getZvanje() == Zvanje.REDOVNI_PROFESOR)
 				zvanjeIndex = 0;
-			else
+			if (p.getZvanje() == Zvanje.VANREDNI_PROFESOR)
 				zvanjeIndex = 1;
+			if (p.getZvanje() == Zvanje.VANREDNI_PROFESOR)
+				zvanjeIndex = 2;
 			zvanjeCb.setSelectedIndex(zvanjeIndex);
 			godineStazaTxt.setText(Integer.toString(p.getGodineStaza()));
 		}
@@ -225,23 +228,25 @@ public class ProfesorDialog extends JDialog {
 
 					String prezime = prezimeTxt.getText().trim();
 					String ime = imeTxt.getText().trim();
-					int kontaktTelefon = Integer.parseInt(telTxt.getText());
+					String kontaktTelefon = telTxt.getText();
 					String eMailAdresa = eMailTxt.getText().trim();
 					int brojLicneKarte = Integer.parseInt(brLicneTxt.getText());
 					int godineStaza = Integer.parseInt(godineStazaTxt.getText());
-					Zvanje zvanje;
+					Zvanje zvanje = Zvanje.REDOVNI_PROFESOR;
 					if (zvanjeCb.getSelectedIndex() == 0)
 						zvanje = Zvanje.REDOVNI_PROFESOR;
-					else
+					if (zvanjeCb.getSelectedIndex() == 1)
 						zvanje = Zvanje.VANREDNI_PROFESOR;
+					if (zvanjeCb.getSelectedIndex() == 2)
+						zvanje = Zvanje.DOCENT;
 					String[] deoAdr = adresaTxt.getText().split(",");
-					Adresa adresaStanovanja = new Adresa(deoAdr[0].trim(), Integer.parseInt(deoAdr[1].trim()),
-							deoAdr[2].trim(), deoAdr[3].trim());
+					Adresa adresaStanovanja = new Adresa(deoAdr[0].trim(), deoAdr[1].trim(), deoAdr[2].trim(),
+							deoAdr[3].trim());
 					String[] deoAdrKan = adresaKancTxt.getText().split(",");
-					Adresa adresaKancelarije = new Adresa(deoAdrKan[0].trim(), Integer.parseInt(deoAdrKan[1].trim()),
-							deoAdrKan[2].trim(), deoAdrKan[3].trim());
+					Adresa adresaKancelarije = new Adresa(deoAdrKan[0].trim(), deoAdrKan[1].trim(), deoAdrKan[2].trim(),
+							deoAdrKan[3].trim());
 
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy");
 					LocalDate datumRodj = LocalDate.parse(datumTxt.getText(), formatter);
 
 					if (tipA == 'u') {
@@ -283,18 +288,16 @@ public class ProfesorDialog extends JDialog {
 		centerPanel.add(telPnl);
 		centerPanel.add(zvanjePnl);
 		centerPanel.add(btnPnl);
-		
-		if (tipA == 'i')
-		{
+
+		if (tipA == 'i') {
 			proferosTabbed = new JTabbedPane();
 			proferosTabbed.addTab("Informacije", centerPanel);
-			JPanel panInfo  = new JPanel();
-			panInfo.setBackground(Color.green);	
+			JPanel panInfo = new JPanel();
+			panInfo.setBackground(Color.green);
 			proferosTabbed.addTab("Predmeti", panInfo);
 			this.add(proferosTabbed);
-			
-		}
-		else 
+
+		} else
 			this.add(centerPanel);
 	}
 
@@ -306,20 +309,20 @@ public class ProfesorDialog extends JDialog {
 		if (prezimeTxt.getText().isBlank()) {
 			return false;
 		}
-		if (!telTxt.getText().matches("[0-9]+")) {
+		if (telTxt.getText().isBlank()) {
 			return false;
 		}
-		if (!eMailTxt.getText().matches("[^ ]+@[^ ]+[.][^ ]+")) {
+		if (!eMailTxt.getText().matches("[^ ]+[.][^ ]+@[^ ]+[.][^ ]+")) {
 			return false;
 		}
 		if (!godineStazaTxt.getText().matches("[0-9]+")) {
 			return false;
 		}
-		if (!datumTxt.getText().matches("[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}")) {
+		if (!datumTxt.getText().matches("[0-9]{1,2}[.][0-9]{1,2}[.][0-9]{4}")) {
 			return false;
 		} else {
 			try {
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy");
 				LocalDate datumRodj = LocalDate.parse(datumTxt.getText(), formatter);
 				if (datumRodj.isAfter(LocalDate.now())) {
 					return false;
@@ -340,7 +343,7 @@ public class ProfesorDialog extends JDialog {
 			if (existsByLicna(Integer.parseInt(brLicneTxt.getText())))
 				return false;
 		}
-		if (!adresaTxt.getText().matches(".+,[0-9]+,.+,.+")) {
+		if (!adresaTxt.getText().matches(".+,[0-9]+[a-zA-Z]?,.+,.+")) {
 			return false;
 		}
 		if (!adresaKancTxt.getText().matches(".+,[0-9]+,.+,.+")) {

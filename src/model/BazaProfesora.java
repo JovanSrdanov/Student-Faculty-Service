@@ -33,12 +33,16 @@ public class BazaProfesora {
 		profesori = new ArrayList<Profesor>();
 
 		profesori.add(new Profesor("Detlic", "Pera", LocalDate.now(),
-				new Adresa("Jovana Jovanovica Zmaja", 189, "Kikinda", "Srbija"), 1, "Deste@gmail.com",
-				new Adresa("ulicaKanc", 2, "Kikinda", "Srbija"), 123456789, Zvanje.REDOVNI_PROFESOR, 69, null));
+				new Adresa("Jovana Jovanovica Zmaja", "123a", "Kikinda", "Srbija"), "23/23", "de.ste@gmail.com",
+				new Adresa("ulicaKanc", "11", "Kikinda", "Srbija"), 123456789, Zvanje.REDOVNI_PROFESOR, 69, null));
 
 		profesori.add(new Profesor("Milan", "Rapajic", LocalDate.of(1980, 3, 13),
-				new Adresa("Tajna ulica", 5, "Novi Sad", "Srbija"), 1, "rapaja@uns.ac.rs",
-				new Adresa("Ulicica", 5, "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, null));
+				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64", "rap.aja@uns.ac.rs",
+				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, null));
+		
+		profesori.add(new Profesor("Zoran", "Jelici", LocalDate.of(1980, 3, 13),
+				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381/232 64", "aaaa.aaaaaa@uns.ac.rs",
+				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.DOCENT, 69, null));
 
 	}
 
@@ -79,7 +83,7 @@ public class BazaProfesora {
 	}
 
 	public void dodajProfesor(String prezime, String ime, LocalDate datumRodjenja, Adresa adresaStanovanja,
-			int kontaktTelefon, String eMailAdresa, Adresa adresaKancelarije, int brojLicneKarte, Zvanje zvanje,
+			String kontaktTelefon, String eMailAdresa, Adresa adresaKancelarije, int brojLicneKarte, Zvanje zvanje,
 			int godineStaza, ArrayList<Predmet> spisakPredmetaNaKojimaJeProfesor) {
 		this.profesori.add(new Profesor(prezime, ime, datumRodjenja, adresaStanovanja, kontaktTelefon, eMailAdresa,
 				adresaKancelarije, brojLicneKarte, zvanje, godineStaza, spisakPredmetaNaKojimaJeProfesor));
@@ -96,7 +100,7 @@ public class BazaProfesora {
 	}
 
 	public void izmeniProfesor(String prezime, String ime, LocalDate datRodj, Adresa adresaStanovanja,
-			int kontaktTelefon, String eMailAdresa, Adresa adresaKancelarije, int brojLicneKarte, Zvanje zvanje,
+			String kontaktTelefon, String eMailAdresa, Adresa adresaKancelarije, int brojLicneKarte, Zvanje zvanje,
 			int godineStaza, ArrayList<Predmet> spisakPredmetaNaKojimaJeProfesor, int trenutniBrLK) {
 		for (Profesor i : profesori) {
 			if (i.getBrojLicneKarte() == trenutniBrLK) {

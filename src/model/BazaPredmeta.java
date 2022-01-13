@@ -31,8 +31,8 @@ public class BazaPredmeta {
 
 	private void initPredmete() {
 		predmeti = new ArrayList<Predmet>();
-		predmeti.add(new Predmet(1, "Baze podataka 1", Semestar.ZIMSKI, 3, null, 6));
-		predmeti.add(new Predmet(2, "Operativni sistemi", Semestar.LETNJI, 2, null, 7));
+		predmeti.add(new Predmet("e1", "Baze podataka 1", Semestar.ZIMSKI, 3, null, 6));
+		predmeti.add(new Predmet("32", "Operativni sistemi", Semestar.LETNJI, 2, null, 7));
 
 	}
 
@@ -60,7 +60,7 @@ public class BazaPredmeta {
 		Predmet predmet = this.predmeti.get(row);
 		switch (column) {
 		case 0:
-			return Integer.toString(predmet.getSifrPredmeta());
+			return predmet.getSifrPredmeta();
 		case 1:
 			return predmet.getNazivPredmeta();
 		case 2:
@@ -74,15 +74,15 @@ public class BazaPredmeta {
 		}
 	}
 
-	public void dodajPredmet(int sifrPredmeta, String nazivPredmeta, Semestar semestar,
+	public void dodajPredmet(String sifrPredmeta, String nazivPredmeta, Semestar semestar,
 			int godinaStudijaUKojojSePredmetIzvodi, Profesor predmetniProfesor, int brojESPBBodova) {
 		this.predmeti.add(new Predmet(sifrPredmeta, nazivPredmeta, semestar, godinaStudijaUKojojSePredmetIzvodi,
 				predmetniProfesor, brojESPBBodova));
 	}
 
-	public void izbrisiPredmet(int sifrPredmeta) {
+	public void izbrisiPredmet(String sifrPredmeta) {
 		for (Predmet i : predmeti) {
-			if (i.getSifrPredmeta() == sifrPredmeta) {
+			if (i.getSifrPredmeta().equals(sifrPredmeta)) {
 				predmeti.remove(i);
 				break;
 			}
@@ -90,10 +90,10 @@ public class BazaPredmeta {
 
 	}
 
-	public void izmeniPredmet(int sifrPredmeta, String nazivPredmeta, Semestar semestar,
+	public void izmeniPredmet(String sifrPredmeta, String nazivPredmeta, Semestar semestar,
 			int godinaStudijaUKojojSePredmetIzvodi, Profesor predmetniProfesor, int brojESPBBodova) {
 		for (Predmet i : predmeti) {
-			if (i.getSifrPredmeta() == sifrPredmeta) {
+			if (i.getSifrPredmeta().equals(sifrPredmeta)) {
 				i.setSifrPredmeta(sifrPredmeta);
 				i.setNazivPredmeta(nazivPredmeta);
 				i.setSemestar(semestar);

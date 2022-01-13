@@ -51,7 +51,7 @@ public class PredmetDialog extends JDialog {
 				String greska = proveraUpis();
 				if (greska.equals("")) {
 					// uspesno
-					int sifra = Integer.parseInt(sifraTxt.getText());
+					String sifra = sifraTxt.getText();
 					String naziv = nazivTxt.getText();
 					int espb = Integer.parseInt(espbTxt.getText());
 					Semestar semestar;
@@ -162,12 +162,8 @@ public class PredmetDialog extends JDialog {
 			okBtn.setEnabled(false);
 			return greska;
 		}
-		if (!sifraTxt.getText().matches("[0-9]+")) {
-			greska = "Sifra nije u dobrom formatu treba da bude broj";
-			okBtn.setEnabled(false);
-			return greska;
-		}
-		if (existsBySifra(Integer.parseInt((sifraTxt.getText())))) {
+
+		if (existsBySifra((sifraTxt.getText()))) {
 			greska = "Predmet sa ovom sifrom vec postoji";
 			okBtn.setEnabled(false);
 			return greska;
@@ -182,9 +178,9 @@ public class PredmetDialog extends JDialog {
 		return greska;
 	}
 
-	private boolean existsBySifra(int sifra) {
+	private boolean existsBySifra(String sifra) {
 		for (Predmet p : BazaPredmeta.getInstance().getPredmeti()) {
-			if (p.getSifrPredmeta() == sifra)
+			if (p.getSifrPredmeta().equals(sifra))
 				return true;
 		}
 		return false;
