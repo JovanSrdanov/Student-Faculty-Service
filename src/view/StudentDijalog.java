@@ -52,6 +52,7 @@ public class StudentDijalog extends JDialog {
 	
 	private static Student selectedStudent;
 	private static ArrayList<String> kolone;
+	private static Tabela nepolozeniTabel;
 
 	public StudentDijalog(Frame owner, String title, boolean modal, char t) {
 		super(owner, title, modal);
@@ -277,12 +278,31 @@ public class StudentDijalog extends JDialog {
 			panNepolozeni.setLayout(new BoxLayout(panNepolozeni, BoxLayout.Y_AXIS));
 			JPanel panBtn = new JPanel();
 			
-			Tabela nepolozeniTabel  = new Tabela(new AbstractTableModelNepolozeni());
+			nepolozeniTabel  = new Tabela(new AbstractTableModelNepolozeni());
 			JScrollPane scrollPaneNepolozeni = new JScrollPane(nepolozeniTabel);
 			
 			JButton addBtn = new JButton("Dodaj");
 			JButton delBtn = new JButton("Obrisi");
 			JButton polaganjeBtn = new JButton("Polaganje");
+			
+			//ACTION ZA BTN
+			polaganjeBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int rowSelectedIndex = nepolozeniTabel.getSelectedRow();
+					if(rowSelectedIndex != -1)
+					{	
+						Ocena o = selectedStudent.getSpisakNePolozenihIspita().get(rowSelectedIndex);
+						PolaganjeDialog polaganjeDialog = new PolaganjeDialog(null, "Polaganje", true, o);
+						polaganjeDialog.setVisible(true);
+						
+						selectedStudent.getSpisakPolozenihIspita().add(o);
+						selectedStudent.getSpisakNePolozenihIspita().remove(o);
+					}
+					
+				}
+			});
+			
 			
 			panBtn.add(addBtn);
 			panBtn.add(delBtn);
@@ -432,5 +452,9 @@ public class StudentDijalog extends JDialog {
 		if(selectedStudent.getSpisakNePolozenihIspita() == null)
 			return 1;
 		return selectedStudent.getSpisakNePolozenihIspita().size();
+	}
+	public static Tabela getTabelaNepolozeni()
+	{
+		return nepolozeniTabel;
 	}
 }

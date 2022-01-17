@@ -18,6 +18,7 @@ import javax.swing.BoxLayout;
 import controller.PredmetiController;
 import controller.ProfesorController;
 import controller.StudentiController;
+import model.BazaStudenata;
 
 public class Toolbar extends JToolBar {
 
@@ -64,8 +65,10 @@ public class Toolbar extends JToolBar {
 				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
 				if (selectedTab == 0) {
 					// Student
-					if (MyFrame.getTabelaStduenti().getSelectedRow() >= 0)
+					if (MyFrame.getTabelaStduenti().getSelectedRow() >= 0) {
 						StudentiController.getInstance().izmeniStudenta();
+					}
+						
 					else
 						JOptionPane.showMessageDialog(null, "Izaberi studenta za izmenu", "Poruka",
 								JOptionPane.WARNING_MESSAGE);
