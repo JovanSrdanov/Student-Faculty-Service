@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -19,11 +20,14 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import model.Adresa;
 import model.BazaStudenata;
+import model.Ocena;
+import model.Predmet;
 import model.Status;
 import model.Student;
 
@@ -45,6 +49,9 @@ public class StudentDijalog extends JDialog {
 	private char tip;
 	private String trenutniBrojIndexa;
 	private JTabbedPane zaSad;
+	
+	private static Student selectedStudent;
+	private static ArrayList<String> kolone;
 
 	public StudentDijalog(Frame owner, String title, boolean modal, char t) {
 		super(owner, title, modal);
@@ -160,25 +167,33 @@ public class StudentDijalog extends JDialog {
 		dodajFocusListener(godinaUpisaTxt);
 
 		int rowSelectedIndex = MyFrame.getTabelaStduenti().getSelectedRow();
-		if (tip == 'i' && rowSelectedIndex >= 0) {
-			Student s = BazaStudenata.getInstance().getRow(rowSelectedIndex);
 		
-			prezimeTxt.setText(s.getPrezime());
-			imeTxt.setText(s.getIme());
-			datumTxt.setText(s.getDatumRodjenja().format(DateTimeFormatter.ofPattern("d.M.yyyy")));
-			adresaTxt.setText(s.getAdresaStanovanja().toString());
-			telTxt.setText(s.getKontaktTelefon());
-			eMailTxt.setText(s.geteMailAdresa());
-			brojIndexaTxt.setText(s.getBrojIndexa());
-			godinaUpisaTxt.setText(Integer.toString(s.getGodinaUpisa()));
-			godinaStudijaCB.setSelectedIndex(s.getTrenutnaGodinaStudija() - 1);
+		if (tip == 'i' && rowSelectedIndex >= 0) {
+			kolone = new ArrayList<String>();
+			kolone.add("Sifra predmeta");
+			kolone.add("Naziv predmeta");
+			kolone.add("espb");
+			kolone.add("Godina studija");
+			kolone.add("Semestar");
+			
+			selectedStudent = BazaStudenata.getInstance().getRow(rowSelectedIndex);
+		
+			prezimeTxt.setText(selectedStudent.getPrezime());
+			imeTxt.setText(selectedStudent.getIme());
+			datumTxt.setText(selectedStudent.getDatumRodjenja().format(DateTimeFormatter.ofPattern("d.M.yyyy")));
+			adresaTxt.setText(selectedStudent.getAdresaStanovanja().toString());
+			telTxt.setText(selectedStudent.getKontaktTelefon());
+			eMailTxt.setText(selectedStudent.geteMailAdresa());
+			brojIndexaTxt.setText(selectedStudent.getBrojIndexa());
+			godinaUpisaTxt.setText(Integer.toString(selectedStudent.getGodinaUpisa()));
+			godinaStudijaCB.setSelectedIndex(selectedStudent.getTrenutnaGodinaStudija() - 1);
 			int statusIndex = 0;
-			if (s.getStatus() == Status.BUDŽET)
+			if (selectedStudent.getStatus() == Status.BUDŽET)
 				statusIndex = 0;
 			else
 				statusIndex = 1;
 
-			trenutniBrojIndexa = s.getBrojIndexa();
+			trenutniBrojIndexa = selectedStudent.getBrojIndexa();
 
 			nacinFinansiranjaCB.setSelectedIndex(statusIndex);
 
@@ -191,7 +206,7 @@ public class StudentDijalog extends JDialog {
 				if (proveraUpis(tip)) {
 					String ime = imeTxt.getText().trim();
 					String prezime = prezimeTxt.getText().trim();
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy");
 					LocalDate datumRodj = LocalDate.parse(datumTxt.getText(), formatter);
 					String[] deoAdr = adresaTxt.getText().split(",");
 					Adresa adresaStanovanja = new Adresa(deoAdr[0].trim(), deoAdr[1].trim(),
@@ -254,12 +269,30 @@ public class StudentDijalog extends JDialog {
 		{
 			zaSad = new JTabbedPane();
 			zaSad.addTab("Informacije", centerPanel);
+			
 			JPanel p1  = new JPanel();
 			p1.setBackground(Color.green);
-			JPanel p2  = new JPanel();
-			p2.setBackground(Color.red);
+			
+			JPanel panNepolozeni = new JPanel();
+			panNepolozeni.setLayout(new BoxLayout(panNepolozeni, BoxLayout.Y_AXIS));
+			JPanel panBtn = new JPanel();
+			
+			Tabela nepolozeniTabel  = new Tabela(new AbstractTableModelNepolozeni());
+			JScrollPane scrollPaneNepolozeni = new JScrollPane(nepolozeniTabel);
+			
+			JButton addBtn = new JButton("Dodaj");
+			JButton delBtn = new JButton("Obrisi");
+			JButton polaganjeBtn = new JButton("Polaganje");
+			
+			panBtn.add(addBtn);
+			panBtn.add(delBtn);
+			panBtn.add(polaganjeBtn);
+			
+			panNepolozeni.add(panBtn);
+			panNepolozeni.add(scrollPaneNepolozeni);
+			
 			zaSad.addTab("Položeni predmeti", p1);
-			zaSad.addTab("Nepoloženi predmeti", p2);
+			zaSad.addTab("Nepoloženi predmeti", panNepolozeni);
 			this.add(zaSad);
 			
 		}
@@ -361,5 +394,43 @@ public class StudentDijalog extends JDialog {
 		}
 		return false;
 	}
-
+	
+	public static String getValueAt(int rowIndex, int columnIndex)
+	{
+		if(selectedStudent.getSpisakNePolozenihIspita() == null)
+			return null;
+		
+		Ocena ocena = selectedStudent.getSpisakNePolozenihIspita().get(rowIndex);
+		switch (columnIndex) {
+		case 0:
+			return ocena.getPredmet().getSifrPredmeta();
+		case 1:
+			return ocena.getPredmet().getNazivPredmeta();
+		case 2:
+			return Integer.toString(ocena.getPredmet().getBrojESPBBodova());
+		case 3:
+			return Integer.toString(ocena.getPredmet().getGodinaStudijaUKojojSePredmetIzvodi());
+		case 4:
+			return ocena.getPredmet().getSemestar().toString();
+		default:
+			return null;
+		}
+	}
+	
+	public static String getColumnName(int column)
+	{
+		return kolone.get(column);
+	}
+	
+	public static int getColumnCount()
+	{
+		return kolone.size();
+	}
+	
+	public static int getRowCount()
+	{
+		if(selectedStudent.getSpisakNePolozenihIspita() == null)
+			return 1;
+		return selectedStudent.getSpisakNePolozenihIspita().size();
+	}
 }
