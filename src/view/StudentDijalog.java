@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
@@ -51,8 +50,9 @@ public class StudentDijalog extends JDialog {
 
 	private static Student selectedStudent;
 	private static ArrayList<String> kolone;
-
 	private static ArrayList<String> kolonePolozeni;
+
+	private static Tabela nepolozeniTabel;
 
 	public StudentDijalog(Frame owner, String title, boolean modal, char t) {
 		super(owner, title, modal);
@@ -281,12 +281,29 @@ public class StudentDijalog extends JDialog {
 			panNepolozeni.setLayout(new BoxLayout(panNepolozeni, BoxLayout.Y_AXIS));
 			JPanel panBtn = new JPanel();
 
-			Tabela nepolozeniTabel = new Tabela(new AbstractTableModelNepolozeni());
+			nepolozeniTabel = new Tabela(new AbstractTableModelNepolozeni());
 			JScrollPane scrollPaneNepolozeni = new JScrollPane(nepolozeniTabel);
 
 			JButton addBtn = new JButton("Dodaj");
 			JButton delBtn = new JButton("Obrisi");
 			JButton polaganjeBtn = new JButton("Polaganje");
+
+			polaganjeBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int rowSelectedIndex = nepolozeniTabel.getSelectedRow();
+					if (rowSelectedIndex != -1) {
+						Ocena o = selectedStudent.getSpisakNePolozenihIspita().get(rowSelectedIndex);
+						PolaganjeDialog polaganjeDialog = new PolaganjeDialog(null, "Polaganje", true, o);
+						polaganjeDialog.setVisible(true);
+
+						selectedStudent.getSpisakPolozenihIspita().add(o);
+						selectedStudent.getSpisakNePolozenihIspita().remove(o);
+
+					}
+
+				}
+			});
 
 			panBtn.add(addBtn);
 			panBtn.add(delBtn);
@@ -313,16 +330,29 @@ public class StudentDijalog extends JDialog {
 			JPanel panProsOc = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 			JPanel panUkESPB = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 			///
+		
+			ArrayList<Ocena> ocene = selectedStudent.getSpisakPolozenihIspita();
+
 			int espb = 0;
 			Double avgOcn = 0.0;
 			
-			ArrayList<Ocena> ocene = selectedStudent.getSpisakPolozenihIspita();
-			
 			int sumaE = 0;
-			Double prosecna = 0.0;
-				
+			Double sumaO =0.0;
 			
-			///
+			if (ocene != null) {
+				for (Ocena o : ocene) {
+					
+					sumaE = o.getPredmet().getBrojESPBBodova() + sumaE;
+					sumaO = o.getBrojcanaVrednostOcene() + sumaO;
+
+				}
+			}
+			
+			espb=sumaE;
+			if(ocene.size()!=0)
+				avgOcn=sumaO/ocene.size();
+		
+			selectedStudent.setProsecnaOcena(avgOcn);
 			JLabel panProsOcLbl = new JLabel("Prosecna ocena: " + avgOcn);
 			JLabel panUkESPBLbl = new JLabel("Ukupno espb: " + espb);
 			panProsOc.add(panProsOcLbl);
