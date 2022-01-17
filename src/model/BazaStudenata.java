@@ -56,7 +56,7 @@ public class BazaStudenata {
 		
 		Predmet pp =new Predmet("e1", "Baze podataka 1", Semestar.ZIMSKI, 3, p, 6);
 		
-		Ocena o = new Ocena(pom1, pp, 8,LocalDate.now());
+		Ocena o = new Ocena(pom1, pp, 5,LocalDate.now());
 		
 		ArrayList<Ocena> heheheh= new ArrayList<Ocena>(); 
 		heheheh.add(o);
@@ -144,8 +144,8 @@ public class BazaStudenata {
 				s.setGodinaUpisa(godinaUpisa);
 				s.setTrenutnaGodinaStudija(trenutnaGodinaStudija);
 				s.setStatus(status);
-				s.setSpisakNePolozenihIspita(null);
-				s.setSpisakPolozenihIspita(null);
+				//s.setSpisakNePolozenihIspita(null);
+				//s.setSpisakPolozenihIspita(null);
 
 			}
 		}

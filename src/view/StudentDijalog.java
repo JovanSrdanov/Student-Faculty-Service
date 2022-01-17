@@ -47,12 +47,18 @@ public class StudentDijalog extends JDialog {
 	private char tip;
 	private String trenutniBrojIndexa;
 	private JTabbedPane zaSad;
+	
+	private static int sumaE;
+	
+	private static JLabel panProsOcLbl;
+	private static JLabel panUkESPBLbl;
 
 	private static Student selectedStudent;
 	private static ArrayList<String> kolone;
 	private static ArrayList<String> kolonePolozeni;
 
 	private static Tabela nepolozeniTabel;
+	private static Tabela polozeniTabel;
 
 	public StudentDijalog(Frame owner, String title, boolean modal, char t) {
 		super(owner, title, modal);
@@ -296,9 +302,13 @@ public class StudentDijalog extends JDialog {
 						Ocena o = selectedStudent.getSpisakNePolozenihIspita().get(rowSelectedIndex);
 						PolaganjeDialog polaganjeDialog = new PolaganjeDialog(null, "Polaganje", true, o);
 						polaganjeDialog.setVisible(true);
-
-						selectedStudent.getSpisakPolozenihIspita().add(o);
-						selectedStudent.getSpisakNePolozenihIspita().remove(o);
+						if(o.getBrojcanaVrednostOcene() > 5) {
+							selectedStudent.getSpisakPolozenihIspita().add(o);
+							selectedStudent.getSpisakNePolozenihIspita().remove(o);
+							StudentDijalog.azurirajPrikazNepolozenih();
+							StudentDijalog.azurirajPrikazPolozenih();
+						}
+						
 
 					}
 
@@ -317,7 +327,7 @@ public class StudentDijalog extends JDialog {
 			JPanel panPolozeni = new JPanel();
 			panPolozeni.setLayout(new BoxLayout(panPolozeni, BoxLayout.Y_AXIS));
 
-			Tabela polozeniTabel = new Tabela(new AbstractTableModelPolozeni());
+			polozeniTabel = new Tabela(new AbstractTableModelPolozeni());
 			JScrollPane scrollPanePolozeni = new JScrollPane(polozeniTabel);
 
 			JPanel panPonisti = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -330,31 +340,10 @@ public class StudentDijalog extends JDialog {
 			JPanel panProsOc = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 			JPanel panUkESPB = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 			///
+			panProsOcLbl = new JLabel();
+			panUkESPBLbl = new JLabel();
+			izracunajProsecnuOcenu();
 		
-			ArrayList<Ocena> ocene = selectedStudent.getSpisakPolozenihIspita();
-
-			int espb = 0;
-			Double avgOcn = 0.0;
-			
-			int sumaE = 0;
-			Double sumaO =0.0;
-			
-			if (ocene != null) {
-				for (Ocena o : ocene) {
-					
-					sumaE = o.getPredmet().getBrojESPBBodova() + sumaE;
-					sumaO = o.getBrojcanaVrednostOcene() + sumaO;
-
-				}
-			}
-			
-			espb=sumaE;
-			if(ocene.size()!=0)
-				avgOcn=sumaO/ocene.size();
-		
-			selectedStudent.setProsecnaOcena(avgOcn);
-			JLabel panProsOcLbl = new JLabel("Prosecna ocena: " + avgOcn);
-			JLabel panUkESPBLbl = new JLabel("Ukupno espb: " + espb);
 			panProsOc.add(panProsOcLbl);
 			panUkESPB.add(panUkESPBLbl);
 
@@ -534,6 +523,47 @@ public class StudentDijalog extends JDialog {
 		if (selectedStudent.getSpisakPolozenihIspita() == null)
 			return 1;
 		return selectedStudent.getSpisakPolozenihIspita().size();
+	}
+	
+	public static void azurirajPrikazNepolozenih()
+	{
+		AbstractTableModelNepolozeni model = (AbstractTableModelNepolozeni) nepolozeniTabel.getModel();
+		model.fireTableDataChanged();
+		//validate();
+	}
+	public static void azurirajPrikazPolozenih()
+	{
+		AbstractTableModelPolozeni model = (AbstractTableModelPolozeni) polozeniTabel.getModel();
+		model.fireTableDataChanged();
+		izracunajProsecnuOcenu();
+		//validate();
+	}
+	private static void izracunajProsecnuOcenu()
+	{
+		System.out.println(selectedStudent.getBrojIndexa());
+		ArrayList<Ocena> ocene = selectedStudent.getSpisakPolozenihIspita();
+
+		Double avgOcn = 0.0;
+		
+		sumaE = 0;
+		Double sumaO = 0.0;
+		
+		if (ocene != null) {
+			for (Ocena o : ocene) {
+				
+				sumaE = o.getPredmet().getBrojESPBBodova() + sumaE;
+				sumaO = o.getBrojcanaVrednostOcene() + sumaO;
+
+			}
+		}
+		
+		if(ocene.size() != 0)
+			avgOcn=sumaO/ocene.size();
+	
+		selectedStudent.setProsecnaOcena(avgOcn);
+		
+		panProsOcLbl.setText("Prosecna ocena: " + selectedStudent.getProsecnaOcena());
+		panUkESPBLbl.setText("Ukupno espb: " + sumaE);
 	}
 
 }
