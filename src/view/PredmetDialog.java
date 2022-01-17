@@ -41,24 +41,22 @@ public class PredmetDialog extends JDialog {
 	private JButton btnPlus;
 	private JButton btnMinus;
 	private String trenutnaSifraPredmeta;
-	
-
 
 	public PredmetDialog(Frame owner, String title, boolean modal, char t) {
 		super(owner, title, modal);
 		setSize(600, 400);
 		tip = t;
-		trenutnaSifraPredmeta="";
-		if(trenutnaSifraPredmeta.equals(""));
+		trenutnaSifraPredmeta = "";
+		if (trenutnaSifraPredmeta.equals(""))
+			;
 		///////////////////////////////////////////////////
-		
-		
+
 		JPanel centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-		
+
 		Dimension dimLabela = new Dimension(280, 20);
 		Dimension dimTextBox = new Dimension(280, 20);
-		
+
 		JPanel sifraPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel sifraPredmetaLbl = new JLabel("Šifra predmeta:");
 		sifraPredmetaLbl.setPreferredSize(dimLabela);
@@ -66,8 +64,7 @@ public class PredmetDialog extends JDialog {
 		sifraPredmetaTxt.setPreferredSize(dimTextBox);
 		sifraPredmetaPnl.add(sifraPredmetaLbl);
 		sifraPredmetaPnl.add(sifraPredmetaTxt);
-		
-		
+
 		JPanel nazivPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel nazivPredmetaLbl = new JLabel("Naziv predmeta:");
 		nazivPredmetaLbl.setPreferredSize(dimLabela);
@@ -84,7 +81,7 @@ public class PredmetDialog extends JDialog {
 		godinaPredmetaCB.setPreferredSize(dimTextBox);
 		godinaPredmetaPnl.add(godinaPredmetaLbl);
 		godinaPredmetaPnl.add(godinaPredmetaCB);
-		
+
 		JPanel semestarPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel semestarPredmetaLbl = new JLabel("Semestar u kom se predaje predmet:");
 		semestarPredmetaLbl.setPreferredSize(dimLabela);
@@ -93,7 +90,7 @@ public class PredmetDialog extends JDialog {
 		semestarPredmetaCB.setPreferredSize(dimTextBox);
 		semestarPredmetaPnl.add(semestarPredmetaLbl);
 		semestarPredmetaPnl.add(semestarPredmetaCB);
-		
+
 		JPanel ESPBPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel ESPBPredmetaLbl = new JLabel("ESPB:");
 		ESPBPredmetaLbl.setPreferredSize(dimLabela);
@@ -101,8 +98,7 @@ public class PredmetDialog extends JDialog {
 		ESPBPredmetaTxt.setPreferredSize(dimTextBox);
 		ESPBPredmetaPnl.add(ESPBPredmetaLbl);
 		ESPBPredmetaPnl.add(ESPBPredmetaTxt);
-		
-		
+
 		JPanel profesorPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel profesorPredmetaLbl = new JLabel("Profesor:");
 		profesorPredmetaLbl.setPreferredSize(dimLabela);
@@ -111,60 +107,97 @@ public class PredmetDialog extends JDialog {
 		profesorPredmetaTxt.setEditable(false);
 		profesorPredmetaPnl.add(profesorPredmetaLbl);
 		profesorPredmetaPnl.add(profesorPredmetaTxt);
-		
+
 		btnPlus = new JButton("+");
 		btnMinus = new JButton("-");
 		btnMinus.setEnabled(false);
 		profesorPredmetaPnl.add(btnPlus);
 		profesorPredmetaPnl.add(btnMinus);
-		
-		
+
 		JPanel btnPnl = new JPanel();
 		okBtn = new JButton("Potvrda");
 		okBtn.setEnabled(false);
 		cancleBtn = new JButton("Odustani");
 		btnPnl.add(okBtn);
 		btnPnl.add(cancleBtn);
-		
+
 		dodajFocusListener(sifraPredmetaTxt);
 		dodajFocusListener(nazivPredmetaTxt);
 		dodajFocusListener(ESPBPredmetaTxt);
-		
+
 		int rowSelectedIndex = MyFrame.getTabelaPredmeta().getSelectedRow();
 		if (tip == 'i' && rowSelectedIndex >= 0) {
-			
+
 			Predmet p = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
+			
 			sifraPredmetaTxt.setText(p.getSifrPredmeta());
 			nazivPredmetaTxt.setText(p.getNazivPredmeta());
 			ESPBPredmetaTxt.setText(Integer.toString(p.getBrojESPBBodova()));
-			godinaPredmetaCB.setSelectedIndex(p.getGodinaStudijaUKojojSePredmetIzvodi()-1);
-			
+			godinaPredmetaCB.setSelectedIndex(p.getGodinaStudijaUKojojSePredmetIzvodi() - 1);
+
 			int semestarIndex = 0;
 			if (p.getSemestar() == Semestar.ZIMSKI)
 				semestarIndex = 0;
 			else
 				semestarIndex = 1;
+			trenutnaSifraPredmeta = p.getSifrPredmeta();
 			
+
 			semestarPredmetaCB.setSelectedIndex(semestarIndex);
-			
-			if(p.getPredmetniProfesor()!=null) {
+
+			if (p.getPredmetniProfesor() != null) {
 				btnMinus.setEnabled(true);
 				btnPlus.setEnabled(false);
-				profesorPredmetaTxt.setText(p.getPredmetniProfesor().getPrezime()+ " " +p.getPredmetniProfesor().getIme()  );		
-			}
-			else {		
+				profesorPredmetaTxt
+						.setText(p.getPredmetniProfesor().getPrezime() + " " + p.getPredmetniProfesor().getIme());
+			} else {
 				profesorPredmetaTxt.setText("");
 				btnMinus.setEnabled(false);
 				btnPlus.setEnabled(true);
-				
-				
-				
-				
+
 			}
 		}
 		
-		
-		
+		okBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				okBtn.setEnabled(proveraUpis(tip));
+				if (proveraUpis(tip)) {
+					String sifraP = sifraPredmetaTxt.getText();
+				 
+					String nazivP = nazivPredmetaTxt.getText();
+					int brojESPB = Integer.parseInt(ESPBPredmetaTxt.getText());
+					Semestar s;
+					if (semestarPredmetaCB.getSelectedIndex() == 0)
+						s = Semestar.LETNJI;
+					else
+						s = Semestar.ZIMSKI;
+					int god = godinaPredmetaCB.getSelectedIndex()+1;
+					
+					
+					
+
+					if (tip == 'u') {
+					
+						BazaPredmeta.getInstance().dodajPredmet(sifraP, nazivP, s, god, null, brojESPB);
+					}
+					
+					
+					if (tip == 'i') {
+						
+						BazaPredmeta.getInstance().izmeniPredmet(sifraP, nazivP, s, god, null, brojESPB,trenutnaSifraPredmeta);
+					
+						// STRAHINJA PAZI NA OVO !!!!!!!!!!!!
+
+					}
+
+					MyFrame.getInstance().azurirajPrikazPredmeta();
+					dispose();
+				}
+
+			}
+		});
+
 		cancleBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -173,22 +206,52 @@ public class PredmetDialog extends JDialog {
 			}
 
 		});
-			
+
 		centerPanel.add(sifraPredmetaPnl);
 		centerPanel.add(nazivPredmetaPnl);
 		centerPanel.add(godinaPredmetaPnl);
 		centerPanel.add(semestarPredmetaPnl);
 		centerPanel.add(ESPBPredmetaPnl);
-		centerPanel.add(profesorPredmetaPnl);
+
+		if (tip == 'i') {
+
+			centerPanel.add(profesorPredmetaPnl);
+
+		}
+
 		centerPanel.add(btnPnl);
 		this.add(centerPanel);
-		
+
 	}
 
 	private boolean proveraUpis(char tipA) {
+		if (tipA == 'u' && existsBySifra(sifraPredmetaTxt.getText()))
+			return false;
+		
+		if (tipA == 'i' && !trenutnaSifraPredmeta.equals(sifraPredmetaTxt.getText())) {
+			if (existsBySifra(sifraPredmetaTxt.getText()))
+				return false;
+		}
+		
+		
+		if (nazivPredmetaTxt.getText().isBlank()) {
+			return false;
+		}
+		
+		if (sifraPredmetaTxt.getText().isBlank()) {
+			return false;
+		}
+		
+		if (!ESPBPredmetaTxt.getText().matches("[1-9][0-9]*")) {
+			return false;
+		}
 
 		return true;
 	}
+
+	
+	
+	
 	private void dodajFocusListener(JTextField txt) {
 		txt.addFocusListener(new FocusListener() {
 
@@ -227,7 +290,6 @@ public class PredmetDialog extends JDialog {
 
 		});
 	}
-	
 
 	private boolean existsBySifra(String sifra) {
 		for (Predmet p : BazaPredmeta.getInstance().getPredmeti()) {

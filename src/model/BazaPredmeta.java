@@ -96,9 +96,10 @@ public class BazaPredmeta {
 	}
 
 	public void izmeniPredmet(String sifrPredmeta, String nazivPredmeta, Semestar semestar,
-			int godinaStudijaUKojojSePredmetIzvodi, Profesor predmetniProfesor, int brojESPBBodova) {
+			int godinaStudijaUKojojSePredmetIzvodi, Profesor predmetniProfesor, int brojESPBBodova, String staraSifra) {
 		for (Predmet i : predmeti) {
-			if (i.getSifrPredmeta().equals(sifrPredmeta)) {
+			if (i.getSifrPredmeta().equals(staraSifra)) {
+				
 				i.setSifrPredmeta(sifrPredmeta);
 				i.setNazivPredmeta(nazivPredmeta);
 				i.setSemestar(semestar);
