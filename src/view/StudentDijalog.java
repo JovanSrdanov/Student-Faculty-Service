@@ -162,6 +162,7 @@ public class StudentDijalog extends JDialog {
 		int rowSelectedIndex = MyFrame.getTabelaStduenti().getSelectedRow();
 		if (tip == 'i' && rowSelectedIndex >= 0) {
 			Student s = BazaStudenata.getInstance().getRow(rowSelectedIndex);
+		
 			prezimeTxt.setText(s.getPrezime());
 			imeTxt.setText(s.getIme());
 			datumTxt.setText(s.getDatumRodjenja().format(DateTimeFormatter.ofPattern("d.M.yyyy")));
@@ -268,10 +269,10 @@ public class StudentDijalog extends JDialog {
 	}
 
 	private boolean proveraUpis(char tipA) {
-		if (tip == 'u' && existsByIndex(brojIndexaTxt.getText()))
+		if (tipA == 'u' && existsByIndex(brojIndexaTxt.getText()))
 			return false;
 
-		if (tip == 'i' && !trenutniBrojIndexa.equals(brojIndexaTxt.getText())) {
+		if (tipA == 'i' && !trenutniBrojIndexa.equals(brojIndexaTxt.getText())) {
 			if (existsByIndex(brojIndexaTxt.getText()))
 				return false;
 		}

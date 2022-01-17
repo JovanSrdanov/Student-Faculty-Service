@@ -1,11 +1,14 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -26,157 +29,205 @@ public class PredmetDialog extends JDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = -3432403525611046701L;
+	private JButton okBtn;
+	private JButton cancleBtn;
+	private char tip;
+	private JTextField sifraPredmetaTxt;
+	private JTextField nazivPredmetaTxt;
+	private JComboBox<String> godinaPredmetaCB;
+	private JComboBox<String> semestarPredmetaCB;
+	private JTextField ESPBPredmetaTxt;
+	private JTextField profesorPredmetaTxt;
+	private JButton btnPlus;
+	private JButton btnMinus;
+	private String trenutnaSifraPredmeta;
+	
 
-	private JComboBox<String> godinaCb;
-	private JComboBox<String> semsetarCb;
-	private JTextField sifraTxt;
-	private JTextField nazivTxt;
-	private JTextField espbTxt;
-	JButton okBtn;
 
-	public PredmetDialog(Frame owner, String title, boolean modal) {
+	public PredmetDialog(Frame owner, String title, boolean modal, char t) {
 		super(owner, title, modal);
-		setSize(350, 300);
+		setSize(600, 400);
+		tip = t;
+		trenutnaSifraPredmeta="";
+		if(trenutnaSifraPredmeta.equals(""));
+		///////////////////////////////////////////////////
+		
+		
+		JPanel centerPanel = new JPanel();
+		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+		
+		Dimension dimLabela = new Dimension(280, 20);
+		Dimension dimTextBox = new Dimension(280, 20);
+		
+		JPanel sifraPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JLabel sifraPredmetaLbl = new JLabel("Šifra predmeta:");
+		sifraPredmetaLbl.setPreferredSize(dimLabela);
+		sifraPredmetaTxt = new JTextField();
+		sifraPredmetaTxt.setPreferredSize(dimTextBox);
+		sifraPredmetaPnl.add(sifraPredmetaLbl);
+		sifraPredmetaPnl.add(sifraPredmetaTxt);
+		
+		
+		JPanel nazivPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JLabel nazivPredmetaLbl = new JLabel("Naziv predmeta:");
+		nazivPredmetaLbl.setPreferredSize(dimLabela);
+		nazivPredmetaTxt = new JTextField();
+		nazivPredmetaTxt.setPreferredSize(dimTextBox);
+		nazivPredmetaPnl.add(nazivPredmetaLbl);
+		nazivPredmetaPnl.add(nazivPredmetaTxt);
 
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.setAlignmentX(LEFT_ALIGNMENT);
-
-		okBtn = new JButton("OK");
+		JPanel godinaPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JLabel godinaPredmetaLbl = new JLabel("Godina na kojoj se predaje predmet:");
+		godinaPredmetaLbl.setPreferredSize(dimLabela);
+		String[] godine = { "1. (PRVA)", "2. (DRUGA)", "3. (TREĆA)", "4. (ČETVRTA)" };
+		godinaPredmetaCB = new JComboBox<String>(godine);
+		godinaPredmetaCB.setPreferredSize(dimTextBox);
+		godinaPredmetaPnl.add(godinaPredmetaLbl);
+		godinaPredmetaPnl.add(godinaPredmetaCB);
+		
+		JPanel semestarPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JLabel semestarPredmetaLbl = new JLabel("Semestar u kom se predaje predmet:");
+		semestarPredmetaLbl.setPreferredSize(dimLabela);
+		String[] sem = { "ZIMSKI", "LETNJI" };
+		semestarPredmetaCB = new JComboBox<String>(sem);
+		semestarPredmetaCB.setPreferredSize(dimTextBox);
+		semestarPredmetaPnl.add(semestarPredmetaLbl);
+		semestarPredmetaPnl.add(semestarPredmetaCB);
+		
+		JPanel ESPBPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JLabel ESPBPredmetaLbl = new JLabel("ESPB:");
+		ESPBPredmetaLbl.setPreferredSize(dimLabela);
+		ESPBPredmetaTxt = new JTextField();
+		ESPBPredmetaTxt.setPreferredSize(dimTextBox);
+		ESPBPredmetaPnl.add(ESPBPredmetaLbl);
+		ESPBPredmetaPnl.add(ESPBPredmetaTxt);
+		
+		
+		JPanel profesorPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JLabel profesorPredmetaLbl = new JLabel("Profesor:");
+		profesorPredmetaLbl.setPreferredSize(dimLabela);
+		profesorPredmetaTxt = new JTextField();
+		profesorPredmetaTxt.setPreferredSize(new Dimension(200, 20));
+		profesorPredmetaTxt.setEditable(false);
+		profesorPredmetaPnl.add(profesorPredmetaLbl);
+		profesorPredmetaPnl.add(profesorPredmetaTxt);
+		
+		btnPlus = new JButton("+");
+		btnMinus = new JButton("-");
+		btnMinus.setEnabled(false);
+		profesorPredmetaPnl.add(btnPlus);
+		profesorPredmetaPnl.add(btnMinus);
+		
+		
+		JPanel btnPnl = new JPanel();
+		okBtn = new JButton("Potvrda");
 		okBtn.setEnabled(false);
-
-		okBtn.addActionListener(new ActionListener() {
+		cancleBtn = new JButton("Odustani");
+		btnPnl.add(okBtn);
+		btnPnl.add(cancleBtn);
+		
+		dodajFocusListener(sifraPredmetaTxt);
+		dodajFocusListener(nazivPredmetaTxt);
+		dodajFocusListener(ESPBPredmetaTxt);
+		
+		int rowSelectedIndex = MyFrame.getTabelaPredmeta().getSelectedRow();
+		if (tip == 'i' && rowSelectedIndex >= 0) {
+			
+			Predmet p = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
+			sifraPredmetaTxt.setText(p.getSifrPredmeta());
+			nazivPredmetaTxt.setText(p.getNazivPredmeta());
+			ESPBPredmetaTxt.setText(Integer.toString(p.getBrojESPBBodova()));
+			godinaPredmetaCB.setSelectedIndex(p.getGodinaStudijaUKojojSePredmetIzvodi()-1);
+			
+			int semestarIndex = 0;
+			if (p.getSemestar() == Semestar.ZIMSKI)
+				semestarIndex = 0;
+			else
+				semestarIndex = 1;
+			
+			semestarPredmetaCB.setSelectedIndex(semestarIndex);
+			
+			if(p.getPredmetniProfesor()!=null) {
+				btnMinus.setEnabled(true);
+				btnPlus.setEnabled(false);
+				profesorPredmetaTxt.setText(p.getPredmetniProfesor().getPrezime()+ " " +p.getPredmetniProfesor().getIme()  );		
+			}
+			else {		
+				profesorPredmetaTxt.setText("");
+				btnMinus.setEnabled(false);
+				btnPlus.setEnabled(true);
+				
+				
+				
+				
+			}
+		}
+		
+		
+		
+		cancleBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String greska = proveraUpis();
-				if (greska.equals("")) {
-					// uspesno
-					String sifra = sifraTxt.getText();
-					String naziv = nazivTxt.getText();
-					int espb = Integer.parseInt(espbTxt.getText());
-					Semestar semestar;
-
-					if (semsetarCb.getSelectedIndex() == 0)
-						semestar = Semestar.ZIMSKI;
-					else
-						semestar = Semestar.LETNJI;
-
-					BazaPredmeta.getInstance().dodajPredmet(sifra, naziv, semestar, godinaCb.getSelectedIndex() + 1,
-							null, espb);
-					MyFrame.getInstance().azurirajPrikazPredmeta();
-					dispose();
-				} else {
-					JOptionPane.showMessageDialog(null, greska, "Greska", JOptionPane.WARNING_MESSAGE);
-				}
+				dispose();
 
 			}
+
 		});
-
-		JLabel sifraLbl = new JLabel("Unesi sifru predmeta:");
-		JLabel nazivLbl = new JLabel("Unesi naziv predmeta:");
-		JLabel espbLbl = new JLabel("Unesi broj ESPB bodova koji predmet nosi:");
-		JLabel semsetarLbl = new JLabel("Izaberite semestar u kojom se predmet izvodi:");
-		JLabel godinaLbl = new JLabel("Izaberite godinu u kojoj se predmet izvodi:");
-
-		String[] godineOp = { "1", "2", "3", "4" };
-		godinaCb = new JComboBox<String>(godineOp);
-		godinaCb.setMaximumSize(new Dimension(200, 20));
-
-		String[] semestarOp = { "ZIMSKI", "LETNJI" };
-		semsetarCb = new JComboBox<String>(semestarOp);
-		semsetarCb.setMaximumSize(new Dimension(200, 20));
-
-		sifraTxt = new JTextField();
-		sifraTxt.setMaximumSize(new Dimension(200, 20));
-		sifraTxt.addFocusListener(new FocusListener() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				proveraUpis();
-			}
-
-			@Override
-			public void focusGained(FocusEvent e) {
-
-			}
-		});
-
-		nazivTxt = new JTextField();
-		nazivTxt.setMaximumSize(new Dimension(200, 20));
-		nazivTxt.addFocusListener(new FocusListener() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				proveraUpis();
-			}
-
-			@Override
-			public void focusGained(FocusEvent e) {
-
-			}
-		});
-
-		espbTxt = new JTextField();
-		espbTxt.setMaximumSize(new Dimension(200, 20));
-		espbTxt.addFocusListener(new FocusListener() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				proveraUpis();
-			}
-
-			@Override
-			public void focusGained(FocusEvent e) {
-
-			}
-		});
-
-		panel.add(sifraLbl);
-		panel.add(sifraTxt);
-		panel.add(nazivLbl);
-		panel.add(nazivTxt);
-		panel.add(espbLbl);
-		panel.add(espbTxt);
-		panel.add(godinaLbl);
-		panel.add(godinaCb);
-		panel.add(semsetarLbl);
-		panel.add(semsetarCb);
-		panel.add(Box.createVerticalGlue());
-		panel.add(okBtn);
-		add(panel);
-
+			
+		centerPanel.add(sifraPredmetaPnl);
+		centerPanel.add(nazivPredmetaPnl);
+		centerPanel.add(godinaPredmetaPnl);
+		centerPanel.add(semestarPredmetaPnl);
+		centerPanel.add(ESPBPredmetaPnl);
+		centerPanel.add(profesorPredmetaPnl);
+		centerPanel.add(btnPnl);
+		this.add(centerPanel);
+		
 	}
 
-	private String proveraUpis() {
+	private boolean proveraUpis(char tipA) {
 
-		String greska = "";
-		if (sifraTxt.getText().isBlank()) {
-			greska = "Unesite sifru predmeta";
-			okBtn.setEnabled(false);
-			return greska;
-		}
-		if (espbTxt.getText().isBlank()) {
-			greska = "Unesite broj ESPB bodova koji predmet nosi";
-			okBtn.setEnabled(false);
-			return greska;
-		}
-		if (nazivTxt.getText().isBlank()) {
-			greska = "Unesite naziv predmeta";
-			okBtn.setEnabled(false);
-			return greska;
-		}
-
-		if (existsBySifra((sifraTxt.getText()))) {
-			greska = "Predmet sa ovom sifrom vec postoji";
-			okBtn.setEnabled(false);
-			return greska;
-		}
-		if (!espbTxt.getText().matches("[0-9]+")) {
-			greska = "Espb nije u dobrom formatu treba da bude broj";
-			okBtn.setEnabled(false);
-			return greska;
-		}
-
-		okBtn.setEnabled(true);
-		return greska;
+		return true;
 	}
+	private void dodajFocusListener(JTextField txt) {
+		txt.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				okBtn.setEnabled(proveraUpis(tip));
+
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				okBtn.setEnabled(proveraUpis(tip));
+
+			}
+
+		});
+
+		txt.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				okBtn.setEnabled(proveraUpis(tip));
+
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				okBtn.setEnabled(proveraUpis(tip));
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				okBtn.setEnabled(proveraUpis(tip));
+
+			}
+
+		});
+	}
+	
 
 	private boolean existsBySifra(String sifra) {
 		for (Predmet p : BazaPredmeta.getInstance().getPredmeti()) {

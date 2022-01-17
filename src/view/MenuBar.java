@@ -156,8 +156,11 @@ public class MenuBar extends JMenuBar {
 						JOptionPane.showMessageDialog(null, "Izaberi profesora za izmenu", "Poruka",
 								JOptionPane.WARNING_MESSAGE);
 				} else if (selectedTab == 2) {
-					// Predmet
-					// TODO
+					if (MyFrame.getTabelaPredmeta().getSelectedRow() >= 0)
+						PredmetiController.getInstance().izmeniPredmet();
+					else
+						JOptionPane.showMessageDialog(null, "Izaberi predmet za izmenu", "Poruka",
+								JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});

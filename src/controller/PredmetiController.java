@@ -42,8 +42,15 @@ public class PredmetiController {
 	}
 
 	public void dodajPredmet() {
-		PredmetDialog predmetDialog = new PredmetDialog(null, "Dodavanje predmeta", true);
+		PredmetDialog predmetDialog = new PredmetDialog(null, "Dodavanje predmeta", true, 'u');
 		predmetDialog.setLocationRelativeTo(MyFrame.getInstance());
 		predmetDialog.setVisible(true);
 	}
+	
+	public void izmeniPredmet() {
+		PredmetDialog predmetDialog = new PredmetDialog(null, "Izmena predmeta", true, 'i');
+		predmetDialog.setLocationRelativeTo(MyFrame.getInstance());
+		predmetDialog.setVisible(true);
+	}
+	
 }

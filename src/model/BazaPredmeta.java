@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,11 @@ public class BazaPredmeta {
 
 	private void initPredmete() {
 		predmeti = new ArrayList<Predmet>();
-		predmeti.add(new Predmet("e1", "Baze podataka 1", Semestar.ZIMSKI, 3, null, 6));
+		Profesor p = new Profesor("Milan", "Rapajic", LocalDate.of(1980, 3, 13),
+				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64", "rap.aja@uns.ac.rs",
+				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, null);
+		
+		predmeti.add(new Predmet("e1", "Baze podataka 1", Semestar.ZIMSKI, 3, p, 6));
 		predmeti.add(new Predmet("32", "Operativni sistemi", Semestar.LETNJI, 2, null, 7));
 
 	}

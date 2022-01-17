@@ -33,6 +33,10 @@ public class BazaStudenata {
 
 	private void initStudente() {
 		this.studenti = new ArrayList<Student>();
+		
+		
+		
+		
 		Adresa a = new Adresa("Novosadska","3", "Zrenjanin", "Srbija");
 		Student pom1 = new Student("Srdanov", "Jovan", LocalDate.now(), a, "5/55523", "jovan.s@gmail.com", "RA 145/2019",
 				2019, 3, Status.BUDŽET, 0, null, null);
@@ -44,6 +48,22 @@ public class BazaStudenata {
 				2016, 2, Status.SAMOFINANRSIRANJE, 0, null, null);
 		Student pom5 = new Student("Kovačević", "Dragoslava", LocalDate.now(), a, "555/5523", "dragoslava.kov@gmail.com",
 				"RA 22/2019", 2019, 3, Status.SAMOFINANRSIRANJE, 0, null, null);
+	
+	
+		Profesor p = new Profesor("Milan", "Rapajic", LocalDate.of(1980, 3, 13),
+				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64", "rap.aja@uns.ac.rs",
+				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, null);
+		
+		Predmet pp =new Predmet("e1", "Baze podataka 1", Semestar.ZIMSKI, 3, p, 6);
+		
+		Ocena o = new Ocena(pom1, pp, 8,LocalDate.now());
+		
+		ArrayList<Ocena> heheheh= new ArrayList<Ocena>(); 
+		heheheh.add(o);
+		
+		pom1.setSpisakNePolozenihIspita(heheheh);
+		
+		
 		this.studenti.add(pom1);
 		this.studenti.add(pom2);
 		this.studenti.add(pom3);
