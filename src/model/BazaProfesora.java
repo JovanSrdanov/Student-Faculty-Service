@@ -31,10 +31,14 @@ public class BazaProfesora {
 
 	private void initProfesore() {
 		profesori = new ArrayList<Profesor>();
+	
+		Predmet p = new Predmet("e1", "Baze podataka 1", Semestar.ZIMSKI, 3, null, 6);
+		ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
+		predmeti.add(p);
 
 		profesori.add(new Profesor("Detlic", "Pera", LocalDate.now(),
 				new Adresa("Jovana Jovanovica Zmaja", "123a", "Kikinda", "Srbija"), "23/23", "de.ste@gmail.com",
-				new Adresa("ulicaKanc", "11", "Kikinda", "Srbija"), 123456789, Zvanje.REDOVNI_PROFESOR, 69, null));
+				new Adresa("ulicaKanc", "11", "Kikinda", "Srbija"), 123456789, Zvanje.REDOVNI_PROFESOR, 69, predmeti));
 
 		profesori.add(new Profesor("Milan", "Rapajic", LocalDate.of(1980, 3, 13),
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64", "rap.aja@uns.ac.rs",

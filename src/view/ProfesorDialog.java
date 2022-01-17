@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -11,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -18,11 +18,13 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import model.Adresa;
 import model.BazaProfesora;
+import model.Predmet;
 import model.Profesor;
 import model.Zvanje;
 
@@ -46,6 +48,8 @@ public class ProfesorDialog extends JDialog {
 	private int trenutniBrojLicneKarte;
 	private JTabbedPane proferosTabbed;
 	JButton okBtn;
+	private static Profesor selectedProfesor;
+	private static ArrayList<String> kolonePredaje;
 
 	public ProfesorDialog(Frame owner, String title, boolean modal, char tipA) {
 		super(owner, title, modal);
@@ -196,7 +200,16 @@ public class ProfesorDialog extends JDialog {
 		int rowSelectedIndex = MyFrame.getTabelaProfesora().getSelectedRow();
 		if (tipA == 'i' && rowSelectedIndex >= 0) {
 			Profesor p = BazaProfesora.getInstance().getRow(rowSelectedIndex);
-
+			selectedProfesor= p;
+			
+			kolonePredaje = new ArrayList<String>();
+			kolonePredaje.add("Sifra");
+			kolonePredaje.add("Naziv");
+			kolonePredaje.add("Godina studija");
+			kolonePredaje.add("Semestar");
+			
+			
+			
 			imeTxt.setText(p.getIme());
 			prezimeTxt.setText(p.getPrezime());
 			datumTxt.setText(p.getDatumRodjenja().format(DateTimeFormatter.ofPattern("d.M.yyyy")));
@@ -292,9 +305,26 @@ public class ProfesorDialog extends JDialog {
 		if (tipA == 'i') {
 			proferosTabbed = new JTabbedPane();
 			proferosTabbed.addTab("Informacije", centerPanel);
-			JPanel panInfo = new JPanel();
-			panInfo.setBackground(Color.green);
-			proferosTabbed.addTab("Predmeti", panInfo);
+			
+			JPanel panPredaje = new JPanel();
+			panPredaje.setLayout(new BoxLayout(panPredaje, BoxLayout.Y_AXIS));
+			
+			JButton dodajBtn = new JButton("Dodaj predmet");
+			JButton ukloniBtn = new JButton("Ukloni predmet");
+			
+			
+			JPanel dodajUkloniPan = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			dodajUkloniPan.add(dodajBtn);
+			dodajUkloniPan.add(ukloniBtn);
+			panPredaje.add(dodajUkloniPan);
+			
+			Tabela predajeTabel = new Tabela(new AbstractTableModelPredajeProfesor());
+			JScrollPane scrollPanePredaje = new JScrollPane(predajeTabel);
+			
+			panPredaje.add(scrollPanePredaje);
+			
+			
+			proferosTabbed.add("Predaje",panPredaje);
 			this.add(proferosTabbed);
 
 		} else
@@ -400,4 +430,38 @@ public class ProfesorDialog extends JDialog {
 		return false;
 	}
 
+	public static String getValueAtPredaje(int rowIndex, int columnIndex) {
+		if (selectedProfesor.getSpisakPredmetaNaKojimaJeProfesor() == null)
+			return null;
+
+		Predmet predmet = selectedProfesor.getSpisakPredmetaNaKojimaJeProfesor().get(rowIndex);
+
+		switch (columnIndex) {
+		case 0:
+			return predmet.getSifrPredmeta();
+		case 1:
+			return predmet.getNazivPredmeta();
+		case 2:
+			return Integer.toString(predmet.getGodinaStudijaUKojojSePredmetIzvodi());
+		case 3:
+			return predmet.getSemestar().toString();
+		default:
+			return null;
+		}
+	}
+	public static String getColumnNamePedaje(int column) {
+		return kolonePredaje.get(column);
+	}
+
+	public static int getColumnCountPredaje() {
+		return kolonePredaje.size();
+	}
+	
+	public static int getRowCountPredaje() {
+		if (selectedProfesor.getSpisakPredmetaNaKojimaJeProfesor() == null)
+			return 0;
+		return selectedProfesor.getSpisakPredmetaNaKojimaJeProfesor().size();
+	}
+	
+	
 }
