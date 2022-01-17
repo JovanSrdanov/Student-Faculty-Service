@@ -53,6 +53,8 @@ public class StudentDijalog extends JDialog {
 	private static Student selectedStudent;
 	private static ArrayList<String> kolone;
 	private static Tabela nepolozeniTabel;
+	
+	private static ArrayList<String> kolonePolozeni;
 
 	public StudentDijalog(Frame owner, String title, boolean modal, char t) {
 		super(owner, title, modal);
@@ -177,6 +179,13 @@ public class StudentDijalog extends JDialog {
 			kolone.add("Godina studija");
 			kolone.add("Semestar");
 			
+			kolonePolozeni = new ArrayList<String>();
+			kolonePolozeni.add("Sifra predmeta");
+			kolonePolozeni.add("Naziv predmeta");
+			kolonePolozeni.add("ESPB");
+			kolonePolozeni.add("OCENA");
+			kolonePolozeni.add("DATUM");
+			
 			selectedStudent = BazaStudenata.getInstance().getRow(rowSelectedIndex);
 		
 			prezimeTxt.setText(selectedStudent.getPrezime());
@@ -281,6 +290,8 @@ public class StudentDijalog extends JDialog {
 			nepolozeniTabel  = new Tabela(new AbstractTableModelNepolozeni());
 			JScrollPane scrollPaneNepolozeni = new JScrollPane(nepolozeniTabel);
 			
+			
+			
 			JButton addBtn = new JButton("Dodaj");
 			JButton delBtn = new JButton("Obrisi");
 			JButton polaganjeBtn = new JButton("Polaganje");
@@ -311,7 +322,42 @@ public class StudentDijalog extends JDialog {
 			panNepolozeni.add(panBtn);
 			panNepolozeni.add(scrollPaneNepolozeni);
 			
-			zaSad.addTab("Položeni predmeti", p1);
+			JPanel panPolozeni = new JPanel();
+			panPolozeni.setLayout(new BoxLayout(panPolozeni, BoxLayout.Y_AXIS));
+
+			Tabela polozeniTabel = new Tabela(new AbstractTableModelPolozeni());
+			JScrollPane scrollPanePolozeni = new JScrollPane(polozeniTabel);
+
+			JPanel panPonisti = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			JButton ponistiBtn = new JButton("Ponisti ocenu");
+
+			panPonisti.add(ponistiBtn);
+			panPolozeni.add(panPonisti);
+			panPolozeni.add(scrollPanePolozeni);
+
+			JPanel panProsOc = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+			JPanel panUkESPB = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+			///
+			int espb = 0;
+			Double avgOcn = 0.0;
+			
+			ArrayList<Ocena> ocene = selectedStudent.getSpisakPolozenihIspita();
+			
+			int sumaE = 0;
+			Double prosecna = 0.0;
+				
+			
+			///
+			JLabel panProsOcLbl = new JLabel("Prosecna ocena: " + avgOcn);
+			JLabel panUkESPBLbl = new JLabel("Ukupno espb: " + espb);
+			panProsOc.add(panProsOcLbl);
+			panUkESPB.add(panUkESPBLbl);
+
+			panPolozeni.add(panProsOc);
+			panPolozeni.add(panUkESPB);
+
+			zaSad.addTab("Položeni predmeti", panPolozeni);
+			
 			zaSad.addTab("Nepoloženi predmeti", panNepolozeni);
 			this.add(zaSad);
 			
@@ -456,5 +502,41 @@ public class StudentDijalog extends JDialog {
 	public static Tabela getTabelaNepolozeni()
 	{
 		return nepolozeniTabel;
+	}
+	
+	public static String getValueAtPolozeni(int rowIndex, int columnIndex) {
+		if (selectedStudent.getSpisakPolozenihIspita() == null)
+			return null;
+
+		Ocena ocena = selectedStudent.getSpisakPolozenihIspita().get(rowIndex);
+
+		switch (columnIndex) {
+		case 0:
+			return ocena.getPredmet().getSifrPredmeta();
+		case 1:
+			return ocena.getPredmet().getNazivPredmeta();
+		case 2:
+			return Integer.toString(ocena.getPredmet().getBrojESPBBodova());
+		case 3:
+			return Integer.toString(ocena.getBrojcanaVrednostOcene());
+		case 4:
+			return ocena.getDatumPolaganjaIspita().format(DateTimeFormatter.ofPattern("d.M.yyyy"));
+		default:
+			return null;
+		}
+	}
+
+	public static String getColumnNamePolozeni(int column) {
+		return kolonePolozeni.get(column);
+	}
+
+	public static int getColumnCountPolozeni() {
+		return kolonePolozeni.size();
+	}
+
+	public static int getRowCountPolozeni() {
+		if (selectedStudent.getSpisakPolozenihIspita() == null)
+			return 1;
+		return selectedStudent.getSpisakPolozenihIspita().size();
 	}
 }
