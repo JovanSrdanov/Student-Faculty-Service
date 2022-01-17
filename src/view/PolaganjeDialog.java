@@ -31,7 +31,7 @@ public class PolaganjeDialog extends JDialog{
 	
 	private JTextField sifraTxt;
 	private JTextField nazivTxt;
-	private JComboBox ocenaCb;
+	private JComboBox<String> ocenaCb;
 	private JTextField datumTxt;
 	private JButton okBtn;
 	
