@@ -129,7 +129,7 @@ public class PredmetDialog extends JDialog {
 		if (tip == 'i' && rowSelectedIndex >= 0) {
 
 			Predmet p = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
-			
+
 			sifraPredmetaTxt.setText(p.getSifrPredmeta());
 			nazivPredmetaTxt.setText(p.getNazivPredmeta());
 			ESPBPredmetaTxt.setText(Integer.toString(p.getBrojESPBBodova()));
@@ -141,7 +141,6 @@ public class PredmetDialog extends JDialog {
 			else
 				semestarIndex = 1;
 			trenutnaSifraPredmeta = p.getSifrPredmeta();
-			
 
 			semestarPredmetaCB.setSelectedIndex(semestarIndex);
 
@@ -157,14 +156,14 @@ public class PredmetDialog extends JDialog {
 
 			}
 		}
-		
+
 		okBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				okBtn.setEnabled(proveraUpis(tip));
 				if (proveraUpis(tip)) {
 					String sifraP = sifraPredmetaTxt.getText();
-				 
+
 					String nazivP = nazivPredmetaTxt.getText();
 					int brojESPB = Integer.parseInt(ESPBPredmetaTxt.getText());
 					Semestar s;
@@ -172,21 +171,18 @@ public class PredmetDialog extends JDialog {
 						s = Semestar.LETNJI;
 					else
 						s = Semestar.ZIMSKI;
-					int god = godinaPredmetaCB.getSelectedIndex()+1;
-					
-					
-					
+					int god = godinaPredmetaCB.getSelectedIndex() + 1;
 
 					if (tip == 'u') {
-					
+
 						BazaPredmeta.getInstance().dodajPredmet(sifraP, nazivP, s, god, null, brojESPB);
 					}
-					
-					
+
 					if (tip == 'i') {
-						
-						BazaPredmeta.getInstance().izmeniPredmet(sifraP, nazivP, s, god, null, brojESPB,trenutnaSifraPredmeta);
-					
+
+						BazaPredmeta.getInstance().izmeniPredmet(sifraP, nazivP, s, god, null, brojESPB,
+								trenutnaSifraPredmeta);
+
 						// STRAHINJA PAZI NA OVO !!!!!!!!!!!!
 
 					}
@@ -227,21 +223,20 @@ public class PredmetDialog extends JDialog {
 	private boolean proveraUpis(char tipA) {
 		if (tipA == 'u' && existsBySifra(sifraPredmetaTxt.getText()))
 			return false;
-		
+
 		if (tipA == 'i' && !trenutnaSifraPredmeta.equals(sifraPredmetaTxt.getText())) {
 			if (existsBySifra(sifraPredmetaTxt.getText()))
 				return false;
 		}
-		
-		
+
 		if (nazivPredmetaTxt.getText().isBlank()) {
 			return false;
 		}
-		
+
 		if (sifraPredmetaTxt.getText().isBlank()) {
 			return false;
 		}
-		
+
 		if (!ESPBPredmetaTxt.getText().matches("[1-9][0-9]*")) {
 			return false;
 		}
@@ -249,9 +244,6 @@ public class PredmetDialog extends JDialog {
 		return true;
 	}
 
-	
-	
-	
 	private void dodajFocusListener(JTextField txt) {
 		txt.addFocusListener(new FocusListener() {
 

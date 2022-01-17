@@ -63,6 +63,10 @@ public class BazaStudenata {
 		
 		pom1.setSpisakNePolozenihIspita(heheheh);
 		
+		Ocena op = new Ocena(pom1, pp, 10,LocalDate.now());
+		ArrayList<Ocena> zaPolozene= new ArrayList<Ocena>(); 
+		zaPolozene.add(op);
+		pom2.setSpisakPolozenihIspita(zaPolozene);
 		
 		this.studenti.add(pom1);
 		this.studenti.add(pom2);
