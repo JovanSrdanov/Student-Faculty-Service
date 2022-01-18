@@ -36,7 +36,7 @@ public class BazaPredmeta {
 	private void initPredmete() {
 		predmeti = new ArrayList<Predmet>();
 		predmetiPretraga = new ArrayList<Predmet>();
-		Profesor p = new Profesor("Milan", "Rapajic", LocalDate.of(1980, 3, 13),
+		Profesor p = new Profesor("Rapajic", "Milan", LocalDate.of(1980, 3, 13),
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64", "rap.aja@uns.ac.rs",
 				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, null);
 		
@@ -123,7 +123,7 @@ public class BazaPredmeta {
 				i.setNazivPredmeta(nazivPredmeta);
 				i.setSemestar(semestar);
 				i.setGodinaStudijaUKojojSePredmetIzvodi(godinaStudijaUKojojSePredmetIzvodi);
-				i.setPredmetniProfesor(predmetniProfesor);
+				//i.setPredmetniProfesor(predmetniProfesor);
 				i.setBrojESPBBodova(brojESPBBodova);
 
 			}

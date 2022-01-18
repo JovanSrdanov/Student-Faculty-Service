@@ -21,7 +21,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import model.BazaPredmeta;
+import model.BazaProfesora;
 import model.Predmet;
+import model.Profesor;
 import model.Semestar;
 
 public class PredmetDialog extends JDialog {
@@ -37,9 +39,9 @@ public class PredmetDialog extends JDialog {
 	private JComboBox<String> godinaPredmetaCB;
 	private JComboBox<String> semestarPredmetaCB;
 	private JTextField ESPBPredmetaTxt;
-	private JTextField profesorPredmetaTxt;
-	private JButton btnPlus;
-	private JButton btnMinus;
+	private static JTextField profesorPredmetaTxt;
+	private static JButton btnPlus;
+	private static JButton btnMinus;
 	private String trenutnaSifraPredmeta;
 	
 	private static Predmet selectedPredmet;
@@ -150,17 +152,7 @@ public class PredmetDialog extends JDialog {
 
 			semestarPredmetaCB.setSelectedIndex(semestarIndex);
 
-			if (p.getPredmetniProfesor() != null) {
-				btnMinus.setEnabled(true);
-				btnPlus.setEnabled(false);
-				profesorPredmetaTxt
-						.setText(p.getPredmetniProfesor().getPrezime() + " " + p.getPredmetniProfesor().getIme());
-			} else {
-				profesorPredmetaTxt.setText("");
-				btnMinus.setEnabled(false);
-				btnPlus.setEnabled(true);
-
-			}
+			azurirajProf();
 		}
 
 		okBtn.addActionListener(new ActionListener() {
@@ -189,7 +181,7 @@ public class PredmetDialog extends JDialog {
 						BazaPredmeta.getInstance().izmeniPredmet(sifraP, nazivP, s, god, null, brojESPB,
 								trenutnaSifraPredmeta);
 
-						// STRAHINJA PAZI NA OVO !!!!!!!!!!!!
+						// STRAHINJA PAZI NA OVO !!!!!!!!!!!! pazio ja al kasno jbg
 
 					}
 
@@ -204,7 +196,30 @@ public class PredmetDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+			}
 
+		});
+		
+		btnPlus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Dijalog nov
+				DodavnjaProfesoraPredmetu dialog = new DodavnjaProfesoraPredmetu(null, "Dodavnaje profesora", true);
+				dialog.setVisible(true);
+			}
+
+		});
+		
+		btnMinus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for(Profesor p : BazaProfesora.getInstance().getProfesori()) {
+					if(p.getBrojLicneKarte() == selectedPredmet.getPredmetniProfesor().getBrojLicneKarte()) {
+						p.getSpisakPredmetaNaKojimaJeProfesor().remove(selectedPredmet);
+					}
+				}
+				selectedPredmet.setPredmetniProfesor(null);
+				azurirajProf();
 			}
 
 		});
@@ -295,6 +310,22 @@ public class PredmetDialog extends JDialog {
 				return true;
 		}
 		return false;
+	}
+	
+	public static void azurirajProf() {
+		if (selectedPredmet.getPredmetniProfesor() != null) {
+			btnMinus.setEnabled(true);
+			btnPlus.setEnabled(false);
+			profesorPredmetaTxt.setText(selectedPredmet.getPredmetniProfesor().getIme() + " " + selectedPredmet.getPredmetniProfesor().getPrezime());
+		} else {
+			profesorPredmetaTxt.setText("");
+			btnMinus.setEnabled(false);
+			btnPlus.setEnabled(true);
+		}
+	}
+	
+	public static Predmet getSelectedPredmet() {
+		return selectedPredmet;
 	}
 
 }

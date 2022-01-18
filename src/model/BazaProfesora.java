@@ -16,8 +16,8 @@ public class BazaProfesora {
 		return instance;
 	}
 
-	private List<Profesor> profesori;
-	private List<Profesor> profesoriPretraga;
+	private ArrayList<Profesor> profesori;
+	private ArrayList<Profesor> profesoriPretraga;
 	
 
 	private List<String> kolone;
@@ -44,11 +44,11 @@ public class BazaProfesora {
 
 		profesori.add(new Profesor("Detlic", "Pera", LocalDate.now(),
 				new Adresa("Jovana Jovanovica Zmaja", "123a", "Kikinda", "Srbija"), "23/23", "de.ste@gmail.com",
-				new Adresa("ulicaKanc", "11", "Kikinda", "Srbija"), 123456789, Zvanje.REDOVNI_PROFESOR, 69, predmeti));
+				new Adresa("ulicaKanc", "11", "Kikinda", "Srbija"), 123456789, Zvanje.REDOVNI_PROFESOR, 69, null));
 
 		profesori.add(new Profesor("Rapajic", "Milan", LocalDate.of(1980, 3, 13),
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64", "rap.aja@uns.ac.rs",
-				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, null));
+				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, predmeti));
 		
 		profesori.add(new Profesor("Jelicic", "peder", LocalDate.of(1980, 3, 13),
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381/232 64", "aaaa.aaaaaa@uns.ac.rs",
@@ -56,15 +56,15 @@ public class BazaProfesora {
 
 	}
 
-	public List<Profesor> getProfesori() {
+	public ArrayList<Profesor> getProfesori() {
 		return profesori;
 	}
 	
-	public List<Profesor> getProfesoriPretraga() {
+	public ArrayList<Profesor> getProfesoriPretraga() {
 		return profesoriPretraga;
 	}
 
-	public void setProfesori(List<Profesor> profesori) {
+	public void setProfesori(ArrayList<Profesor> profesori) {
 		this.profesori = profesori;
 	}
 
