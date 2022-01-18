@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -58,25 +60,28 @@ public class DodavanjePredmetaStudentuDijalog extends JDialog {
 		}
 
 		JList<String> listBox = new JList<String>(dodaj);
-		
-		
+
 		listBox.addListSelectionListener(new ListSelectionListener() {
 
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
 
 				if (!arg0.getValueIsAdjusting()) {
-					// samo nas interesuje trenutak otpustanja misa
-
-					System.out.println(String.format("Selektovan je dan: %s, sa indeksom: %d",
-							listBox.getSelectedValue(), listBox.getSelectedIndex()));
+					dodajBtn.setEnabled(true);
 				}
 
 			}
 		});
-			
 		
 		
+		odustaniBTN.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+
+			}
+
+		});
 
 		centerPanel.add(listBox);
 		centerPanel.add(btnPnl);
