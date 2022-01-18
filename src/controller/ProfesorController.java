@@ -35,14 +35,14 @@ public class ProfesorController {
 		if (input == 0) {
 			// izmena modela
 			Profesor profesor = BazaProfesora.getInstance().getRow(rowSelectedIndex);
-			
-			//brisanje kod predmeta
-			for(Predmet pred : BazaPredmeta.getInstance().getPredmeti()) {
-				if(pred.getPredmetniProfesor().equals(profesor)) {
+
+			// brisanje kod predmeta
+			for (Predmet pred : BazaPredmeta.getInstance().getPredmeti()) {
+				if (pred.getPredmetniProfesor() != null && pred.getPredmetniProfesor().equals(profesor)) {
 					pred.setPredmetniProfesor(null);
 				}
 			}
-			
+
 			BazaProfesora.getInstance().izbrisiProfesor(profesor.getBrojLicneKarte());
 			// azuriranje prikaza
 			MyFrame.getInstance().azurirajPrikazProfesora();
@@ -61,7 +61,7 @@ public class ProfesorController {
 		profesorDialog.setLocationRelativeTo(MyFrame.getInstance());
 		profesorDialog.setVisible(true);
 	}
-	
+
 	public void pretraziProfesore(String rec) {
 		BazaProfesora.getInstance().pretraziProfesore(rec);
 		MyFrame.getInstance().azurirajPrikazProfesora();
