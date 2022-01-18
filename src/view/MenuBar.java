@@ -75,7 +75,7 @@ public class MenuBar extends JMenuBar {
 		icon = new ImageIcon("icons/predmeti.png");
 		JMenuItem Predmeti = new JMenuItem("Predmeti", icon);
 		Predmeti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.ALT_MASK));
-		Predmeti.setMnemonic(KeyEvent.VK_J);
+		Predmeti.setMnemonic(KeyEvent.VK_R);
 		Predmeti.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -86,8 +86,8 @@ public class MenuBar extends JMenuBar {
 
 		icon = new ImageIcon("icons/profesori.png");
 		JMenuItem Profesori = new JMenuItem("Profesori", icon);
-		Profesori.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.ALT_MASK));
-		Profesori.setMnemonic(KeyEvent.VK_L);
+		Profesori.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.ALT_MASK));
+		Profesori.setMnemonic(KeyEvent.VK_P);
 		Profesori.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
