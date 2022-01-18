@@ -41,7 +41,7 @@ public class BazaPredmeta {
 				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, null);
 
 		predmeti.add(new Predmet("e1", "Baze podataka 1", Semestar.ZIMSKI, 3, p, 6));
-		predmeti.add(new Predmet("32", "Operativni sistemi", Semestar.LETNJI, 2, null, 7));
+		predmeti.add(new Predmet("p2", "Operativni sistemi", Semestar.LETNJI, 2, null, 7));
 
 	}
 
