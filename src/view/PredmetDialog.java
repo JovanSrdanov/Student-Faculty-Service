@@ -21,7 +21,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import model.BazaPredmeta;
+import model.BazaProfesora;
 import model.Predmet;
+import model.Profesor;
 import model.Semestar;
 
 public class PredmetDialog extends JDialog {
@@ -41,6 +43,8 @@ public class PredmetDialog extends JDialog {
 	private JButton btnPlus;
 	private JButton btnMinus;
 	private String trenutnaSifraPredmeta;
+	
+	private static Predmet selectedPredmet;
 
 	public PredmetDialog(Frame owner, String title, boolean modal, char t) {
 		super(owner, title, modal);
@@ -128,7 +132,11 @@ public class PredmetDialog extends JDialog {
 		int rowSelectedIndex = MyFrame.getTabelaPredmeta().getSelectedRow();
 		if (tip == 'i' && rowSelectedIndex >= 0) {
 
-			Predmet p = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
+			//Predmet p = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
+			int a = MyFrame.getTabelaPredmeta().convertRowIndexToModel(rowSelectedIndex);
+			Predmet p = BazaPredmeta.getInstance().getRow(a);
+			//System.out.println("Klikno " + rowSelectedIndex + " Konvert " + a);
+			selectedPredmet = p;
 
 			sifraPredmetaTxt.setText(p.getSifrPredmeta());
 			nazivPredmetaTxt.setText(p.getNazivPredmeta());
