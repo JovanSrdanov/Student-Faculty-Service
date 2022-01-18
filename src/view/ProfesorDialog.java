@@ -333,6 +333,7 @@ public class ProfesorDialog extends JDialog {
 			this.add(centerPanel);
 	}
 
+	//fix za git
 	private boolean proveraUpis(char tipA) {
 
 		if (imeTxt.getText().isBlank()) {
