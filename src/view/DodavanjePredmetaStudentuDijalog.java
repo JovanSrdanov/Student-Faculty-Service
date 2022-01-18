@@ -14,6 +14,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import model.BazaPredmeta;
+import model.Ocena;
 import model.Predmet;
 
 public class DodavanjePredmetaStudentuDijalog extends JDialog {
@@ -44,9 +45,36 @@ public class DodavanjePredmetaStudentuDijalog extends JDialog {
 		ArrayList<String> sifraImePredmeta = new ArrayList<String>();
 
 		for (Predmet p : BazaPredmeta.getInstance().getPredmeti()) {
-			if (p.getGodinaStudijaUKojojSePredmetIzvodi() <= StudentDijalog.getSelectedStudent()
-					.getTrenutnaGodinaStudija())
-				listaMogucihPredmeta.add(p);
+			boolean nalazi = false;
+
+			for (Ocena o : StudentDijalog.getSelectedStudent().getSpisakNePolozenihIspita()) {
+				if (o.getPredmet() == p) {
+					nalazi = true;
+				}
+
+			}
+
+			for (Ocena o : StudentDijalog.getSelectedStudent().getSpisakPolozenihIspita()) {
+				if (o.getPredmet() == p) {
+					nalazi = true;
+				}
+
+			}
+			
+			if (nalazi == false) {
+
+				if (p.getGodinaStudijaUKojojSePredmetIzvodi() <= StudentDijalog.getSelectedStudent()
+						.getTrenutnaGodinaStudija()) {
+
+					listaMogucihPredmeta.add(p);
+				}
+				
+		
+				
+
+			}
+			
+
 		}
 
 		for (Predmet p : listaMogucihPredmeta) {
@@ -72,8 +100,20 @@ public class DodavanjePredmetaStudentuDijalog extends JDialog {
 
 			}
 		});
-		
-		
+
+		dodajBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Predmet p = new Predmet();
+				p = listaMogucihPredmeta.get(listBox.getSelectedIndex());
+				Ocena ocena = new Ocena(StudentDijalog.getSelectedStudent(), p, 5, null);
+				StudentDijalog.getSelectedStudent().getSpisakNePolozenihIspita().add(ocena);
+				StudentDijalog.azurirajPrikazNepolozenih();
+				dispose();
+			}
+
+		});
+
 		odustaniBTN.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

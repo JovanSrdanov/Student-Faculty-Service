@@ -59,7 +59,7 @@ public class BazaStudenata {
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64", "rap.aja@uns.ac.rs",
 				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, null);
 		
-		Predmet pp =new Predmet("e1", "Baze podataka 1", Semestar.ZIMSKI, 3, p, 6);
+		Predmet pp =new Predmet("e1", "Baze podataka 2", Semestar.ZIMSKI, 3, p, 6);
 		
 		Ocena o = new Ocena(pom1, pp, 5,LocalDate.now());
 		
