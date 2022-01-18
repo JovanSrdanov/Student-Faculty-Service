@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -48,7 +49,13 @@ public class ProfesorDialog extends JDialog {
 	private int trenutniBrojLicneKarte;
 	private JTabbedPane proferosTabbed;
 	JButton okBtn;
+
+	private static Tabela predajeTabel;
 	private static Profesor selectedProfesor;
+	public static Profesor getSelectedProfesor() {
+		return selectedProfesor;
+	}
+
 	private static ArrayList<String> kolonePredaje;
 
 	public ProfesorDialog(Frame owner, String title, boolean modal, char tipA) {
@@ -201,17 +208,15 @@ public class ProfesorDialog extends JDialog {
 		if (tipA == 'i' && rowSelectedIndex >= 0) {
 			int a = MyFrame.getTabelaProfesora().convertRowIndexToModel(rowSelectedIndex);
 			Profesor p = BazaProfesora.getInstance().getRow(a);
-			//System.out.println("Klikno " + rowSelectedIndex + " Konvert " + a);
+			// System.out.println("Klikno " + rowSelectedIndex + " Konvert " + a);
 			selectedProfesor = p;
-			
+
 			kolonePredaje = new ArrayList<String>();
 			kolonePredaje.add("Sifra");
 			kolonePredaje.add("Naziv");
 			kolonePredaje.add("Godina studija");
 			kolonePredaje.add("Semestar");
-			
-			
-			
+
 			imeTxt.setText(p.getIme());
 			prezimeTxt.setText(p.getPrezime());
 			datumTxt.setText(p.getDatumRodjenja().format(DateTimeFormatter.ofPattern("d.M.yyyy")));
@@ -307,36 +312,59 @@ public class ProfesorDialog extends JDialog {
 		if (tipA == 'i') {
 			proferosTabbed = new JTabbedPane();
 			proferosTabbed.addTab("Informacije", centerPanel);
-			
+
 			JPanel panPredaje = new JPanel();
 			panPredaje.setLayout(new BoxLayout(panPredaje, BoxLayout.Y_AXIS));
-			
+
 			JButton dodajBtn = new JButton("Dodaj predmet");
 			JButton ukloniBtn = new JButton("Ukloni predmet");
-			
-			
+
 			JPanel dodajUkloniPan = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			dodajUkloniPan.add(dodajBtn);
 			dodajUkloniPan.add(ukloniBtn);
 			panPredaje.add(dodajUkloniPan);
-			
-			
-			
-			
-			Tabela predajeTabel = new Tabela(new AbstractTableModelPredajeProfesor());
+
+			predajeTabel = new Tabela(new AbstractTableModelPredajeProfesor());
 			JScrollPane scrollPanePredaje = new JScrollPane(predajeTabel);
-			
+
+			ukloniBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int rowSelectedIndex = predajeTabel.getSelectedRow();
+					if (rowSelectedIndex != -1) {
+						Object[] options = { "Da", "Ne" };
+						int input = JOptionPane.showOptionDialog(null,
+								"Da li ste sigurni da želite da obrišete predmet?", "Potvrda",
+								JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+
+						if (input == 0) {
+							Predmet p = selectedProfesor.getSpisakPredmetaNaKojimaJeProfesor().get(rowSelectedIndex);
+							selectedProfesor.getSpisakPredmetaNaKojimaJeProfesor().remove(p);
+							ProfesorDialog.azurirajPrikazPredaje();
+						}
+					}
+				}
+
+			});
+
+			dodajBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					DodajPredmetProfesoru dpp = new DodajPredmetProfesoru(null, "Dodavanje", true);
+					dpp.setVisible(true);
+				}
+			});
+
 			panPredaje.add(scrollPanePredaje);
-			
-			
-			proferosTabbed.add("Predaje",panPredaje);
+
+			proferosTabbed.add("Predaje", panPredaje);
 			this.add(proferosTabbed);
 
 		} else
 			this.add(centerPanel);
 	}
 
-	//fix za git
+	// fix za git
 	private boolean proveraUpis(char tipA) {
 
 		if (imeTxt.getText().isBlank()) {
@@ -455,6 +483,7 @@ public class ProfesorDialog extends JDialog {
 			return null;
 		}
 	}
+
 	public static String getColumnNamePedaje(int column) {
 		return kolonePredaje.get(column);
 	}
@@ -462,12 +491,17 @@ public class ProfesorDialog extends JDialog {
 	public static int getColumnCountPredaje() {
 		return kolonePredaje.size();
 	}
-	
+
 	public static int getRowCountPredaje() {
 		if (selectedProfesor.getSpisakPredmetaNaKojimaJeProfesor() == null)
 			return 0;
 		return selectedProfesor.getSpisakPredmetaNaKojimaJeProfesor().size();
 	}
-	
-	
+
+	public static void azurirajPrikazPredaje() {
+		AbstractTableModelPredajeProfesor model = (AbstractTableModelPredajeProfesor) predajeTabel.getModel();
+		model.fireTableDataChanged();
+		// validate();
+	}
+
 }

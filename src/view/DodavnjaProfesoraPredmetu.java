@@ -72,6 +72,15 @@ public class DodavnjaProfesoraPredmetu extends JDialog {
 			
 		});
 		
+		odustaniBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+
+			}
+
+		});
+		
 		centerPanel.add(listBox);
 		centerPanel.add(btnPnl);
 		this.add(centerPanel);
