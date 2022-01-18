@@ -9,6 +9,7 @@ public class MyApp {
 		AppFrame.setVisible(true);
 		
 		MyFrame.getTabelaProfesora().setAutoCreateRowSorter(true); //????????????? ok
+		MyFrame.getTabelaPredmeta().setAutoCreateRowSorter(true);
 	}
 
 }

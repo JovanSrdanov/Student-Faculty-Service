@@ -3,6 +3,7 @@ package controller;
 import javax.swing.JOptionPane;
 
 import model.BazaPredmeta;
+import model.BazaProfesora;
 import model.Predmet;
 import view.MyFrame;
 import view.PredmetDialog;
@@ -51,6 +52,11 @@ public class PredmetiController {
 		PredmetDialog predmetDialog = new PredmetDialog(null, "Izmena predmeta", true, 'i');
 		predmetDialog.setLocationRelativeTo(MyFrame.getInstance());
 		predmetDialog.setVisible(true);
+	}
+	
+	public void pretraziPredmete(String rec) {
+		BazaPredmeta.getInstance().pretraziPredmete(rec);
+		MyFrame.getInstance().azurirajPrikazPredmeta();
 	}
 	
 }

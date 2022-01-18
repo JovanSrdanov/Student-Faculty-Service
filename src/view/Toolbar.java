@@ -102,6 +102,8 @@ public class Toolbar extends JToolBar {
 					}
 				} else if (selectedTab == 2) {
 					PredmetiController.getInstance().izbrisiPredmet(MyFrame.getTabelaPredmeta().getSelectedRow());
+					if(MyFrame.getInstance().isPretraga())
+						PredmetiController.getInstance().pretraziPredmete(staraPretraga);
 				}
 			}
 		});
@@ -160,6 +162,18 @@ public class Toolbar extends JToolBar {
 					
 				} else if (selectedTab == 2) {
 					// Predmet	
+					if(searchBar.getText().isBlank())
+					{
+						MyFrame.getInstance().setPretraga(false);
+						MyFrame.getInstance().azurirajPrikazPredmeta();
+					}
+					else
+					{
+						MyFrame.getInstance().setPretraga(true);
+						staraPretraga = searchBar.getText();
+						//ProfesorController.getInstance().pretraziProfesore(staraPretraga);
+						PredmetiController.getInstance().pretraziPredmete(staraPretraga);
+					}
 				}
 			}
 		});

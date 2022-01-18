@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import view.MyFrame;
+
 public class BazaPredmeta {
 	private static BazaPredmeta instance = null;
 
@@ -15,6 +17,7 @@ public class BazaPredmeta {
 	}
 
 	private List<Predmet> predmeti;
+	private List<Predmet> predmetiPretraga;
 	private List<String> kolone;
 
 	private BazaPredmeta() {
@@ -32,6 +35,7 @@ public class BazaPredmeta {
 
 	private void initPredmete() {
 		predmeti = new ArrayList<Predmet>();
+		predmetiPretraga = new ArrayList<Predmet>();
 		Profesor p = new Profesor("Milan", "Rapajic", LocalDate.of(1980, 3, 13),
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64", "rap.aja@uns.ac.rs",
 				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, null);
@@ -43,6 +47,10 @@ public class BazaPredmeta {
 
 	public List<Predmet> getPredmeti() {
 		return predmeti;
+	}
+	
+	public List<Predmet> getPredmetiPretraga() {
+		return predmetiPretraga;
 	}
 
 	public void setPredmeti(List<Predmet> predmeti) {
@@ -58,11 +66,22 @@ public class BazaPredmeta {
 	}
 
 	public Predmet getRow(int rowIndex) {
+		if(MyFrame.getInstance().isPretraga())
+			return predmetiPretraga.get(rowIndex);
 		return this.predmeti.get(rowIndex);
 	}
 
 	public String getValueAt(int row, int column) {
-		Predmet predmet = this.predmeti.get(row);
+		Predmet predmet;
+		
+		if(MyFrame.getInstance().isPretraga()) {
+			if(predmetiPretraga.isEmpty())
+				return "";
+			predmet = predmetiPretraga.get(row);
+		}
+		else
+			predmet = predmeti.get(row);
+		
 		switch (column) {
 		case 0:
 			return predmet.getSifrPredmeta();
@@ -109,5 +128,35 @@ public class BazaPredmeta {
 
 			}
 		}
+	}
+	
+	public void pretraziPredmete(String rec) {
+		predmetiPretraga.clear();
+		String naziv;
+		String sifra;
+		
+		//naz,sifra
+		if(rec.matches("[^,]+,[^,]+")) {
+			String[] parts = rec.split(",");
+			naziv = parts[0].trim();
+			sifra = parts[1].trim();
+
+			for(Predmet p : predmeti) {
+				if(p.getNazivPredmeta().contains(naziv) && p.getSifrPredmeta().contains(sifra)) {
+					predmetiPretraga.add(p);
+				}
+			}
+		}
+		//naz
+		if(rec.matches("[^,]+")) {
+			naziv = rec;
+
+			for(Predmet p : predmeti) {
+				if(p.getNazivPredmeta().contains(naziv)) {
+					predmetiPretraga.add(p);
+				}
+			}
+		}
+		
 	}
 }
