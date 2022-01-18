@@ -10,7 +10,6 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -43,7 +42,7 @@ public class PredmetDialog extends JDialog {
 	private static JButton btnPlus;
 	private static JButton btnMinus;
 	private String trenutnaSifraPredmeta;
-	
+
 	private static Predmet selectedPredmet;
 
 	public PredmetDialog(Frame owner, String title, boolean modal, char t) {
@@ -132,10 +131,10 @@ public class PredmetDialog extends JDialog {
 		int rowSelectedIndex = MyFrame.getTabelaPredmeta().getSelectedRow();
 		if (tip == 'i' && rowSelectedIndex >= 0) {
 
-			//Predmet p = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
+			// Predmet p = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
 			int a = MyFrame.getTabelaPredmeta().convertRowIndexToModel(rowSelectedIndex);
 			Predmet p = BazaPredmeta.getInstance().getRow(a);
-			//System.out.println("Klikno " + rowSelectedIndex + " Konvert " + a);
+			// System.out.println("Klikno " + rowSelectedIndex + " Konvert " + a);
 			selectedPredmet = p;
 
 			sifraPredmetaTxt.setText(selectedPredmet.getSifrPredmeta());
@@ -148,6 +147,7 @@ public class PredmetDialog extends JDialog {
 				semestarIndex = 0;
 			else
 				semestarIndex = 1;
+
 			trenutnaSifraPredmeta = p.getSifrPredmeta();
 
 			semestarPredmetaCB.setSelectedIndex(semestarIndex);
@@ -164,26 +164,24 @@ public class PredmetDialog extends JDialog {
 
 					String nazivP = nazivPredmetaTxt.getText();
 					int brojESPB = Integer.parseInt(ESPBPredmetaTxt.getText());
+
 					Semestar s;
 					if (semestarPredmetaCB.getSelectedIndex() == 0)
-						s = Semestar.LETNJI;
-					else
 						s = Semestar.ZIMSKI;
+					else
+						s = Semestar.LETNJI;
+
 					int god = godinaPredmetaCB.getSelectedIndex() + 1;
 
 					if (tip == 'u') {
-
 						BazaPredmeta.getInstance().dodajPredmet(sifraP, nazivP, s, god, null, brojESPB);
 					}
 
 					if (tip == 'i') {
-
 						BazaPredmeta.getInstance().izmeniPredmet(sifraP, nazivP, s, god, null, brojESPB,
 								trenutnaSifraPredmeta);
-
 						// STRAHINJA PAZI NA OVO !!!!!!!!!!!! pazio ja al kasno jbg
-
-					}
+				}
 
 					MyFrame.getInstance().azurirajPrikazPredmeta();
 					dispose();
@@ -199,22 +197,22 @@ public class PredmetDialog extends JDialog {
 			}
 
 		});
-		
+
 		btnPlus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Dijalog nov
+				// Dijalog nov
 				DodavnjaProfesoraPredmetu dialog = new DodavnjaProfesoraPredmetu(null, "Dodavnaje profesora", true);
 				dialog.setVisible(true);
 			}
 
 		});
-		
+
 		btnMinus.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for(Profesor p : BazaProfesora.getInstance().getProfesori()) {
-					if(p.getBrojLicneKarte() == selectedPredmet.getPredmetniProfesor().getBrojLicneKarte()) {
+				for (Profesor p : BazaProfesora.getInstance().getProfesori()) {
+					if (p.getBrojLicneKarte() == selectedPredmet.getPredmetniProfesor().getBrojLicneKarte()) {
 						p.getSpisakPredmetaNaKojimaJeProfesor().remove(selectedPredmet);
 					}
 				}
@@ -311,19 +309,20 @@ public class PredmetDialog extends JDialog {
 		}
 		return false;
 	}
-	
+
 	public static void azurirajProf() {
 		if (selectedPredmet.getPredmetniProfesor() != null) {
 			btnMinus.setEnabled(true);
 			btnPlus.setEnabled(false);
-			profesorPredmetaTxt.setText(selectedPredmet.getPredmetniProfesor().getIme() + " " + selectedPredmet.getPredmetniProfesor().getPrezime());
+			profesorPredmetaTxt.setText(selectedPredmet.getPredmetniProfesor().getIme() + " "
+					+ selectedPredmet.getPredmetniProfesor().getPrezime());
 		} else {
 			profesorPredmetaTxt.setText("");
 			btnMinus.setEnabled(false);
 			btnPlus.setEnabled(true);
 		}
 	}
-	
+
 	public static Predmet getSelectedPredmet() {
 		return selectedPredmet;
 	}
