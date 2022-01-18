@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import view.MyFrame;
+
 public class BazaProfesora {
 	private static BazaProfesora instance = null;
 
@@ -15,6 +17,9 @@ public class BazaProfesora {
 	}
 
 	private List<Profesor> profesori;
+	private List<Profesor> profesoriPretraga;
+	
+
 	private List<String> kolone;
 
 	private BazaProfesora() {
@@ -31,6 +36,7 @@ public class BazaProfesora {
 
 	private void initProfesore() {
 		profesori = new ArrayList<Profesor>();
+		profesoriPretraga = new ArrayList<Profesor>();
 	
 		Predmet p = new Predmet("e1", "Baze podataka 1", Semestar.ZIMSKI, 3, null, 6);
 		ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
@@ -53,6 +59,10 @@ public class BazaProfesora {
 	public List<Profesor> getProfesori() {
 		return profesori;
 	}
+	
+	public List<Profesor> getProfesoriPretraga() {
+		return profesoriPretraga;
+	}
 
 	public void setProfesori(List<Profesor> profesori) {
 		this.profesori = profesori;
@@ -67,11 +77,22 @@ public class BazaProfesora {
 	}
 
 	public Profesor getRow(int rowIndex) {
-		return this.profesori.get(rowIndex);
+		if(MyFrame.getInstance().isPretraga())
+			return profesoriPretraga.get(rowIndex);
+		return profesori.get(rowIndex);
 	}
 
 	public String getValueAt(int row, int column) {
-		Profesor profesor = this.profesori.get(row);
+		Profesor profesor;
+		
+		if(MyFrame.getInstance().isPretraga()) {
+			if(profesoriPretraga.isEmpty())
+				return "";
+			profesor = profesoriPretraga.get(row);
+		}
+		else
+			profesor = profesori.get(row);
+		
 		switch (column) {
 		case 0:
 			return profesor.getIme();
@@ -123,4 +144,34 @@ public class BazaProfesora {
 			}
 		}
 	}
+	
+	public void pretraziProfesore(String rec) {
+		profesoriPretraga.clear();
+		String ime;
+		String prezime;
+		
+		//prz,ime
+		if(rec.matches("[^,]+,[^,]+")) {
+			String[] parts = rec.split(",");
+			prezime = parts[0].trim();
+			ime = parts[1].trim();
+
+			for(Profesor p : profesori) {
+				if(p.getPrezime().contains(prezime) && p.getIme().contains(ime)) {
+					profesoriPretraga.add(p);
+				}
+			}
+		}
+		//prz
+		else if(rec.matches("[^,]+")) {
+			prezime = rec;
+			for(Profesor p : profesori) {
+				if(p.getPrezime().contains(prezime)) {
+					profesoriPretraga.add(p);
+				}
+			}
+		}
+	}
+	
+	
 }

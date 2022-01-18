@@ -14,10 +14,19 @@ public class AbstractTableModelProfesor extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		if (BazaProfesora.getInstance().getProfesori() == null) {
-			return 1;
+		if(MyFrame.getInstance().isPretraga()) {
+			if (BazaProfesora.getInstance().getProfesoriPretraga() == null) {
+				return 0;
+			}
+			return BazaProfesora.getInstance().getProfesoriPretraga().size();
 		}
-		return BazaProfesora.getInstance().getProfesori().size();
+		else {
+			if (BazaProfesora.getInstance().getProfesori() == null) {
+				return 0;
+			}
+			return BazaProfesora.getInstance().getProfesori().size();
+		}
+		
 	}
 
 	@Override
@@ -42,7 +51,6 @@ public class AbstractTableModelProfesor extends AbstractTableModel {
 
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
-		// TODO Auto-generated method stub
 		if(BazaProfesora.getInstance().getProfesori().isEmpty())
 			return Object.class;
 		return getValueAt(0, columnIndex).getClass();
