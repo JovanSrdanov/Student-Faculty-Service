@@ -26,7 +26,11 @@ public class Toolbar extends JToolBar {
 	 */
 	private static final long serialVersionUID = -5707394191276063225L;
 	
-	private String staraPretraga;
+	private static String staraPretraga;
+
+	public static String getStaraPretraga() {
+		return staraPretraga;
+	}
 
 	public Toolbar() {
 		super(SwingConstants.HORIZONTAL);

@@ -177,10 +177,18 @@ public class MenuBar extends JMenuBar {
 				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
 				if (selectedTab == 0) {
 					StudentiController.getInstance().izbrisiStudenta(MyFrame.getTabelaStduenti().getSelectedRow());
+					if(MyFrame.getInstance().isPretraga()) {
+						StudentiController.getInstance().pretraziStudente(Toolbar.getStaraPretraga());
+					}
 				} else if (selectedTab == 1) {
 					ProfesorController.getInstance().izbrisiProfesora(MyFrame.getTabelaProfesora().getSelectedRow());
+					if(MyFrame.getInstance().isPretraga()) {
+						ProfesorController.getInstance().pretraziProfesore(Toolbar.getStaraPretraga());
+					}
 				} else if (selectedTab == 2) {
 					PredmetiController.getInstance().izbrisiPredmet(MyFrame.getTabelaPredmeta().getSelectedRow());
+					if(MyFrame.getInstance().isPretraga())
+						PredmetiController.getInstance().pretraziPredmete(Toolbar.getStaraPretraga());
 				}
 			}
 		});
