@@ -112,7 +112,8 @@ public class Toolbar extends JToolBar {
 
 		JTextField searchBar = new JTextField();
 		searchBar.setToolTipText("Unesi reč za pretragu");
-		searchBar.setMaximumSize(new Dimension(9000, 30));
+		searchBar.setPreferredSize(new Dimension(350, 30));
+		searchBar.setMaximumSize(new Dimension(350, 30));
 		toolBarPanel.add(searchBar);
 
 		toolBarPanel.add(Box.createRigidArea(new Dimension(10, 0)));
