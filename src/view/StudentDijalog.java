@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
@@ -18,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -285,7 +287,8 @@ public class StudentDijalog extends JDialog {
 
 			JPanel panNepolozeni = new JPanel();
 			panNepolozeni.setLayout(new BoxLayout(panNepolozeni, BoxLayout.Y_AXIS));
-			JPanel panBtn = new JPanel();
+			JPanel panBtn = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			panBtn.setPreferredSize(new Dimension(panBtn.getWidth(), 0));
 
 			nepolozeniTabel = new Tabela(new AbstractTableModelNepolozeni());
 			JScrollPane scrollPaneNepolozeni = new JScrollPane(nepolozeniTabel);
@@ -332,7 +335,28 @@ public class StudentDijalog extends JDialog {
 
 			JPanel panPonisti = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			JButton ponistiBtn = new JButton("Ponisti ocenu");
-
+			ponistiBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int rowSelectedIndex = polozeniTabel.getSelectedRow();
+					if (rowSelectedIndex != -1) {
+						Object[] options = { "Da", "Ne" };
+						int input = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da ponistite ocenu?", "Potvrda",
+								JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+						if(input == 0) {
+							Ocena o = selectedStudent.getSpisakPolozenihIspita().get(rowSelectedIndex);
+							o.setBrojcanaVrednostOcene(5);
+							o.setDatumPolaganjaIspita(null);
+							selectedStudent.getSpisakNePolozenihIspita().add(o);
+							selectedStudent.getSpisakPolozenihIspita().remove(o);
+							StudentDijalog.azurirajPrikazNepolozenih();
+							StudentDijalog.azurirajPrikazPolozenih();
+						}
+					}
+					
+				}
+			});
+			
 			panPonisti.add(ponistiBtn);
 			panPolozeni.add(panPonisti);
 			panPolozeni.add(scrollPanePolozeni);
