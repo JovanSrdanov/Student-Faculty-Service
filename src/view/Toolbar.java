@@ -25,6 +25,8 @@ public class Toolbar extends JToolBar {
 	 * 
 	 */
 	private static final long serialVersionUID = -5707394191276063225L;
+	
+	private String staraPretraga;
 
 	public Toolbar() {
 		super(SwingConstants.HORIZONTAL);
@@ -70,6 +72,7 @@ public class Toolbar extends JToolBar {
 						JOptionPane.showMessageDialog(null, "Izaberi studenta za izmenu", "Poruka",
 								JOptionPane.WARNING_MESSAGE);
 				} else if (selectedTab == 1) {
+					MyFrame.getInstance();
 					// Profesor
 					if (MyFrame.getTabelaProfesora().getSelectedRow() >= 0)
 						ProfesorController.getInstance().izmeniProfesora();
@@ -94,6 +97,9 @@ public class Toolbar extends JToolBar {
 					StudentiController.getInstance().izbrisiStudenta(MyFrame.getTabelaStduenti().getSelectedRow());
 				} else if (selectedTab == 1) {
 					ProfesorController.getInstance().izbrisiProfesora(MyFrame.getTabelaProfesora().getSelectedRow());
+					if(MyFrame.getInstance().isPretraga()) {
+						ProfesorController.getInstance().pretraziProfesore(staraPretraga);
+					}
 				} else if (selectedTab == 2) {
 					PredmetiController.getInstance().izbrisiPredmet(MyFrame.getTabelaPredmeta().getSelectedRow());
 				}
@@ -123,7 +129,7 @@ public class Toolbar extends JToolBar {
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(searchBar.getText().isBlank())
+				/*if(searchBar.getText().isBlank())
 				{
 					MyFrame.getInstance().setPretraga(false);
 					MyFrame.getInstance().azurirajPrikazStudenata();
@@ -132,7 +138,29 @@ public class Toolbar extends JToolBar {
 				{
 					MyFrame.getInstance().setPretraga(true);
 					StudentiController.getInstance().pretraziStudente();
-				}				
+				}	*/
+				
+				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
+				if (selectedTab == 0) {
+					// Student
+					
+				} else if (selectedTab == 1) {
+					// Profesor
+					if(searchBar.getText().isBlank())
+					{
+						MyFrame.getInstance().setPretraga(false);
+						MyFrame.getInstance().azurirajPrikazProfesora();
+					}
+					else
+					{
+						MyFrame.getInstance().setPretraga(true);
+						staraPretraga = searchBar.getText();
+						ProfesorController.getInstance().pretraziProfesore(staraPretraga);
+					}
+					
+				} else if (selectedTab == 2) {
+					// Predmet	
+				}
 			}
 		});
 		

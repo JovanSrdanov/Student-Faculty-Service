@@ -378,7 +378,7 @@ public class ProfesorDialog extends JDialog {
 		if (!adresaTxt.getText().matches(".+,[0-9]+[a-zA-Z]?,.+,.+")) {
 			return false;
 		}
-		if (!adresaKancTxt.getText().matches(".+,[0-9]+,.+,.+")) {
+		if (!adresaKancTxt.getText().matches(".+,[0-9]+[a-zA-Z]?,.+,.+")) {
 			return false;
 		}
 

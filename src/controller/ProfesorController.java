@@ -51,4 +51,9 @@ public class ProfesorController {
 		profesorDialog.setLocationRelativeTo(MyFrame.getInstance());
 		profesorDialog.setVisible(true);
 	}
+	
+	public void pretraziProfesore(String rec) {
+		BazaProfesora.getInstance().pretraziProfesore(rec);
+		MyFrame.getInstance().azurirajPrikazProfesora();
+	}
 }
