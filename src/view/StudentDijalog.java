@@ -26,8 +26,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import model.Adresa;
+import model.BazaPredmeta;
 import model.BazaStudenata;
 import model.Ocena;
+import model.Predmet;
 import model.Status;
 import model.Student;
 
@@ -49,9 +51,9 @@ public class StudentDijalog extends JDialog {
 	private char tip;
 	private String trenutniBrojIndexa;
 	private JTabbedPane zaSad;
-	
+
 	private static int sumaE;
-	
+
 	private static JLabel panProsOcLbl;
 	private static JLabel panUkESPBLbl;
 
@@ -296,6 +298,20 @@ public class StudentDijalog extends JDialog {
 			JButton addBtn = new JButton("Dodaj");
 			JButton delBtn = new JButton("Obrisi");
 			JButton polaganjeBtn = new JButton("Polaganje");
+			
+			////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			addBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					
+					
+					
+				}
+			}
+
+			);
 
 			polaganjeBtn.addActionListener(new ActionListener() {
 				@Override
@@ -305,23 +321,39 @@ public class StudentDijalog extends JDialog {
 						Ocena o = selectedStudent.getSpisakNePolozenihIspita().get(rowSelectedIndex);
 						PolaganjeDialog polaganjeDialog = new PolaganjeDialog(null, "Polaganje", true, o);
 						polaganjeDialog.setVisible(true);
-						if(o.getBrojcanaVrednostOcene() > 5) {
+						if (o.getBrojcanaVrednostOcene() > 5) {
 							selectedStudent.getSpisakPolozenihIspita().add(o);
 							selectedStudent.getSpisakNePolozenihIspita().remove(o);
 							StudentDijalog.azurirajPrikazNepolozenih();
 							StudentDijalog.azurirajPrikazPolozenih();
 						}
-						
-
 					}
-
 				}
+			});
+
+			delBtn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int rowSelectedIndex = nepolozeniTabel.getSelectedRow();
+					if (rowSelectedIndex != -1) {
+						Object[] options = { "Da", "Ne" };
+						int input = JOptionPane.showOptionDialog(null,
+								"Da li ste sigurni da želite da obrišete predmet?", "Potvrda",
+								JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+
+						if (input == 0) {
+							Ocena o = selectedStudent.getSpisakNePolozenihIspita().get(rowSelectedIndex);
+							selectedStudent.getSpisakNePolozenihIspita().remove(o);
+							StudentDijalog.azurirajPrikazNepolozenih();
+						}
+					}
+				}
+
 			});
 
 			panBtn.add(addBtn);
 			panBtn.add(delBtn);
 			panBtn.add(polaganjeBtn);
-
 			panNepolozeni.add(panBtn);
 			panNepolozeni.add(scrollPaneNepolozeni);
 
@@ -341,9 +373,10 @@ public class StudentDijalog extends JDialog {
 					int rowSelectedIndex = polozeniTabel.getSelectedRow();
 					if (rowSelectedIndex != -1) {
 						Object[] options = { "Da", "Ne" };
-						int input = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da ponistite ocenu?", "Potvrda",
-								JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-						if(input == 0) {
+						int input = JOptionPane.showOptionDialog(null,
+								"Da li ste sigurni da želite da ponistite ocenu?", "Potvrda", JOptionPane.YES_NO_OPTION,
+								JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+						if (input == 0) {
 							Ocena o = selectedStudent.getSpisakPolozenihIspita().get(rowSelectedIndex);
 							o.setBrojcanaVrednostOcene(5);
 							o.setDatumPolaganjaIspita(null);
@@ -354,10 +387,10 @@ public class StudentDijalog extends JDialog {
 							MyFrame.getInstance().azurirajPrikazStudenata();
 						}
 					}
-					
+
 				}
 			});
-			
+
 			panPonisti.add(ponistiBtn);
 			panPolozeni.add(panPonisti);
 			panPolozeni.add(scrollPanePolozeni);
@@ -368,7 +401,7 @@ public class StudentDijalog extends JDialog {
 			panProsOcLbl = new JLabel();
 			panUkESPBLbl = new JLabel();
 			izracunajProsecnuOcenu();
-		
+
 			panProsOc.add(panProsOcLbl);
 			panUkESPB.add(panUkESPBLbl);
 
@@ -549,43 +582,42 @@ public class StudentDijalog extends JDialog {
 			return 1;
 		return selectedStudent.getSpisakPolozenihIspita().size();
 	}
-	
-	public static void azurirajPrikazNepolozenih()
-	{
+
+	public static void azurirajPrikazNepolozenih() {
 		AbstractTableModelNepolozeni model = (AbstractTableModelNepolozeni) nepolozeniTabel.getModel();
 		model.fireTableDataChanged();
-		//validate();
+		// validate();
 	}
-	public static void azurirajPrikazPolozenih()
-	{
+
+	public static void azurirajPrikazPolozenih() {
 		AbstractTableModelPolozeni model = (AbstractTableModelPolozeni) polozeniTabel.getModel();
 		model.fireTableDataChanged();
 		izracunajProsecnuOcenu();
-		//validate();
+		// validate();
 	}
-	public static void izracunajProsecnuOcenu()
-	{
+
+	public static void izracunajProsecnuOcenu() {
 		ArrayList<Ocena> ocene = selectedStudent.getSpisakPolozenihIspita();
 
 		Double avgOcn = 0.0;
-		
+
 		sumaE = 0;
 		Double sumaO = 0.0;
-		
+
 		if (ocene != null) {
 			for (Ocena o : ocene) {
-				
+
 				sumaE = o.getPredmet().getBrojESPBBodova() + sumaE;
 				sumaO = o.getBrojcanaVrednostOcene() + sumaO;
 
 			}
 		}
-		
-		if(ocene.size() != 0)
-			avgOcn=sumaO/ocene.size();
-	
+
+		if (ocene.size() != 0)
+			avgOcn = sumaO / ocene.size();
+
 		selectedStudent.setProsecnaOcena(avgOcn);
-		
+
 		panProsOcLbl.setText("Prosecna ocena: " + selectedStudent.getProsecnaOcena());
 		panUkESPBLbl.setText("Ukupno espb: " + sumaE);
 	}
