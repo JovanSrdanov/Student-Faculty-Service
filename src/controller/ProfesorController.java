@@ -2,7 +2,9 @@ package controller;
 
 import javax.swing.JOptionPane;
 
+import model.BazaPredmeta;
 import model.BazaProfesora;
+import model.Predmet;
 import model.Profesor;
 import view.MyFrame;
 import view.ProfesorDialog;
@@ -33,6 +35,14 @@ public class ProfesorController {
 		if (input == 0) {
 			// izmena modela
 			Profesor profesor = BazaProfesora.getInstance().getRow(rowSelectedIndex);
+			
+			//brisanje kod predmeta
+			for(Predmet pred : BazaPredmeta.getInstance().getPredmeti()) {
+				if(pred.getPredmetniProfesor().equals(profesor)) {
+					pred.setPredmetniProfesor(null);
+				}
+			}
+			
 			BazaProfesora.getInstance().izbrisiProfesor(profesor.getBrojLicneKarte());
 			// azuriranje prikaza
 			MyFrame.getInstance().azurirajPrikazProfesora();
