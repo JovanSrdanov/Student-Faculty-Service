@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import javax.swing.table.TableRowSorter;
 
+import view.AbstractTableModelPredmeti;
 import view.AbstractTableModelStudenti;
 import view.MyFrame;
 
@@ -14,7 +15,6 @@ public class MyApp {
 		AppFrame.setVisible(true);
 
 		MyFrame.getTabelaProfesora().setAutoCreateRowSorter(true);
-		MyFrame.getTabelaPredmeta().setAutoCreateRowSorter(true);
 
 		TableRowSorter<AbstractTableModelStudenti> sorter = new TableRowSorter<AbstractTableModelStudenti>(
 				new AbstractTableModelStudenti());
@@ -40,9 +40,33 @@ public class MyApp {
 				else if (broj1 < broj2)
 					return -1;
 				else
-					return 0;
-				
+					return 0;				
+			}
 
+		});
+		
+		TableRowSorter<AbstractTableModelPredmeti> sorterPredmeta = new TableRowSorter<AbstractTableModelPredmeti>(
+				new AbstractTableModelPredmeti());
+		MyFrame.getTabelaPredmeta().setRowSorter(sorterPredmeta);
+
+		sorterPredmeta.setComparator(0, new Comparator<String>() {
+
+			@Override
+			public int compare(String o1, String o2) {
+				String[] predmet1 = o1.split("(?<=\\D)(?=\\d)");
+				String[] predmet2 = o2.split("(?<=\\D)(?=\\d)");
+				
+				int broj1 = Integer.parseInt(predmet1[1]);
+				int broj2 = Integer.parseInt(predmet2[1]);
+
+				if (predmet1[0].compareTo(predmet2[0]) != 0)
+					return predmet1[0].compareTo(predmet2[0]);
+				else if (broj1 > broj2)
+					return 1;
+				else if (broj1 < broj2)
+					return -1;
+				else
+					return 0;
 			}
 
 		});
