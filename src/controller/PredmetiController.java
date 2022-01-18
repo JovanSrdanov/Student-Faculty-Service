@@ -3,7 +3,12 @@ package controller;
 import javax.swing.JOptionPane;
 
 import model.BazaPredmeta;
+import model.BazaProfesora;
+import model.BazaStudenata;
+import model.Ocena;
 import model.Predmet;
+import model.Profesor;
+import model.Student;
 import view.MyFrame;
 import view.PredmetDialog;
 
@@ -34,6 +39,30 @@ public class PredmetiController {
 		if (input == 0) {
 			// izmena modela
 			Predmet predmet = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
+			//izbrisati kod studenta
+			for(Student student : BazaStudenata.getInstance().getStudenti()) {
+				for(Ocena ocena : student.getSpisakNePolozenihIspita()) {
+					if(ocena.getPredmet().getSifrPredmeta().equals(predmet.getSifrPredmeta())) {
+						student.getSpisakNePolozenihIspita().remove(ocena);
+						break;
+					}
+				}
+				for(Ocena ocena : student.getSpisakPolozenihIspita()) {
+					if(ocena.getPredmet().getSifrPredmeta().equals(predmet.getSifrPredmeta())) {
+						student.getSpisakPolozenihIspita().remove(ocena);
+						break;
+					}
+				}
+			}
+			//izbrisati kod prof
+			for(Profesor prof : BazaProfesora.getInstance().getProfesori()) {
+				for(Predmet pred : prof.getSpisakPredmetaNaKojimaJeProfesor()) {
+					if(pred.getSifrPredmeta().equals(predmet.getSifrPredmeta())) {
+						prof.getSpisakPredmetaNaKojimaJeProfesor().remove(predmet);
+						break;
+					}
+				}
+			}
 			BazaPredmeta.getInstance().izbrisiPredmet(predmet.getSifrPredmeta());
 			// azuriranje prikaza
 			MyFrame.getInstance().azurirajPrikazPredmeta();
