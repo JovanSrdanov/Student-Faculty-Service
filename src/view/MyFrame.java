@@ -19,6 +19,8 @@ public class MyFrame extends JFrame {
 	private static final long serialVersionUID = 4070509246110827584L;
 
 	public static MyFrame instance = null;
+	
+	private static boolean pretraga;
 
 	private Toolbar toolbar;
 	private MenuBar menu;
@@ -35,6 +37,7 @@ public class MyFrame extends JFrame {
 	private JPanel panelEast;
 
 	private MyFrame() {
+		pretraga = false;
 		this.createToolbar();
 		this.initialise();
 		this.createStatusBar();
@@ -188,6 +191,16 @@ public class MyFrame extends JFrame {
 
 	public MyTab getTab() {
 		return tabbedPane;
+	}
+	
+	public boolean isPretraga()
+	{
+		return pretraga;
+	}
+	
+	public void setPretraga(boolean isPretraga)
+	{
+		pretraga = isPretraga;
 	}
 
 }

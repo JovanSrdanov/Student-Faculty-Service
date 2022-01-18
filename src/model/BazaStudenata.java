@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import view.MyFrame;
+
 public class BazaStudenata {
 
 	private static BazaStudenata instance = null;
@@ -16,6 +18,7 @@ public class BazaStudenata {
 	}
 
 	private List<Student> studenti;
+	private List<Student> studentiPretraga;
 	private List<String> kolone;
 
 	private BazaStudenata() {
@@ -33,6 +36,7 @@ public class BazaStudenata {
 
 	private void initStudente() {
 		this.studenti = new ArrayList<Student>();
+		this.studentiPretraga = new ArrayList<Student>();
 		
 		
 		
@@ -77,6 +81,8 @@ public class BazaStudenata {
 	}
 
 	public List<Student> getStudenti() {
+		if(MyFrame.getInstance().isPretraga())
+			return studentiPretraga;
 		return studenti;
 	}
 
@@ -93,11 +99,19 @@ public class BazaStudenata {
 	}
 
 	public Student getRow(int rowIndex) {
-		return this.studenti.get(rowIndex);
+		if(MyFrame.getInstance().isPretraga())
+			return studentiPretraga.get(rowIndex);
+		return studenti.get(rowIndex);
 	}
 
 	public String getValueAt(int row, int column) {
-		Student s = this.studenti.get(row);
+		Student s;
+		
+		if(MyFrame.getInstance().isPretraga())
+			s = studentiPretraga.get(row);
+		else
+			s = studenti.get(row);
+		
 		switch (column) {
 		case 0:
 			return s.getBrojIndexa();
@@ -150,5 +164,11 @@ public class BazaStudenata {
 			}
 		}
 	}
-
+	
+	public void pretraziStudente() {
+		studentiPretraga.clear();
+		studentiPretraga.add(studenti.get(0));
+		studentiPretraga.add(studenti.get(1));
+		studentiPretraga.add(studenti.get(3));
+	}
 }

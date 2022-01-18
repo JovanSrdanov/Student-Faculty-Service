@@ -51,4 +51,9 @@ public class StudentiController {
 		studentDijalog.setLocationRelativeTo(MyFrame.getInstance());
 		studentDijalog.setVisible(true);
 	}
+	
+	public void pretraziStudente() {
+		BazaStudenata.getInstance().pretraziStudente();
+		MyFrame.getInstance().azurirajPrikazStudenata();
+	}
 }

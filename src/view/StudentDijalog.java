@@ -540,7 +540,6 @@ public class StudentDijalog extends JDialog {
 	}
 	private static void izracunajProsecnuOcenu()
 	{
-		System.out.println(selectedStudent.getBrojIndexa());
 		ArrayList<Ocena> ocene = selectedStudent.getSpisakPolozenihIspita();
 
 		Double avgOcn = 0.0;

@@ -119,6 +119,22 @@ public class Toolbar extends JToolBar {
 
 		JButton searchBtn = new JButton();
 		initBtn(searchBtn, "Pretraži", new ImageIcon("icons/search.png"), 30);
+		searchBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(searchBar.getText().isBlank())
+				{
+					MyFrame.getInstance().setPretraga(false);
+					MyFrame.getInstance().azurirajPrikazStudenata();
+				}
+				else
+				{
+					MyFrame.getInstance().setPretraga(true);
+					StudentiController.getInstance().pretraziStudente();
+				}				
+			}
+		});
+		
 		toolBarPanel.add(searchBtn);
 	}
 
