@@ -18,6 +18,10 @@ import model.Profesor;
 
 public class DodavnjaProfesoraPredmetu extends JDialog {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4322116241138504021L;
 	private JButton potvrdiBtn;
 	private JButton odustaniBtn;
 	public DodavnjaProfesoraPredmetu(Frame owner, String title, boolean modal) {

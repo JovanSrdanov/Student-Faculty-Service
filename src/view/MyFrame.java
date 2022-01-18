@@ -19,7 +19,7 @@ public class MyFrame extends JFrame {
 	private static final long serialVersionUID = 4070509246110827584L;
 
 	public static MyFrame instance = null;
-	
+
 	private static boolean pretraga;
 
 	private Toolbar toolbar;
@@ -137,6 +137,7 @@ public class MyFrame extends JFrame {
 
 		ImageIcon iconPredmeti = createImageIcon("icons/predmeti.png", true, 32, 32);
 		tabelaPredmeta = new Tabela(new AbstractTableModelPredmeti());
+
 		JScrollPane scrollPanePredmeti = new JScrollPane(tabelaPredmeta);
 		tabbedPane.addTab("Predmeti", iconPredmeti, scrollPanePredmeti, "Prikaz predmeta");
 
@@ -191,14 +192,12 @@ public class MyFrame extends JFrame {
 	public MyTab getTab() {
 		return tabbedPane;
 	}
-	
-	public boolean isPretraga()
-	{
+
+	public boolean isPretraga() {
 		return pretraga;
 	}
-	
-	public void setPretraga(boolean isPretraga)
-	{
+
+	public void setPretraga(boolean isPretraga) {
 		pretraga = isPretraga;
 	}
 

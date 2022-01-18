@@ -39,7 +39,7 @@ public class BazaPredmeta {
 		Profesor p = new Profesor("Rapajic", "Milan", LocalDate.of(1980, 3, 13),
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64", "rap.aja@uns.ac.rs",
 				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, null);
-		
+
 		predmeti.add(new Predmet("e1", "Baze podataka 1", Semestar.ZIMSKI, 3, p, 6));
 		predmeti.add(new Predmet("32", "Operativni sistemi", Semestar.LETNJI, 2, null, 7));
 
@@ -48,7 +48,7 @@ public class BazaPredmeta {
 	public List<Predmet> getPredmeti() {
 		return predmeti;
 	}
-	
+
 	public List<Predmet> getPredmetiPretraga() {
 		return predmetiPretraga;
 	}
@@ -66,22 +66,21 @@ public class BazaPredmeta {
 	}
 
 	public Predmet getRow(int rowIndex) {
-		if(MyFrame.getInstance().isPretraga())
+		if (MyFrame.getInstance().isPretraga())
 			return predmetiPretraga.get(rowIndex);
 		return this.predmeti.get(rowIndex);
 	}
 
 	public String getValueAt(int row, int column) {
 		Predmet predmet;
-		
-		if(MyFrame.getInstance().isPretraga()) {
-			if(predmetiPretraga.isEmpty())
+
+		if (MyFrame.getInstance().isPretraga()) {
+			if (predmetiPretraga.isEmpty())
 				return "";
 			predmet = predmetiPretraga.get(row);
-		}
-		else
+		} else
 			predmet = predmeti.get(row);
-		
+
 		switch (column) {
 		case 0:
 			return predmet.getSifrPredmeta();
@@ -118,45 +117,46 @@ public class BazaPredmeta {
 			int godinaStudijaUKojojSePredmetIzvodi, Profesor predmetniProfesor, int brojESPBBodova, String staraSifra) {
 		for (Predmet i : predmeti) {
 			if (i.getSifrPredmeta().equals(staraSifra)) {
-				
+
 				i.setSifrPredmeta(sifrPredmeta);
 				i.setNazivPredmeta(nazivPredmeta);
 				i.setSemestar(semestar);
 				i.setGodinaStudijaUKojojSePredmetIzvodi(godinaStudijaUKojojSePredmetIzvodi);
-				//i.setPredmetniProfesor(predmetniProfesor);
+				// i.setPredmetniProfesor(predmetniProfesor);
 				i.setBrojESPBBodova(brojESPBBodova);
 
 			}
 		}
 	}
-	
+
 	public void pretraziPredmete(String rec) {
 		predmetiPretraga.clear();
 		String naziv;
 		String sifra;
-		
-		//naz,sifra
-		if(rec.matches("[^,]+,[^,]+")) {
+
+		// naz,sifra
+		if (rec.matches("[^,]+,[^,]+")) {
 			String[] parts = rec.split(",");
 			naziv = parts[0].trim();
 			sifra = parts[1].trim();
 
-			for(Predmet p : predmeti) {
-				if(p.getNazivPredmeta().contains(naziv) && p.getSifrPredmeta().contains(sifra)) {
+			for (Predmet p : predmeti) {
+				if (p.getNazivPredmeta().toUpperCase().contains(naziv.toUpperCase())
+						&& p.getSifrPredmeta().toUpperCase().contains(sifra.toUpperCase())) {
 					predmetiPretraga.add(p);
 				}
 			}
 		}
-		//naz
-		if(rec.matches("[^,]+")) {
+		// naz
+		if (rec.matches("[^,]+")) {
 			naziv = rec;
 
-			for(Predmet p : predmeti) {
-				if(p.getNazivPredmeta().contains(naziv)) {
+			for (Predmet p : predmeti) {
+				if (p.getNazivPredmeta().toUpperCase().contains(naziv.toUpperCase())) {
 					predmetiPretraga.add(p);
 				}
 			}
 		}
-		
+
 	}
 }

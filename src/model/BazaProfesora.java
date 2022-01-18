@@ -18,7 +18,6 @@ public class BazaProfesora {
 
 	private ArrayList<Profesor> profesori;
 	private ArrayList<Profesor> profesoriPretraga;
-	
 
 	private List<String> kolone;
 
@@ -37,7 +36,7 @@ public class BazaProfesora {
 	private void initProfesore() {
 		profesori = new ArrayList<Profesor>();
 		profesoriPretraga = new ArrayList<Profesor>();
-	
+
 		Predmet p = new Predmet("e1", "Baze podataka 1", Semestar.ZIMSKI, 3, null, 6);
 		ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
 		predmeti.add(p);
@@ -49,7 +48,7 @@ public class BazaProfesora {
 		profesori.add(new Profesor("Rapajic", "Milan", LocalDate.of(1980, 3, 13),
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64", "rap.aja@uns.ac.rs",
 				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, predmeti));
-		
+
 		profesori.add(new Profesor("Jelicic", "peder", LocalDate.of(1980, 3, 13),
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381/232 64", "aaaa.aaaaaa@uns.ac.rs",
 				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987354321, Zvanje.DOCENT, 69, null));
@@ -59,7 +58,7 @@ public class BazaProfesora {
 	public ArrayList<Profesor> getProfesori() {
 		return profesori;
 	}
-	
+
 	public ArrayList<Profesor> getProfesoriPretraga() {
 		return profesoriPretraga;
 	}
@@ -77,22 +76,21 @@ public class BazaProfesora {
 	}
 
 	public Profesor getRow(int rowIndex) {
-		if(MyFrame.getInstance().isPretraga())
+		if (MyFrame.getInstance().isPretraga())
 			return profesoriPretraga.get(rowIndex);
 		return profesori.get(rowIndex);
 	}
 
 	public String getValueAt(int row, int column) {
 		Profesor profesor;
-		
-		if(MyFrame.getInstance().isPretraga()) {
-			if(profesoriPretraga.isEmpty())
+
+		if (MyFrame.getInstance().isPretraga()) {
+			if (profesoriPretraga.isEmpty())
 				return "";
 			profesor = profesoriPretraga.get(row);
-		}
-		else
+		} else
 			profesor = profesori.get(row);
-		
+
 		switch (column) {
 		case 0:
 			return profesor.getIme();
@@ -144,34 +142,34 @@ public class BazaProfesora {
 			}
 		}
 	}
-	
+
 	public void pretraziProfesore(String rec) {
 		profesoriPretraga.clear();
 		String ime;
 		String prezime;
-		
-		//prz,ime
-		if(rec.matches("[^,]+,[^,]+")) {
+
+		// prz,ime
+		if (rec.matches("[^,]+,[^,]+")) {
 			String[] parts = rec.split(",");
 			prezime = parts[0].trim();
 			ime = parts[1].trim();
 
-			for(Profesor p : profesori) {
-				if(p.getPrezime().contains(prezime) && p.getIme().contains(ime)) {
+			for (Profesor p : profesori) {
+				if (p.getPrezime().toUpperCase().contains(prezime.toUpperCase())
+						&& p.getIme().toUpperCase().contains(ime.toUpperCase())) {
 					profesoriPretraga.add(p);
 				}
 			}
 		}
-		//prz
-		else if(rec.matches("[^,]+")) {
+		// prz
+		else if (rec.matches("[^,]+")) {
 			prezime = rec;
-			for(Profesor p : profesori) {
-				if(p.getPrezime().contains(prezime)) {
+			for (Profesor p : profesori) {
+				if (p.getPrezime().toUpperCase().contains(prezime.toUpperCase())) {
 					profesoriPretraga.add(p);
 				}
 			}
 		}
 	}
-	
-	
+
 }
