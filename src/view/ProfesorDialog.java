@@ -320,6 +320,9 @@ public class ProfesorDialog extends JDialog {
 			dodajUkloniPan.add(ukloniBtn);
 			panPredaje.add(dodajUkloniPan);
 			
+			
+			
+			
 			Tabela predajeTabel = new Tabela(new AbstractTableModelPredajeProfesor());
 			JScrollPane scrollPanePredaje = new JScrollPane(predajeTabel);
 			
