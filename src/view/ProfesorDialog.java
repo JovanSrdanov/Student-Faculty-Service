@@ -199,8 +199,10 @@ public class ProfesorDialog extends JDialog {
 		// Izmena ******
 		int rowSelectedIndex = MyFrame.getTabelaProfesora().getSelectedRow();
 		if (tipA == 'i' && rowSelectedIndex >= 0) {
-			Profesor p = BazaProfesora.getInstance().getRow(rowSelectedIndex);
-			selectedProfesor= p;
+			int a = MyFrame.getTabelaProfesora().convertRowIndexToModel(rowSelectedIndex);
+			Profesor p = BazaProfesora.getInstance().getRow(a);
+			//System.out.println("Klikno " + rowSelectedIndex + " Konvert " + a);
+			selectedProfesor = p;
 			
 			kolonePredaje = new ArrayList<String>();
 			kolonePredaje.add("Sifra");

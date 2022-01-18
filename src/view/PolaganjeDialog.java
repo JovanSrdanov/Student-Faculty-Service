@@ -107,6 +107,7 @@ public class PolaganjeDialog extends JDialog{
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy");
 				LocalDate datum = LocalDate.parse(datumTxt.getText(), formatter);
 				ocena.setDatumPolaganjaIspita(datum);
+				MyFrame.getInstance().azurirajPrikazStudenata();
 				dispose();
 				
 			}		

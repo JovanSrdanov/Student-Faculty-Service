@@ -351,6 +351,7 @@ public class StudentDijalog extends JDialog {
 							selectedStudent.getSpisakPolozenihIspita().remove(o);
 							StudentDijalog.azurirajPrikazNepolozenih();
 							StudentDijalog.azurirajPrikazPolozenih();
+							MyFrame.getInstance().azurirajPrikazStudenata();
 						}
 					}
 					
@@ -562,7 +563,7 @@ public class StudentDijalog extends JDialog {
 		izracunajProsecnuOcenu();
 		//validate();
 	}
-	private static void izracunajProsecnuOcenu()
+	public static void izracunajProsecnuOcenu()
 	{
 		ArrayList<Ocena> ocene = selectedStudent.getSpisakPolozenihIspita();
 

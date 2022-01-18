@@ -1,5 +1,7 @@
 package view;
 
+import java.util.Comparator;
+
 import javax.swing.table.AbstractTableModel;
 
 import model.BazaProfesora;
@@ -37,4 +39,13 @@ public class AbstractTableModelProfesor extends AbstractTableModel {
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		super.setValueAt(aValue, rowIndex, columnIndex);
 	}
+
+	@Override
+	public Class<?> getColumnClass(int columnIndex) {
+		// TODO Auto-generated method stub
+		if(BazaProfesora.getInstance().getProfesori().isEmpty())
+			return Object.class;
+		return getValueAt(0, columnIndex).getClass();
+	}
+	
 }

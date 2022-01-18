@@ -40,13 +40,13 @@ public class BazaProfesora {
 				new Adresa("Jovana Jovanovica Zmaja", "123a", "Kikinda", "Srbija"), "23/23", "de.ste@gmail.com",
 				new Adresa("ulicaKanc", "11", "Kikinda", "Srbija"), 123456789, Zvanje.REDOVNI_PROFESOR, 69, predmeti));
 
-		profesori.add(new Profesor("Milan", "Rapajic", LocalDate.of(1980, 3, 13),
+		profesori.add(new Profesor("Rapajic", "Milan", LocalDate.of(1980, 3, 13),
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64", "rap.aja@uns.ac.rs",
 				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, null));
 		
-		profesori.add(new Profesor("Zoran", "Jelici", LocalDate.of(1980, 3, 13),
+		profesori.add(new Profesor("Jelicic", "peder", LocalDate.of(1980, 3, 13),
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381/232 64", "aaaa.aaaaaa@uns.ac.rs",
-				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.DOCENT, 69, null));
+				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987354321, Zvanje.DOCENT, 69, null));
 
 	}
 

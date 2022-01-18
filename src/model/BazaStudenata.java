@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import view.MyFrame;
+import view.StudentDijalog;
 
 public class BazaStudenata {
 
@@ -112,6 +113,8 @@ public class BazaStudenata {
 		else
 			s = studenti.get(row);
 		
+		this.sracunajProsek(s);
+		
 		switch (column) {
 		case 0:
 			return s.getBrojIndexa();
@@ -170,5 +173,25 @@ public class BazaStudenata {
 		studentiPretraga.add(studenti.get(0));
 		studentiPretraga.add(studenti.get(1));
 		studentiPretraga.add(studenti.get(3));
+	}
+	
+	private void sracunajProsek(Student s)
+	{
+		ArrayList<Ocena> ocene = s.getSpisakPolozenihIspita();
+
+		Double avgOcn = 0.0;
+		
+		Double sumaO = 0.0;
+		
+		if (ocene != null) {
+			for (Ocena o : ocene) {
+				sumaO = o.getBrojcanaVrednostOcene() + sumaO;
+			}
+		}
+		
+		if(ocene.size() != 0)
+			avgOcn=sumaO/ocene.size();
+	
+		s.setProsecnaOcena(avgOcn);
 	}
 }

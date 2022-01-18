@@ -133,6 +133,7 @@ public class MyFrame extends JFrame {
 
 		ImageIcon iconProfesori = createImageIcon("icons/profesori.png", true, 32, 32);
 		tabelaProfesora = new Tabela(new AbstractTableModelProfesor());
+		tabelaProfesora.setAutoCreateRowSorter(true);
 		JScrollPane scrollPaneProfesori = new JScrollPane(tabelaProfesora);
 		tabbedPane.addTab("Profesori", iconProfesori, scrollPaneProfesori, "Prikaz profseora");
 
