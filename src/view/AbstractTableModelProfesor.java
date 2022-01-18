@@ -1,6 +1,5 @@
 package view;
 
-import java.util.Comparator;
 
 import javax.swing.table.AbstractTableModel;
 

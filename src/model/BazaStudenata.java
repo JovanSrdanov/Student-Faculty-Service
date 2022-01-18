@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import view.MyFrame;
-import view.StudentDijalog;
 
 public class BazaStudenata {
 

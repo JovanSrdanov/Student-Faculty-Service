@@ -3,7 +3,6 @@ package controller;
 import javax.swing.JOptionPane;
 
 import model.BazaPredmeta;
-import model.BazaProfesora;
 import model.Predmet;
 import view.MyFrame;
 import view.PredmetDialog;

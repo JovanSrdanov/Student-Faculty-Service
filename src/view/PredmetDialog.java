@@ -21,9 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import model.BazaPredmeta;
-import model.BazaProfesora;
 import model.Predmet;
-import model.Profesor;
 import model.Semestar;
 
 public class PredmetDialog extends JDialog {
@@ -138,7 +136,7 @@ public class PredmetDialog extends JDialog {
 			//System.out.println("Klikno " + rowSelectedIndex + " Konvert " + a);
 			selectedPredmet = p;
 
-			sifraPredmetaTxt.setText(p.getSifrPredmeta());
+			sifraPredmetaTxt.setText(selectedPredmet.getSifrPredmeta());
 			nazivPredmetaTxt.setText(p.getNazivPredmeta());
 			ESPBPredmetaTxt.setText(Integer.toString(p.getBrojESPBBodova()));
 			godinaPredmetaCB.setSelectedIndex(p.getGodinaStudijaUKojojSePredmetIzvodi() - 1);
