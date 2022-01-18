@@ -1,6 +1,6 @@
 package view;
 
-import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
@@ -26,10 +26,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import model.Adresa;
-import model.BazaPredmeta;
+
 import model.BazaStudenata;
 import model.Ocena;
-import model.Predmet;
+
 import model.Status;
 import model.Student;
 
@@ -58,6 +58,11 @@ public class StudentDijalog extends JDialog {
 	private static JLabel panUkESPBLbl;
 
 	private static Student selectedStudent;
+	
+	public static Student getSelectedStudent() {
+		return selectedStudent;
+	}
+
 	private static ArrayList<String> kolone;
 	private static ArrayList<String> kolonePolozeni;
 
@@ -304,8 +309,8 @@ public class StudentDijalog extends JDialog {
 			addBtn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
-					
+					DodavanjePredmetaStudentuDijalog dpsd = new DodavanjePredmetaStudentuDijalog(null,"Dodavanje",true);
+					dpsd.setVisible(true);
 					
 					
 				}
