@@ -52,8 +52,8 @@ public class StudentiController {
 		studentDijalog.setVisible(true);
 	}
 	
-	public void pretraziStudente() {
-		BazaStudenata.getInstance().pretraziStudente();
+	public void pretraziStudente(String rec) {
+		BazaStudenata.getInstance().pretraziStudente(rec);
 		MyFrame.getInstance().azurirajPrikazStudenata();
 	}
 }

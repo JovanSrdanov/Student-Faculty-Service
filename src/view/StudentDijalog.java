@@ -1,6 +1,5 @@
 package view;
 
-
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
@@ -58,7 +57,7 @@ public class StudentDijalog extends JDialog {
 	private static JLabel panUkESPBLbl;
 
 	private static Student selectedStudent;
-	
+
 	public static Student getSelectedStudent() {
 		return selectedStudent;
 	}
@@ -199,7 +198,10 @@ public class StudentDijalog extends JDialog {
 			kolonePolozeni.add("OCENA");
 			kolonePolozeni.add("DATUM");
 
-			selectedStudent = BazaStudenata.getInstance().getRow(rowSelectedIndex);
+			int a = MyFrame.getTabelaStduenti().convertRowIndexToModel(rowSelectedIndex);
+			Student s = BazaStudenata.getInstance().getRow(a);
+
+			selectedStudent = s;
 
 			prezimeTxt.setText(selectedStudent.getPrezime());
 			imeTxt.setText(selectedStudent.getIme());
@@ -303,16 +305,16 @@ public class StudentDijalog extends JDialog {
 			JButton addBtn = new JButton("Dodaj");
 			JButton delBtn = new JButton("Obrisi");
 			JButton polaganjeBtn = new JButton("Polaganje");
-			
+
 			////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 			addBtn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					DodavanjePredmetaStudentuDijalog dpsd = new DodavanjePredmetaStudentuDijalog(null,"Dodavanje",true);
+					DodavanjePredmetaStudentuDijalog dpsd = new DodavanjePredmetaStudentuDijalog(null, "Dodavanje",
+							true);
 					dpsd.setVisible(true);
-					
-					
+
 				}
 			}
 

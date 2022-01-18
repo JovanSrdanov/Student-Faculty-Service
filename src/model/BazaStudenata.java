@@ -167,11 +167,54 @@ public class BazaStudenata {
 		}
 	}
 	
-	public void pretraziStudente() {
+	public void pretraziStudente(String rec) {
 		studentiPretraga.clear();
-		studentiPretraga.add(studenti.get(0));
-		studentiPretraga.add(studenti.get(1));
-		studentiPretraga.add(studenti.get(3));
+		String ime;
+		String prezime;
+		String index;
+		
+		if (rec.matches("[^,]+")) {
+			prezime = rec;
+
+			for (Student s : studenti) {
+				if (s.getPrezime().toUpperCase().contains(prezime.toUpperCase())) {
+					studentiPretraga.add(s);
+				}
+			}
+
+		}
+		
+		if (rec.matches("[^,]+,[^,]+")) {
+			String[] parts = rec.split(",");
+			prezime = parts[0].trim();
+			ime = parts[1].trim();
+
+			for (Student s : studenti) {
+				if (s.getPrezime().toUpperCase().contains(prezime.toUpperCase())
+						&& s.getIme().toUpperCase().contains(ime.toUpperCase())) {
+					studentiPretraga.add(s);
+				}
+			}
+		}
+		
+		if (rec.matches("[^,]+,[^,]+,[^,]+")) {
+			String[] parts = rec.split(",");
+			prezime = parts[0].trim();
+			ime = parts[1].trim();
+			index = parts[2].trim();
+
+			for (Student s : studenti) {
+				if (s.getPrezime().toUpperCase().contains(prezime.toUpperCase())
+						&& s.getIme().toUpperCase().contains(ime.toUpperCase())
+						&& s.getBrojIndexa().toUpperCase().contains(index.toUpperCase())) {
+					studentiPretraga.add(s);
+				}
+			}
+		}
+		
+		
+		
+		
 	}
 	
 	private void sracunajProsek(Student s)
