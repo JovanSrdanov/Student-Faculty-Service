@@ -32,6 +32,14 @@ public class Toolbar extends JToolBar {
 		return staraPretraga;
 	}
 
+	private static JTextField searchBar;
+
+	public static JTextField getSearchBar() {
+		return searchBar;
+	}
+
+
+
 	public Toolbar() {
 		super(SwingConstants.HORIZONTAL);
 
@@ -125,7 +133,7 @@ public class Toolbar extends JToolBar {
 
 		toolBarPanel.add(Box.createHorizontalGlue());
 
-		JTextField searchBar = new JTextField();
+		searchBar = new JTextField();
 		searchBar.setToolTipText("Unesi reč za pretragu");
 		searchBar.setPreferredSize(new Dimension(350, 30));
 		searchBar.setMaximumSize(new Dimension(350, 30));
