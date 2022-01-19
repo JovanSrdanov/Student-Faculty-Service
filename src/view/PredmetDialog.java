@@ -130,7 +130,7 @@ public class PredmetDialog extends JDialog {
 
 		int rowSelectedIndex = MyFrame.getTabelaPredmeta().getSelectedRow();
 		if (tip == 'i' && rowSelectedIndex >= 0) {
-
+			okBtn.setEnabled(true);
 			// Predmet p = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
 			int a = MyFrame.getTabelaPredmeta().convertRowIndexToModel(rowSelectedIndex);
 			Predmet p = BazaPredmeta.getInstance().getRow(a);
@@ -252,7 +252,7 @@ public class PredmetDialog extends JDialog {
 			return false;
 		}
 
-		if (sifraPredmetaTxt.getText().isBlank()) {
+		if (!sifraPredmetaTxt.getText().matches("[A-Za-z]+[1-9][0-9]*")) {
 			return false;
 		}
 

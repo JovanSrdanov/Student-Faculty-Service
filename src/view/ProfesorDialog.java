@@ -95,7 +95,7 @@ public class ProfesorDialog extends JDialog {
 
 		// Datum rodj
 		JPanel datPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel datLbl = new JLabel("Datum rođenja (DD.MM.GGGG):");
+		JLabel datLbl = new JLabel("Datum rođenja (DD.MM.GGGG.):");
 		datLbl.setPreferredSize(dim);
 
 		datumTxt = new JTextField();
@@ -206,6 +206,7 @@ public class ProfesorDialog extends JDialog {
 		// Izmena ******
 		int rowSelectedIndex = MyFrame.getTabelaProfesora().getSelectedRow();
 		if (tipA == 'i' && rowSelectedIndex >= 0) {
+			okBtn.setEnabled(true);
 			int a = MyFrame.getTabelaProfesora().convertRowIndexToModel(rowSelectedIndex);
 			Profesor p = BazaProfesora.getInstance().getRow(a);
 			// System.out.println("Klikno " + rowSelectedIndex + " Konvert " + a);
@@ -219,7 +220,7 @@ public class ProfesorDialog extends JDialog {
 
 			imeTxt.setText(p.getIme());
 			prezimeTxt.setText(p.getPrezime());
-			datumTxt.setText(p.getDatumRodjenja().format(DateTimeFormatter.ofPattern("d.M.yyyy")));
+			datumTxt.setText(p.getDatumRodjenja().format(DateTimeFormatter.ofPattern("d.M.yyyy.")));
 			adresaTxt.setText(p.getAdresaStanovanja().toString());
 			telTxt.setText(p.getKontaktTelefon());
 			eMailTxt.setText(p.geteMailAdresa());
@@ -266,7 +267,7 @@ public class ProfesorDialog extends JDialog {
 					Adresa adresaKancelarije = new Adresa(deoAdrKan[0].trim(), deoAdrKan[1].trim(), deoAdrKan[2].trim(),
 							deoAdrKan[3].trim());
 
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy");
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy.");
 					LocalDate datumRodj = LocalDate.parse(datumTxt.getText(), formatter);
 
 					if (tipA == 'u') {
@@ -382,11 +383,11 @@ public class ProfesorDialog extends JDialog {
 		if (!godineStazaTxt.getText().matches("[0-9]+")) {
 			return false;
 		}
-		if (!datumTxt.getText().matches("[0-9]{1,2}[.][0-9]{1,2}[.][0-9]{4}")) {
+		if (!datumTxt.getText().matches("[0-9]{1,2}[.][0-9]{1,2}[.][0-9]{4}[.]")) {
 			return false;
 		} else {
 			try {
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy");
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy.");
 				LocalDate datumRodj = LocalDate.parse(datumTxt.getText(), formatter);
 				if (datumRodj.isAfter(LocalDate.now())) {
 					return false;

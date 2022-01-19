@@ -184,6 +184,7 @@ public class StudentDijalog extends JDialog {
 		int rowSelectedIndex = MyFrame.getTabelaStduenti().getSelectedRow();
 
 		if (tip == 'i' && rowSelectedIndex >= 0) {
+			okBtn.setEnabled(true);
 			kolone = new ArrayList<String>();
 			kolone.add("Sifra predmeta");
 			kolone.add("Naziv predmeta");
