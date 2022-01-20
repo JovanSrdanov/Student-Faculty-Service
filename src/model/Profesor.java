@@ -43,7 +43,7 @@ public class Profesor implements Serializable{
 		this.godineStaza = godineStaza;
 		this.spisakPredmetaNaKojimaJeProfesor = spisakPredmetaNaKojimaJeProfesor;
 
-		if (this.spisakPredmetaNaKojimaJeProfesor == null)
+		if (spisakPredmetaNaKojimaJeProfesor == null)
 			this.spisakPredmetaNaKojimaJeProfesor = new ArrayList<Predmet>();
 	}
 

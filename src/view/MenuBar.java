@@ -5,14 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
@@ -20,11 +14,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
-
 import controller.PredmetiController;
 import controller.ProfesorController;
 import controller.StudentiController;
-import model.Adresa;
 import model.BazaKatedri;
 import model.BazaPredmeta;
 import model.BazaProfesora;
@@ -37,14 +29,13 @@ public class MenuBar extends JMenuBar {
 	 * 
 	 */
 	private static final long serialVersionUID = -5511353684955783810L;
-	
 
 	public MenuBar() {
 		JMenu file = new JMenu("File");
 		file.setMnemonic(KeyEvent.VK_F);
 		Icon icon = new ImageIcon();
 
-		icon = new ImageIcon("icons/new.png");
+		icon = new ImageIcon("icons" + File.separator + "new.png");
 		JMenuItem miNew = new JMenuItem("New", icon);
 		miNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK));
 		miNew.setMnemonic(KeyEvent.VK_W);
@@ -66,7 +57,7 @@ public class MenuBar extends JMenuBar {
 			}
 		});
 
-		icon = new ImageIcon("icons/save.png");
+		icon = new ImageIcon("icons" + File.separator + "save.png");
 		JMenuItem save = new JMenuItem("Save", icon);
 		save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
 		save.setMnemonic(KeyEvent.VK_V);
@@ -86,10 +77,10 @@ public class MenuBar extends JMenuBar {
 
 		JMenu open = new JMenu("Open");
 		open.setMnemonic(KeyEvent.VK_P);
-		icon = new ImageIcon("icons/open.png");
+		icon = new ImageIcon("icons" + File.separator + "open.png");
 		open.setIcon(icon);
 
-		icon = new ImageIcon("icons/studenti.png");
+		icon = new ImageIcon("icons" + File.separator + "studenti.png");
 		JMenuItem Studenti = new JMenuItem("Studenti", icon);
 		Studenti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.ALT_MASK));
 		Studenti.setMnemonic(KeyEvent.VK_U);
@@ -101,7 +92,7 @@ public class MenuBar extends JMenuBar {
 			}
 		});
 
-		icon = new ImageIcon("icons/predmeti.png");
+		icon = new ImageIcon("icons" + File.separator + "predmeti.png");
 		JMenuItem Predmeti = new JMenuItem("Predmeti", icon);
 		Predmeti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.ALT_MASK));
 		Predmeti.setMnemonic(KeyEvent.VK_R);
@@ -113,7 +104,7 @@ public class MenuBar extends JMenuBar {
 			}
 		});
 
-		icon = new ImageIcon("icons/profesori.png");
+		icon = new ImageIcon("icons" + File.separator + "profesori.png");
 		JMenuItem Profesori = new JMenuItem("Profesori", icon);
 		Profesori.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.ALT_MASK));
 		Profesori.setMnemonic(KeyEvent.VK_P);
@@ -125,7 +116,7 @@ public class MenuBar extends JMenuBar {
 			}
 		});
 
-		icon = new ImageIcon("icons/katedra.png");
+		icon = new ImageIcon("icons" + File.separator + "katedra.png");
 		JMenuItem Katedre = new JMenuItem("Katedre", icon);
 		Katedre.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.ALT_MASK));
 		Katedre.setMnemonic(KeyEvent.VK_K);
@@ -148,7 +139,7 @@ public class MenuBar extends JMenuBar {
 		open.addSeparator();
 		open.add(Katedre);
 
-		icon = new ImageIcon("icons/close.png");
+		icon = new ImageIcon("icons" + File.separator + "close.png");
 		JMenuItem close = new JMenuItem("Close", icon);
 		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.ALT_MASK));
 		close.setMnemonic(KeyEvent.VK_C);
@@ -172,7 +163,7 @@ public class MenuBar extends JMenuBar {
 		JMenu edit = new JMenu("Edit");
 		edit.setMnemonic(KeyEvent.VK_E);
 
-		icon = new ImageIcon("icons/editPom.png");
+		icon = new ImageIcon("icons" + File.separator + "editPom.png");
 		JMenuItem editPom = new JMenuItem("Edit", icon);
 		editPom.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.ALT_MASK));
 		editPom.setMnemonic(KeyEvent.VK_D);
@@ -204,7 +195,7 @@ public class MenuBar extends JMenuBar {
 			}
 		});
 
-		icon = new ImageIcon("icons/delete.png");
+		icon = new ImageIcon("icons" + File.separator + "delete.png");
 		JMenuItem delete = new JMenuItem("Delete", icon);
 		delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.ALT_MASK));
 		delete.setMnemonic(KeyEvent.VK_L);
@@ -240,12 +231,12 @@ public class MenuBar extends JMenuBar {
 		JMenu help = new JMenu("Help");
 		help.setMnemonic(KeyEvent.VK_H);
 
-		icon = new ImageIcon("icons/helpPom.png");
+		icon = new ImageIcon("icons" + File.separator + "helpPom.png");
 		JMenuItem helpPom = new JMenuItem("Help", icon);
 		helpPom.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.ALT_MASK));
 		helpPom.setMnemonic(KeyEvent.VK_E);
 
-		icon = new ImageIcon("icons/about.png");
+		icon = new ImageIcon("icons" + File.separator + "about.png");
 		JMenuItem about = new JMenuItem("About", icon);
 		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.ALT_MASK));
 		about.setMnemonic(KeyEvent.VK_B);
@@ -256,28 +247,26 @@ public class MenuBar extends JMenuBar {
 			public void actionPerformed(ActionEvent e) {
 				try {
 
-		            // Reads data using the ObjectInputStream
-		            FileInputStream fileStream = new FileInputStream("studenti.txt");
-		            ObjectInputStream objStream = new ObjectInputStream(fileStream);
-		            
-		            @SuppressWarnings("unchecked")
-					ArrayList<Student> priv = ( ArrayList<Student>)objStream.readObject();
-		            BazaStudenata.getInstance().setStudenti(priv);
-		            MyFrame.getInstance().azurirajPrikazStudenata();
+					// Reads data using the ObjectInputStream
+					FileInputStream fileStream = new FileInputStream("studenti.txt");
+					ObjectInputStream objStream = new ObjectInputStream(fileStream);
 
-		            //System.out.println(priv.get(0).getSpisakNePolozenihIspita().get(0).getPredmet().getNazivPredmeta());
+					@SuppressWarnings("unchecked")
+					ArrayList<Student> priv = (ArrayList<Student>) objStream.readObject();
+					BazaStudenata.getInstance().setStudenti(priv);
+					MyFrame.getInstance().azurirajPrikazStudenata();
 
-		            objStream.close();
-		        }
+					// System.out.println(priv.get(0).getSpisakNePolozenihIspita().get(0).getPredmet().getNazivPredmeta());
 
-		        catch (Exception e1) {
-		            e1.getStackTrace();
-		        }
-					
-				
+					objStream.close();
+				}
+
+				catch (Exception e1) {
+					e1.getStackTrace();
+				}
+
 			}
-			
-			
+
 		});
 
 		helpPom.addActionListener(new ActionListener() {

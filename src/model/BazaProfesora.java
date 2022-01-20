@@ -1,6 +1,8 @@
 package model;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -179,7 +181,7 @@ public class BazaProfesora {
             FileOutputStream file = new FileOutputStream(fileName);
             ObjectOutputStream output = new ObjectOutputStream(file);
             
-            output.writeObject(profesori);
+            output.writeObject(profesori.get(0));
 
             output.close();
         }
@@ -189,4 +191,24 @@ public class BazaProfesora {
         }
 	}
 
+	public void loadProfesora(String fileName) {
+		try {
+
+			// Reads data using the ObjectInputStream
+			FileInputStream fileStream = new FileInputStream(fileName);
+			ObjectInputStream objStream = new ObjectInputStream(fileStream);
+
+			@SuppressWarnings("unchecked")
+			ArrayList<Profesor> priv = (ArrayList<Profesor>) objStream.readObject();
+			profesori = priv;
+			MyFrame.getInstance().azurirajPrikazProfesora();
+
+			objStream.close();
+		}
+
+		catch (Exception e1) {
+			e1.getStackTrace();
+		}
+
+	};
 }

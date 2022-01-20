@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
 import java.awt.BorderLayout;
 
 import javax.swing.ImageIcon;
@@ -13,6 +14,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import model.BazaKatedri;
+import model.BazaPredmeta;
+import model.BazaProfesora;
+import model.BazaStudenata;
 
 public class MyFrame extends JFrame {
 
@@ -38,6 +44,7 @@ public class MyFrame extends JFrame {
 
 	private MyFrame() {
 		pretraga = false;
+		this.load();
 		this.createToolbar();
 		this.initialise();
 		this.createStatusBar();
@@ -117,17 +124,17 @@ public class MyFrame extends JFrame {
 
 		tabbedPane = new MyTab();
 
-		ImageIcon iconStudenti = createImageIcon("icons/studenti.png", true, 32, 32);
+		ImageIcon iconStudenti = createImageIcon("icons" + File.separator + "studenti.png", true, 32, 32);
 		tabelaStduenti = new Tabela(new AbstractTableModelStudenti());
 		JScrollPane scrollPaneStudenti = new JScrollPane(tabelaStduenti);
 		tabbedPane.addTab("Studenti", iconStudenti, scrollPaneStudenti, "Prikaz studenata");
 
-		ImageIcon iconProfesori = createImageIcon("icons/profesori.png", true, 32, 32);
+		ImageIcon iconProfesori = createImageIcon("icons" + File.separator + "profesori.png", true, 32, 32);
 		tabelaProfesora = new Tabela(new AbstractTableModelProfesor());
 		JScrollPane scrollPaneProfesori = new JScrollPane(tabelaProfesora);
 		tabbedPane.addTab("Profesori", iconProfesori, scrollPaneProfesori, "Prikaz profseora");
 
-		ImageIcon iconPredmeti = createImageIcon("icons/predmeti.png", true, 32, 32);
+		ImageIcon iconPredmeti = createImageIcon("icons" + File.separator + "predmeti.png", true, 32, 32);
 		tabelaPredmeta = new Tabela(new AbstractTableModelPredmeti());
 
 		JScrollPane scrollPanePredmeti = new JScrollPane(tabelaPredmeta);
@@ -207,4 +214,11 @@ public class MyFrame extends JFrame {
 		pretraga = isPretraga;
 	}
 
+	public void load() {
+		BazaKatedri.getInstance().loadKatedre("katedre.txt");
+		BazaPredmeta.getInstance().loadPredmeti("predmeti.txt");
+		BazaStudenata.getInstance().loadStudenti("studenti.txt");
+		BazaProfesora.getInstance().loadProfesora("profesori.txt");
+	};
+	
 }

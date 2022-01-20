@@ -1,6 +1,8 @@
 package model;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,24 +43,25 @@ public class BazaKatedri {
 
 	private void initBazaKatedri() {
 		this.katedre = new ArrayList<Katedra>();
-		
-		
+
 		Katedra pom1 = new Katedra("prnii", "PRIMENJENE RACUNARSKE NAUKE", null, null);
 		Katedra pom2 = new Katedra("au", "Automatika", null, null);
 		Katedra pom3 = new Katedra("rtrk", "Najveci ocaj od ljudi", null, null);
-		
-		Profesor p  = new Profesor("LEGENDA", "KRALJ", null, null, null, null, null, 4, Zvanje.REDOVNI_PROFESOR, 4, null);
-		Profesor p1  = new Profesor("AAAAAA", "za", null, null, null, null, null, 5, Zvanje.REDOVNI_PROFESOR, 5, null);
-		Profesor p2  = new Profesor("EEEEEE", "asasa", null, null, null, null, null, 6, Zvanje.VANREDNI_PROFESOR, 6, null);
-		Profesor p3  = new Profesor("OOOOO", "dsds", null, null, null, null, null, 7, Zvanje.REDOVNI_PROFESOR, 7, null);
-		Profesor p4  = new Profesor("ASDASDASDAS", "dsds", null, null, null, null, null, 8, Zvanje.DOCENT, 8, null);
-		
+
+		Profesor p = new Profesor("LEGENDA", "KRALJ", null, null, null, null, null, 4, Zvanje.REDOVNI_PROFESOR, 4,
+				null);
+		Profesor p1 = new Profesor("AAAAAA", "za", null, null, null, null, null, 5, Zvanje.REDOVNI_PROFESOR, 5, null);
+		Profesor p2 = new Profesor("EEEEEE", "asasa", null, null, null, null, null, 6, Zvanje.VANREDNI_PROFESOR, 6,
+				null);
+		Profesor p3 = new Profesor("OOOOO", "dsds", null, null, null, null, null, 7, Zvanje.REDOVNI_PROFESOR, 7, null);
+		Profesor p4 = new Profesor("ASDASDASDAS", "dsds", null, null, null, null, null, 8, Zvanje.DOCENT, 8, null);
+
 		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p);
 		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p1);
 		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p2);
 		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p3);
 		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p4);
-		
+
 		pom1.setSefKatedre(p2);
 		pom2.setSefKatedre(p3);
 		pom3.setSefKatedre(p4);
@@ -92,26 +95,46 @@ public class BazaKatedri {
 		case 1:
 			return k.getNazivKatedre();
 		case 2:
-			return k.getSefKatedre().getIme() + "  "+ k.getSefKatedre().getPrezime();
+			return k.getSefKatedre().getIme() + "  " + k.getSefKatedre().getPrezime();
 
 		default:
 			return null;
 		}
 	}
-	
+
 	public void saveKatedre(String fileName) {
 		try {
-            FileOutputStream file = new FileOutputStream(fileName);
-            ObjectOutputStream output = new ObjectOutputStream(file);
-            
-            output.writeObject(katedre);
+			FileOutputStream file = new FileOutputStream(fileName);
+			ObjectOutputStream output = new ObjectOutputStream(file);
 
-            output.close();
-        }
+			output.writeObject(katedre);
 
-        catch (Exception e1) {
-            e1.getStackTrace();
-        }
+			output.close();
+		}
+
+		catch (Exception e1) {
+			e1.getStackTrace();
+		}
 	}
+
+	public void loadKatedre(String fileName) {
+		try {
+
+			// Reads data using the ObjectInputStream
+			FileInputStream fileStream = new FileInputStream(fileName);
+			ObjectInputStream objStream = new ObjectInputStream(fileStream);
+
+			@SuppressWarnings("unchecked")
+			ArrayList<Katedra> priv = (ArrayList<Katedra>) objStream.readObject();
+			katedre = priv;
+
+			objStream.close();
+		}
+
+		catch (Exception e1) {
+			e1.getStackTrace();
+		}
+
+	};
 
 }

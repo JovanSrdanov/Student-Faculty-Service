@@ -1,6 +1,8 @@
 package model;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -175,4 +177,25 @@ public class BazaPredmeta {
             e1.getStackTrace();
         }
 	}
+	public void loadPredmeti(String fileName) {
+		try {
+
+			// Reads data using the ObjectInputStream
+			FileInputStream fileStream = new FileInputStream(fileName);
+			ObjectInputStream objStream = new ObjectInputStream(fileStream);
+
+			@SuppressWarnings("unchecked")
+			ArrayList<Predmet> priv = (ArrayList<Predmet>) objStream.readObject();
+			predmeti = priv;
+
+			objStream.close();
+		}
+
+		catch (Exception e1) {
+			e1.getStackTrace();
+		}
+
+	};
+
+	
 }

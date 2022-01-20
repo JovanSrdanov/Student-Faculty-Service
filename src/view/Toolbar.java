@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -121,9 +122,9 @@ public class Toolbar extends JToolBar {
 			}
 		});
 
-		initBtn(addBtn, "Dodaj", new ImageIcon("icons/new.png"), 50);
-		initBtn(editBtn, "Izmeni", new ImageIcon("icons/editPom.png"), 50);
-		initBtn(deleteBtn, "Obriši", new ImageIcon("icons/delete.png"), 50);
+		initBtn(addBtn, "Dodaj", new ImageIcon("icons" + File.separator + "new.png"), 50);
+		initBtn(editBtn, "Izmeni", new ImageIcon("icons" + File.separator + "editPom.png"), 50);
+		initBtn(deleteBtn, "Obriši", new ImageIcon("icons" + File.separator + "delete.png"), 50);
 
 		toolBarPanel.add(addBtn);
 		toolBarPanel.add(editBtn);
@@ -140,7 +141,7 @@ public class Toolbar extends JToolBar {
 		toolBarPanel.add(Box.createRigidArea(new Dimension(10, 0)));
 
 		JButton searchBtn = new JButton();
-		initBtn(searchBtn, "Pretraži", new ImageIcon("icons/search.png"), 30);
+		initBtn(searchBtn, "Pretraži", new ImageIcon("icons" + File.separator + "search.png"), 30);
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
