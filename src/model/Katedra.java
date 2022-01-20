@@ -53,7 +53,11 @@ public class Katedra {
 		this.sifraKatedre = sifraKatedre;
 		this.nazivKatedre = nazivKatedre;
 		this.sefKatedre = sefKatedre;
-		this.spisakProfesoraKojiSuNaKatedri = spisakProfesoraKojiSuNaKatedri;
+		if (spisakProfesoraKojiSuNaKatedri == null)
+			this.spisakProfesoraKojiSuNaKatedri = new ArrayList<>();
+		else
+			this.spisakProfesoraKojiSuNaKatedri = spisakProfesoraKojiSuNaKatedri;
+
 	}
 
 	public Katedra() {

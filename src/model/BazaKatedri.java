@@ -38,9 +38,23 @@ public class BazaKatedri {
 
 	private void initBazaKatedri() {
 		this.katedre = new ArrayList<Katedra>();
+		
+		
 		Katedra pom1 = new Katedra("prnii", "PRIMENJENE RACUNARSKE NAUKE", null, null);
 		Katedra pom2 = new Katedra("au", "Automatika", null, null);
 		Katedra pom3 = new Katedra("rtrk", "Najveci ocaj od ljudi", null, null);
+		
+		Profesor p  = new Profesor("LEGENDA", "KRALJ", null, null, null, null, null, 4, Zvanje.REDOVNI_PROFESOR, 0, null);
+		Profesor p1  = new Profesor("joj", "za", null, null, null, null, null, 5, Zvanje.REDOVNI_PROFESOR, 0, null);
+		Profesor p2  = new Profesor("da", "asasa", null, null, null, null, null, 6, Zvanje.VANREDNI_PROFESOR, 0, null);
+		Profesor p3  = new Profesor("ese", "dsds", null, null, null, null, null, 7, Zvanje.REDOVNI_PROFESOR, 0, null);
+		Profesor p4  = new Profesor("ggg", "dsds", null, null, null, null, null, 8, Zvanje.DOCENT, 0, null);
+		
+		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p);
+		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p1);
+		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p2);
+		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p3);
+		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p4);
 
 		this.katedre.add(pom1);
 		katedre.add(pom2);

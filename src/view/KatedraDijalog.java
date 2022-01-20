@@ -11,6 +11,11 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import model.BazaKatedri;
+import model.BazaStudenata;
+import model.Katedra;
+import model.Student;
+
 public class KatedraDijalog extends JDialog {
 
 	/**
@@ -19,9 +24,16 @@ public class KatedraDijalog extends JDialog {
 	private static final long serialVersionUID = 5756133743805054823L;
 	private Tabela katedreTable;
 
+	public Tabela getKatedreTable() {
+		return katedreTable;
+	}
+
+	private KatedraDijalog prozor;
+
 	public KatedraDijalog(Frame owner, String title, boolean modal) {
 		super(owner, title, modal);
 		setSize(500, 500);
+		prozor = this;
 
 		JPanel centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
@@ -41,6 +53,23 @@ public class KatedraDijalog extends JDialog {
 
 			}
 
+		});
+
+		postaviSefaKatedreBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int rowSelectedIndex = katedreTable.getSelectedRow();
+				if (rowSelectedIndex != -1) {
+					int a = katedreTable.convertRowIndexToModel(rowSelectedIndex);
+					Katedra k = BazaKatedri.getInstance().getRow(a);
+
+					PostavljanjeSefaKatedreDijalog dijag = new PostavljanjeSefaKatedreDijalog(null,
+							"Postavljanje sefa katedre", true,k);
+					dijag.setLocationRelativeTo(prozor);
+					dijag.setVisible(true);
+				}
+
+			}
 		});
 
 		btnPan.add(postaviSefaKatedreBtn);
