@@ -41,7 +41,7 @@ public class BazaStudenata {
 	private void initStudente() {
 		this.studenti = new ArrayList<Student>();
 		this.studentiPretraga = new ArrayList<Student>();
-/*
+
 		Adresa a = new Adresa("Novosadska", "3", "Zrenjanin", "Srbija");
 		Student pom1 = new Student("Srdanov", "Jovan", LocalDate.now(), a, "5/55523", "jovan.s@gmail.com",
 				"RA 145/2019", 2019, 3, Status.BUDŽET, 0, null, null);
@@ -77,7 +77,7 @@ public class BazaStudenata {
 		this.studenti.add(pom3);
 		this.studenti.add(pom4);
 		this.studenti.add(pom5);
-*/
+
 	}
 
 	public List<Student> getStudenti() {

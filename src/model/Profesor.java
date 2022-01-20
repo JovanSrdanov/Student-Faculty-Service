@@ -45,6 +45,8 @@ public class Profesor implements Serializable{
 
 		if (spisakPredmetaNaKojimaJeProfesor == null)
 			this.spisakPredmetaNaKojimaJeProfesor = new ArrayList<Predmet>();
+		else
+			this.spisakPredmetaNaKojimaJeProfesor = spisakPredmetaNaKojimaJeProfesor;
 	}
 
 	public String getPrezime() {

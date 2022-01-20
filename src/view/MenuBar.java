@@ -242,29 +242,8 @@ public class MenuBar extends JMenuBar {
 		about.setMnemonic(KeyEvent.VK_B);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		about.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-
-					// Reads data using the ObjectInputStream
-					FileInputStream fileStream = new FileInputStream("studenti.txt");
-					ObjectInputStream objStream = new ObjectInputStream(fileStream);
-
-					@SuppressWarnings("unchecked")
-					ArrayList<Student> priv = (ArrayList<Student>) objStream.readObject();
-					BazaStudenata.getInstance().setStudenti(priv);
-					MyFrame.getInstance().azurirajPrikazStudenata();
-
-					// System.out.println(priv.get(0).getSpisakNePolozenihIspita().get(0).getPredmet().getNazivPredmeta());
-
-					objStream.close();
-				}
-
-				catch (Exception e1) {
-					e1.getStackTrace();
-				}
-
 			}
 
 		});
