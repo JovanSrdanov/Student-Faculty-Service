@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -11,12 +12,14 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import model.BazaProfesora;
 import model.Katedra;
+
 import model.Profesor;
+import model.Zvanje;
 
 public class PostavljanjeSefaKatedreDijalog extends JDialog {
 
@@ -27,12 +30,17 @@ public class PostavljanjeSefaKatedreDijalog extends JDialog {
 
 	public PostavljanjeSefaKatedreDijalog(Frame owner, String title, boolean modal, Katedra k) {
 		super(owner, title, modal);
-		setSize(400, 400);
+		setSize(300, 300);
+		// setLocationRelativeTo(owner);
+		Dimension dimListe = new Dimension(300, 250);
+		Dimension dimScroll = new Dimension(200, 200);
+		Dimension dimBtn = new Dimension(300, 50);
 
 		JPanel centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
-		JPanel btnPan = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel btnPan = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		btnPan.setPreferredSize(dimBtn);
 
 		JButton postaviSefaKatedreBtn = new JButton("Postavi");
 		JButton odustaniBtn = new JButton("Odustani");
@@ -54,15 +62,16 @@ public class PostavljanjeSefaKatedreDijalog extends JDialog {
 
 		ArrayList<String> imePrezimeProfesora = new ArrayList<String>();
 
-		for (Profesor p : BazaProfesora.getInstance().getProfesori()) {
+		for (Profesor p : k.getSpisakProfesoraKojiSuNaKatedri()) {
 
-			listaMogucihProfesora.add(p);
+			if (p.getZvanje() != Zvanje.DOCENT && p.getGodineStaza() >= 5 && k.getSefKatedre() != p)
+				listaMogucihProfesora.add(p);
 
 		}
 
 		for (Profesor p : listaMogucihProfesora) {
 
-			imePrezimeProfesora.add(p.getPrezime() + " " + p.getIme());
+			imePrezimeProfesora.add(p.getIme() + " " + p.getPrezime());
 
 		}
 
@@ -73,7 +82,13 @@ public class PostavljanjeSefaKatedreDijalog extends JDialog {
 		}
 
 		JList<String> listBox = new JList<String>(dodaj);
-		
+		JPanel listPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JScrollPane sctrollList = new JScrollPane(listBox);
+		sctrollList.setPreferredSize(dimScroll);
+
+		listPnl.add(sctrollList);
+		listPnl.setPreferredSize(dimListe);
+
 		listBox.addListSelectionListener(new ListSelectionListener() {
 
 			@Override
@@ -85,8 +100,20 @@ public class PostavljanjeSefaKatedreDijalog extends JDialog {
 
 			}
 		});
-		
-		centerPanel.add(listBox);
+
+		postaviSefaKatedreBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Profesor p = new Profesor();
+				p = listaMogucihProfesora.get(listBox.getSelectedIndex());
+				k.setSefKatedre(p);
+				KatedraDijalog.azurirajPrikazKatedre();
+				dispose();
+			}
+
+		});
+
+		centerPanel.add(listPnl);
 		centerPanel.add(btnPan);
 		this.add(centerPanel);
 

@@ -12,9 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import model.BazaKatedri;
-import model.BazaStudenata;
+
 import model.Katedra;
-import model.Student;
+
 
 public class KatedraDijalog extends JDialog {
 
@@ -22,7 +22,7 @@ public class KatedraDijalog extends JDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = 5756133743805054823L;
-	private Tabela katedreTable;
+	private static Tabela katedreTable;
 
 	public Tabela getKatedreTable() {
 		return katedreTable;
@@ -32,7 +32,7 @@ public class KatedraDijalog extends JDialog {
 
 	public KatedraDijalog(Frame owner, String title, boolean modal) {
 		super(owner, title, modal);
-		setSize(500, 500);
+		setSize(800, 500);
 		prozor = this;
 
 		JPanel centerPanel = new JPanel();
@@ -79,4 +79,10 @@ public class KatedraDijalog extends JDialog {
 		this.add(centerPanel);
 
 	}
+	public static void azurirajPrikazKatedre() {
+		AbstractTableModelKatedra model = (AbstractTableModelKatedra) katedreTable.getModel();
+		model.fireTableDataChanged();
+		// validate();
+	}
+	
 }

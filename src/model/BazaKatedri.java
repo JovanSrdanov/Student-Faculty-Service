@@ -33,6 +33,7 @@ public class BazaKatedri {
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Sifra katedre");
 		this.kolone.add("Naziv Katedre");
+		this.kolone.add("Ime i prezime");
 
 	}
 
@@ -44,17 +45,21 @@ public class BazaKatedri {
 		Katedra pom2 = new Katedra("au", "Automatika", null, null);
 		Katedra pom3 = new Katedra("rtrk", "Najveci ocaj od ljudi", null, null);
 		
-		Profesor p  = new Profesor("LEGENDA", "KRALJ", null, null, null, null, null, 4, Zvanje.REDOVNI_PROFESOR, 0, null);
-		Profesor p1  = new Profesor("joj", "za", null, null, null, null, null, 5, Zvanje.REDOVNI_PROFESOR, 0, null);
-		Profesor p2  = new Profesor("da", "asasa", null, null, null, null, null, 6, Zvanje.VANREDNI_PROFESOR, 0, null);
-		Profesor p3  = new Profesor("ese", "dsds", null, null, null, null, null, 7, Zvanje.REDOVNI_PROFESOR, 0, null);
-		Profesor p4  = new Profesor("ggg", "dsds", null, null, null, null, null, 8, Zvanje.DOCENT, 0, null);
+		Profesor p  = new Profesor("LEGENDA", "KRALJ", null, null, null, null, null, 4, Zvanje.REDOVNI_PROFESOR, 4, null);
+		Profesor p1  = new Profesor("AAAAAA", "za", null, null, null, null, null, 5, Zvanje.REDOVNI_PROFESOR, 5, null);
+		Profesor p2  = new Profesor("EEEEEE", "asasa", null, null, null, null, null, 6, Zvanje.VANREDNI_PROFESOR, 6, null);
+		Profesor p3  = new Profesor("OOOOO", "dsds", null, null, null, null, null, 7, Zvanje.REDOVNI_PROFESOR, 7, null);
+		Profesor p4  = new Profesor("ASDASDASDAS", "dsds", null, null, null, null, null, 8, Zvanje.DOCENT, 8, null);
 		
 		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p);
 		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p1);
 		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p2);
 		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p3);
 		pom1.getSpisakProfesoraKojiSuNaKatedri().add(p4);
+		
+		pom1.setSefKatedre(p2);
+		pom2.setSefKatedre(p3);
+		pom3.setSefKatedre(p4);
 
 		this.katedre.add(pom1);
 		katedre.add(pom2);
@@ -63,7 +68,7 @@ public class BazaKatedri {
 	}
 
 	public int getColumnCount() {
-		return 2;
+		return 3;
 	}
 
 	public String getColumnName(int index) {
@@ -84,6 +89,8 @@ public class BazaKatedri {
 			return k.getSifraKatedre();
 		case 1:
 			return k.getNazivKatedre();
+		case 2:
+			return k.getSefKatedre().getIme() + "  "+ k.getSefKatedre().getPrezime();
 
 		default:
 			return null;
