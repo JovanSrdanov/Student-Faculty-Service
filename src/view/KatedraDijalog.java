@@ -33,6 +33,7 @@ public class KatedraDijalog extends JDialog {
 	public KatedraDijalog(Frame owner, String title, boolean modal) {
 		super(owner, title, modal);
 		setSize(800, 500);
+		setResizable(false);
 		prozor = this;
 
 		JPanel centerPanel = new JPanel();

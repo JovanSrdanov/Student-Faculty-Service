@@ -38,6 +38,7 @@ public class PolaganjeDialog extends JDialog {
 	public PolaganjeDialog(Frame owner, String title, boolean modal, Ocena ocena) {
 		super(owner, title, modal);
 		setSize(300, 250);
+		setResizable(false);
 		setLocationRelativeTo(owner);
 
 		JPanel centerPanel = new JPanel();

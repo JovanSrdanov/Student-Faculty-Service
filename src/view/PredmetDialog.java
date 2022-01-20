@@ -48,6 +48,7 @@ public class PredmetDialog extends JDialog {
 
 	public PredmetDialog(Frame owner, String title, boolean modal, char t) {
 		super(owner, title, modal);
+		setResizable(false);
 		prozor = this;
 		if(t == 'u')
 			setSize(520, 250);

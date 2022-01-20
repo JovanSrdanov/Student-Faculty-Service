@@ -30,6 +30,7 @@ public class DodavnjaProfesoraPredmetu extends JDialog {
 	public DodavnjaProfesoraPredmetu(Frame owner, String title, boolean modal) {
 		super(owner, title, modal);
 		setSize(300, 300);
+		setResizable(false);
 		//setLocationRelativeTo(owner);
 		Dimension dimListe = new Dimension(300, 250);
 		Dimension dimScroll = new Dimension(200, 200);

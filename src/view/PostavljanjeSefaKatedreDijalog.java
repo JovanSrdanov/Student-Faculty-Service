@@ -31,6 +31,7 @@ public class PostavljanjeSefaKatedreDijalog extends JDialog {
 	public PostavljanjeSefaKatedreDijalog(Frame owner, String title, boolean modal, Katedra k) {
 		super(owner, title, modal);
 		setSize(300, 300);
+		setResizable(false);
 		// setLocationRelativeTo(owner);
 		Dimension dimListe = new Dimension(300, 250);
 		Dimension dimScroll = new Dimension(200, 200);

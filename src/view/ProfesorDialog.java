@@ -64,6 +64,7 @@ public class ProfesorDialog extends JDialog {
 	public ProfesorDialog(Frame owner, String title, boolean modal, char tipA) {
 		super(owner, title, modal);
 		setSize(560, 430);
+		setResizable(false);
 		setLocationRelativeTo(owner);
 		tipAk = tipA;
 		trenutniBrojLicneKarte = 0;
