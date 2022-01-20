@@ -40,12 +40,43 @@ public class BazaPredmeta {
 	private void initPredmete() {
 		predmeti = new ArrayList<Predmet>();
 		predmetiPretraga = new ArrayList<Predmet>();
-		Profesor p = new Profesor("Rapajic", "Milan", LocalDate.of(1980, 3, 13),
+		/*Profesor p = new Profesor("Rapajic", "Milan", LocalDate.of(1980, 3, 13),
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64", "rap.aja@uns.ac.rs",
 				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, null);
 
 		predmeti.add(new Predmet("e1", "Baze podataka 1", Semestar.ZIMSKI, 3, p, 6));
-		predmeti.add(new Predmet("p2", "Operativni sistemi", Semestar.LETNJI, 2, null, 7));
+		predmeti.add(new Predmet("p2", "Operativni sistemi", Semestar.LETNJI, 2, null, 7));*/
+		
+		/*predmeti.add(new Predmet("p1", "osnove programiranja", Semestar.ZIMSKI, 1, null, 7));
+		predmeti.add(new Predmet("p2", "statistika", Semestar.LETNJI, 3, null, 8));
+		predmeti.add(new Predmet("p3", "algoritmi i strukture podataka", Semestar.LETNJI, 2, null, 9));
+		predmeti.add(new Predmet("p4", "LPRS", Semestar.ZIMSKI, 3, null, 7));
+		predmeti.add(new Predmet("p5", "matematika", Semestar.LETNJI, 1, null, 11));
+		predmeti.add(new Predmet("p6", "xml i web servisi", Semestar.LETNJI, 4, null, 6));
+		predmeti.add(new Predmet("p7", "Metode optimizacije", Semestar.ZIMSKI, 3, null, 6));
+		predmeti.add(new Predmet("p8", "osnove elektortehnike", Semestar.LETNJI, 1, null, 11));
+		predmeti.add(new Predmet("p9", "Sociologija", Semestar.ZIMSKI, 1, null, 10));
+		predmeti.add(new Predmet("p10", "Filozofija", Semestar.ZIMSKI, 1, null, 4));
+		predmeti.add(new Predmet("p11", "ORT", Semestar.LETNJI, 2, null, 7));
+		predmeti.add(new Predmet("p12", "NANS", Semestar.LETNJI, 2, null, 5));
+		predmeti.add(new Predmet("p13", "Organizacija podataka", Semestar.ZIMSKI, 2, null, 7));
+		predmeti.add(new Predmet("p14", "Baze podataka", Semestar.ZIMSKI, 2, null, 6));
+		predmeti.add(new Predmet("p15", "paralelno programiranje", Semestar.ZIMSKI, 2, null, 8));
+		predmeti.add(new Predmet("p16", "konkurentno programiranje", Semestar.LETNJI, 2, null, 9));
+		predmeti.add(new Predmet("p17", "Operativni sistemi", Semestar.LETNJI, 2, null, 8));
+		predmeti.add(new Predmet("p18", "Algebra", Semestar.ZIMSKI, 1, null, 15));
+		predmeti.add(new Predmet("p19", "Diskretna matematika", Semestar.LETNJI, 3, null, 14));
+		predmeti.add(new Predmet("ps20", "Upravljacki sistemi", Semestar.LETNJI, 3, null, 8));
+		predmeti.add(new Predmet("ps21", "Osnovi elektronike", Semestar.ZIMSKI, 2, null, 7));
+		predmeti.add(new Predmet("ps22", "Slucajni procesi", Semestar.LETNJI, 4, null, 9));
+		predmeti.add(new Predmet("ps23", "Racunarstvo visokih performansi", Semestar.LETNJI, 4, null, 10));
+		predmeti.add(new Predmet("p24", "Analiza 1", Semestar.ZIMSKI, 1, null, 20));
+		predmeti.add(new Predmet("it25", "Informaciona bezbednost", Semestar.LETNJI, 4, null, 9));
+		predmeti.add(new Predmet("it26", "Elektronsko placanje", Semestar.ZIMSKI, 3, null, 8));
+		predmeti.add(new Predmet("it27", "Distribuirani sistemi", Semestar.LETNJI, 4, null, 6));
+		predmeti.add(new Predmet("p28", "Projektovanje softvera", Semestar.ZIMSKI, 3, null, 5));
+		predmeti.add(new Predmet("p29", "Informacioni sistemi", Semestar.ZIMSKI, 4, null, 6));
+		predmeti.add(new Predmet("p30", "Masinsko ucenje", Semestar.LETNJI, 4, null, 7));*/
 
 	}
 
