@@ -103,7 +103,7 @@ public class PolaganjeDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ocena.setBrojcanaVrednostOcene(ocenaCb.getSelectedIndex() + 6);
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy");
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy.");
 				LocalDate datum = LocalDate.parse(datumTxt.getText(), formatter);
 				ocena.setDatumPolaganjaIspita(datum);
 				MyFrame.getInstance().azurirajPrikazStudenata();
@@ -173,11 +173,11 @@ public class PolaganjeDialog extends JDialog {
 	}
 
 	private boolean proveraUpis() {
-		if (!datumTxt.getText().matches("[0-9]{1,2}[.][0-9]{1,2}[.][0-9]{4}")) {
+		if (!datumTxt.getText().matches("[0-9]{1,2}[.][0-9]{1,2}[.][0-9]{4}[.]")) {
 			return false;
 		} else {
 			try {
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy");
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy.");
 				LocalDate datum = LocalDate.parse(datumTxt.getText(), formatter);
 				if (datum.isAfter(LocalDate.now())) {
 					return false;

@@ -99,7 +99,7 @@ public class StudentDijalog extends JDialog {
 		imePnl.add(imeTxt);
 
 		JPanel datPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel datLbl = new JLabel("Datum rođenja (DD.MM.GGGG):");
+		JLabel datLbl = new JLabel("Datum rođenja (DD.MM.GGGG.):");
 		datLbl.setPreferredSize(dimLabela);
 		datumTxt = new JTextField();
 		datumTxt.setPreferredSize(dimTextBox);
@@ -131,7 +131,7 @@ public class StudentDijalog extends JDialog {
 		mailPnl.add(eMailTxt);
 
 		JPanel brojIndexaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel brojIndexaLbl = new JLabel("Broj indeksa (xx-yyy-zzzz) :");
+		JLabel brojIndexaLbl = new JLabel("Broj indeksa (xx yyy/zzzz) :");
 		brojIndexaLbl.setPreferredSize(dimLabela);
 		brojIndexaTxt = new JTextField();
 		brojIndexaTxt.setPreferredSize(dimTextBox);
@@ -207,7 +207,7 @@ public class StudentDijalog extends JDialog {
 
 			prezimeTxt.setText(selectedStudent.getPrezime());
 			imeTxt.setText(selectedStudent.getIme());
-			datumTxt.setText(selectedStudent.getDatumRodjenja().format(DateTimeFormatter.ofPattern("d.M.yyyy")));
+			datumTxt.setText(selectedStudent.getDatumRodjenja().format(DateTimeFormatter.ofPattern("d.M.yyyy.")));
 			adresaTxt.setText(selectedStudent.getAdresaStanovanja().toString());
 			telTxt.setText(selectedStudent.getKontaktTelefon());
 			eMailTxt.setText(selectedStudent.geteMailAdresa());
@@ -233,7 +233,7 @@ public class StudentDijalog extends JDialog {
 				if (proveraUpis(tip)) {
 					String ime = imeTxt.getText().trim();
 					String prezime = prezimeTxt.getText().trim();
-					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy");
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy.");
 					LocalDate datumRodj = LocalDate.parse(datumTxt.getText(), formatter);
 					String[] deoAdr = adresaTxt.getText().split(",");
 					Adresa adresaStanovanja = new Adresa(deoAdr[0].trim(), deoAdr[1].trim(), deoAdr[2].trim(),
@@ -453,11 +453,11 @@ public class StudentDijalog extends JDialog {
 		if (!adresaTxt.getText().matches(".+,[0-9]+[a-zA-Z]?,.+,.+")) {
 			return false;
 		}
-		if (!datumTxt.getText().matches("[0-9]{1,2}[.][0-9]{1,2}[.][0-9]{4}")) {
+		if (!datumTxt.getText().matches("[0-9]{1,2}[.][0-9]{1,2}[.][0-9]{4}[.]")) {
 			return false;
 		} else {
 			try {
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy");
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d.M.yyyy.");
 				LocalDate datumRodj = LocalDate.parse(datumTxt.getText(), formatter);
 				if (datumRodj.isAfter(LocalDate.now())) {
 					return false;
@@ -572,7 +572,7 @@ public class StudentDijalog extends JDialog {
 		case 3:
 			return Integer.toString(ocena.getBrojcanaVrednostOcene());
 		case 4:
-			return ocena.getDatumPolaganjaIspita().format(DateTimeFormatter.ofPattern("d.M.yyyy"));
+			return ocena.getDatumPolaganjaIspita().format(DateTimeFormatter.ofPattern("d.M.yyyy."));
 		default:
 			return null;
 		}
