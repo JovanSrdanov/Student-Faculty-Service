@@ -47,7 +47,10 @@ public class PredmetDialog extends JDialog {
 
 	public PredmetDialog(Frame owner, String title, boolean modal, char t) {
 		super(owner, title, modal);
-		setSize(600, 400);
+		if(t == 'u')
+			setSize(520, 250);
+		else
+			setSize(520, 300);
 		tip = t;
 		trenutnaSifraPredmeta = "";
 		
@@ -56,7 +59,7 @@ public class PredmetDialog extends JDialog {
 		JPanel centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
-		Dimension dimLabela = new Dimension(280, 20);
+		Dimension dimLabela = new Dimension(200, 20);
 		Dimension dimTextBox = new Dimension(280, 20);
 
 		JPanel sifraPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -76,7 +79,7 @@ public class PredmetDialog extends JDialog {
 		nazivPredmetaPnl.add(nazivPredmetaTxt);
 
 		JPanel godinaPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel godinaPredmetaLbl = new JLabel("Godina na kojoj se predaje predmet:");
+		JLabel godinaPredmetaLbl = new JLabel("Godina predmeta:");
 		godinaPredmetaLbl.setPreferredSize(dimLabela);
 		String[] godine = { "1. (PRVA)", "2. (DRUGA)", "3. (TREĆA)", "4. (ČETVRTA)" };
 		godinaPredmetaCB = new JComboBox<String>(godine);
@@ -85,7 +88,7 @@ public class PredmetDialog extends JDialog {
 		godinaPredmetaPnl.add(godinaPredmetaCB);
 
 		JPanel semestarPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel semestarPredmetaLbl = new JLabel("Semestar u kom se predaje predmet:");
+		JLabel semestarPredmetaLbl = new JLabel("Semestar predmeta:");
 		semestarPredmetaLbl.setPreferredSize(dimLabela);
 		String[] sem = { "ZIMSKI", "LETNJI" };
 		semestarPredmetaCB = new JComboBox<String>(sem);

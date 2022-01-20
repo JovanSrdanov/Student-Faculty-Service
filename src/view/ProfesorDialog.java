@@ -61,7 +61,7 @@ public class ProfesorDialog extends JDialog {
 
 	public ProfesorDialog(Frame owner, String title, boolean modal, char tipA) {
 		super(owner, title, modal);
-		setSize(550, 400);
+		setSize(520, 430);
 		setLocationRelativeTo(owner);
 		tipAk = tipA;
 		trenutniBrojLicneKarte = 0;
@@ -69,8 +69,8 @@ public class ProfesorDialog extends JDialog {
 		JPanel centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
-		Dimension dim = new Dimension(280, 20);
-		Dimension dim2 = new Dimension(200, 20);
+		Dimension dim = new Dimension(200, 20);
+		Dimension dim2 = new Dimension(280, 20);
 
 		// ime
 		JPanel imePnl = new JPanel(new FlowLayout(FlowLayout.LEFT));

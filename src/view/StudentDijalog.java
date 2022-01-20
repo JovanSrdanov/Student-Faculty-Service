@@ -70,7 +70,7 @@ public class StudentDijalog extends JDialog {
 
 	public StudentDijalog(Frame owner, String title, boolean modal, char t) {
 		super(owner, title, modal);
-		setSize(600, 600);
+		setSize(520, 430);
 		setLocationRelativeTo(owner);
 		tip = t;
 		trenutniBrojIndexa = "";
