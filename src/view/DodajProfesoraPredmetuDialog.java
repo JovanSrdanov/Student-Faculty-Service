@@ -18,7 +18,7 @@ import javax.swing.event.ListSelectionListener;
 import model.BazaProfesora;
 import model.Profesor;
 
-public class DodavnjaProfesoraPredmetu extends JDialog {
+public class DodajProfesoraPredmetuDialog extends JDialog {
 
 	/**
 	 * 
@@ -27,7 +27,7 @@ public class DodavnjaProfesoraPredmetu extends JDialog {
 	private JButton potvrdiBtn;
 	private JButton odustaniBtn;
 
-	public DodavnjaProfesoraPredmetu(Frame owner, String title, boolean modal) {
+	public DodajProfesoraPredmetuDialog(Frame owner, String title, boolean modal) {
 		super(owner, title, modal);
 		setSize(300, 300);
 		setResizable(false);

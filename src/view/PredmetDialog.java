@@ -207,7 +207,7 @@ public class PredmetDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Dijalog nov
-				DodavnjaProfesoraPredmetu dialog = new DodavnjaProfesoraPredmetu(null, "Dodavnaje profesora", true);
+				DodajProfesoraPredmetuDialog dialog = new DodajProfesoraPredmetuDialog(null, "Dodavnaje profesora", true);
 				dialog.setLocationRelativeTo(prozor);
 				dialog.setVisible(true);
 			}

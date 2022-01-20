@@ -355,7 +355,7 @@ public class ProfesorDialog extends JDialog {
 			dodajBtn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					DodajPredmetProfesoru dpp = new DodajPredmetProfesoru(null, "Dodavanje", true);
+					DodajPredmetProfesoruDialog dpp = new DodajPredmetProfesoruDialog(null, "Dodavanje", true);
 					dpp.setLocationRelativeTo(prozor);
 					dpp.setVisible(true);
 				}

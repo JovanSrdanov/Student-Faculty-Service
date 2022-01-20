@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 
 import model.Ocena;
 
-public class PolaganjeDialog extends JDialog {
+public class DodajOcenuStudentuDialog extends JDialog {
 
 	/**
 	 * 
@@ -35,7 +35,7 @@ public class PolaganjeDialog extends JDialog {
 	private JTextField datumTxt;
 	private JButton okBtn;
 
-	public PolaganjeDialog(Frame owner, String title, boolean modal, Ocena ocena) {
+	public DodajOcenuStudentuDialog(Frame owner, String title, boolean modal, Ocena ocena) {
 		super(owner, title, modal);
 		setSize(300, 250);
 		setResizable(false);

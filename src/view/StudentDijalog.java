@@ -49,7 +49,7 @@ public class StudentDijalog extends JDialog {
 	private JButton cancleBtn;
 	private char tip;
 	private String trenutniBrojIndexa;
-	private JTabbedPane zaSad;
+	private JTabbedPane tabbedPane;
 	private StudentDijalog prozor;
 
 	private static int sumaE;
@@ -176,17 +176,16 @@ public class StudentDijalog extends JDialog {
 		btnPnl.add(okBtn);
 		btnPnl.add(cancleBtn);
 
-		dodajFocusListener(prezimeTxt);
-		dodajFocusListener(imeTxt);
-		dodajFocusListener(datumTxt);
-		dodajFocusListener(adresaTxt);
-		dodajFocusListener(telTxt);
-		dodajFocusListener(eMailTxt);
-		dodajFocusListener(brojIndexaTxt);
-		dodajFocusListener(godinaUpisaTxt);
+		dodajListenere(prezimeTxt);
+		dodajListenere(imeTxt);
+		dodajListenere(datumTxt);
+		dodajListenere(adresaTxt);
+		dodajListenere(telTxt);
+		dodajListenere(eMailTxt);
+		dodajListenere(brojIndexaTxt);
+		dodajListenere(godinaUpisaTxt);
 
 		int rowSelectedIndex = MyFrame.getTabelaStduenti().getSelectedRow();
-
 		if (tip == 'i' && rowSelectedIndex >= 0) {
 			okBtn.setEnabled(true);
 			kolone = new ArrayList<String>();
@@ -228,6 +227,18 @@ public class StudentDijalog extends JDialog {
 			nacinFinansiranjaCB.setSelectedIndex(statusIndex);
 
 		}
+		
+		centerPanel.add(przezimePnl);
+		centerPanel.add(imePnl);
+		centerPanel.add(datPnl);
+		centerPanel.add(adrPnl);
+		centerPanel.add(telPnl);
+		centerPanel.add(mailPnl);
+		centerPanel.add(brojIndexaPnl);
+		centerPanel.add(godinaUpisaPnl);
+		centerPanel.add(godinaStudijaPnl);
+		centerPanel.add(nacinFinansiranjaPnl);
+		centerPanel.add(btnPnl);
 
 		okBtn.addActionListener(new ActionListener() {
 			@Override
@@ -283,48 +294,42 @@ public class StudentDijalog extends JDialog {
 
 		});
 
-		centerPanel.add(przezimePnl);
-		centerPanel.add(imePnl);
-		centerPanel.add(datPnl);
-		centerPanel.add(adrPnl);
-		centerPanel.add(telPnl);
-		centerPanel.add(mailPnl);
-		centerPanel.add(brojIndexaPnl);
-		centerPanel.add(godinaUpisaPnl);
-		centerPanel.add(godinaStudijaPnl);
-		centerPanel.add(nacinFinansiranjaPnl);
-		centerPanel.add(btnPnl);
-
 		if (tip == 'i') {
-			zaSad = new JTabbedPane();
-			zaSad.addTab("Informacije", centerPanel);
+			tabbedPane = new JTabbedPane();
+			tabbedPane.addTab("Informacije", centerPanel);
 
 			JPanel panNepolozeni = new JPanel();
 			panNepolozeni.setLayout(new BoxLayout(panNepolozeni, BoxLayout.Y_AXIS));
+			
 			JPanel panBtn = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
-			nepolozeniTabel = new Tabela(new AbstractTableModelNepolozeni());
-			JScrollPane scrollPaneNepolozeni = new JScrollPane(nepolozeniTabel);
-
-			JButton addBtn = new JButton("Dodaj");
-			JButton delBtn = new JButton("Obrisi");
+			JButton dodajBtn = new JButton("Dodaj");
+			JButton obrisiBtn = new JButton("Obrisi");
 			JButton polaganjeBtn = new JButton("Polaganje");
+			
+			nepolozeniTabel = new Tabela(new AbstractTableModelNepolozeni());
+			/*nepolozeniTabel.getColumnModel().getColumn(1).setPreferredWidth(50);
+			nepolozeniTabel.getColumnModel().getColumn(0).setPreferredWidth(5);
+			nepolozeniTabel.getColumnModel().getColumn(2).setPreferredWidth(5);
+			nepolozeniTabel.getColumnModel().getColumn(3).setPreferredWidth(5);
+			nepolozeniTabel.getColumnModel().getColumn(4).setPreferredWidth(5);*/
+			JScrollPane scrollPaneNepolozeni = new JScrollPane(nepolozeniTabel);
+			
+			panBtn.add(dodajBtn);
+			panBtn.add(obrisiBtn);
+			panBtn.add(polaganjeBtn);
+			panNepolozeni.add(panBtn);
+			panNepolozeni.add(scrollPaneNepolozeni);
 
 			////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			addBtn.addActionListener(new ActionListener() {
+			dodajBtn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					DodavanjePredmetaStudentuDijalog dpsd = new DodavanjePredmetaStudentuDijalog(null, "Dodavanje",
-							true);
+					DodajPredmetStudentuDialog dpsd = new DodajPredmetStudentuDialog(null, "Dodavanje", true);
 					dpsd.setLocationRelativeTo(prozor);
-
 					dpsd.setVisible(true);
-
 				}
-			}
-
-			);
+			});
 
 			polaganjeBtn.addActionListener(new ActionListener() {
 				@Override
@@ -332,7 +337,7 @@ public class StudentDijalog extends JDialog {
 					int rowSelectedIndex = nepolozeniTabel.getSelectedRow();
 					if (rowSelectedIndex != -1) {
 						Ocena o = selectedStudent.getSpisakNePolozenihIspita().get(rowSelectedIndex);
-						PolaganjeDialog polaganjeDialog = new PolaganjeDialog(null, "Polaganje", true, o);
+						DodajOcenuStudentuDialog polaganjeDialog = new DodajOcenuStudentuDialog(null, "Polaganje", true, o);
 						polaganjeDialog.setLocationRelativeTo(prozor);
 						polaganjeDialog.setVisible(true);
 						if (o.getBrojcanaVrednostOcene() > 5) {
@@ -345,7 +350,7 @@ public class StudentDijalog extends JDialog {
 				}
 			});
 
-			delBtn.addActionListener(new ActionListener() {
+			obrisiBtn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					int rowSelectedIndex = nepolozeniTabel.getSelectedRow();
@@ -362,14 +367,7 @@ public class StudentDijalog extends JDialog {
 						}
 					}
 				}
-
 			});
-
-			panBtn.add(addBtn);
-			panBtn.add(delBtn);
-			panBtn.add(polaganjeBtn);
-			panNepolozeni.add(panBtn);
-			panNepolozeni.add(scrollPaneNepolozeni);
 
 			///////////////////////////////////////////
 
@@ -401,7 +399,6 @@ public class StudentDijalog extends JDialog {
 							MyFrame.getInstance().azurirajPrikazStudenata();
 						}
 					}
-
 				}
 			});
 
@@ -411,7 +408,7 @@ public class StudentDijalog extends JDialog {
 
 			JPanel panProsOc = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 			JPanel panUkESPB = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-			///
+
 			panProsOcLbl = new JLabel();
 			panUkESPBLbl = new JLabel();
 			izracunajProsecnuOcenu();
@@ -422,13 +419,13 @@ public class StudentDijalog extends JDialog {
 			panPolozeni.add(panProsOc);
 			panPolozeni.add(panUkESPB);
 
-			zaSad.addTab("Položeni predmeti", panPolozeni);
-			zaSad.addTab("Nepoloženi predmeti", panNepolozeni);
-			this.add(zaSad);
-
-		} else
-			this.add(centerPanel);
-
+			tabbedPane.addTab("Položeni predmeti", panPolozeni);
+			tabbedPane.addTab("Nepoloženi predmeti", panNepolozeni);
+			this.add(tabbedPane);
+		} 
+		else {
+			this.add(centerPanel);			
+		}
 	}
 
 	private boolean proveraUpis(char tipA) {
@@ -478,45 +475,6 @@ public class StudentDijalog extends JDialog {
 		return true;
 	}
 
-	private void dodajFocusListener(JTextField txt) {
-		txt.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				okBtn.setEnabled(proveraUpis(tip));
-
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				okBtn.setEnabled(proveraUpis(tip));
-
-			}
-
-		});
-
-		txt.addKeyListener(new KeyListener() {
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				okBtn.setEnabled(proveraUpis(tip));
-
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				okBtn.setEnabled(proveraUpis(tip));
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				okBtn.setEnabled(proveraUpis(tip));
-
-			}
-
-		});
-	}
-
 	private boolean existsByIndex(String index) {
 		for (Student p : BazaStudenata.getInstance().getStudenti()) {
 			if (p.getBrojIndexa().equals(index))
@@ -525,7 +483,8 @@ public class StudentDijalog extends JDialog {
 		return false;
 	}
 
-	public static String getValueAt(int rowIndex, int columnIndex) {
+	//Potrebne funkcije da se napravi tabela nepolozenih predmeta
+	public static String getValueAtNepolozeni(int rowIndex, int columnIndex) {
 		if (selectedStudent.getSpisakNePolozenihIspita() == null)
 			return null;
 
@@ -546,21 +505,21 @@ public class StudentDijalog extends JDialog {
 		}
 	}
 
-	public static String getColumnName(int column) {
+	public static String getColumnNameNepolozeni(int column) {
 		return kolone.get(column);
 	}
 
-	public static int getColumnCount() {
+	public static int getColumnCountNepolozeni() {
 		return kolone.size();
 	}
 
-	public static int getRowCount() {
+	public static int getRowCountNepolozeni() {
 		if (selectedStudent.getSpisakNePolozenihIspita() == null)
 			return 1;
 		return selectedStudent.getSpisakNePolozenihIspita().size();
 	}
-///////////////////////za polozene
 
+	//Potrebne funkcije da se napravi tabela polozenih predmeta
 	public static String getValueAtPolozeni(int rowIndex, int columnIndex) {
 		if (selectedStudent.getSpisakPolozenihIspita() == null)
 			return null;
@@ -600,14 +559,12 @@ public class StudentDijalog extends JDialog {
 	public static void azurirajPrikazNepolozenih() {
 		AbstractTableModelNepolozeni model = (AbstractTableModelNepolozeni) nepolozeniTabel.getModel();
 		model.fireTableDataChanged();
-		// validate();
 	}
 
 	public static void azurirajPrikazPolozenih() {
+		izracunajProsecnuOcenu();
 		AbstractTableModelPolozeni model = (AbstractTableModelPolozeni) polozeniTabel.getModel();
 		model.fireTableDataChanged();
-		izracunajProsecnuOcenu();
-		// validate();
 	}
 
 	public static void izracunajProsecnuOcenu() {
@@ -616,24 +573,50 @@ public class StudentDijalog extends JDialog {
 		Double avgOcn = 0.0;
 
 		sumaE = 0;
-		Double sumaO = 0.0;
 
 		if (ocene != null) {
 			for (Ocena o : ocene) {
 
 				sumaE = o.getPredmet().getBrojESPBBodova() + sumaE;
-				sumaO = o.getBrojcanaVrednostOcene() + sumaO;
+				avgOcn = o.getBrojcanaVrednostOcene() + avgOcn;
 
 			}
+			avgOcn = avgOcn / ocene.size();
 		}
-
-		if (ocene.size() != 0)
-			avgOcn = sumaO / ocene.size();
 
 		selectedStudent.setProsecnaOcena(avgOcn);
 
 		panProsOcLbl.setText("Prosecna ocena: " + selectedStudent.getProsecnaOcena());
 		panUkESPBLbl.setText("Ukupno espb: " + sumaE);
 	}
+	
+	private void dodajListenere(JTextField txt) {
+		txt.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				okBtn.setEnabled(proveraUpis(tip));
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				okBtn.setEnabled(proveraUpis(tip));
+			}
 
+		});
+		
+		txt.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				okBtn.setEnabled(proveraUpis(tip));
+
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+				okBtn.setEnabled(proveraUpis(tip));
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {
+				okBtn.setEnabled(proveraUpis(tip));
+			}
+		});
+	}
 }

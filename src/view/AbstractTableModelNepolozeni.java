@@ -10,22 +10,22 @@ public class AbstractTableModelNepolozeni extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		return StudentDijalog.getRowCount();
+		return StudentDijalog.getRowCountNepolozeni();
 	}
 
 	@Override
 	public int getColumnCount() {
-		return StudentDijalog.getColumnCount();
+		return StudentDijalog.getColumnCountNepolozeni();
 	}
 
 	@Override
 	public String getColumnName(int column) {
-		return StudentDijalog.getColumnName(column);
+		return StudentDijalog.getColumnNameNepolozeni(column);
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		return StudentDijalog.getValueAt(rowIndex, columnIndex);
+		return StudentDijalog.getValueAtNepolozeni(rowIndex, columnIndex);
 	}
 
 	@Override

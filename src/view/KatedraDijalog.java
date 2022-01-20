@@ -64,7 +64,7 @@ public class KatedraDijalog extends JDialog {
 					int a = katedreTable.convertRowIndexToModel(rowSelectedIndex);
 					Katedra k = BazaKatedri.getInstance().getRow(a);
 					
-					PostavljanjeSefaKatedreDijalog dijag = new PostavljanjeSefaKatedreDijalog(null,
+					DodajSefaKatedriDialog dijag = new DodajSefaKatedriDialog(null,
 							"Postavljanje sefa katedre", true,k);
 					dijag.setLocationRelativeTo(prozor);
 					dijag.setVisible(true);

@@ -22,14 +22,14 @@ import model.Katedra;
 import model.Profesor;
 import model.Zvanje;
 
-public class PostavljanjeSefaKatedreDijalog extends JDialog {
+public class DodajSefaKatedriDialog extends JDialog {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6157322927938848633L;
 
-	public PostavljanjeSefaKatedreDijalog(Frame owner, String title, boolean modal, Katedra k) {
+	public DodajSefaKatedriDialog(Frame owner, String title, boolean modal, Katedra k) {
 		super(owner, title, modal);
 		setSize(300, 300);
 		setResizable(false);
