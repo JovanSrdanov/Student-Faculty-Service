@@ -72,6 +72,7 @@ public class StudentDijalog extends JDialog {
 	public StudentDijalog(Frame owner, String title, boolean modal, char t) {
 		super(owner, title, modal);
 		setSize(520, 430);
+		setResizable(false);
 		setLocationRelativeTo(owner);
 		prozor = this;
 
