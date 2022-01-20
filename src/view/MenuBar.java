@@ -250,6 +250,9 @@ public class MenuBar extends JMenuBar {
 		about.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				AboutDijalog AD = new AboutDijalog(null,"About",true);
+				AD.setLocationRelativeTo(MyFrame.getInstance());
+				AD.setVisible(true);
 			}
 
 		});
