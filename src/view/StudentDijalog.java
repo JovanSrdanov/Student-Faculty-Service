@@ -50,6 +50,7 @@ public class StudentDijalog extends JDialog {
 	private char tip;
 	private String trenutniBrojIndexa;
 	private JTabbedPane zaSad;
+	private StudentDijalog prozor;
 
 	private static int sumaE;
 
@@ -72,7 +73,8 @@ public class StudentDijalog extends JDialog {
 		super(owner, title, modal);
 		setSize(520, 430);
 		setLocationRelativeTo(owner);
-		
+		prozor = this;
+
 		tip = t;
 		trenutniBrojIndexa = "";
 
@@ -312,8 +314,10 @@ public class StudentDijalog extends JDialog {
 			addBtn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					DodavanjePredmetaStudentuDijalog dpsd = new DodavanjePredmetaStudentuDijalog(null, "Dodavanje", true);
-					dpsd.setLocationRelativeTo(MyFrame.getInstance());
+					DodavanjePredmetaStudentuDijalog dpsd = new DodavanjePredmetaStudentuDijalog(null, "Dodavanje",
+							true);
+					dpsd.setLocationRelativeTo(prozor);
+
 					dpsd.setVisible(true);
 
 				}
@@ -328,7 +332,7 @@ public class StudentDijalog extends JDialog {
 					if (rowSelectedIndex != -1) {
 						Ocena o = selectedStudent.getSpisakNePolozenihIspita().get(rowSelectedIndex);
 						PolaganjeDialog polaganjeDialog = new PolaganjeDialog(null, "Polaganje", true, o);
-						polaganjeDialog.setLocationRelativeTo(MyFrame.getInstance());
+						polaganjeDialog.setLocationRelativeTo(prozor);
 						polaganjeDialog.setVisible(true);
 						if (o.getBrojcanaVrednostOcene() > 5) {
 							selectedStudent.getSpisakPolozenihIspita().add(o);

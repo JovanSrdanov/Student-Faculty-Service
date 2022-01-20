@@ -66,6 +66,8 @@ public class PostavljanjeSefaKatedreDijalog extends JDialog {
 
 			if (p.getZvanje() != Zvanje.DOCENT && p.getGodineStaza() >= 5 && k.getSefKatedre() != p)
 				listaMogucihProfesora.add(p);
+			
+			// ne sme da bude sef na drugima
 
 		}
 

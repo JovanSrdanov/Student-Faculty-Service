@@ -42,11 +42,13 @@ public class PredmetDialog extends JDialog {
 	private static JButton btnPlus;
 	private static JButton btnMinus;
 	private String trenutnaSifraPredmeta;
+	private PredmetDialog prozor;
 
 	private static Predmet selectedPredmet;
 
 	public PredmetDialog(Frame owner, String title, boolean modal, char t) {
 		super(owner, title, modal);
+		prozor = this;
 		if(t == 'u')
 			setSize(520, 250);
 		else
@@ -205,7 +207,7 @@ public class PredmetDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				// Dijalog nov
 				DodavnjaProfesoraPredmetu dialog = new DodavnjaProfesoraPredmetu(null, "Dodavnaje profesora", true);
-				dialog.setLocationRelativeTo(MyFrame.getInstance());
+				dialog.setLocationRelativeTo(prozor);
 				dialog.setVisible(true);
 			}
 
