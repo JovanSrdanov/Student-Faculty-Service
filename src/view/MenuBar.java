@@ -24,6 +24,10 @@ import javax.swing.KeyStroke;
 import controller.PredmetiController;
 import controller.ProfesorController;
 import controller.StudentiController;
+import model.Adresa;
+import model.BazaKatedri;
+import model.BazaPredmeta;
+import model.BazaProfesora;
 import model.BazaStudenata;
 import model.Student;
 
@@ -67,40 +71,16 @@ public class MenuBar extends JMenuBar {
 		save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
 		save.setMnemonic(KeyEvent.VK_V);
 		save.addActionListener(new ActionListener() {
-	
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//File f = new File("objectstream.txt"); 
-				 FileOutputStream fileStream = null;
-				try {
-					fileStream = new FileOutputStream("studenti.push");
-				} catch (FileNotFoundException e3) {
-					// TODO Auto-generated catch block
-					e3.printStackTrace();
-				}
-
-				// Creates the ObjectOutputStream
-				ObjectOutputStream oos = null;
-				try {
-					oos = new ObjectOutputStream(fileStream);
-				} catch (IOException e3) {
-					// TODO Auto-generated catch block
-					e3.printStackTrace();
-				}
-
-				try {
-					oos.writeObject(BazaStudenata.getInstance().getStudenti());
-				} catch (IOException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-				try {
-					oos.close();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				String fileName1 = "studenti.txt";
+				String fileName2 = "profesori.txt";
+				String fileName3 = "predmeti.txt";
+				String fileName4 = "katedre.txt";
+				BazaStudenata.getInstance().saveStudente(fileName1);
+				BazaProfesora.getInstance().saveProfesore(fileName2);
+				BazaPredmeta.getInstance().savePredmete(fileName3);
+				BazaKatedri.getInstance().saveKatedre(fileName4);
 			}
 		});
 
@@ -274,40 +254,26 @@ public class MenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				  FileInputStream fileStream = null;
-					try {
-						fileStream = new FileInputStream("studenti.push");
-					} catch (FileNotFoundException e3) {
-						// TODO Auto-generated catch block
-						e3.printStackTrace();
-					}
-					ObjectInputStream oos = null;
-					ArrayList<Student> privemena=null;
-					try {
-						oos = new ObjectInputStream(fileStream);
-						
-						try {
-							privemena = (ArrayList<Student>) oos.readObject();
-						} catch (ClassNotFoundException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						System.out.println(privemena);
-						/*for(Student s :  privemena)
-						{
-							System.out.println(s);
-						}
-						*/
-						try {
-							oos.close();
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					} catch (IOException e3) {
-						// TODO Auto-generated catch block
-						e3.printStackTrace();
-					}
+				try {
+
+		            // Reads data using the ObjectInputStream
+		            FileInputStream fileStream = new FileInputStream("studenti.txt");
+		            ObjectInputStream objStream = new ObjectInputStream(fileStream);
+		            
+		            @SuppressWarnings("unchecked")
+					ArrayList<Student> priv = ( ArrayList<Student>)objStream.readObject();
+		            BazaStudenata.getInstance().setStudenti(priv);
+		            MyFrame.getInstance().azurirajPrikazStudenata();
+
+		            //System.out.println(priv.get(0).getSpisakNePolozenihIspita().get(0).getPredmet().getNazivPredmeta());
+
+		            objStream.close();
+		        }
+
+		        catch (Exception e1) {
+		            e1.getStackTrace();
+		        }
+					
 				
 			}
 			

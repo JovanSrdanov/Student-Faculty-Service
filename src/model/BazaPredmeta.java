@@ -1,5 +1,7 @@
 package model;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -157,6 +159,20 @@ public class BazaPredmeta {
 				}
 			}
 		}
+	}
+	
+	public void savePredmete(String fileName) {
+		try {
+            FileOutputStream file = new FileOutputStream(fileName);
+            ObjectOutputStream output = new ObjectOutputStream(file);
+            
+            output.writeObject(predmeti);
 
+            output.close();
+        }
+
+        catch (Exception e1) {
+            e1.getStackTrace();
+        }
 	}
 }

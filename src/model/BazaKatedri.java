@@ -1,5 +1,7 @@
 package model;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,6 +97,21 @@ public class BazaKatedri {
 		default:
 			return null;
 		}
+	}
+	
+	public void saveKatedre(String fileName) {
+		try {
+            FileOutputStream file = new FileOutputStream(fileName);
+            ObjectOutputStream output = new ObjectOutputStream(file);
+            
+            output.writeObject(katedre);
+
+            output.close();
+        }
+
+        catch (Exception e1) {
+            e1.getStackTrace();
+        }
 	}
 
 }
