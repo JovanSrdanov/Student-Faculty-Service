@@ -4,10 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -21,6 +25,7 @@ import controller.PredmetiController;
 import controller.ProfesorController;
 import controller.StudentiController;
 import model.BazaStudenata;
+import model.Student;
 
 public class MenuBar extends JMenuBar {
 
@@ -28,6 +33,7 @@ public class MenuBar extends JMenuBar {
 	 * 
 	 */
 	private static final long serialVersionUID = -5511353684955783810L;
+	
 
 	public MenuBar() {
 		JMenu file = new JMenu("File");
@@ -61,10 +67,12 @@ public class MenuBar extends JMenuBar {
 		save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
 		save.setMnemonic(KeyEvent.VK_V);
 		save.addActionListener(new ActionListener() {
+	
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//File f = new File("objectstream.txt"); 
-				FileOutputStream fileStream = null;
+				 FileOutputStream fileStream = null;
 				try {
 					fileStream = new FileOutputStream("studenti.push");
 				} catch (FileNotFoundException e3) {
@@ -261,6 +269,50 @@ public class MenuBar extends JMenuBar {
 		JMenuItem about = new JMenuItem("About", icon);
 		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.ALT_MASK));
 		about.setMnemonic(KeyEvent.VK_B);
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		about.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				  FileInputStream fileStream = null;
+					try {
+						fileStream = new FileInputStream("studenti.push");
+					} catch (FileNotFoundException e3) {
+						// TODO Auto-generated catch block
+						e3.printStackTrace();
+					}
+					ObjectInputStream oos = null;
+					ArrayList<Student> privemena=null;
+					try {
+						oos = new ObjectInputStream(fileStream);
+						
+						try {
+							privemena = (ArrayList<Student>) oos.readObject();
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						System.out.println(privemena);
+						/*for(Student s :  privemena)
+						{
+							System.out.println(s);
+						}
+						*/
+						try {
+							oos.close();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					} catch (IOException e3) {
+						// TODO Auto-generated catch block
+						e3.printStackTrace();
+					}
+				
+			}
+			
+			
+		});
 
 		helpPom.addActionListener(new ActionListener() {
 			@Override
