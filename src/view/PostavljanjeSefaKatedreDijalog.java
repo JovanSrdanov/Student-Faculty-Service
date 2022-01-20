@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import model.BazaKatedri;
 import model.Katedra;
 
 import model.Profesor;
@@ -65,10 +66,17 @@ public class PostavljanjeSefaKatedreDijalog extends JDialog {
 
 		for (Profesor p : k.getSpisakProfesoraKojiSuNaKatedri()) {
 
-			if (p.getZvanje() != Zvanje.DOCENT && p.getGodineStaza() >= 5 && k.getSefKatedre() != p)
+			boolean nalazi = false;
+
+			if (p.getZvanje() != Zvanje.DOCENT && p.getGodineStaza() >= 5)
+				for (Katedra pom : BazaKatedri.getInstance().getKatedre()) {
+					if (pom.getSefKatedre() == p)
+						nalazi = true;
+
+				}
+
+			if (nalazi == false)
 				listaMogucihProfesora.add(p);
-			
-			// ne sme da bude sef na drugima
 
 		}
 
