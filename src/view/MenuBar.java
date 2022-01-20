@@ -3,6 +3,11 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -15,6 +20,7 @@ import javax.swing.KeyStroke;
 import controller.PredmetiController;
 import controller.ProfesorController;
 import controller.StudentiController;
+import model.BazaStudenata;
 
 public class MenuBar extends JMenuBar {
 
@@ -54,6 +60,41 @@ public class MenuBar extends JMenuBar {
 		JMenuItem save = new JMenuItem("Save", icon);
 		save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
 		save.setMnemonic(KeyEvent.VK_V);
+		save.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//File f = new File("objectstream.txt"); 
+				FileOutputStream fileStream = null;
+				try {
+					fileStream = new FileOutputStream("studenti.push");
+				} catch (FileNotFoundException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
+
+				// Creates the ObjectOutputStream
+				ObjectOutputStream oos = null;
+				try {
+					oos = new ObjectOutputStream(fileStream);
+				} catch (IOException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
+
+				try {
+					oos.writeObject(BazaStudenata.getInstance().getStudenti());
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				try {
+					oos.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 
 		JMenu open = new JMenu("Open");
 		open.setMnemonic(KeyEvent.VK_P);

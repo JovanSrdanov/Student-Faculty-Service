@@ -1,10 +1,16 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Student {
+public class Student implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4095009493101704725L;
+	
 	private String prezime;
 	private String ime;
 	private LocalDate datumRodjenja;
