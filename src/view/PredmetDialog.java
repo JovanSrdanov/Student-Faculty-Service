@@ -202,6 +202,7 @@ public class PredmetDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				// Dijalog nov
 				DodavnjaProfesoraPredmetu dialog = new DodavnjaProfesoraPredmetu(null, "Dodavnaje profesora", true);
+				dialog.setLocationRelativeTo(MyFrame.getInstance());
 				dialog.setVisible(true);
 			}
 

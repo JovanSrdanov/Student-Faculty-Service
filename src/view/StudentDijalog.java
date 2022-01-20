@@ -312,8 +312,8 @@ public class StudentDijalog extends JDialog {
 			addBtn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					DodavanjePredmetaStudentuDijalog dpsd = new DodavanjePredmetaStudentuDijalog(null, "Dodavanje",
-							true);
+					DodavanjePredmetaStudentuDijalog dpsd = new DodavanjePredmetaStudentuDijalog(null, "Dodavanje", true);
+					dpsd.setLocationRelativeTo(MyFrame.getInstance());
 					dpsd.setVisible(true);
 
 				}
@@ -328,6 +328,7 @@ public class StudentDijalog extends JDialog {
 					if (rowSelectedIndex != -1) {
 						Ocena o = selectedStudent.getSpisakNePolozenihIspita().get(rowSelectedIndex);
 						PolaganjeDialog polaganjeDialog = new PolaganjeDialog(null, "Polaganje", true, o);
+						polaganjeDialog.setLocationRelativeTo(MyFrame.getInstance());
 						polaganjeDialog.setVisible(true);
 						if (o.getBrojcanaVrednostOcene() > 5) {
 							selectedStudent.getSpisakPolozenihIspita().add(o);

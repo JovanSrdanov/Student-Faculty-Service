@@ -353,6 +353,7 @@ public class ProfesorDialog extends JDialog {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					DodajPredmetProfesoru dpp = new DodajPredmetProfesoru(null, "Dodavanje", true);
+					dpp.setLocationRelativeTo(MyFrame.getInstance());
 					dpp.setVisible(true);
 				}
 			});
