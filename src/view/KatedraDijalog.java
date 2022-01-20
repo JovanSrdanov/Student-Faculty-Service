@@ -63,7 +63,7 @@ public class KatedraDijalog extends JDialog {
 				if (rowSelectedIndex != -1) {
 					int a = katedreTable.convertRowIndexToModel(rowSelectedIndex);
 					Katedra k = BazaKatedri.getInstance().getRow(a);
-
+					
 					PostavljanjeSefaKatedreDijalog dijag = new PostavljanjeSefaKatedreDijalog(null,
 							"Postavljanje sefa katedre", true,k);
 					dijag.setLocationRelativeTo(prozor);

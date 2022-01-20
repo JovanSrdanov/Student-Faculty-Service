@@ -44,7 +44,7 @@ public class BazaKatedri {
 	private void initBazaKatedri() {
 		this.katedre = new ArrayList<Katedra>();
 
-		Katedra pom1 = new Katedra("prnii", "PRIMENJENE RACUNARSKE NAUKE", null, null);
+		/*Katedra pom1 = new Katedra("prnii", "PRIMENJENE RACUNARSKE NAUKE", null, null);
 		Katedra pom2 = new Katedra("au", "Automatika", null, null);
 		Katedra pom3 = new Katedra("rtrk", "Najveci ocaj od ljudi", null, null);
 
@@ -68,7 +68,41 @@ public class BazaKatedri {
 
 		this.katedre.add(pom1);
 		katedre.add(pom2);
-		this.katedre.add(pom3);
+		this.katedre.add(pom3);*/
+		
+		
+		/*katedre.add(new Katedra("e42", "Katedra za matematiku", null, null));
+		katedre.add(new Katedra("e43", "Katedra za fiziku", null, null));
+		katedre.add(new Katedra("e44", "Katedra za elektrotehniku", null, null));
+		katedre.add(new Katedra("e45", "Katedra za primenjene računarske nauke", null, null));
+		katedre.add(new Katedra("e46", "Katedra za informatiku", null, null));
+		katedre.add(new Katedra("e47", "Katedra za automatiku", null, null));
+		
+		katedre.get(0).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(0));
+		katedre.get(0).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(1));
+		katedre.get(0).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(18));
+		
+		katedre.get(1).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(2));
+		katedre.get(1).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(7));
+		katedre.get(1).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(13));
+		
+		katedre.get(2).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(3));
+		katedre.get(2).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(8));
+		katedre.get(2).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(14));
+		
+		katedre.get(3).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(6));
+		katedre.get(3).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(9));
+		katedre.get(3).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(15));
+		
+		katedre.get(4).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(4));
+		katedre.get(4).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(10));
+		katedre.get(4).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(12));
+		katedre.get(4).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(16));
+		
+		katedre.get(5).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(5));
+		katedre.get(5).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(11));
+		katedre.get(5).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(17));*/
+
 
 	}
 

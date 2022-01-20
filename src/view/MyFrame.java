@@ -215,10 +215,10 @@ public class MyFrame extends JFrame {
 	}
 
 	public void load() {
+		BazaProfesora.getInstance().loadProfesora("profesori.txt");
 		BazaKatedri.getInstance().loadKatedre("katedre.txt");
 		BazaPredmeta.getInstance().loadPredmeti("predmeti.txt");
 		BazaStudenata.getInstance().loadStudenti("studenti.txt");
-		BazaProfesora.getInstance().loadProfesora("profesori.txt");
 	};
 	
 }

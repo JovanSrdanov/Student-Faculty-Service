@@ -57,7 +57,12 @@ public class Katedra  implements Serializable{
 		super();
 		this.sifraKatedre = sifraKatedre;
 		this.nazivKatedre = nazivKatedre;
-		this.sefKatedre = sefKatedre;
+		
+		if(sefKatedre == null)
+			this.sefKatedre = new Profesor();
+		else
+			this.sefKatedre = sefKatedre;
+			
 		if (spisakProfesoraKojiSuNaKatedri == null)
 			this.spisakProfesoraKojiSuNaKatedri = new ArrayList<>();
 		else
