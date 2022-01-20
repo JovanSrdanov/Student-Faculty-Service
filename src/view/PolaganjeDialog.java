@@ -37,14 +37,14 @@ public class PolaganjeDialog extends JDialog {
 
 	public PolaganjeDialog(Frame owner, String title, boolean modal, Ocena ocena) {
 		super(owner, title, modal);
-		setSize(300, 300);
+		setSize(300, 250);
 		setLocationRelativeTo(owner);
 
 		JPanel centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
-		Dimension dimLabela = new Dimension(150, 20);
-		Dimension dimTextBox = new Dimension(100, 20);
+		Dimension dimLabela = new Dimension(110, 20);
+		Dimension dimTextBox = new Dimension(150, 20);
 
 		// Dodavanje jednog reda
 		JPanel sifraPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));

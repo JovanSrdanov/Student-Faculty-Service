@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -29,11 +33,17 @@ public class DodavanjePredmetaStudentuDijalog extends JDialog {
 	public DodavanjePredmetaStudentuDijalog(Frame owner, String title, boolean modal) {
 		super(owner, title, modal);
 		setSize(300, 300);
-		setLocationRelativeTo(owner);
-
+		//setLocationRelativeTo(owner);
+		Dimension dimListe = new Dimension(300, 250);
+		Dimension dimScroll = new Dimension(200, 200);
+		Dimension dimBtn = new Dimension(300, 50);
+		
 		JPanel centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-		JPanel btnPnl = new JPanel();
+		
+		JPanel btnPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		btnPnl.setPreferredSize(dimBtn);
+		
 		dodajBtn = new JButton("Dodaj");
 		dodajBtn.setEnabled(false);
 		odustaniBTN = new JButton("Odustani");
@@ -82,8 +92,14 @@ public class DodavanjePredmetaStudentuDijalog extends JDialog {
 		for (int i = 0; i < sifraImePredmeta.size(); i++) {
 			dodaj[i] = sifraImePredmeta.get(i);
 		}
-
+		
 		JList<String> listBox = new JList<String>(dodaj);
+		JPanel listPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JScrollPane sctrollList = new JScrollPane(listBox);
+		sctrollList.setPreferredSize(dimScroll);
+		
+		listPnl.add(sctrollList);
+		listPnl.setPreferredSize(dimListe);
 
 		listBox.addListSelectionListener(new ListSelectionListener() {
 
@@ -119,7 +135,7 @@ public class DodavanjePredmetaStudentuDijalog extends JDialog {
 
 		});
 
-		centerPanel.add(listBox);
+		centerPanel.add(listPnl);
 		centerPanel.add(btnPnl);
 		this.add(centerPanel);
 

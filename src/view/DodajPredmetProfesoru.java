@@ -13,6 +13,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -28,8 +29,11 @@ public class DodajPredmetProfesoru extends JDialog {
 
 	public DodajPredmetProfesoru(Frame owner, String title, boolean modal) {
 		super(owner, title, modal);
-		setSize(400, 400);
-		setLocationRelativeTo(owner);
+		setSize(300, 300);
+		//setLocationRelativeTo(owner);
+		Dimension dimListe = new Dimension(300, 220);
+		Dimension dimScroll = new Dimension(200, 170);
+		Dimension dimBtn = new Dimension(300, 50);
 
 		JPanel centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
@@ -44,7 +48,9 @@ public class DodajPredmetProfesoru extends JDialog {
 		lblPnl.add(lbllbl);
 		centerPanel.add(lblPnl);
 
-		JPanel btnPnl = new JPanel();
+		JPanel btnPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		btnPnl.setPreferredSize(dimBtn);
+		
 		JButton potvrdiBtn = new JButton("Potvrdi");
 		JButton odustaniBtn = new JButton("Odustani");
 		btnPnl.add(potvrdiBtn);
@@ -78,7 +84,13 @@ public class DodajPredmetProfesoru extends JDialog {
 		}
 
 		JList<String> listBox = new JList<String>(dodaj);
+		JPanel listPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JScrollPane sctrollList = new JScrollPane(listBox);
+		sctrollList.setPreferredSize(dimScroll);
 
+		listPnl.add(sctrollList);
+		listPnl.setPreferredSize(dimListe);
+		
 		potvrdiBtn.setEnabled(false);
 		listBox.addListSelectionListener(new ListSelectionListener() {
 
@@ -114,7 +126,7 @@ public class DodajPredmetProfesoru extends JDialog {
 
 		});
 
-		centerPanel.add(listBox);
+		centerPanel.add(listPnl);
 		centerPanel.add(btnPnl);
 		this.add(centerPanel);
 	}

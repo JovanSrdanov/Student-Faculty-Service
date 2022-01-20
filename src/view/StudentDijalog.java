@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
@@ -23,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.text.AttributeSet.ColorAttribute;
 
 import model.Adresa;
 
@@ -72,6 +74,7 @@ public class StudentDijalog extends JDialog {
 		super(owner, title, modal);
 		setSize(520, 430);
 		setLocationRelativeTo(owner);
+		
 		tip = t;
 		trenutniBrojIndexa = "";
 
@@ -297,8 +300,7 @@ public class StudentDijalog extends JDialog {
 
 			JPanel panNepolozeni = new JPanel();
 			panNepolozeni.setLayout(new BoxLayout(panNepolozeni, BoxLayout.Y_AXIS));
-			JPanel panBtn = new JPanel(new FlowLayout(FlowLayout.CENTER));
-			panBtn.setPreferredSize(new Dimension(panBtn.getWidth(), 0));
+			JPanel panBtn = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
 			nepolozeniTabel = new Tabela(new AbstractTableModelNepolozeni());
 			JScrollPane scrollPaneNepolozeni = new JScrollPane(nepolozeniTabel);
