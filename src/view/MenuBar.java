@@ -1,14 +1,19 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Dimension;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.util.ArrayList;
+
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -21,7 +26,7 @@ import model.BazaKatedri;
 import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.BazaStudenata;
-import model.Student;
+
 
 public class MenuBar extends JMenuBar {
 
@@ -31,6 +36,7 @@ public class MenuBar extends JMenuBar {
 	private static final long serialVersionUID = -5511353684955783810L;
 
 	public MenuBar() {
+	
 		JMenu file = new JMenu("File");
 		file.setMnemonic(KeyEvent.VK_F);
 		Icon icon = new ImageIcon();
@@ -259,6 +265,24 @@ public class MenuBar extends JMenuBar {
 		help.addSeparator();
 		help.add(about);
 		add(help);
+
+		JButton sr = new JButton();
+		JButton en = new JButton();
+		add(Box.createHorizontalGlue());
+
+		icon = new ImageIcon("icons" + File.separator + "en.png");
+		
+		en.setBackground(Color.white);		
+		en.setPreferredSize(new Dimension(30, 30));
+		en.setIcon(icon);
+		
+		icon = new ImageIcon("icons" + File.separator + "sr.png");
+		sr.setBackground(Color.white);
+		sr.setPreferredSize(new Dimension(30, 30));
+		sr.setIcon(icon);
+
+		add(sr);
+		add(en);
 
 	}
 
