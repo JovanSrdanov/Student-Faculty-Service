@@ -38,18 +38,17 @@ public class Student {
 		this.trenutnaGodinaStudija = trenutnaGodinaStudija;
 		this.status = status;
 		this.prosecnaOcena = prosecnaOcena;
-		
-		if(spisakPolozenihIspita == null)
+
+		if (spisakPolozenihIspita == null)
 			this.spisakPolozenihIspita = new ArrayList<>();
 		else
 			this.spisakPolozenihIspita = spisakPolozenihIspita;
-		
-		if(spisakNePolozenihIspita == null)
+
+		if (spisakNePolozenihIspita == null)
 			this.spisakNePolozenihIspita = new ArrayList<>();
 		else
 			this.spisakNePolozenihIspita = spisakNePolozenihIspita;
-		
-		
+
 	}
 
 	public String getPrezime() {

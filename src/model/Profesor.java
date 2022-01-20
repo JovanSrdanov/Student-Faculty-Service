@@ -36,8 +36,8 @@ public class Profesor {
 		this.zvanje = zvanje;
 		this.godineStaza = godineStaza;
 		this.spisakPredmetaNaKojimaJeProfesor = spisakPredmetaNaKojimaJeProfesor;
-		
-		if(this.spisakPredmetaNaKojimaJeProfesor == null)
+
+		if (this.spisakPredmetaNaKojimaJeProfesor == null)
 			this.spisakPredmetaNaKojimaJeProfesor = new ArrayList<Predmet>();
 	}
 

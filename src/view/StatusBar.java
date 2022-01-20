@@ -25,7 +25,7 @@ public class StatusBar extends JPanel {
 
 	public StatusBar() {
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-		this.setPreferredSize(new Dimension((int)this.getSize().getWidth(), 25));
+		this.setPreferredSize(new Dimension((int) this.getSize().getWidth(), 25));
 		imeAplikacijeLab = new JLabel(imeApp);
 		imeAplikacijeLab.setHorizontalAlignment(SwingConstants.LEFT);
 		add(imeAplikacijeLab);

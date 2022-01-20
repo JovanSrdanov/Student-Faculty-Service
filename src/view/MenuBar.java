@@ -101,6 +101,16 @@ public class MenuBar extends JMenuBar {
 		Katedre.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.ALT_MASK));
 		Katedre.setMnemonic(KeyEvent.VK_K);
 
+		Katedre.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				KatedraDijalog KD = new KatedraDijalog(null, "Katedre", true);
+				KD.setLocationRelativeTo(MyFrame.getInstance());
+				KD.setVisible(true);
+
+			}
+		});
+
 		open.add(Studenti);
 		open.addSeparator();
 		open.add(Profesori);
@@ -177,17 +187,17 @@ public class MenuBar extends JMenuBar {
 				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
 				if (selectedTab == 0) {
 					StudentiController.getInstance().izbrisiStudenta(MyFrame.getTabelaStduenti().getSelectedRow());
-					if(MyFrame.getInstance().isPretraga()) {
+					if (MyFrame.getInstance().isPretraga()) {
 						StudentiController.getInstance().pretraziStudente(Toolbar.getStaraPretraga());
 					}
 				} else if (selectedTab == 1) {
 					ProfesorController.getInstance().izbrisiProfesora(MyFrame.getTabelaProfesora().getSelectedRow());
-					if(MyFrame.getInstance().isPretraga()) {
+					if (MyFrame.getInstance().isPretraga()) {
 						ProfesorController.getInstance().pretraziProfesore(Toolbar.getStaraPretraga());
 					}
 				} else if (selectedTab == 2) {
 					PredmetiController.getInstance().izbrisiPredmet(MyFrame.getTabelaPredmeta().getSelectedRow());
-					if(MyFrame.getInstance().isPretraga())
+					if (MyFrame.getInstance().isPretraga())
 						PredmetiController.getInstance().pretraziPredmete(Toolbar.getStaraPretraga());
 				}
 			}

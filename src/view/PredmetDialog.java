@@ -50,8 +50,7 @@ public class PredmetDialog extends JDialog {
 		setSize(600, 400);
 		tip = t;
 		trenutnaSifraPredmeta = "";
-		if (trenutnaSifraPredmeta.equals(""))
-			;
+		
 		///////////////////////////////////////////////////
 
 		JPanel centerPanel = new JPanel();

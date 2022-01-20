@@ -13,14 +13,13 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		
-		if(MyFrame.getInstance().isPretraga()) {
+
+		if (MyFrame.getInstance().isPretraga()) {
 			if (BazaPredmeta.getInstance().getPredmetiPretraga() == null) {
 				return 1;
 			}
 			return BazaPredmeta.getInstance().getPredmetiPretraga().size();
-		}
-		else {
+		} else {
 			if (BazaPredmeta.getInstance().getPredmeti() == null) {
 				return 1;
 			}
@@ -47,10 +46,10 @@ public class AbstractTableModelPredmeti extends AbstractTableModel {
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		super.setValueAt(aValue, rowIndex, columnIndex);
 	}
-	
+
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
-		if(BazaPredmeta.getInstance().getPredmeti().isEmpty())
+		if (BazaPredmeta.getInstance().getPredmeti().isEmpty())
 			return Object.class;
 		return getValueAt(0, columnIndex).getClass();
 	}

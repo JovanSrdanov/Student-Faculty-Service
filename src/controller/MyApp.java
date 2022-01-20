@@ -40,11 +40,11 @@ public class MyApp {
 				else if (broj1 < broj2)
 					return -1;
 				else
-					return 0;				
+					return 0;
 			}
 
 		});
-		
+
 		TableRowSorter<AbstractTableModelPredmeti> sorterPredmeta = new TableRowSorter<AbstractTableModelPredmeti>(
 				new AbstractTableModelPredmeti());
 		MyFrame.getTabelaPredmeta().setRowSorter(sorterPredmeta);
@@ -55,7 +55,7 @@ public class MyApp {
 			public int compare(String o1, String o2) {
 				String[] predmet1 = o1.split("(?<=\\D)(?=\\d)");
 				String[] predmet2 = o2.split("(?<=\\D)(?=\\d)");
-				
+
 				int broj1 = Integer.parseInt(predmet1[1]);
 				int broj2 = Integer.parseInt(predmet2[1]);
 

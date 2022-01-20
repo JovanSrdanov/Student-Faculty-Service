@@ -52,6 +52,7 @@ public class ProfesorDialog extends JDialog {
 
 	private static Tabela predajeTabel;
 	private static Profesor selectedProfesor;
+
 	public static Profesor getSelectedProfesor() {
 		return selectedProfesor;
 	}

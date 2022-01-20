@@ -116,7 +116,6 @@ public class MyFrame extends JFrame {
 	private void createTabbedPane() {
 
 		tabbedPane = new MyTab();
-	
 
 		ImageIcon iconStudenti = createImageIcon("icons/studenti.png", true, 32, 32);
 		tabelaStduenti = new Tabela(new AbstractTableModelStudenti());
@@ -133,12 +132,12 @@ public class MyFrame extends JFrame {
 
 		JScrollPane scrollPanePredmeti = new JScrollPane(tabelaPredmeta);
 		tabbedPane.addTab("Predmeti", iconPredmeti, scrollPanePredmeti, "Prikaz predmeta");
-		
+
 		tabbedPane.addChangeListener(new ChangeListener() {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				pretraga=false;
+				pretraga = false;
 				statusBar.setAktivniTab(tabbedPane.getSelectedIndex());
 				Toolbar.getSearchBar().setText("");
 				azurirajPrikazStudenata();
@@ -147,7 +146,6 @@ public class MyFrame extends JFrame {
 			}
 
 		});
-		
 
 		this.panelGlavni.add(tabbedPane, BorderLayout.CENTER);
 

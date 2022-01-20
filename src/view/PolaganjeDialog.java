@@ -22,57 +22,57 @@ import javax.swing.JTextField;
 
 import model.Ocena;
 
-public class PolaganjeDialog extends JDialog{
+public class PolaganjeDialog extends JDialog {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3632848417475164935L;
-	
+
 	private JTextField sifraTxt;
 	private JTextField nazivTxt;
 	private JComboBox<String> ocenaCb;
 	private JTextField datumTxt;
 	private JButton okBtn;
-	
+
 	public PolaganjeDialog(Frame owner, String title, boolean modal, Ocena ocena) {
 		super(owner, title, modal);
 		setSize(300, 300);
 		setLocationRelativeTo(owner);
-		
+
 		JPanel centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-		
+
 		Dimension dimLabela = new Dimension(150, 20);
 		Dimension dimTextBox = new Dimension(100, 20);
-		
-		//Dodavanje jednog reda
+
+		// Dodavanje jednog reda
 		JPanel sifraPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel sifraLbl = new JLabel("Sifra:");
 		sifraLbl.setPreferredSize(dimLabela);
-		
+
 		sifraTxt = new JTextField();
 		sifraTxt.setPreferredSize(dimTextBox);
 		sifraTxt.setEditable(false);
 		sifraTxt.setText(ocena.getPredmet().getSifrPredmeta());
-		
+
 		sifraPnl.add(sifraLbl);
 		sifraPnl.add(sifraTxt);
-		
-		//Naziv
+
+		// Naziv
 		JPanel nazivPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel nazivLbl = new JLabel("Naziv predmeta:");
 		nazivLbl.setPreferredSize(dimLabela);
-		
+
 		nazivTxt = new JTextField();
 		nazivTxt.setPreferredSize(dimTextBox);
 		nazivTxt.setEditable(false);
 		nazivTxt.setText(ocena.getPredmet().getNazivPredmeta());
-		
+
 		nazivPnl.add(nazivLbl);
 		nazivPnl.add(nazivTxt);
-		
-		//Datum
+
+		// Datum
 		JPanel datPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel datLbl = new JLabel("Datum polaganja:");
 		datLbl.setPreferredSize(dimLabela);
@@ -82,8 +82,8 @@ public class PolaganjeDialog extends JDialog{
 
 		datPnl.add(datLbl);
 		datPnl.add(datumTxt);
-		
-		//ocena (treba bude comboBox)
+
+		// ocena (treba bude comboBox)
 		JPanel ocenaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel ocenaLbl = new JLabel("Ocena:");
 		ocenaLbl.setPreferredSize(dimLabela);
@@ -94,9 +94,8 @@ public class PolaganjeDialog extends JDialog{
 
 		ocenaPnl.add(ocenaLbl);
 		ocenaPnl.add(ocenaCb);
-	
-		
-		//btn
+
+		// btn
 		JPanel btnPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		okBtn = new JButton("Potvrdi");
 		okBtn.setEnabled(false);
@@ -109,23 +108,23 @@ public class PolaganjeDialog extends JDialog{
 				ocena.setDatumPolaganjaIspita(datum);
 				MyFrame.getInstance().azurirajPrikazStudenata();
 				dispose();
-				
-			}		
-		});		
+
+			}
+		});
 		btnPnl.add(okBtn);
-		
+
 		JButton ripBtn = new JButton("Odustani");
 		ripBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//ocena.setBrojcanaVrednostOcene(5);
-				dispose();		
-			}		
-		});		
+				// ocena.setBrojcanaVrednostOcene(5);
+				dispose();
+			}
+		});
 		btnPnl.add(ripBtn);
-		
+
 		dodajFocusListener(datumTxt);
-		
+
 		centerPanel.add(sifraPnl);
 		centerPanel.add(nazivPnl);
 		centerPanel.add(ocenaPnl);
@@ -187,9 +186,8 @@ public class PolaganjeDialog extends JDialog{
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
-	
-	
+
 }

@@ -17,37 +17,38 @@ import model.BazaProfesora;
 import model.Profesor;
 
 public class DodavnjaProfesoraPredmetu extends JDialog {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4322116241138504021L;
 	private JButton potvrdiBtn;
 	private JButton odustaniBtn;
+
 	public DodavnjaProfesoraPredmetu(Frame owner, String title, boolean modal) {
 		super(owner, title, modal);
 		setSize(300, 300);
 		setLocationRelativeTo(owner);
 		JPanel centerPanel = new JPanel();
-		
+
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 		JPanel btnPnl = new JPanel();
 		potvrdiBtn = new JButton("Potvrdi");
 		potvrdiBtn.setEnabled(false);
 		odustaniBtn = new JButton("Odustani");
 		btnPnl.add(potvrdiBtn);
-		btnPnl.add(odustaniBtn);	
-		
+		btnPnl.add(odustaniBtn);
+
 		String[] listaProfa;
 		listaProfa = new String[BazaProfesora.getInstance().getProfesori().size()];
-		
-		//Popuniti listu profa
+
+		// Popuniti listu profa
 		int i = 0;
-		for(Profesor p : BazaProfesora.getInstance().getProfesori()) {
+		for (Profesor p : BazaProfesora.getInstance().getProfesori()) {
 			listaProfa[i] = p.getIme() + " " + p.getPrezime();
 			++i;
 		}
-		
+
 		JList<String> listBox = new JList<String>(listaProfa);
 		listBox.setPreferredSize(new Dimension(100, 200));
 
@@ -59,19 +60,21 @@ public class DodavnjaProfesoraPredmetu extends JDialog {
 				}
 			}
 		});
-		
+
 		potvrdiBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int selectedIndex = listBox.getSelectedIndex();
-				PredmetDialog.getSelectedPredmet().setPredmetniProfesor(BazaProfesora.getInstance().getProfesori().get(selectedIndex));
-				BazaProfesora.getInstance().getProfesori().get(selectedIndex).getSpisakPredmetaNaKojimaJeProfesor().add(PredmetDialog.getSelectedPredmet());
+				PredmetDialog.getSelectedPredmet()
+						.setPredmetniProfesor(BazaProfesora.getInstance().getProfesori().get(selectedIndex));
+				BazaProfesora.getInstance().getProfesori().get(selectedIndex).getSpisakPredmetaNaKojimaJeProfesor()
+						.add(PredmetDialog.getSelectedPredmet());
 				PredmetDialog.azurirajProf();
 				dispose();
 			}
-			
+
 		});
-		
+
 		odustaniBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -80,7 +83,7 @@ public class DodavnjaProfesoraPredmetu extends JDialog {
 			}
 
 		});
-		
+
 		centerPanel.add(listBox);
 		centerPanel.add(btnPnl);
 		this.add(centerPanel);

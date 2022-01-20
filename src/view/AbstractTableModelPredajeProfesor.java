@@ -2,8 +2,8 @@ package view;
 
 import javax.swing.table.AbstractTableModel;
 
-public class AbstractTableModelPredajeProfesor extends AbstractTableModel{
-	
+public class AbstractTableModelPredajeProfesor extends AbstractTableModel {
+
 	/**
 	 * 
 	 */

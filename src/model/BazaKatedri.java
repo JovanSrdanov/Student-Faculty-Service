@@ -38,14 +38,13 @@ public class BazaKatedri {
 
 	private void initBazaKatedri() {
 		this.katedre = new ArrayList<Katedra>();
-		Katedra pom1 = new Katedra("prnii","PRIMENJENE RACUNARSKE NAUKE",null,null);
-		Katedra pom2 = new Katedra("au","Automatika",null,null);
-		Katedra pom3 = new Katedra("rtrk","Najveci ocaj od ljudi",null,null);
-		
+		Katedra pom1 = new Katedra("prnii", "PRIMENJENE RACUNARSKE NAUKE", null, null);
+		Katedra pom2 = new Katedra("au", "Automatika", null, null);
+		Katedra pom3 = new Katedra("rtrk", "Najveci ocaj od ljudi", null, null);
+
 		this.katedre.add(pom1);
 		katedre.add(pom2);
 		this.katedre.add(pom3);
-		
 
 	}
 

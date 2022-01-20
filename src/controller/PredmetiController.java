@@ -39,25 +39,25 @@ public class PredmetiController {
 		if (input == 0) {
 			// izmena modela
 			Predmet predmet = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
-			//izbrisati kod studenta
-			for(Student student : BazaStudenata.getInstance().getStudenti()) {
-				for(Ocena ocena : student.getSpisakNePolozenihIspita()) {
-					if(ocena.getPredmet().getSifrPredmeta().equals(predmet.getSifrPredmeta())) {
+			// izbrisati kod studenta
+			for (Student student : BazaStudenata.getInstance().getStudenti()) {
+				for (Ocena ocena : student.getSpisakNePolozenihIspita()) {
+					if (ocena.getPredmet().getSifrPredmeta().equals(predmet.getSifrPredmeta())) {
 						student.getSpisakNePolozenihIspita().remove(ocena);
 						break;
 					}
 				}
-				for(Ocena ocena : student.getSpisakPolozenihIspita()) {
-					if(ocena.getPredmet().getSifrPredmeta().equals(predmet.getSifrPredmeta())) {
+				for (Ocena ocena : student.getSpisakPolozenihIspita()) {
+					if (ocena.getPredmet().getSifrPredmeta().equals(predmet.getSifrPredmeta())) {
 						student.getSpisakPolozenihIspita().remove(ocena);
 						break;
 					}
 				}
 			}
-			//izbrisati kod prof
-			for(Profesor prof : BazaProfesora.getInstance().getProfesori()) {
-				for(Predmet pred : prof.getSpisakPredmetaNaKojimaJeProfesor()) {
-					if(pred.getSifrPredmeta().equals(predmet.getSifrPredmeta())) {
+			// izbrisati kod prof
+			for (Profesor prof : BazaProfesora.getInstance().getProfesori()) {
+				for (Predmet pred : prof.getSpisakPredmetaNaKojimaJeProfesor()) {
+					if (pred.getSifrPredmeta().equals(predmet.getSifrPredmeta())) {
 						prof.getSpisakPredmetaNaKojimaJeProfesor().remove(predmet);
 						break;
 					}
@@ -75,16 +75,16 @@ public class PredmetiController {
 		predmetDialog.setLocationRelativeTo(MyFrame.getInstance());
 		predmetDialog.setVisible(true);
 	}
-	
+
 	public void izmeniPredmet() {
 		PredmetDialog predmetDialog = new PredmetDialog(null, "Izmena predmeta", true, 'i');
 		predmetDialog.setLocationRelativeTo(MyFrame.getInstance());
 		predmetDialog.setVisible(true);
 	}
-	
+
 	public void pretraziPredmete(String rec) {
 		BazaPredmeta.getInstance().pretraziPredmete(rec);
 		MyFrame.getInstance().azurirajPrikazPredmeta();
 	}
-	
+
 }

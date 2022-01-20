@@ -37,41 +37,37 @@ public class BazaStudenata {
 	private void initStudente() {
 		this.studenti = new ArrayList<Student>();
 		this.studentiPretraga = new ArrayList<Student>();
-		
-		
-		
-		
-		Adresa a = new Adresa("Novosadska","3", "Zrenjanin", "Srbija");
-		Student pom1 = new Student("Srdanov", "Jovan", LocalDate.now(), a, "5/55523", "jovan.s@gmail.com", "RA 145/2019",
-				2019, 3, Status.BUDŽET, 0, null, null);
+
+		Adresa a = new Adresa("Novosadska", "3", "Zrenjanin", "Srbija");
+		Student pom1 = new Student("Srdanov", "Jovan", LocalDate.now(), a, "5/55523", "jovan.s@gmail.com",
+				"RA 145/2019", 2019, 3, Status.BUDŽET, 0, null, null);
 		Student pom2 = new Student("Erakovic", "Strahinja", LocalDate.now(), a, "555/523", "strahinja.e@gmail.com",
 				"RA 146/2018", 2018, 3, Status.BUDŽET, 0, null, null);
 		Student pom3 = new Student("Prezimenic", "Imenko", LocalDate.now(), a, "55552/3", "imenko.p@yahoo.com",
 				"SW 147/2017", 2017, 3, Status.BUDŽET, 0, null, null);
-		Student pom4 = new Student("Strasno", "Uzas", LocalDate.now(), a, "555/323", "mjau.mmm@gmail.com", "SW 148/2016",
-				2016, 2, Status.SAMOFINANRSIRANJE, 0, null, null);
-		Student pom5 = new Student("Kovačević", "Dragoslava", LocalDate.now(), a, "555/5523", "dragoslava.kov@gmail.com",
-				"RA 22/2019", 2019, 3, Status.SAMOFINANRSIRANJE, 0, null, null);
-	
-	
+		Student pom4 = new Student("Strasno", "Uzas", LocalDate.now(), a, "555/323", "mjau.mmm@gmail.com",
+				"SW 148/2016", 2016, 2, Status.SAMOFINANRSIRANJE, 0, null, null);
+		Student pom5 = new Student("Kovačević", "Dragoslava", LocalDate.now(), a, "555/5523",
+				"dragoslava.kov@gmail.com", "RA 22/2019", 2019, 3, Status.SAMOFINANRSIRANJE, 0, null, null);
+
 		Profesor p = new Profesor("Milan", "Rapajic", LocalDate.of(1980, 3, 13),
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64", "rap.aja@uns.ac.rs",
 				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, null);
-		
-		Predmet pp =new Predmet("e55", "Baze podataka 2", Semestar.ZIMSKI, 3, p, 6); //gej
-		
-		Ocena o = new Ocena(pom1, pp, 5,LocalDate.now());
-		
-		ArrayList<Ocena> heheheh= new ArrayList<Ocena>(); 
+
+		Predmet pp = new Predmet("e55", "Baze podataka 2", Semestar.ZIMSKI, 3, p, 6); // gej
+
+		Ocena o = new Ocena(pom1, pp, 5, LocalDate.now());
+
+		ArrayList<Ocena> heheheh = new ArrayList<Ocena>();
 		heheheh.add(o);
-		
+
 		pom1.setSpisakNePolozenihIspita(heheheh);
-		
-		Ocena op = new Ocena(pom1, pp, 10,LocalDate.now());
-		ArrayList<Ocena> zaPolozene= new ArrayList<Ocena>(); 
+
+		Ocena op = new Ocena(pom1, pp, 10, LocalDate.now());
+		ArrayList<Ocena> zaPolozene = new ArrayList<Ocena>();
 		zaPolozene.add(op);
 		pom2.setSpisakPolozenihIspita(zaPolozene);
-		
+
 		this.studenti.add(pom1);
 		this.studenti.add(pom2);
 		this.studenti.add(pom3);
@@ -81,7 +77,7 @@ public class BazaStudenata {
 	}
 
 	public List<Student> getStudenti() {
-		if(MyFrame.getInstance().isPretraga())
+		if (MyFrame.getInstance().isPretraga())
 			return studentiPretraga;
 		return studenti;
 	}
@@ -99,21 +95,21 @@ public class BazaStudenata {
 	}
 
 	public Student getRow(int rowIndex) {
-		if(MyFrame.getInstance().isPretraga())
+		if (MyFrame.getInstance().isPretraga())
 			return studentiPretraga.get(rowIndex);
 		return studenti.get(rowIndex);
 	}
 
 	public String getValueAt(int row, int column) {
 		Student s;
-		
-		if(MyFrame.getInstance().isPretraga())
+
+		if (MyFrame.getInstance().isPretraga())
 			s = studentiPretraga.get(row);
 		else
 			s = studenti.get(row);
-		
+
 		this.sracunajProsek(s);
-		
+
 		switch (column) {
 		case 0:
 			return s.getBrojIndexa();
@@ -147,7 +143,7 @@ public class BazaStudenata {
 
 	public void izmeniStudenta(String prezime, String ime, LocalDate datumRodjenja, Adresa adresaStanovanja,
 			String kontaktTelefon, String eMailAdresa, String brojIndexa, int godinaUpisa, int trenutnaGodinaStudija,
-			Status status,String stariIndex) {
+			Status status, String stariIndex) {
 		for (Student s : studenti) {
 			if (s.getBrojIndexa().equals(stariIndex)) {
 				s.setBrojIndexa(brojIndexa);
@@ -160,19 +156,19 @@ public class BazaStudenata {
 				s.setGodinaUpisa(godinaUpisa);
 				s.setTrenutnaGodinaStudija(trenutnaGodinaStudija);
 				s.setStatus(status);
-				//s.setSpisakNePolozenihIspita(null);
-				//s.setSpisakPolozenihIspita(null);
+				// s.setSpisakNePolozenihIspita(null);
+				// s.setSpisakPolozenihIspita(null);
 
 			}
 		}
 	}
-	
+
 	public void pretraziStudente(String rec) {
 		studentiPretraga.clear();
 		String ime;
 		String prezime;
 		String index;
-		
+
 		if (rec.matches("[^,]+")) {
 			prezime = rec;
 
@@ -183,7 +179,7 @@ public class BazaStudenata {
 			}
 
 		}
-		
+
 		if (rec.matches("[^,]+,[^,]+")) {
 			String[] parts = rec.split(",");
 			prezime = parts[0].trim();
@@ -196,7 +192,7 @@ public class BazaStudenata {
 				}
 			}
 		}
-		
+
 		if (rec.matches("[^,]+,[^,]+,[^,]+")) {
 			String[] parts = rec.split(",");
 			prezime = parts[0].trim();
@@ -211,29 +207,25 @@ public class BazaStudenata {
 				}
 			}
 		}
-		
-		
-		
-		
+
 	}
-	
-	private void sracunajProsek(Student s)
-	{
+
+	private void sracunajProsek(Student s) {
 		ArrayList<Ocena> ocene = s.getSpisakPolozenihIspita();
 
 		Double avgOcn = 0.0;
-		
+
 		Double sumaO = 0.0;
-		
+
 		if (ocene != null) {
 			for (Ocena o : ocene) {
 				sumaO = o.getBrojcanaVrednostOcene() + sumaO;
 			}
 		}
-		
-		if(ocene.size() != 0)
-			avgOcn=sumaO/ocene.size();
-	
+
+		if (ocene.size() != 0)
+			avgOcn = sumaO / ocene.size();
+
 		s.setProsecnaOcena(avgOcn);
 	}
 }

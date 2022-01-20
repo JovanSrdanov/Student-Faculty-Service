@@ -60,7 +60,7 @@ public class DodavanjePredmetaStudentuDijalog extends JDialog {
 				}
 
 			}
-			
+
 			if (nalazi == false) {
 
 				if (p.getGodinaStudijaUKojojSePredmetIzvodi() <= StudentDijalog.getSelectedStudent()
@@ -68,12 +68,8 @@ public class DodavanjePredmetaStudentuDijalog extends JDialog {
 
 					listaMogucihPredmeta.add(p);
 				}
-				
-		
-				
 
 			}
-			
 
 		}
 

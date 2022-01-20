@@ -25,7 +25,7 @@ public class Toolbar extends JToolBar {
 	 * 
 	 */
 	private static final long serialVersionUID = -5707394191276063225L;
-	
+
 	private static String staraPretraga;
 
 	public static String getStaraPretraga() {
@@ -37,8 +37,6 @@ public class Toolbar extends JToolBar {
 	public static JTextField getSearchBar() {
 		return searchBar;
 	}
-
-
 
 	public Toolbar() {
 		super(SwingConstants.HORIZONTAL);
@@ -107,17 +105,17 @@ public class Toolbar extends JToolBar {
 				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
 				if (selectedTab == 0) {
 					StudentiController.getInstance().izbrisiStudenta(MyFrame.getTabelaStduenti().getSelectedRow());
-					if(MyFrame.getInstance().isPretraga()) {
+					if (MyFrame.getInstance().isPretraga()) {
 						StudentiController.getInstance().pretraziStudente(staraPretraga);
 					}
 				} else if (selectedTab == 1) {
 					ProfesorController.getInstance().izbrisiProfesora(MyFrame.getTabelaProfesora().getSelectedRow());
-					if(MyFrame.getInstance().isPretraga()) {
+					if (MyFrame.getInstance().isPretraga()) {
 						ProfesorController.getInstance().pretraziProfesore(staraPretraga);
 					}
 				} else if (selectedTab == 2) {
 					PredmetiController.getInstance().izbrisiPredmet(MyFrame.getTabelaPredmeta().getSelectedRow());
-					if(MyFrame.getInstance().isPretraga())
+					if (MyFrame.getInstance().isPretraga())
 						PredmetiController.getInstance().pretraziPredmete(staraPretraga);
 				}
 			}
@@ -146,57 +144,45 @@ public class Toolbar extends JToolBar {
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+
 				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
 				if (selectedTab == 0) {
 					// Student
-					if(searchBar.getText().isBlank())
-					{
+					if (searchBar.getText().isBlank()) {
 						MyFrame.getInstance().setPretraga(false);
 						MyFrame.getInstance().azurirajPrikazStudenata();
-					}
-					else
-					{
+					} else {
 						MyFrame.getInstance().setPretraga(true);
 						staraPretraga = searchBar.getText();
 						StudentiController.getInstance().pretraziStudente(staraPretraga);
 					}
-					
-					
-					
-					
+
 				} else if (selectedTab == 1) {
 					// Profesor
-					if(searchBar.getText().isBlank())
-					{
+					if (searchBar.getText().isBlank()) {
 						MyFrame.getInstance().setPretraga(false);
 						MyFrame.getInstance().azurirajPrikazProfesora();
-					}
-					else
-					{
+					} else {
 						MyFrame.getInstance().setPretraga(true);
 						staraPretraga = searchBar.getText();
 						ProfesorController.getInstance().pretraziProfesore(staraPretraga);
 					}
-					
+
 				} else if (selectedTab == 2) {
-					// Predmet	
-					if(searchBar.getText().isBlank())
-					{
+					// Predmet
+					if (searchBar.getText().isBlank()) {
 						MyFrame.getInstance().setPretraga(false);
 						MyFrame.getInstance().azurirajPrikazPredmeta();
-					}
-					else
-					{
+					} else {
 						MyFrame.getInstance().setPretraga(true);
 						staraPretraga = searchBar.getText();
-						//ProfesorController.getInstance().pretraziProfesore(staraPretraga);
+						// ProfesorController.getInstance().pretraziProfesore(staraPretraga);
 						PredmetiController.getInstance().pretraziPredmete(staraPretraga);
 					}
 				}
 			}
 		});
-		
+
 		toolBarPanel.add(searchBtn);
 	}
 

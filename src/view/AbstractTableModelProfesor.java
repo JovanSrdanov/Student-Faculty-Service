@@ -1,6 +1,5 @@
 package view;
 
-
 import javax.swing.table.AbstractTableModel;
 
 import model.BazaProfesora;
@@ -13,19 +12,18 @@ public class AbstractTableModelProfesor extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		if(MyFrame.getInstance().isPretraga()) {
+		if (MyFrame.getInstance().isPretraga()) {
 			if (BazaProfesora.getInstance().getProfesoriPretraga() == null) {
 				return 0;
 			}
 			return BazaProfesora.getInstance().getProfesoriPretraga().size();
-		}
-		else {
+		} else {
 			if (BazaProfesora.getInstance().getProfesori() == null) {
 				return 0;
 			}
 			return BazaProfesora.getInstance().getProfesori().size();
 		}
-		
+
 	}
 
 	@Override
@@ -50,9 +48,9 @@ public class AbstractTableModelProfesor extends AbstractTableModel {
 
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
-		if(BazaProfesora.getInstance().getProfesori().isEmpty())
+		if (BazaProfesora.getInstance().getProfesori().isEmpty())
 			return Object.class;
 		return getValueAt(0, columnIndex).getClass();
 	}
-	
+
 }
