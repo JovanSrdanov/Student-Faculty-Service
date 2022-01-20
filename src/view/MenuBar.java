@@ -43,7 +43,7 @@ public class MenuBar extends JMenuBar {
 
 		icon = new ImageIcon("icons" + File.separator + "new.png");
 		JMenuItem miNew = new JMenuItem("New", icon);
-		miNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.ALT_MASK));
+		miNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		miNew.setMnemonic(KeyEvent.VK_W);
 		miNew.addActionListener(new ActionListener() {
 			@Override
@@ -65,7 +65,7 @@ public class MenuBar extends JMenuBar {
 
 		icon = new ImageIcon("icons" + File.separator + "save.png");
 		JMenuItem save = new JMenuItem("Save", icon);
-		save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
+		save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		save.setMnemonic(KeyEvent.VK_V);
 		save.addActionListener(new ActionListener() {
 			@Override
@@ -88,7 +88,7 @@ public class MenuBar extends JMenuBar {
 
 		icon = new ImageIcon("icons" + File.separator + "studenti.png");
 		JMenuItem Studenti = new JMenuItem("Studenti", icon);
-		Studenti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.ALT_MASK));
+		Studenti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
 		Studenti.setMnemonic(KeyEvent.VK_U);
 		Studenti.addActionListener(new ActionListener() {
 			@Override
@@ -100,7 +100,7 @@ public class MenuBar extends JMenuBar {
 
 		icon = new ImageIcon("icons" + File.separator + "predmeti.png");
 		JMenuItem Predmeti = new JMenuItem("Predmeti", icon);
-		Predmeti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.ALT_MASK));
+		Predmeti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
 		Predmeti.setMnemonic(KeyEvent.VK_R);
 		Predmeti.addActionListener(new ActionListener() {
 			@Override
@@ -112,7 +112,7 @@ public class MenuBar extends JMenuBar {
 
 		icon = new ImageIcon("icons" + File.separator + "profesori.png");
 		JMenuItem Profesori = new JMenuItem("Profesori", icon);
-		Profesori.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.ALT_MASK));
+		Profesori.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
 		Profesori.setMnemonic(KeyEvent.VK_P);
 		Profesori.addActionListener(new ActionListener() {
 			@Override
@@ -124,7 +124,7 @@ public class MenuBar extends JMenuBar {
 
 		icon = new ImageIcon("icons" + File.separator + "katedra.png");
 		JMenuItem Katedre = new JMenuItem("Katedre", icon);
-		Katedre.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.ALT_MASK));
+		Katedre.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
 		Katedre.setMnemonic(KeyEvent.VK_K);
 
 		Katedre.addActionListener(new ActionListener() {
@@ -147,7 +147,7 @@ public class MenuBar extends JMenuBar {
 
 		icon = new ImageIcon("icons" + File.separator + "close.png");
 		JMenuItem close = new JMenuItem("Close", icon);
-		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.ALT_MASK));
+		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
 		close.setMnemonic(KeyEvent.VK_C);
 		close.addActionListener(new ActionListener() {
 			@Override
@@ -171,7 +171,7 @@ public class MenuBar extends JMenuBar {
 
 		icon = new ImageIcon("icons" + File.separator + "editPom.png");
 		JMenuItem editPom = new JMenuItem("Edit", icon);
-		editPom.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.ALT_MASK));
+		editPom.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK));
 		editPom.setMnemonic(KeyEvent.VK_D);
 		editPom.addActionListener(new ActionListener() {
 			@Override
@@ -203,7 +203,7 @@ public class MenuBar extends JMenuBar {
 
 		icon = new ImageIcon("icons" + File.separator + "delete.png");
 		JMenuItem delete = new JMenuItem("Delete", icon);
-		delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.ALT_MASK));
+		delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
 		delete.setMnemonic(KeyEvent.VK_L);
 
 		delete.addActionListener(new ActionListener() {
@@ -239,12 +239,12 @@ public class MenuBar extends JMenuBar {
 
 		icon = new ImageIcon("icons" + File.separator + "helpPom.png");
 		JMenuItem helpPom = new JMenuItem("Help", icon);
-		helpPom.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.ALT_MASK));
+		helpPom.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, ActionEvent.CTRL_MASK));
 		helpPom.setMnemonic(KeyEvent.VK_E);
 
 		icon = new ImageIcon("icons" + File.separator + "about.png");
 		JMenuItem about = new JMenuItem("About", icon);
-		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.ALT_MASK));
+		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
 		about.setMnemonic(KeyEvent.VK_B);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		about.addActionListener(new ActionListener() {
@@ -260,6 +260,9 @@ public class MenuBar extends JMenuBar {
 		helpPom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				HelpDialog HD = new HelpDialog(null,"Help", true);
+				HD.setLocationRelativeTo(MyFrame.getInstance());
+				HD.setVisible(true);
 
 			}
 		});
