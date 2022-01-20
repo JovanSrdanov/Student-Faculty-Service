@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class BazaStudenata {
 		this.studenti = new ArrayList<Student>();
 		this.studentiPretraga = new ArrayList<Student>();
 
-		Adresa a = new Adresa("Novosadska", "3", "Zrenjanin", "Srbija");
+		/*Adresa a = new Adresa("Novosadska", "3", "Zrenjanin", "Srbija");
 		Student pom1 = new Student("Srdanov", "Jovan", LocalDate.now(), a, "5/55523", "jovan.s@gmail.com",
 				"RA 145/2019", 2019, 3, Status.BUDŽET, 0, null, null);
 		Student pom2 = new Student("Erakovic", "Strahinja", LocalDate.now(), a, "555/523", "strahinja.e@gmail.com",
@@ -76,7 +77,52 @@ public class BazaStudenata {
 		this.studenti.add(pom2);
 		this.studenti.add(pom3);
 		this.studenti.add(pom4);
-		this.studenti.add(pom5);
+		this.studenti.add(pom5);*/
+		/*Adresa[] nizAdr = new Adresa[13];
+		nizAdr[0] = new Adresa("Šafarikova", "2", "Novi Sad", "Srbija");
+		nizAdr[1] = new Adresa("Nikole Tesle", "56", "Novi Sad", "Srbija");
+		nizAdr[2] = new Adresa("Bulevar Patrijaha Pavla", "3", "Beograd", "Srbija");
+		nizAdr[3] = new Adresa("Stražilovska", "6a", "Novi Sad", "Srbija");
+		nizAdr[4] = new Adresa("Nikole Pašića", "2d", "Kikinda", "Srbija");
+		nizAdr[5] = new Adresa("Bulevar Kralja Petra", "22", "Niš", "Srbija");
+		nizAdr[6] = new Adresa("Tolstojeva", "31", "Novi Sad", "Srbija");
+		nizAdr[7] = new Adresa("Marićeva", "11", "Kragujevac", "Srbija");
+		nizAdr[8] = new Adresa("Stražilovska", "3", "Beograd", "Srbija");
+		nizAdr[9] = new Adresa("Nikole Pašića", "6a", "Novi Sad", "Srbija");
+		nizAdr[10] = new Adresa("Bulevar Kralja Petra", "2d", "Niš", "Srbija");
+		nizAdr[11] = new Adresa("Knez Mihajlova", "22", "Beograd", "Srbija");
+		nizAdr[12] = new Adresa("Ulica", "0", "Grad", "Drzava");
+		
+		DateTimeFormatter formater = DateTimeFormatter.ofPattern("d.M.yyyy.");
+		studenti.add(new Student("Milosevic", "Marko", LocalDate.parse("12.03.2001.", formater), nizAdr[1], "021/333-555", "marko.milosevic@mailinator.com", "RA 2/2020", 2020, 1, Status.BUDŽET, 0, null, null));
+		studenti.add(new Student("Milić", "Marija", LocalDate.parse("12.01.2000.", formater), nizAdr[2], "021/555-2222", "marija.milic@mailinator.com", "RA 3/2019", 2019, 2, Status.SAMOFINANSIRANJE, 0, null, null));
+		studenti.add(new Student("Nikolic", "Nikola", LocalDate.parse("30.08.2001.", formater), nizAdr[3], "021/135-463", "nikola.nikolic@mailinator.com", "RA 3/2017", 2017, 1, Status.BUDŽET, 0, null, null));
+		studenti.add(new Student("Peric", "Pera", LocalDate.parse("07.06.1995.", formater), nizAdr[4], "021/903-463", "pera.peric@mailinator.com", "RA 134/2015", 2015, 3, Status.SAMOFINANSIRANJE, 0, null, null));
+		studenti.add(new Student("Ilic", "Sofija", LocalDate.parse("06.05.1999.", formater), nizAdr[5], "021/731-067", "sofija.ilic@mailinator.com", "RA 5/2019", 2019, 3, Status.BUDŽET, 0, null, null));
+		studenti.add(new Student("Lukic", "Martina", LocalDate.parse("16.05.1999.", formater), nizAdr[6], "011/4333-800", "martina.lukic@mailinator.com", "RA 8/2018", 2018, 3, Status.SAMOFINANSIRANJE, 0, null, null));
+		studenti.add(new Student("Stojakovic", "Stojan", LocalDate.parse("19.10.2001.", formater), nizAdr[7], "011/3130-007", "stojan.stojakovic@mailinator.com", "RA 10/2017", 2017, 1, Status.BUDŽET, 0, null, null));
+		studenti.add(new Student("Milanovic", "Milan", LocalDate.parse("02.11.2000.", formater), nizAdr[8], "015/313-061", "milan.milanovic@mailinator.com", "RA 12/2017", 2017, 2, Status.SAMOFINANSIRANJE, 0, null, null));
+		studenti.add(new Student("Milic", "Miroslav", LocalDate.parse("11.10.2000.", formater), nizAdr[9], "021/351-091", "miroslav.milic@mailinator.com", "RA 16/2019", 2019, 2, Status.BUDŽET, 0, null, null));
+		studenti.add(new Student("Gojic", "Stefan", LocalDate.parse("01.05.1999.", formater), nizAdr[10], "015/324-500", "stefan.gojic@mailinator.com", "RA 21/2015", 2015, 3, Status.SAMOFINANSIRANJE, 0, null, null));
+		studenti.add(new Student("Jokic", "Anastasija", LocalDate.parse("11.07.1999.", formater), nizAdr[11], "011/2333-900", "anastasija.jokic@mailinator.com", "RA 9/2020", 2020, 3, Status.BUDŽET, 0, null, null));
+		studenti.add(new Student("Bogdanovic", "Bogdan", LocalDate.parse("23.07.1999.", formater), nizAdr[12], "021/231-231", "bogdan.bogdanovic@mailinator.com", "RA 4/2017", 2017, 3, Status.SAMOFINANSIRANJE, 0, null, null));
+		studenti.add(new Student("Dabovic", "Ana", LocalDate.parse("12.12.2001.", formater), nizAdr[12], "014/303-007", "ana.dabovic@mailinator.com", "RA 30/2019", 2019, 1, Status.BUDŽET, 0, null, null));
+		studenti.add(new Student("Mikic", "Mika", LocalDate.parse("05.11.2001.", formater), nizAdr[2], "015/101-909", "mika.mikic@mailinator.com", "RA 1/2020", 2020, 1, Status.SAMOFINANSIRANJE, 0, null, null));
+		studenti.add(new Student("Deretic", "Jovan", LocalDate.parse("10.09.1998.", formater), nizAdr[3], "002/200-300", "jovan.deretic@mailinator.com", "RA 11/2018", 2018, 4, Status.BUDŽET, 0, null, null));
+		studenti.add(new Student("Miskovic", "Nikola", LocalDate.parse("03.08.1998.", formater), nizAdr[4], "022/123-456", "nikola.miskovic@mailinator.com", "RA 12/2018", 2018, 4, Status.SAMOFINANSIRANJE, 0, null, null));
+		studenti.add(new Student("Stojanovic", "Martin", LocalDate.parse("01.05.1998.", formater), nizAdr[12], "024/321-775", "martin.stojanovic@mailinator.com", "RA 13/2018", 2018, 4, Status.SAMOFINANSIRANJE, 0, null, null));
+		studenti.add(new Student("Novakovic", "Tomislav", LocalDate.parse("25.02.1996.", formater), nizAdr[6], "011/1188-379", "tomislav.novakovic@mailinator.com", "RA 14/2018", 2018, 4, Status.BUDŽET, 0, null, null));
+		studenti.add(new Student("Ivic", "Lena", LocalDate.parse("11.05.1998.", formater), nizAdr[7], "024/333-555", "lena.ivic@mailinator.com", "RA 154/2016", 2016, 4, Status.BUDŽET, 0, null, null));
+		studenti.add(new Student("Lazic", "Jovan", LocalDate.parse("22.01.2001.", formater), nizAdr[8], "025/1189-479", "jovan.lazic@mailinator.com", "RA 23/2020", 2020, 1, Status.BUDŽET, 0, null, null));
+		studenti.add(new Student("Mikic", "Isidora", LocalDate.parse("31.12.2000.", formater), nizAdr[9], "011/1122-366", "isidora.mikic@mailinator.com", "RA 1/2019", 2019, 2, Status.BUDŽET, 0, null, null));
+		studenti.add(new Student("Ilic", "Vladimir", LocalDate.parse("31.08.1998.", formater), nizAdr[10], "0211122-367", "vladimir.ilic@mailinator.com", "SW 4/2014", 2014, 4, Status.BUDŽET, 0, null, null));
+		studenti.add(new Student("Alicic", "Mirko", LocalDate.parse("21.07.1999.", formater), nizAdr[11], "012/1122-368", "mirko.alicic@mailinator.com", "SW 17/2015", 2015, 3, Status.SAMOFINANSIRANJE, 0, null, null));
+		studenti.add(new Student("Perković", "Milisav", LocalDate.parse("28.09.1998.", formater), nizAdr[12], "012/1122-369", "milisav.pejkovic@mailinator.com", "SW 17/2016", 2016, 4, Status.SAMOFINANSIRANJE, 0, null, null));
+		studenti.add(new Student("Djordjević", "Purisa", LocalDate.parse("29.02.2000.", formater), nizAdr[3], "011/1543-370", "purisa.djordjevic@mailinator.com", "SW 27/2018", 2018, 2, Status.BUDŽET, 0, null, null));
+		studenti.add(new Student("Kovacević", "Mikica", LocalDate.parse("23.03.1999.", formater), nizAdr[5], "011/1992-371", "mikica.kovacevic@mailinator.com", "RA 226/2017", 2017, 3, Status.SAMOFINANSIRANJE, 0, null, null));
+		studenti.add(new Student("Milić", "Miloš", LocalDate.parse("21.10.2001.", formater), nizAdr[2], "011/8172-372", "milos.milic@mailinator.com", "SW 12/2021", 2021, 1, Status.SAMOFINANSIRANJE, 0, null, null));*/
+
+
 
 	}
 

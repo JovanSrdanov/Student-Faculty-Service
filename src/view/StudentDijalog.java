@@ -251,7 +251,7 @@ public class StudentDijalog extends JDialog {
 					if (nacinFinansiranjaCB.getSelectedIndex() == 0)
 						s = Status.BUDŽET;
 					else
-						s = Status.SAMOFINANRSIRANJE;
+						s = Status.SAMOFINANSIRANJE;
 
 					if (tip == 'u') {
 						Student pom = new Student(prezime, ime, datumRodj, adresaStanovanja, kontaktTelefon,
