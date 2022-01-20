@@ -13,7 +13,10 @@ public class MyApp {
 	public static void main(String[] args) {
 		MyFrame AppFrame = MyFrame.getInstance();
 		AppFrame.setVisible(true);
-
+		postaviKomparatore();
+	}
+	
+	private static void postaviKomparatore() {
 		MyFrame.getTabelaProfesora().setAutoCreateRowSorter(true);
 
 		TableRowSorter<AbstractTableModelStudenti> sorter = new TableRowSorter<AbstractTableModelStudenti>(
@@ -45,10 +48,27 @@ public class MyApp {
 
 		});
 
+		sorter.setComparator(5, new Comparator<String>() {
+
+			@Override
+			public int compare(String o1, String o2) {
+				double broj1 = Double.parseDouble(o1);
+				double broj2 = Double.parseDouble(o2);
+
+				if (broj1 > broj2)
+					return 1;
+				else if (broj1 < broj2)
+					return -1;
+				else
+					return 0;
+			}
+
+		});
+		
 		TableRowSorter<AbstractTableModelPredmeti> sorterPredmeta = new TableRowSorter<AbstractTableModelPredmeti>(
 				new AbstractTableModelPredmeti());
 		MyFrame.getTabelaPredmeta().setRowSorter(sorterPredmeta);
-
+		
 		sorterPredmeta.setComparator(0, new Comparator<String>() {
 
 			@Override
@@ -70,7 +90,24 @@ public class MyApp {
 			}
 
 		});
+		
+		sorterPredmeta.setComparator(2, new Comparator<String>() {
 
+			@Override
+			public int compare(String o1, String o2) {
+
+				int broj1 = Integer.parseInt(o1);
+				int broj2 = Integer.parseInt(o2);
+
+				if (broj1 > broj2)
+					return 1;
+				else if (broj1 < broj2)
+					return -1;
+				else
+					return 0;
+			}
+
+		});
 	}
 
 }
