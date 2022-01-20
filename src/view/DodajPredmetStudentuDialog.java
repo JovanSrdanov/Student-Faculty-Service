@@ -35,7 +35,7 @@ public class DodajPredmetStudentuDialog extends JDialog {
 		setResizable(false);
 		//setLocationRelativeTo(owner);
 		Dimension dimListe = new Dimension(300, 250);
-		Dimension dimScroll = new Dimension(200, 200);
+		Dimension dimScroll = new Dimension(220, 200);
 		Dimension dimBtn = new Dimension(300, 50);
 		
 		JPanel centerPanel = new JPanel();
@@ -58,14 +58,14 @@ public class DodajPredmetStudentuDialog extends JDialog {
 			boolean nalazi = false;
 
 			for (Ocena o : StudentDijalog.getSelectedStudent().getSpisakNePolozenihIspita()) {
-				if (o.getPredmet() == p) {
+				if (o.getPredmet().getSifrPredmeta().equals(p.getSifrPredmeta())) {
 					nalazi = true;
 				}
 
 			}
 
 			for (Ocena o : StudentDijalog.getSelectedStudent().getSpisakPolozenihIspita()) {
-				if (o.getPredmet() == p) {
+				if (o.getPredmet().getSifrPredmeta().equals(p.getSifrPredmeta())) {
 					nalazi = true;
 				}
 

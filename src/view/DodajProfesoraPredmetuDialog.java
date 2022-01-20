@@ -33,7 +33,7 @@ public class DodajProfesoraPredmetuDialog extends JDialog {
 		setResizable(false);
 		//setLocationRelativeTo(owner);
 		Dimension dimListe = new Dimension(300, 250);
-		Dimension dimScroll = new Dimension(200, 200);
+		Dimension dimScroll = new Dimension(220, 200);
 		Dimension dimBtn = new Dimension(300, 50);
 		
 		JPanel centerPanel = new JPanel();

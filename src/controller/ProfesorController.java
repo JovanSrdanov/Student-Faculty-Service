@@ -38,7 +38,7 @@ public class ProfesorController {
 
 			// brisanje kod predmeta
 			for (Predmet pred : BazaPredmeta.getInstance().getPredmeti()) {
-				if (pred.getPredmetniProfesor() != null && pred.getPredmetniProfesor().equals(profesor)) {
+				if (pred.getPredmetniProfesor() != null && pred.getPredmetniProfesor().getBrojLicneKarte() == profesor.getBrojLicneKarte()) {
 					pred.setPredmetniProfesor(null);
 				}
 			}

@@ -575,13 +575,14 @@ public class StudentDijalog extends JDialog {
 		sumaE = 0;
 
 		if (ocene != null) {
-			for (Ocena o : ocene) {
+			if(ocene.size() != 0) {
+				for (Ocena o : ocene) {
 
-				sumaE = o.getPredmet().getBrojESPBBodova() + sumaE;
-				avgOcn = o.getBrojcanaVrednostOcene() + avgOcn;
-
+					sumaE = o.getPredmet().getBrojESPBBodova() + sumaE;
+					avgOcn = o.getBrojcanaVrednostOcene() + avgOcn;
+				}
+				avgOcn = avgOcn / ocene.size();
 			}
-			avgOcn = avgOcn / ocene.size();
 		}
 
 		selectedStudent.setProsecnaOcena(avgOcn);
