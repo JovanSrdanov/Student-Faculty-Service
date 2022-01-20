@@ -179,7 +179,7 @@ public class BazaProfesora {
 				i.setBrojLicneKarte(brojLicneKarte);
 				i.setZvanje(zvanje);
 				i.setGodineStaza(godineStaza);
-				i.setSpisakPredmetaNaKojimaJeProfesor(spisakPredmetaNaKojimaJeProfesor);
+				//i.setSpisakPredmetaNaKojimaJeProfesor(spisakPredmetaNaKojimaJeProfesor);
 			}
 		}
 	}
