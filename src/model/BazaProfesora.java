@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class BazaProfesora {
 		profesori.add(new Profesor("Jelicic", "peder", LocalDate.of(1980, 3, 13),
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381/232 64", "aaaa.aaaaaa@uns.ac.rs",
 				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987354321, Zvanje.DOCENT, 69, null));*/
-		/*Adresa[] nizAdr = new Adresa[13];
+		Adresa[] nizAdr = new Adresa[13];
 		nizAdr[0] = new Adresa("Šafarikova", "2", "Novi Sad", "Srbija");
 		nizAdr[1] = new Adresa("Nikole Tesle", "56", "Novi Sad", "Srbija");
 		nizAdr[2] = new Adresa("Bulevar Patrijaha Pavla", "3", "Beograd", "Srbija");
@@ -91,7 +92,7 @@ public class BazaProfesora {
 		profesori.add(new Profesor("Mišić", "Miša", LocalDate.parse("20.10.1969.", formater), nizAdr[1], "021/489-326", "misa.misic@mailinator.com", nizAdr[10], 300300344, Zvanje.DOCENT, 19, null));
 		profesori.add(new Profesor("Maricić", "Branko", LocalDate.parse("18.01.1973.", formater), nizAdr[2], "021/487-265", "branko.maricic@mailinator.com", nizAdr[10], 400400444, Zvanje.DOCENT, 22, null));
 		profesori.add(new Profesor("Lukovic", "Branislav", LocalDate.parse("08.04.1982.", formater), nizAdr[3], "021/159-478", "branislav.lukovic@mailinator.com", nizAdr[10], 500500544, Zvanje.REDOVNI_PROFESOR, 9, null));
-		profesori.add(new Profesor("Obradović", "Branimir", LocalDate.parse("07.01.1979.", formater), nizAdr[1], "021/922-333", "branimir.obradovic@mailinator.com", nizAdr[10], 600600644, Zvanje.DOCENT, 17, null));*/
+		profesori.add(new Profesor("Obradović", "Branimir", LocalDate.parse("07.01.1979.", formater), nizAdr[1], "021/922-333", "branimir.obradovic@mailinator.com", nizAdr[10], 600600644, Zvanje.DOCENT, 17, null));
 
 	}
 

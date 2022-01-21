@@ -28,6 +28,7 @@ import model.BazaKatedri;
 import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.BazaStudenata;
+import model.Student;
 
 public class MenuBar extends JMenuBar {
 
@@ -254,6 +255,14 @@ public class MenuBar extends JMenuBar {
 				AboutDijalog AD = new AboutDijalog(null, MyApp.resourceBundle.getString("about"), true);
 				AD.setLocationRelativeTo(MyFrame.getInstance());
 				AD.setVisible(true);
+				
+				/*for(Student stud:BazaPredmeta.getInstance().getPredmeti().get(0).getSpisakStudenataKojiNisuPoloziliPredmet())
+					System.out.println(stud.getIme());
+				
+				System.out.println("------------------------------------------------------------------------------------------");
+
+				for(Student stud:BazaPredmeta.getInstance().getPredmeti().get(0).getSpisakStudenataKojiSuPoloziliPredmet())
+					System.out.println(stud.getIme());*/
 			}
 
 		});

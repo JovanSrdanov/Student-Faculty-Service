@@ -2,7 +2,9 @@ package controller;
 
 import javax.swing.JOptionPane;
 
+import model.BazaPredmeta;
 import model.BazaStudenata;
+import model.Predmet;
 import model.Student;
 import view.MyFrame;
 import view.StudentDijalog;
@@ -32,6 +34,10 @@ public class StudentiController {
 		if (input == 0) {
 			// izmena modela
 			Student s = BazaStudenata.getInstance().getRow(rowSelectedIndex);
+			for(Predmet sviPredmeti : BazaPredmeta.getInstance().getPredmeti()) { 
+						sviPredmeti.getSpisakStudenataKojiNisuPoloziliPredmet().remove(s);
+						sviPredmeti.getSpisakStudenataKojiSuPoloziliPredmet().remove(s);
+			}
 			BazaStudenata.getInstance().izbrisiStudenta(s.getBrojIndexa());
 			// azuriranje prikaza
 			MyFrame.getInstance().azurirajPrikazStudenata();
