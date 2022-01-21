@@ -16,6 +16,7 @@ public class MyApp {
 	private static MyFrame AppFrame;
 	private static Point location;
 	public static ResourceBundle resourceBundle;
+	public static boolean isHelpOpen;
 	
 
 	public static void main(String[] args) {
