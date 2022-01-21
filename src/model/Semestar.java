@@ -1,10 +1,21 @@
 package model;
 
+import controller.MyApp;
+
 public enum Semestar {
 
-	ZIMSKI(1), LETNJI(2);
+	ZIMSKI("zimski"), LETNJI("letnji");
 
-	Semestar(int i) {
+	String string;
+
+	Semestar(String string) {
+		this.string = string;
+	}
+	
+	@Override
+	public String toString() {
+		return MyApp.resourceBundle.getString(string);
+		
 	}
 
 }

@@ -21,7 +21,7 @@ public class MyApp {
 
 
 	public static void main(String[] args) {
-		resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources", Locale.getDefault());
+		resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources",new Locale("en", "US"));
 		AppFrame = MyFrame.getInstance();
 		AppFrame.setVisible(true);
 		postaviKomparatore();

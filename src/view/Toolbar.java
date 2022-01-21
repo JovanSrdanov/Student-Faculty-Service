@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 
+import controller.MyApp;
 import controller.PredmetiController;
 import controller.ProfesorController;
 import controller.StudentiController;
@@ -122,9 +123,9 @@ public class Toolbar extends JToolBar {
 			}
 		});
 
-		initBtn(addBtn, "Dodaj", new ImageIcon("icons" + File.separator + "new.png"), 50);
-		initBtn(editBtn, "Izmeni", new ImageIcon("icons" + File.separator + "editPom.png"), 50);
-		initBtn(deleteBtn, "Obriši", new ImageIcon("icons" + File.separator + "delete.png"), 50);
+		initBtn(addBtn, MyApp.resourceBundle.getString("new"), new ImageIcon("icons" + File.separator + "new.png"), 50);
+		initBtn(editBtn, MyApp.resourceBundle.getString("edit"), new ImageIcon("icons" + File.separator + "editPom.png"), 50);
+		initBtn(deleteBtn, MyApp.resourceBundle.getString("delete"), new ImageIcon("icons" + File.separator + "delete.png"), 50);
 
 		toolBarPanel.add(addBtn);
 		toolBarPanel.add(editBtn);
@@ -133,7 +134,7 @@ public class Toolbar extends JToolBar {
 		toolBarPanel.add(Box.createHorizontalGlue());
 
 		searchBar = new JTextField();
-		searchBar.setToolTipText("Unesi reč za pretragu");
+		searchBar.setToolTipText( MyApp.resourceBundle.getString("unetiRec"));
 		searchBar.setPreferredSize(new Dimension(350, 30));
 		searchBar.setMaximumSize(new Dimension(350, 30));
 		toolBarPanel.add(searchBar);
@@ -141,7 +142,7 @@ public class Toolbar extends JToolBar {
 		toolBarPanel.add(Box.createRigidArea(new Dimension(10, 0)));
 
 		JButton searchBtn = new JButton();
-		initBtn(searchBtn, "Pretraži", new ImageIcon("icons" + File.separator + "search.png"), 30);
+		initBtn(searchBtn, MyApp.resourceBundle.getString("search"), new ImageIcon("icons" + File.separator + "search.png"), 30);
 		searchBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -1,10 +1,20 @@
 package model;
 
+import controller.MyApp;
+
 public enum Status {
 
-	BUDŽET(1), SAMOFINANSIRANJE(2);
+	BUDŽET("budzet"), SAMOFINANSIRANJE("samofinansiranje");
+	
+	String string;
 
-	Status(int i) {
+	Status(String string) {
+		this.string = string;
+	}
+	@Override
+	public String toString() {
+		return MyApp.resourceBundle.getString(string);
+		
 	}
 
 }
