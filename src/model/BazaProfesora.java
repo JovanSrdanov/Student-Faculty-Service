@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.MyApp;
 import view.MyFrame;
 
 public class BazaProfesora {
@@ -31,11 +32,20 @@ public class BazaProfesora {
 		initProfesore();
 
 		this.kolone = new ArrayList<String>();
-		this.kolone.add("Ime");
-		this.kolone.add("Prezime");
-		this.kolone.add("Zvanje");
-		this.kolone.add("E-mail adresa");
+		this.kolone.add(MyApp.resourceBundle.getString("ime"));
+		this.kolone.add(MyApp.resourceBundle.getString("prezime"));
+		this.kolone.add(MyApp.resourceBundle.getString("zvanje"));
+		this.kolone.add(MyApp.resourceBundle.getString("email"));
 
+	}
+	
+	public void izmeniJezikKolonaProfesori() {
+
+		this.kolone.set(0, MyApp.resourceBundle.getString("index"));
+		this.kolone.set(1, MyApp.resourceBundle.getString("ime"));
+		this.kolone.set(2, MyApp.resourceBundle.getString("zvanje"));
+		this.kolone.set(3, MyApp.resourceBundle.getString("email"));
+		
 	}
 
 	private void initProfesore() {

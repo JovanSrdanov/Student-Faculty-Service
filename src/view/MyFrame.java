@@ -235,6 +235,8 @@ public class MyFrame extends JFrame {
 	public void changeLanguage() {
 		
 		BazaStudenata.getInstance().izmeniJezikKolonaStudenti();
+		BazaProfesora.getInstance().izmeniJezikKolonaProfesori();
+		BazaPredmeta.getInstance().izmeniJezikKolonaPredmeti();
 		
 	}
 	

@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.MyApp;
 import view.MyFrame;
 
 public class BazaPredmeta {
@@ -28,24 +29,29 @@ public class BazaPredmeta {
 		initPredmete();
 
 		this.kolone = new ArrayList<String>();
-		this.kolone.add("Šifra predmeta");
-		this.kolone.add("Naziv predmeta");
-		this.kolone.add("Broj ESPB bodova");
-		this.kolone.add("Godina na kojoj se predmet izvodi");
-		this.kolone.add("Semestar na kojem se predmet izvodi");
+		this.kolone.add( MyApp.resourceBundle.getString("sifra"));
+		this.kolone.add( MyApp.resourceBundle.getString("nazivP"));
+		this.kolone.add( MyApp.resourceBundle.getString("espb"));
+		this.kolone.add( MyApp.resourceBundle.getString("godIzvod"));
+		this.kolone.add( MyApp.resourceBundle.getString("semestar"));
 
+		
 	}
 
 	private void initPredmete() {
 		predmeti = new ArrayList<Predmet>();
 		predmetiPretraga = new ArrayList<Predmet>();
-		/*Profesor p = new Profesor("Rapajic", "Milan", LocalDate.of(1980, 3, 13),
-				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64", "rap.aja@uns.ac.rs",
-				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987654321, Zvanje.VANREDNI_PROFESOR, 69, null);
+		/*
+		 * Profesor p = new Profesor("Rapajic", "Milan", LocalDate.of(1980, 3, 13), new
+		 * Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381 64",
+		 * "rap.aja@uns.ac.rs", new Adresa("Ulicica", "22", "Novi Sad", "Srbija"),
+		 * 987654321, Zvanje.VANREDNI_PROFESOR, 69, null);
+		 * 
+		 * predmeti.add(new Predmet("e1", "Baze podataka 1", Semestar.ZIMSKI, 3, p, 6));
+		 * predmeti.add(new Predmet("p2", "Operativni sistemi", Semestar.LETNJI, 2,
+		 * null, 7));
+		 */
 
-		predmeti.add(new Predmet("e1", "Baze podataka 1", Semestar.ZIMSKI, 3, p, 6));
-		predmeti.add(new Predmet("p2", "Operativni sistemi", Semestar.LETNJI, 2, null, 7));*/
-		
 		predmeti.add(new Predmet("p1", "osnove programiranja", Semestar.ZIMSKI, 1, null, 7));
 		predmeti.add(new Predmet("p2", "statistika", Semestar.LETNJI, 3, null, 8));
 		predmeti.add(new Predmet("p3", "algoritmi i strukture podataka", Semestar.LETNJI, 2, null, 9));
@@ -192,21 +198,22 @@ public class BazaPredmeta {
 			}
 		}
 	}
-	
+
 	public void savePredmete(String fileName) {
 		try {
-            FileOutputStream file = new FileOutputStream(fileName);
-            ObjectOutputStream output = new ObjectOutputStream(file);
-            
-            output.writeObject(predmeti);
+			FileOutputStream file = new FileOutputStream(fileName);
+			ObjectOutputStream output = new ObjectOutputStream(file);
 
-            output.close();
-        }
+			output.writeObject(predmeti);
 
-        catch (Exception e1) {
-            e1.getStackTrace();
-        }
+			output.close();
+		}
+
+		catch (Exception e1) {
+			e1.getStackTrace();
+		}
 	}
+
 	public void loadPredmeti(String fileName) {
 		try {
 			FileInputStream fileStream = new FileInputStream(fileName);
@@ -223,19 +230,27 @@ public class BazaPredmeta {
 			e1.getStackTrace();
 		}
 	};
-	
+
 	public void loadFix() {
-		for(Profesor clearProf : BazaProfesora.getInstance().getProfesori()) {
+		for (Profesor clearProf : BazaProfesora.getInstance().getProfesori()) {
 			clearProf.getSpisakPredmetaNaKojimaJeProfesor().clear();
 		}
-		
-		for(Predmet predmet : predmeti) {
-			for(Profesor profesor : BazaProfesora.getInstance().getProfesori()) {
-				if(predmet.getPredmetniProfesor() != null && predmet.getPredmetniProfesor().equals(profesor))
+
+		for (Predmet predmet : predmeti) {
+			for (Profesor profesor : BazaProfesora.getInstance().getProfesori()) {
+				if (predmet.getPredmetniProfesor() != null && predmet.getPredmetniProfesor().equals(profesor))
 					profesor.getSpisakPredmetaNaKojimaJeProfesor().add(predmet);
 			}
 		}
 	}
 
-	
+	public void izmeniJezikKolonaPredmeti() {
+		this.kolone.set(0, MyApp.resourceBundle.getString("sifra"));
+		this.kolone.set(1, MyApp.resourceBundle.getString("nazivP"));
+		this.kolone.set(2, MyApp.resourceBundle.getString("espb"));
+		this.kolone.set(3, MyApp.resourceBundle.getString("godIzvod"));
+		this.kolone.set(4, MyApp.resourceBundle.getString("semestar"));
+
+	}
+
 }
