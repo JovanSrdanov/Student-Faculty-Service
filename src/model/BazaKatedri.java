@@ -185,26 +185,28 @@ public class BazaKatedri {
 	public void loadFix() {
 		ArrayList<Profesor> realProf = new ArrayList<Profesor>();
 		
-		for(Katedra sveKat : katedre) {
-			/*int brProf = 0;
-			if(sveKat.getSpisakProfesoraKojiSuNaKatedri() != null)
-				brProf = sveKat.getSpisakProfesoraKojiSuNaKatedri().size();*/
-			
+		//Fix za profe na katedri
+		for(Katedra sveKat : katedre) {			
 			for(Profesor profNaKat : sveKat.getSpisakProfesoraKojiSuNaKatedri()) {
 				for(Profesor sviProf : BazaProfesora.getInstance().getProfesori()) {
 					if(sviProf.equals(profNaKat)) {
-						System.out.println(sviProf.getIme() + " sa " + profNaKat.getIme());
 						realProf.add(sviProf);
 					}
 				}
-			}
-			
+			}		
 			sveKat.getSpisakProfesoraKojiSuNaKatedri().clear();
 			ArrayList<Profesor> fakeProf = new ArrayList<Profesor>();
 			fakeProf.addAll(realProf);
 			sveKat.setSpisakProfesoraKojiSuNaKatedri(fakeProf);
 			realProf.clear();
-			//System.out.println("*************************************************");
+		}
+		//Fix za sefove
+		for(Katedra sveKat : katedre) {
+			for(Profesor sviProf : BazaProfesora.getInstance().getProfesori()) {
+				if(sveKat.getSefKatedre().equals(sviProf)) {
+					sveKat.setSefKatedre(sviProf);
+				}
+			}
 		}
 	}
 
