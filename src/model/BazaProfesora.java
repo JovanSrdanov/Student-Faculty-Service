@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,8 +68,8 @@ public class BazaProfesora {
 				new Adresa("Tajna ulica", "2c", "Novi Sad", "Srbija"), "+381/232 64", "aaaa.aaaaaa@uns.ac.rs",
 				new Adresa("Ulicica", "22", "Novi Sad", "Srbija"), 987354321, Zvanje.DOCENT, 69, null));*/
 		
-		/*
-		Adresa[] nizAdr = new Adresa[13];
+		
+		/*Adresa[] nizAdr = new Adresa[13];
 		nizAdr[0] = new Adresa("Šafarikova", "2", "Novi Sad", "Srbija");
 		nizAdr[1] = new Adresa("Nikole Tesle", "56", "Novi Sad", "Srbija");
 		nizAdr[2] = new Adresa("Bulevar Patrijaha Pavla", "3", "Beograd", "Srbija");

@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,7 +93,7 @@ public class BazaStudenata {
 		 * this.studenti.add(pom4); this.studenti.add(pom5);
 		 */
 		
-		/*
+/*		
 		Adresa[] nizAdr = new Adresa[13];
 		nizAdr[0] = new Adresa("Šafarikova", "2", "Novi Sad", "Srbija");
 		nizAdr[1] = new Adresa("Nikole Tesle", "56", "Novi Sad", "Srbija");
@@ -136,7 +137,7 @@ public class BazaStudenata {
 		studenti.add(new Student("Djordjević", "Purisa", LocalDate.parse("29.02.2000.", formater), nizAdr[3], "011/1543-370", "purisa.djordjevic@mailinator.com", "SW 27/2018", 2018, 2, Status.BUDŽET, 0, null, null));
 		studenti.add(new Student("Kovacević", "Mikica", LocalDate.parse("23.03.1999.", formater), nizAdr[5], "011/1992-371", "mikica.kovacevic@mailinator.com", "RA 226/2017", 2017, 3, Status.SAMOFINANSIRANJE, 0, null, null));
 		studenti.add(new Student("Milić", "Miloš", LocalDate.parse("21.10.2001.", formater), nizAdr[2], "011/8172-372", "milos.milic@mailinator.com", "SW 12/2021", 2021, 1, Status.SAMOFINANSIRANJE, 0, null, null));
-	*/
+*/	
 	}
 
 	public List<Student> getStudenti() {
