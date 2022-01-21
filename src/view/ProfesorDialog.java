@@ -23,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
+import controller.MyApp;
 import model.Adresa;
 import model.BazaPredmeta;
 import model.BazaProfesora;
@@ -78,7 +79,7 @@ public class ProfesorDialog extends JDialog {
 
 		// ime
 		JPanel imePnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel imeLbl = new JLabel("Ime:");
+		JLabel imeLbl = new JLabel( MyApp.resourceBundle.getString("ime"));
 		imeLbl.setPreferredSize(dim);
 
 		imeTxt = new JTextField();
@@ -89,7 +90,7 @@ public class ProfesorDialog extends JDialog {
 
 		// Prezime
 		JPanel przPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel przLbl = new JLabel("Prezime:");
+		JLabel przLbl = new JLabel( MyApp.resourceBundle.getString("prezime"));
 		przLbl.setPreferredSize(dim);
 
 		prezimeTxt = new JTextField();
@@ -100,7 +101,7 @@ public class ProfesorDialog extends JDialog {
 
 		// Datum rodj
 		JPanel datPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel datLbl = new JLabel("Datum rođenja (DD.MM.GGGG.):");
+		JLabel datLbl = new JLabel( MyApp.resourceBundle.getString("datRodj"));
 		datLbl.setPreferredSize(dim);
 
 		datumTxt = new JTextField();
@@ -111,7 +112,7 @@ public class ProfesorDialog extends JDialog {
 
 		// Adresa
 		JPanel adrPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel adrLbl = new JLabel("Adresa (ulica,broj,grad,država):");
+		JLabel adrLbl = new JLabel( MyApp.resourceBundle.getString("adresaStanovanja"));
 		adrLbl.setPreferredSize(dim);
 
 		adresaTxt = new JTextField();
@@ -122,7 +123,7 @@ public class ProfesorDialog extends JDialog {
 
 		// Telefon
 		JPanel telPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel telLbl = new JLabel("Telefon:");
+		JLabel telLbl = new JLabel( MyApp.resourceBundle.getString("telefon"));
 		telLbl.setPreferredSize(dim);
 
 		telTxt = new JTextField();
@@ -133,7 +134,7 @@ public class ProfesorDialog extends JDialog {
 
 		// Mail
 		JPanel mailPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel mailLbl = new JLabel("eMail:");
+		JLabel mailLbl = new JLabel( MyApp.resourceBundle.getString("email"));
 		mailLbl.setPreferredSize(dim);
 
 		eMailTxt = new JTextField();
@@ -144,7 +145,7 @@ public class ProfesorDialog extends JDialog {
 
 		// Adresa kancelarije
 		JPanel adrKncPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel adrKncLbl = new JLabel("Adresa kancelarije (ulica,broj,grad,država):");
+		JLabel adrKncLbl = new JLabel( MyApp.resourceBundle.getString("adresaPoslovanja"));
 		adrKncLbl.setPreferredSize(dim);
 
 		adresaKancTxt = new JTextField();
@@ -155,7 +156,7 @@ public class ProfesorDialog extends JDialog {
 
 		// Broj licne
 		JPanel brLicPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel brLicLbl = new JLabel("Broj lične karte:");
+		JLabel brLicLbl = new JLabel(MyApp.resourceBundle.getString("brojLK"));
 		brLicLbl.setPreferredSize(dim);
 
 		brLicneTxt = new JTextField();
@@ -166,10 +167,10 @@ public class ProfesorDialog extends JDialog {
 
 		// Zvanje (cb)
 		JPanel zvanjePnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel zvanjeLbl = new JLabel("Izaberite zvanje:");
+		JLabel zvanjeLbl = new JLabel(MyApp.resourceBundle.getString("zvanje"));
 		zvanjeLbl.setPreferredSize(dim);
 
-		String[] zvanja = { "REDOVNI_PROFESOR", "VANREDNI_PROFESOR", "DOCENT" };
+		String[] zvanja = { MyApp.resourceBundle.getString("redProf"), MyApp.resourceBundle.getString("vanProf"), MyApp.resourceBundle.getString("docent") };
 		zvanjeCb = new JComboBox<String>(zvanja);
 		zvanjeCb.setPreferredSize(dim2);
 
@@ -178,7 +179,7 @@ public class ProfesorDialog extends JDialog {
 
 		// Godine staza
 		JPanel godPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel godLbl = new JLabel("Godine staža:");
+		JLabel godLbl = new JLabel(MyApp.resourceBundle.getString("godStaz"));
 		godLbl.setPreferredSize(dim);
 
 		godineStazaTxt = new JTextField();
@@ -189,10 +190,10 @@ public class ProfesorDialog extends JDialog {
 
 		// Btni
 		JPanel btnPnl = new JPanel();
-		okBtn = new JButton("Potvrda");
+		okBtn = new JButton(MyApp.resourceBundle.getString("apply"));
 		okBtn.setEnabled(false);
 
-		JButton cancleBtn = new JButton("Odustani");
+		JButton cancleBtn = new JButton(MyApp.resourceBundle.getString("odustani"));
 
 		btnPnl.add(okBtn);
 		btnPnl.add(cancleBtn);
@@ -218,10 +219,10 @@ public class ProfesorDialog extends JDialog {
 			selectedProfesor = p;
 
 			kolonePredaje = new ArrayList<String>();
-			kolonePredaje.add("Sifra");
-			kolonePredaje.add("Naziv");
-			kolonePredaje.add("Godina studija");
-			kolonePredaje.add("Semestar");
+			kolonePredaje.add(MyApp.resourceBundle.getString("sifra"));
+			kolonePredaje.add(MyApp.resourceBundle.getString("nazivP"));
+			kolonePredaje.add(MyApp.resourceBundle.getString("godina_studija"));
+			kolonePredaje.add(MyApp.resourceBundle.getString("semestar"));
 
 			imeTxt.setText(p.getIme());
 			prezimeTxt.setText(p.getPrezime());
@@ -317,13 +318,13 @@ public class ProfesorDialog extends JDialog {
 
 		if (tipA == 'i') {
 			proferosTabbed = new JTabbedPane();
-			proferosTabbed.addTab("Informacije", centerPanel);
+			proferosTabbed.addTab(MyApp.resourceBundle.getString("informacije"), centerPanel);
 
 			JPanel panPredaje = new JPanel();
 			panPredaje.setLayout(new BoxLayout(panPredaje, BoxLayout.Y_AXIS));
 
-			JButton dodajBtn = new JButton("Dodaj predmet");
-			JButton ukloniBtn = new JButton("Ukloni predmet");
+			JButton dodajBtn = new JButton(MyApp.resourceBundle.getString("dodavanjePredmeta"));
+			JButton ukloniBtn = new JButton(MyApp.resourceBundle.getString("remPred"));
 
 			JPanel dodajUkloniPan = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			dodajUkloniPan.add(dodajBtn);
@@ -338,9 +339,9 @@ public class ProfesorDialog extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					int rowSelectedIndex = predajeTabel.getSelectedRow();
 					if (rowSelectedIndex != -1) {
-						Object[] options = { "Da", "Ne" };
+						Object[] options = {  MyApp.resourceBundle.getString("yes"), MyApp.resourceBundle.getString("no")};
 						int input = JOptionPane.showOptionDialog(null,
-								"Da li ste sigurni da želite da obrišete predmet?", "Potvrda",
+								MyApp.resourceBundle.getString("pitanjeZaBrisanje"), MyApp.resourceBundle.getString("potvrda"),
 								JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 
 						if (input == 0) {
@@ -360,7 +361,7 @@ public class ProfesorDialog extends JDialog {
 			dodajBtn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					DodajPredmetProfesoruDialog dpp = new DodajPredmetProfesoruDialog(null, "Dodavanje", true);
+					DodajPredmetProfesoruDialog dpp = new DodajPredmetProfesoruDialog(null, MyApp.resourceBundle.getString("dodavanjePredmeta"), true);
 					dpp.setLocationRelativeTo(prozor);
 					dpp.setVisible(true);
 				}
@@ -368,7 +369,7 @@ public class ProfesorDialog extends JDialog {
 
 			panPredaje.add(scrollPanePredaje);
 
-			proferosTabbed.add("Predaje", panPredaje);
+			proferosTabbed.add(MyApp.resourceBundle.getString("predaje"), panPredaje);
 			this.add(proferosTabbed);
 
 		} else

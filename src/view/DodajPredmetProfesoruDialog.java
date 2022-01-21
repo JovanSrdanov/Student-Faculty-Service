@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import controller.MyApp;
 import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.Predmet;
@@ -45,7 +46,7 @@ public class DodajPredmetProfesoruDialog extends JDialog {
 
 		lblPnl.setMaximumSize(new Dimension(this.getWidth(), 100));
 
-		JLabel lbllbl = new JLabel("Predmeti:");
+		JLabel lbllbl = new JLabel( MyApp.resourceBundle.getString("predmetii"));
 		lbllbl.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 		lblPnl.add(lbllbl);
@@ -54,8 +55,8 @@ public class DodajPredmetProfesoruDialog extends JDialog {
 		JPanel btnPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		btnPnl.setPreferredSize(dimBtn);
 		
-		JButton potvrdiBtn = new JButton("Potvrdi");
-		JButton odustaniBtn = new JButton("Odustani");
+		JButton potvrdiBtn = new JButton( MyApp.resourceBundle.getString("apply"));
+		JButton odustaniBtn = new JButton( MyApp.resourceBundle.getString("odustani"));
 		btnPnl.add(potvrdiBtn);
 		btnPnl.add(odustaniBtn);
 

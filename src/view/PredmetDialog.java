@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.MyApp;
 import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.Predmet;
@@ -67,7 +68,7 @@ public class PredmetDialog extends JDialog {
 		Dimension dimTextBox = new Dimension(280, 20);
 
 		JPanel sifraPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel sifraPredmetaLbl = new JLabel("Šifra predmeta:");
+		JLabel sifraPredmetaLbl = new JLabel( MyApp.resourceBundle.getString("sifra"));
 		sifraPredmetaLbl.setPreferredSize(dimLabela);
 		sifraPredmetaTxt = new JTextField();
 		sifraPredmetaTxt.setPreferredSize(dimTextBox);
@@ -75,7 +76,7 @@ public class PredmetDialog extends JDialog {
 		sifraPredmetaPnl.add(sifraPredmetaTxt);
 
 		JPanel nazivPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel nazivPredmetaLbl = new JLabel("Naziv predmeta:");
+		JLabel nazivPredmetaLbl = new JLabel( MyApp.resourceBundle.getString("nazivP"));
 		nazivPredmetaLbl.setPreferredSize(dimLabela);
 		nazivPredmetaTxt = new JTextField();
 		nazivPredmetaTxt.setPreferredSize(dimTextBox);
@@ -83,25 +84,25 @@ public class PredmetDialog extends JDialog {
 		nazivPredmetaPnl.add(nazivPredmetaTxt);
 
 		JPanel godinaPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel godinaPredmetaLbl = new JLabel("Godina predmeta:");
+		JLabel godinaPredmetaLbl = new JLabel( MyApp.resourceBundle.getString("godIzvod"));
 		godinaPredmetaLbl.setPreferredSize(dimLabela);
-		String[] godine = { "1. (PRVA)", "2. (DRUGA)", "3. (TREĆA)", "4. (ČETVRTA)" };
+		String[] godine = { "I", "II", "III", "IIII" };
 		godinaPredmetaCB = new JComboBox<String>(godine);
 		godinaPredmetaCB.setPreferredSize(dimTextBox);
 		godinaPredmetaPnl.add(godinaPredmetaLbl);
 		godinaPredmetaPnl.add(godinaPredmetaCB);
 
 		JPanel semestarPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel semestarPredmetaLbl = new JLabel("Semestar predmeta:");
+		JLabel semestarPredmetaLbl = new JLabel(MyApp.resourceBundle.getString("semestar"));
 		semestarPredmetaLbl.setPreferredSize(dimLabela);
-		String[] sem = { "ZIMSKI", "LETNJI" };
+		String[] sem = { MyApp.resourceBundle.getString("zimski"), MyApp.resourceBundle.getString("letnji") };
 		semestarPredmetaCB = new JComboBox<String>(sem);
 		semestarPredmetaCB.setPreferredSize(dimTextBox);
 		semestarPredmetaPnl.add(semestarPredmetaLbl);
 		semestarPredmetaPnl.add(semestarPredmetaCB);
 
 		JPanel ESPBPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel ESPBPredmetaLbl = new JLabel("ESPB:");
+		JLabel ESPBPredmetaLbl = new JLabel(MyApp.resourceBundle.getString("espb"));
 		ESPBPredmetaLbl.setPreferredSize(dimLabela);
 		ESPBPredmetaTxt = new JTextField();
 		ESPBPredmetaTxt.setPreferredSize(dimTextBox);
@@ -109,7 +110,7 @@ public class PredmetDialog extends JDialog {
 		ESPBPredmetaPnl.add(ESPBPredmetaTxt);
 
 		JPanel profesorPredmetaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel profesorPredmetaLbl = new JLabel("Profesor:");
+		JLabel profesorPredmetaLbl = new JLabel(MyApp.resourceBundle.getString("prof"));
 		profesorPredmetaLbl.setPreferredSize(dimLabela);
 		profesorPredmetaTxt = new JTextField();
 		profesorPredmetaTxt.setPreferredSize(new Dimension(200, 20));
@@ -124,9 +125,9 @@ public class PredmetDialog extends JDialog {
 		profesorPredmetaPnl.add(btnMinus);
 
 		JPanel btnPnl = new JPanel();
-		okBtn = new JButton("Potvrda");
+		okBtn = new JButton(MyApp.resourceBundle.getString("apply"));
 		okBtn.setEnabled(false);
-		cancleBtn = new JButton("Odustani");
+		cancleBtn = new JButton(MyApp.resourceBundle.getString("odustani"));
 		btnPnl.add(okBtn);
 		btnPnl.add(cancleBtn);
 
@@ -186,7 +187,7 @@ public class PredmetDialog extends JDialog {
 					if (tip == 'i') {
 						BazaPredmeta.getInstance().izmeniPredmet(sifraP, nazivP, s, god, null, brojESPB,
 								trenutnaSifraPredmeta);
-						// STRAHINJA PAZI NA OVO !!!!!!!!!!!! pazio ja al kasno jbg
+						// STRAHINJA PAZI NA OVO !!!!!!!!!!!! 
 				}
 
 					MyFrame.getInstance().azurirajPrikazPredmeta();
@@ -208,7 +209,7 @@ public class PredmetDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Dijalog nov
-				DodajProfesoraPredmetuDialog dialog = new DodajProfesoraPredmetuDialog(null, "Dodavnaje profesora", true);
+				DodajProfesoraPredmetuDialog dialog = new DodajProfesoraPredmetuDialog(null, MyApp.resourceBundle.getString("dodavanjeProfesora"), true);
 				dialog.setLocationRelativeTo(prozor);
 				dialog.setVisible(true);
 			}

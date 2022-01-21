@@ -63,8 +63,8 @@ public class MyFrame extends JFrame {
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 		    @Override
 		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-		    	Object[] options = {  "Save", "Don't save", "Cancle"};
-				int input = JOptionPane.showOptionDialog(null, "Da li zelite da sacuvate izmene?",  MyApp.resourceBundle.getString("potvrda"),
+		    	Object[] options = {  MyApp.resourceBundle.getString("sac"), MyApp.resourceBundle.getString("neSac"),MyApp.resourceBundle.getString("odustani")};
+				int input = JOptionPane.showOptionDialog(null, MyApp.resourceBundle.getString("sacPorWar"),  MyApp.resourceBundle.getString("potvrda"),
 						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 
 				if (input == 0) {

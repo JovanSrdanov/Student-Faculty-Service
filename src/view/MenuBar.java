@@ -81,7 +81,7 @@ public class MenuBar extends JMenuBar {
 				BazaPredmeta.getInstance().savePredmete(fileName3);
 				BazaKatedri.getInstance().saveKatedre(fileName4);
 				
-				JOptionPane.showMessageDialog(null, "Uspesno sacuvano", "Poruka", JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, MyApp.resourceBundle.getString("sacPorOb"), MyApp.resourceBundle.getString("poruka"), JOptionPane.PLAIN_MESSAGE);
 			}
 		});
 
@@ -156,8 +156,8 @@ public class MenuBar extends JMenuBar {
 		close.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Object[] options = {  "Save", "Don't save", "Cancle"};
-				int input = JOptionPane.showOptionDialog(null, "Da li zelite da sacuvate izmene?",  MyApp.resourceBundle.getString("potvrda"),
+				Object[] options = {  MyApp.resourceBundle.getString("sac"), MyApp.resourceBundle.getString("neSac"),MyApp.resourceBundle.getString("odustani")};
+				int input = JOptionPane.showOptionDialog(null, MyApp.resourceBundle.getString("sacPorWar"),  MyApp.resourceBundle.getString("potvrda"),
 						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 
 				if (input == 0) {

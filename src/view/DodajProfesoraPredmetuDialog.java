@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import controller.MyApp;
 import model.BazaProfesora;
 import model.Profesor;
 
@@ -42,9 +43,9 @@ public class DodajProfesoraPredmetuDialog extends JDialog {
 		JPanel btnPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		btnPnl.setPreferredSize(dimBtn);
 		
-		potvrdiBtn = new JButton("Potvrdi");
+		potvrdiBtn = new JButton(MyApp.resourceBundle.getString("apply"));
 		potvrdiBtn.setEnabled(false);
-		odustaniBtn = new JButton("Odustani");
+		odustaniBtn = new JButton(MyApp.resourceBundle.getString("odustani"));
 		btnPnl.add(potvrdiBtn);
 		btnPnl.add(odustaniBtn);
 
