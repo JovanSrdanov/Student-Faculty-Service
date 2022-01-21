@@ -6,8 +6,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+
 import java.io.File;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -336,8 +335,10 @@ public class MenuBar extends JMenuBar {
 							new Locale("sr", "RS"));
 					MyFrame.getInstance().changeLanguage();
 					MyApp.reinitialize();
-					HelpDialog.getInstance().azurirajDijalog();
-
+					
+				
+						
+					
 				}
 			}
 		});
@@ -352,8 +353,8 @@ public class MenuBar extends JMenuBar {
 							new Locale("en", "US"));
 					MyFrame.getInstance().changeLanguage();
 					MyApp.reinitialize();
-					HelpDialog.getInstance().azurirajDijalog();
-
+					
+					
 				}
 
 			}

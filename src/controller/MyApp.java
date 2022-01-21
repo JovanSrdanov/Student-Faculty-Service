@@ -9,6 +9,7 @@ import javax.swing.table.TableRowSorter;
 
 import view.AbstractTableModelPredmeti;
 import view.AbstractTableModelStudenti;
+import view.HelpDialog;
 import view.MyFrame;
 
 public class MyApp {
@@ -125,6 +126,7 @@ public class MyApp {
 	}
 
 	public static void reinitialize() {
+		HelpDialog.getInstance().azurirajDijalog();
 		int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
 		location = MyFrame.getInstance().getLocation();
 		// AppFrame.setVisible(false);
@@ -137,6 +139,8 @@ public class MyApp {
 		postaviKomparatore();
 		
 		MyFrame.getInstance().getTab().setSelectedIndex(selectedTab);
+		
+		
 
 	}
 
