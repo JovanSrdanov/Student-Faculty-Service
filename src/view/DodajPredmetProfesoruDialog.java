@@ -114,13 +114,9 @@ public class DodajPredmetProfesoruDialog extends JDialog {
 
 				ProfesorDialog.getSelectedProfesor().getSpisakPredmetaNaKojimaJeProfesor().add(p);
 				for(Predmet predmet : BazaPredmeta.getInstance().getPredmeti()) {
-					if(predmet.getPredmetniProfesor() == null) {
-						predmet.setPredmetniProfesor(ProfesorDialog.getSelectedProfesor());
-					}
-					else 
-					{
+					if(predmet.equals(p)) {
 						for (Profesor sviProf : BazaProfesora.getInstance().getProfesori()) {
-							if (sviProf.getBrojLicneKarte() == predmet.getPredmetniProfesor().getBrojLicneKarte()) {
+							if (predmet.getPredmetniProfesor() != null && sviProf.getBrojLicneKarte() == predmet.getPredmetniProfesor().getBrojLicneKarte()) {
 								sviProf.getSpisakPredmetaNaKojimaJeProfesor().remove(predmet);
 							}
 						}
