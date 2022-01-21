@@ -5,16 +5,17 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.awt.BorderLayout;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
 import model.BazaKatedri;
 import model.BazaPredmeta;
 import model.BazaProfesora;
@@ -26,7 +27,13 @@ public class MyFrame extends JFrame {
 
 	public static MyFrame instance = null;
 
+	public static void setInstance(MyFrame instance) {
+		MyFrame.instance = instance;
+	}
+
 	private static boolean pretraga;
+	private ResourceBundle resourceBundle;
+
 
 	private Toolbar toolbar;
 	private MenuBar menu;
@@ -43,8 +50,9 @@ public class MyFrame extends JFrame {
 	private JPanel panelEast;
 
 	private MyFrame() {
+		resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources", Locale.getDefault());
 		pretraga = false;
-		this.load();
+		
 		this.createToolbar();
 		this.initialise();
 		this.createStatusBar();
@@ -78,6 +86,7 @@ public class MyFrame extends JFrame {
 	}
 
 	private void initialise() {
+		setTitle(resourceBundle.getString("naslovAplikacije"));
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 
@@ -85,7 +94,6 @@ public class MyFrame extends JFrame {
 		int screenWidith = screenSize.width;
 
 		setSize((screenWidith / 4) * 3, (screenHeight / 4) * 3);
-		setTitle("Studentska služba");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
@@ -127,7 +135,7 @@ public class MyFrame extends JFrame {
 		ImageIcon iconStudenti = createImageIcon("icons" + File.separator + "studenti.png", true, 32, 32);
 		tabelaStduenti = new Tabela(new AbstractTableModelStudenti());
 		JScrollPane scrollPaneStudenti = new JScrollPane(tabelaStduenti);
-		tabbedPane.addTab("Studenti", iconStudenti, scrollPaneStudenti, "Prikaz studenata");
+		tabbedPane.addTab(resourceBundle.getString("studenti"), iconStudenti, scrollPaneStudenti, "Prikaz studenata");
 
 		ImageIcon iconProfesori = createImageIcon("icons" + File.separator + "profesori.png", true, 32, 32);
 		tabelaProfesora = new Tabela(new AbstractTableModelProfesor());
@@ -220,5 +228,16 @@ public class MyFrame extends JFrame {
 		BazaPredmeta.getInstance().loadPredmeti("predmeti.txt");
 		BazaStudenata.getInstance().loadStudenti("studenti.txt");
 	};
+	
+	public void changeLanguage() {
+
+		resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources", Locale.getDefault());
+		setTitle(resourceBundle.getString("naslovAplikacije"));
+		
+		
+	
+		
+		
+	}
 	
 }

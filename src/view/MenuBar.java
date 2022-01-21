@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
-
+import java.util.Locale;
 
 import javax.swing.Box;
 import javax.swing.Icon;
@@ -18,6 +18,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+
+import controller.MyApp;
 import controller.PredmetiController;
 import controller.ProfesorController;
 import controller.StudentiController;
@@ -285,6 +287,29 @@ public class MenuBar extends JMenuBar {
 		sr.setBackground(Color.white);
 		sr.setPreferredSize(new Dimension(30, 30));
 		sr.setIcon(icon);
+		
+		sr.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Locale.setDefault(new Locale("sr", "RS"));
+				MyApp.reinitialize();
+				MyFrame.getInstance().changeLanguage();
+
+			}
+		});
+		
+		en.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Locale.setDefault(new Locale("en", "US"));
+				MyApp.reinitialize();
+				MyFrame.getInstance().changeLanguage();
+
+			}
+		});
+		
 
 		add(sr);
 		add(en);

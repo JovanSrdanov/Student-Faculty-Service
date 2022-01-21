@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Point;
 import java.util.Comparator;
 
 import javax.swing.table.TableRowSorter;
@@ -10,12 +11,17 @@ import view.MyFrame;
 
 public class MyApp {
 
+	private static MyFrame AppFrame;
+	private static Point location;
+
 	public static void main(String[] args) {
-		MyFrame AppFrame = MyFrame.getInstance();
+		AppFrame = MyFrame.getInstance();
 		AppFrame.setVisible(true);
 		postaviKomparatore();
+		MyFrame.getInstance().load();
+
 	}
-	
+
 	private static void postaviKomparatore() {
 		MyFrame.getTabelaProfesora().setAutoCreateRowSorter(true);
 
@@ -64,11 +70,11 @@ public class MyApp {
 			}
 
 		});
-		
+
 		TableRowSorter<AbstractTableModelPredmeti> sorterPredmeta = new TableRowSorter<AbstractTableModelPredmeti>(
 				new AbstractTableModelPredmeti());
 		MyFrame.getTabelaPredmeta().setRowSorter(sorterPredmeta);
-		
+
 		sorterPredmeta.setComparator(0, new Comparator<String>() {
 
 			@Override
@@ -90,7 +96,7 @@ public class MyApp {
 			}
 
 		});
-		
+
 		sorterPredmeta.setComparator(2, new Comparator<String>() {
 
 			@Override
@@ -108,6 +114,17 @@ public class MyApp {
 			}
 
 		});
+	}
+
+	public static void reinitialize() {
+		location = MyFrame.getInstance().getLocation();
+		AppFrame.setVisible(false);
+		MyFrame.setInstance(null);
+		AppFrame = MyFrame.getInstance();
+		MyFrame.getInstance().setLocation(location);
+		AppFrame.setVisible(true);
+		postaviKomparatore();
+
 	}
 
 }
