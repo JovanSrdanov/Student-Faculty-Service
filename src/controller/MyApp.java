@@ -18,10 +18,9 @@ public class MyApp {
 	public static ResourceBundle resourceBundle;
 	
 
-
-
 	public static void main(String[] args) {
-		resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources",new Locale("en", "US"));
+		resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources", new Locale("en", "US"));
+		
 		AppFrame = MyFrame.getInstance();
 		AppFrame.setVisible(true);
 		postaviKomparatore();
@@ -125,9 +124,10 @@ public class MyApp {
 
 	public static void reinitialize() {
 		location = MyFrame.getInstance().getLocation();
-		//AppFrame.setVisible(false);
+		// AppFrame.setVisible(false);
 		AppFrame.dispose();
 		MyFrame.setInstance(null);
+		
 		AppFrame = MyFrame.getInstance();
 		MyFrame.getInstance().setLocation(location);
 		AppFrame.setVisible(true);

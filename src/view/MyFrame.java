@@ -233,8 +233,8 @@ public class MyFrame extends JFrame {
 	};
 	
 	public void changeLanguage() {
-
-		setTitle(MyApp.resourceBundle.getString("naslovAplikacije"));	
+		
+		BazaStudenata.getInstance().izmeniJezikKolonaStudenti();
 		
 	}
 	

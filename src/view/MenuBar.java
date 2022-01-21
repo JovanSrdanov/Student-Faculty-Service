@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.Box;
 import javax.swing.Icon;
@@ -293,8 +294,9 @@ public class MenuBar extends JMenuBar {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!Locale.getDefault().equals(new Locale("sr", "RS"))) {
 					Locale.setDefault(new Locale("sr", "RS"));
-					MyApp.reinitialize();
+					MyApp.resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources", new Locale("sr", "RS"));
 					MyFrame.getInstance().changeLanguage();
+					MyApp.reinitialize();
 				}
 			}
 		});
@@ -304,10 +306,10 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (!Locale.getDefault().equals(new Locale("en", "US"))) {
-
 					Locale.setDefault(new Locale("en", "US"));
-					MyApp.reinitialize();
+					MyApp.resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources", new Locale("en", "US"));
 					MyFrame.getInstance().changeLanguage();
+					MyApp.reinitialize();
 
 				}
 
