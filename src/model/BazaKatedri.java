@@ -200,9 +200,11 @@ public class BazaKatedri {
 			}
 			
 			sveKat.getSpisakProfesoraKojiSuNaKatedri().clear();
-			sveKat.setSpisakProfesoraKojiSuNaKatedri(realProf);
+			ArrayList<Profesor> fakeProf = new ArrayList<Profesor>();
+			fakeProf.addAll(realProf);
+			sveKat.setSpisakProfesoraKojiSuNaKatedri(fakeProf);
 			realProf.clear();
-			System.out.println("*************************************************");
+			//System.out.println("*************************************************");
 		}
 	}
 
