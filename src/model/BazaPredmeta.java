@@ -51,7 +51,7 @@ public class BazaPredmeta {
 		 * predmeti.add(new Predmet("p2", "Operativni sistemi", Semestar.LETNJI, 2,
 		 * null, 7));
 		 */
-
+/*
 		predmeti.add(new Predmet("p1", "osnove programiranja", Semestar.ZIMSKI, 1, null, 7));
 		predmeti.add(new Predmet("p2", "statistika", Semestar.LETNJI, 3, null, 8));
 		predmeti.add(new Predmet("p3", "algoritmi i strukture podataka", Semestar.LETNJI, 2, null, 9));
@@ -82,7 +82,7 @@ public class BazaPredmeta {
 		predmeti.add(new Predmet("p28", "Projektovanje softvera", Semestar.ZIMSKI, 3, null, 5));
 		predmeti.add(new Predmet("p29", "Informacioni sistemi", Semestar.ZIMSKI, 4, null, 6));
 		predmeti.add(new Predmet("p30", "Masinsko ucenje", Semestar.LETNJI, 4, null, 7));
-
+*/
 	}
 
 	public List<Predmet> getPredmeti() {

@@ -1,8 +1,10 @@
 package view;
 
 import java.awt.Dimension;
+import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -35,22 +37,33 @@ public class StatusBar extends JPanel {
 
 		add(Box.createHorizontalGlue());
 
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
 		now = LocalDateTime.now();
 		datumVremeLab = new JLabel(dtf.format(now));
-		add(datumVremeLab);
+	
 
+		DateFormat df = DateFormat.getDateInstance();
+	
+		
+		datumVremeLab = new JLabel();
+		
+		add(datumVremeLab);
+		
 		// https://www.codegrepper.com/code-examples/java/java+repeat+function+every+minute
+		 
+		 
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				// what you want to do
+				String datum = df.format(new Date());
 				now = LocalDateTime.now();
-				datumVremeLab.setText(dtf.format(now));
+				datumVremeLab.setText(dtf.format(now) + " " + datum );
 			}
 		}, 0, 1000);
 		//
+		
 	}
 
 	public void setAktivniTab(int indexTaba) {

@@ -27,8 +27,8 @@ public class StudentiController {
 			return;
 		}
 
-		Object[] options = { "Da", "Ne" };
-		int input = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete studenta?", "Potvrda",
+		Object[] options = {  MyApp.resourceBundle.getString("yes"), MyApp.resourceBundle.getString("no")};
+		int input = JOptionPane.showOptionDialog(null, MyApp.resourceBundle.getString("pitanjeZaBrisanje"),  MyApp.resourceBundle.getString("potvrda"),
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 
 		if (input == 0) {
@@ -46,14 +46,14 @@ public class StudentiController {
 	}
 
 	public void dodajStudenta() {
-		StudentDijalog studentDijalog = new StudentDijalog(null, "Dodavanje studenta", true, 'u');
+		StudentDijalog studentDijalog = new StudentDijalog(null, MyApp.resourceBundle.getString("dodavanjeStudenta"), true, 'u');
 		studentDijalog.setLocationRelativeTo(MyFrame.getInstance());
 		studentDijalog.setVisible(true);
 
 	}
 
 	public void izmeniStudenta() {
-		StudentDijalog studentDijalog = new StudentDijalog(null, "Izmena studenta", true, 'i');
+		StudentDijalog studentDijalog = new StudentDijalog(null, MyApp.resourceBundle.getString("izmeniStudenta"), true, 'i');
 		studentDijalog.setLocationRelativeTo(MyFrame.getInstance());
 		studentDijalog.setVisible(true);
 	}

@@ -25,6 +25,7 @@ public class MyApp {
 		AppFrame.setVisible(true);
 		postaviKomparatore();
 		MyFrame.getInstance().load();
+		
 
 	}
 
@@ -123,6 +124,7 @@ public class MyApp {
 	}
 
 	public static void reinitialize() {
+		int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
 		location = MyFrame.getInstance().getLocation();
 		// AppFrame.setVisible(false);
 		AppFrame.dispose();
@@ -132,6 +134,8 @@ public class MyApp {
 		MyFrame.getInstance().setLocation(location);
 		AppFrame.setVisible(true);
 		postaviKomparatore();
+		
+		MyFrame.getInstance().getTab().setSelectedIndex(selectedTab);
 
 	}
 

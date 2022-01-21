@@ -232,6 +232,10 @@ public class MyFrame extends JFrame {
 		BazaProfesora.getInstance().loadFix();
 		BazaStudenata.getInstance().loadFix();
 		BazaPredmeta.getInstance().loadFix2();
+		
+		azurirajPrikazStudenata();
+		azurirajPrikazPredmeta();
+		azurirajPrikazProfesora();
 	};
 	
 	public void changeLanguage() {

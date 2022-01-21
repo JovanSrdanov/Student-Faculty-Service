@@ -27,8 +27,8 @@ public class ProfesorController {
 			return;
 		}
 
-		Object[] options = { "Da", "Ne" };
-		int input = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete profesora?", "Potvrda",
+		Object[] options = { MyApp.resourceBundle.getString("yes"), MyApp.resourceBundle.getString("no") };
+		int input = JOptionPane.showOptionDialog(null, MyApp.resourceBundle.getString("pitanjeZaBrisanje"),  MyApp.resourceBundle.getString("potvrda"),
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]); // ukro, link:
 																										// https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
 
@@ -51,13 +51,13 @@ public class ProfesorController {
 	}
 
 	public void dodajProfesora() {
-		ProfesorDialog profesorDialog = new ProfesorDialog(null, "Dodavanje profesora", true, 'u');
+		ProfesorDialog profesorDialog = new ProfesorDialog(null,  MyApp.resourceBundle.getString("dodavanjeProfesora"), true, 'u');
 		profesorDialog.setLocationRelativeTo(MyFrame.getInstance());
 		profesorDialog.setVisible(true);
 	}
 
 	public void izmeniProfesora() {
-		ProfesorDialog profesorDialog = new ProfesorDialog(null, "Izmena profesora", true, 'i');
+		ProfesorDialog profesorDialog = new ProfesorDialog(null,  MyApp.resourceBundle.getString("izmeniProfesora"), true, 'i');
 		profesorDialog.setLocationRelativeTo(MyFrame.getInstance());
 		profesorDialog.setVisible(true);
 	}

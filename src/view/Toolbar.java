@@ -77,11 +77,11 @@ public class Toolbar extends JToolBar {
 				// TODO
 				int selectedTab = MyFrame.getInstance().getTab().getSelectedIndex();
 				if (selectedTab == 0) {
-					// Student
+					// Student izaberiRed
 					if (MyFrame.getTabelaStduenti().getSelectedRow() >= 0)
 						StudentiController.getInstance().izmeniStudenta();
 					else
-						JOptionPane.showMessageDialog(null, "Izaberi studenta za izmenu", "Poruka",
+						JOptionPane.showMessageDialog(null,  MyApp.resourceBundle.getString("izaberiRed"),  MyApp.resourceBundle.getString("poruka"),
 								JOptionPane.WARNING_MESSAGE);
 				} else if (selectedTab == 1) {
 					MyFrame.getInstance();
@@ -89,13 +89,13 @@ public class Toolbar extends JToolBar {
 					if (MyFrame.getTabelaProfesora().getSelectedRow() >= 0)
 						ProfesorController.getInstance().izmeniProfesora();
 					else
-						JOptionPane.showMessageDialog(null, "Izaberi profesora za izmenu", "Poruka",
+						JOptionPane.showMessageDialog(null,  MyApp.resourceBundle.getString("izaberiRed"), MyApp.resourceBundle.getString("poruka"),
 								JOptionPane.WARNING_MESSAGE);
 				} else if (selectedTab == 2) {
 					if (MyFrame.getTabelaPredmeta().getSelectedRow() >= 0)
 						PredmetiController.getInstance().izmeniPredmet();
 					else
-						JOptionPane.showMessageDialog(null, "Izaberi predmet za izmenu", "Poruka",
+						JOptionPane.showMessageDialog(null,  MyApp.resourceBundle.getString("izaberiRed"),  MyApp.resourceBundle.getString("poruka"),
 								JOptionPane.WARNING_MESSAGE);
 				}
 			}

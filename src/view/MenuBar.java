@@ -28,7 +28,7 @@ import model.BazaKatedri;
 import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.BazaStudenata;
-import model.Student;
+
 
 public class MenuBar extends JMenuBar {
 
@@ -184,21 +184,21 @@ public class MenuBar extends JMenuBar {
 					if (MyFrame.getTabelaStduenti().getSelectedRow() >= 0)
 						StudentiController.getInstance().izmeniStudenta();
 					else
-						JOptionPane.showMessageDialog(null, "Izaberi studenta za izmenu", "Poruka",
-								JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, MyApp.resourceBundle.getString("izaberiRed"),
+								MyApp.resourceBundle.getString("poruka"), JOptionPane.WARNING_MESSAGE);
 				} else if (selectedTab == 1) {
 					// Profesor
 					if (MyFrame.getTabelaProfesora().getSelectedRow() >= 0)
 						ProfesorController.getInstance().izmeniProfesora();
 					else
-						JOptionPane.showMessageDialog(null, "Izaberi profesora za izmenu", "Poruka",
-								JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, MyApp.resourceBundle.getString("izaberiRed"),
+								MyApp.resourceBundle.getString("poruka"), JOptionPane.WARNING_MESSAGE);
 				} else if (selectedTab == 2) {
 					if (MyFrame.getTabelaPredmeta().getSelectedRow() >= 0)
 						PredmetiController.getInstance().izmeniPredmet();
 					else
-						JOptionPane.showMessageDialog(null, "Izaberi predmet za izmenu", "Poruka",
-								JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, MyApp.resourceBundle.getString("izaberiRed"),
+								MyApp.resourceBundle.getString("poruka"), JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -255,14 +255,19 @@ public class MenuBar extends JMenuBar {
 				AboutDijalog AD = new AboutDijalog(null, MyApp.resourceBundle.getString("about"), true);
 				AD.setLocationRelativeTo(MyFrame.getInstance());
 				AD.setVisible(true);
-				
-				/*for(Student stud:BazaPredmeta.getInstance().getPredmeti().get(0).getSpisakStudenataKojiNisuPoloziliPredmet())
-					System.out.println(stud.getIme());
-				
-				System.out.println("------------------------------------------------------------------------------------------");
 
-				for(Student stud:BazaPredmeta.getInstance().getPredmeti().get(0).getSpisakStudenataKojiSuPoloziliPredmet())
-					System.out.println(stud.getIme());*/
+				/*
+				 * for(Student stud:BazaPredmeta.getInstance().getPredmeti().get(0).
+				 * getSpisakStudenataKojiNisuPoloziliPredmet())
+				 * System.out.println(stud.getIme());
+				 * 
+				 * System.out.println(
+				 * "------------------------------------------------------------------------------------------"
+				 * );
+				 * 
+				 * for(Student stud:BazaPredmeta.getInstance().getPredmeti().get(0).
+				 * getSpisakStudenataKojiSuPoloziliPredmet()) System.out.println(stud.getIme());
+				 */
 			}
 
 		});
@@ -270,7 +275,7 @@ public class MenuBar extends JMenuBar {
 		helpPom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				HelpDialog HD = new HelpDialog(null, "Help", true);
+				HelpDialog HD = new HelpDialog(null, MyApp.resourceBundle.getString("help"), true);
 				HD.setLocationRelativeTo(MyFrame.getInstance());
 				HD.setVisible(true);
 
@@ -303,7 +308,8 @@ public class MenuBar extends JMenuBar {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!Locale.getDefault().equals(new Locale("sr", "RS"))) {
 					Locale.setDefault(new Locale("sr", "RS"));
-					MyApp.resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources", new Locale("sr", "RS"));
+					MyApp.resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources",
+							new Locale("sr", "RS"));
 					MyFrame.getInstance().changeLanguage();
 					MyApp.reinitialize();
 				}
@@ -316,7 +322,8 @@ public class MenuBar extends JMenuBar {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!Locale.getDefault().equals(new Locale("en", "US"))) {
 					Locale.setDefault(new Locale("en", "US"));
-					MyApp.resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources", new Locale("en", "US"));
+					MyApp.resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources",
+							new Locale("en", "US"));
 					MyFrame.getInstance().changeLanguage();
 					MyApp.reinitialize();
 

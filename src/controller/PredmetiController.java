@@ -31,8 +31,8 @@ public class PredmetiController {
 			return;
 		}
 
-		Object[] options = { "Da", "Ne" };
-		int input = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete predmet?", "Potvrda",
+		Object[] options = {  MyApp.resourceBundle.getString("yes"), MyApp.resourceBundle.getString("no")};
+		int input = JOptionPane.showOptionDialog(null, MyApp.resourceBundle.getString("pitanjeZaBrisanje"),  MyApp.resourceBundle.getString("potvrda"),
 				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]); // ukro, link:
 																										// https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
 
@@ -71,13 +71,13 @@ public class PredmetiController {
 	}
 
 	public void dodajPredmet() {
-		PredmetDialog predmetDialog = new PredmetDialog(null, "Dodavanje predmeta", true, 'u');
+		PredmetDialog predmetDialog = new PredmetDialog(null,  MyApp.resourceBundle.getString("dodavanjePredmeta"), true, 'u');
 		predmetDialog.setLocationRelativeTo(MyFrame.getInstance());
 		predmetDialog.setVisible(true);
 	}
 
 	public void izmeniPredmet() {
-		PredmetDialog predmetDialog = new PredmetDialog(null, "Izmena predmeta", true, 'i');
+		PredmetDialog predmetDialog = new PredmetDialog(null,  MyApp.resourceBundle.getString("izmeniPredmeta"), true, 'i');
 		predmetDialog.setLocationRelativeTo(MyFrame.getInstance());
 		predmetDialog.setVisible(true);
 	}
