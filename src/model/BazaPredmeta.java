@@ -243,6 +243,30 @@ public class BazaPredmeta {
 			}
 		}
 	}
+	
+	public void loadFix2() {
+		for(Predmet sviPred : predmeti) {
+			sviPred.getSpisakStudenataKojiNisuPoloziliPredmet().clear();
+			sviPred.getSpisakStudenataKojiSuPoloziliPredmet().clear();
+		}
+		
+		for(Student sviStud : BazaStudenata.getInstance().getStudenti()) {
+			for(Ocena o : sviStud.getSpisakNePolozenihIspita()) {
+				for(Predmet sviPred : predmeti) {
+					if(o.getPredmet().equals(sviPred)) {
+						sviPred.getSpisakStudenataKojiNisuPoloziliPredmet().add(sviStud);
+					}
+				}
+			}
+			for(Ocena o : sviStud.getSpisakPolozenihIspita()) {
+				for(Predmet sviPred : predmeti) {
+					if(o.getPredmet().equals(sviPred)) {
+						sviPred.getSpisakStudenataKojiSuPoloziliPredmet().add(sviStud);
+					}
+				}
+			}
+		}
+	}
 
 	public void izmeniJezikKolonaPredmeti() {
 		this.kolone.set(0, MyApp.resourceBundle.getString("sifra"));

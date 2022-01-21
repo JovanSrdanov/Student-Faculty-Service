@@ -230,6 +230,8 @@ public class MyFrame extends JFrame {
 		
 		BazaPredmeta.getInstance().loadFix();
 		BazaProfesora.getInstance().loadFix();
+		BazaStudenata.getInstance().loadFix();
+		BazaPredmeta.getInstance().loadFix2();
 	};
 	
 	public void changeLanguage() {
