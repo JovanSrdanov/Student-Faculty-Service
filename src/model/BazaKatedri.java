@@ -185,7 +185,6 @@ public class BazaKatedri {
 	public void loadFix() {
 		ArrayList<Profesor> realProf = new ArrayList<Profesor>();
 		
-		//Fix za profe na katedri
 		for(Katedra sveKat : katedre) {			
 			for(Profesor profNaKat : sveKat.getSpisakProfesoraKojiSuNaKatedri()) {
 				for(Profesor sviProf : BazaProfesora.getInstance().getProfesori()) {

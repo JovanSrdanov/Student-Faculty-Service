@@ -8,6 +8,7 @@ import model.BazaStudenata;
 import model.Ocena;
 import model.Predmet;
 import model.Profesor;
+import model.Semestar;
 import model.Student;
 import view.MyFrame;
 import view.PredmetDialog;
@@ -15,6 +16,8 @@ import view.PredmetDialog;
 public class PredmetiController {
 
 	private static PredmetiController instance = null;
+	
+	private Predmet nepostojeciPredmet; 
 
 	public static PredmetiController getInstance() {
 		if (instance == null) {
@@ -24,6 +27,7 @@ public class PredmetiController {
 	}
 
 	private PredmetiController() {
+		nepostojeciPredmet = new Predmet("NaN", "Obrisan predmet", Semestar.ZIMSKI, 0, null, 0);
 	}
 
 	public void izbrisiPredmet(int rowSelectedIndex) {
@@ -49,7 +53,10 @@ public class PredmetiController {
 				}
 				for (Ocena ocena : student.getSpisakPolozenihIspita()) {
 					if (ocena.getPredmet().getSifrPredmeta().equals(predmet.getSifrPredmeta())) {
-						student.getSpisakPolozenihIspita().remove(ocena);
+						//nepostojeciPredmet.setSifrPredmeta(ocena.getPredmet().getSifrPredmeta());
+						nepostojeciPredmet.setBrojESPBBodova(ocena.getPredmet().getBrojESPBBodova());
+						nepostojeciPredmet.setSemestar(ocena.getPredmet().getSemestar());
+						ocena.setPredmet(nepostojeciPredmet);
 						break;
 					}
 				}
