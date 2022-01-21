@@ -209,8 +209,6 @@ public class BazaPredmeta {
 	}
 	public void loadPredmeti(String fileName) {
 		try {
-
-			// Reads data using the ObjectInputStream
 			FileInputStream fileStream = new FileInputStream(fileName);
 			ObjectInputStream objStream = new ObjectInputStream(fileStream);
 
@@ -224,8 +222,20 @@ public class BazaPredmeta {
 		catch (Exception e1) {
 			e1.getStackTrace();
 		}
-
 	};
+	
+	public void loadFix() {
+		for(Profesor clearProf : BazaProfesora.getInstance().getProfesori()) {
+			clearProf.getSpisakPredmetaNaKojimaJeProfesor().clear();
+		}
+		
+		for(Predmet predmet : predmeti) {
+			for(Profesor profesor : BazaProfesora.getInstance().getProfesori()) {
+				if(predmet.getPredmetniProfesor() != null && predmet.getPredmetniProfesor().equals(profesor))
+					profesor.getSpisakPredmetaNaKojimaJeProfesor().add(predmet);
+			}
+		}
+	}
 
 	
 }

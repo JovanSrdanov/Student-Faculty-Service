@@ -243,5 +243,16 @@ public class BazaProfesora {
 			e1.getStackTrace();
 		}
 
-	};
+	}
+	
+	public void loadFix() {
+		for(Predmet predmetIzListeSvih : BazaPredmeta.getInstance().getPredmeti()) {
+			for(Profesor profIzListeSvih : profesori) {
+				if(predmetIzListeSvih.getPredmetniProfesor() != null && predmetIzListeSvih.getPredmetniProfesor().equals(profIzListeSvih)) {
+					predmetIzListeSvih.setPredmetniProfesor(profIzListeSvih);
+				}
+			}
+		}
+		
+	}
 }

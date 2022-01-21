@@ -311,7 +311,19 @@ public class BazaStudenata {
 			e1.getStackTrace();
 		}
 
-	};
+	}
+	
+	public void fixLoad() {
+		/*for(Student studIzListeSvih : studenti) {
+			for(Ocena predmetIzListeNepolozenih : studIzListeSvih.getSpisakNePolozenihIspita()) {
+				for(Predmet predmetIzListeSvih : BazaPredmeta.getInstance().getPredmeti()) {
+					if(predmetIzListeNepolozenih.equals(predmetIzListeSvih)) {
+						
+					}
+				}
+			}
+		}*/
+	}
 
 	
 }
