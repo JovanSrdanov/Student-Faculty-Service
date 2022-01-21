@@ -10,12 +10,13 @@ import java.util.ResourceBundle;
 import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import controller.MyApp;
 import model.BazaKatedri;
 import model.BazaPredmeta;
 import model.BazaProfesora;
@@ -32,7 +33,6 @@ public class MyFrame extends JFrame {
 	}
 
 	private static boolean pretraga;
-	private ResourceBundle resourceBundle;
 
 
 	private Toolbar toolbar;
@@ -50,7 +50,7 @@ public class MyFrame extends JFrame {
 	private JPanel panelEast;
 
 	private MyFrame() {
-		resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources", Locale.getDefault());
+		MyApp.resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources", Locale.getDefault());
 		pretraga = false;
 		
 		this.createToolbar();
@@ -86,7 +86,7 @@ public class MyFrame extends JFrame {
 	}
 
 	private void initialise() {
-		setTitle(resourceBundle.getString("naslovAplikacije"));
+		setTitle(MyApp.resourceBundle.getString("naslovAplikacije"));
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 
@@ -135,18 +135,18 @@ public class MyFrame extends JFrame {
 		ImageIcon iconStudenti = createImageIcon("icons" + File.separator + "studenti.png", true, 32, 32);
 		tabelaStduenti = new Tabela(new AbstractTableModelStudenti());
 		JScrollPane scrollPaneStudenti = new JScrollPane(tabelaStduenti);
-		tabbedPane.addTab(resourceBundle.getString("studenti"), iconStudenti, scrollPaneStudenti, "Prikaz studenata");
+		tabbedPane.addTab(MyApp.resourceBundle.getString("studenti"), iconStudenti, scrollPaneStudenti,MyApp.resourceBundle.getString("studenti"));
 
 		ImageIcon iconProfesori = createImageIcon("icons" + File.separator + "profesori.png", true, 32, 32);
 		tabelaProfesora = new Tabela(new AbstractTableModelProfesor());
 		JScrollPane scrollPaneProfesori = new JScrollPane(tabelaProfesora);
-		tabbedPane.addTab("Profesori", iconProfesori, scrollPaneProfesori, "Prikaz profseora");
+		tabbedPane.addTab(MyApp.resourceBundle.getString("profesori"), iconProfesori, scrollPaneProfesori,MyApp.resourceBundle.getString("profesori"));
 
 		ImageIcon iconPredmeti = createImageIcon("icons" + File.separator + "predmeti.png", true, 32, 32);
 		tabelaPredmeta = new Tabela(new AbstractTableModelPredmeti());
 
 		JScrollPane scrollPanePredmeti = new JScrollPane(tabelaPredmeta);
-		tabbedPane.addTab("Predmeti", iconPredmeti, scrollPanePredmeti, "Prikaz predmeta");
+		tabbedPane.addTab(MyApp.resourceBundle.getString("predmeti"), iconPredmeti, scrollPanePredmeti, MyApp.resourceBundle.getString("predmeti"));
 
 		tabbedPane.addChangeListener(new ChangeListener() {
 
@@ -231,12 +231,7 @@ public class MyFrame extends JFrame {
 	
 	public void changeLanguage() {
 
-		resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources", Locale.getDefault());
-		setTitle(resourceBundle.getString("naslovAplikacije"));
-		
-		
-	
-		
+		setTitle(MyApp.resourceBundle.getString("naslovAplikacije"));	
 		
 	}
 	

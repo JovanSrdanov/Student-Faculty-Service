@@ -2,6 +2,8 @@ package controller;
 
 import java.awt.Point;
 import java.util.Comparator;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.table.TableRowSorter;
 
@@ -13,8 +15,13 @@ public class MyApp {
 
 	private static MyFrame AppFrame;
 	private static Point location;
+	public static ResourceBundle resourceBundle;
+	
+
+
 
 	public static void main(String[] args) {
+		resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources", Locale.getDefault());
 		AppFrame = MyFrame.getInstance();
 		AppFrame.setVisible(true);
 		postaviKomparatore();
@@ -118,7 +125,8 @@ public class MyApp {
 
 	public static void reinitialize() {
 		location = MyFrame.getInstance().getLocation();
-		AppFrame.setVisible(false);
+		//AppFrame.setVisible(false);
+		AppFrame.dispose();
 		MyFrame.setInstance(null);
 		AppFrame = MyFrame.getInstance();
 		MyFrame.getInstance().setLocation(location);

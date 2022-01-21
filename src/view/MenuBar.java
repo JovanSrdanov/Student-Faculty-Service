@@ -38,7 +38,7 @@ public class MenuBar extends JMenuBar {
 
 	public MenuBar() {
 	
-		JMenu file = new JMenu("File");
+		JMenu file = new JMenu(MyApp.resourceBundle.getString("file"));
 		file.setMnemonic(KeyEvent.VK_F);
 		Icon icon = new ImageIcon();
 
