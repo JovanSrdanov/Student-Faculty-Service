@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controller.MyApp;
+
 public class StatusBar extends JPanel {
 
 	/**
@@ -21,12 +23,13 @@ public class StatusBar extends JPanel {
 	private static LocalDateTime now;
 	private JLabel datumVremeLab;
 	private JLabel imeAplikacijeLab;
-	private final String imeApp = "Studentska služba";
+	private String imeApp;
 
 	public StatusBar() {
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		this.setPreferredSize(new Dimension((int) this.getSize().getWidth(), 25));
-		imeAplikacijeLab = new JLabel(imeApp);
+		imeApp = MyApp.resourceBundle.getString("naslovAplikacije");
+		imeAplikacijeLab = new JLabel(imeApp +" - "+ MyApp.resourceBundle.getString("studenti"));
 		imeAplikacijeLab.setHorizontalAlignment(SwingConstants.LEFT);
 		add(imeAplikacijeLab);
 
@@ -51,13 +54,13 @@ public class StatusBar extends JPanel {
 	}
 
 	public void setAktivniTab(int indexTaba) {
-		String imeTaba = "";
+		String imeTaba = MyApp.resourceBundle.getString("studenti");
 		if (indexTaba == 0) {
-			imeTaba = "Studenti";
+			imeTaba = MyApp.resourceBundle.getString("studenti");
 		} else if (indexTaba == 1) {
-			imeTaba = "Profesori";
+			imeTaba = MyApp.resourceBundle.getString("profesori");
 		} else if (indexTaba == 2) {
-			imeTaba = "Predmeti";
+			imeTaba = MyApp.resourceBundle.getString("predmeti");
 		}
 		imeAplikacijeLab.setText(imeApp + " - " + imeTaba);
 	}
