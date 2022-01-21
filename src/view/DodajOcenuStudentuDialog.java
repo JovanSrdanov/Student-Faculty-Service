@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.MyApp;
 import model.Ocena;
 
 public class DodajOcenuStudentuDialog extends JDialog {
@@ -49,7 +50,7 @@ public class DodajOcenuStudentuDialog extends JDialog {
 
 		// Dodavanje jednog reda
 		JPanel sifraPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel sifraLbl = new JLabel("Sifra:");
+		JLabel sifraLbl = new JLabel(MyApp.resourceBundle.getString("sifra"));
 		sifraLbl.setPreferredSize(dimLabela);
 
 		sifraTxt = new JTextField();
@@ -62,7 +63,7 @@ public class DodajOcenuStudentuDialog extends JDialog {
 
 		// Naziv
 		JPanel nazivPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel nazivLbl = new JLabel("Naziv predmeta:");
+		JLabel nazivLbl = new JLabel(MyApp.resourceBundle.getString("nazivP"));
 		nazivLbl.setPreferredSize(dimLabela);
 
 		nazivTxt = new JTextField();
@@ -75,7 +76,7 @@ public class DodajOcenuStudentuDialog extends JDialog {
 
 		// Datum
 		JPanel datPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel datLbl = new JLabel("Datum polaganja:");
+		JLabel datLbl = new JLabel(MyApp.resourceBundle.getString("datPol"));
 		datLbl.setPreferredSize(dimLabela);
 
 		datumTxt = new JTextField();
@@ -86,7 +87,7 @@ public class DodajOcenuStudentuDialog extends JDialog {
 
 		// ocena (treba bude comboBox)
 		JPanel ocenaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel ocenaLbl = new JLabel("Ocena:");
+		JLabel ocenaLbl = new JLabel(MyApp.resourceBundle.getString("ocena"));
 		ocenaLbl.setPreferredSize(dimLabela);
 
 		String[] zvanja = { "6", "7", "8", "9", "10" };
@@ -98,7 +99,7 @@ public class DodajOcenuStudentuDialog extends JDialog {
 
 		// btn
 		JPanel btnPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		okBtn = new JButton("Potvrdi");
+		okBtn = new JButton(MyApp.resourceBundle.getString("apply"));
 		okBtn.setEnabled(false);
 		okBtn.addActionListener(new ActionListener() {
 			@Override
@@ -114,7 +115,7 @@ public class DodajOcenuStudentuDialog extends JDialog {
 		});
 		btnPnl.add(okBtn);
 
-		JButton ripBtn = new JButton("Odustani");
+		JButton ripBtn = new JButton(MyApp.resourceBundle.getString("odustani"));
 		ripBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

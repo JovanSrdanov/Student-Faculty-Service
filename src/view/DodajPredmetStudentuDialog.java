@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import controller.MyApp;
 import model.BazaPredmeta;
 import model.Ocena;
 import model.Predmet;
@@ -44,9 +45,9 @@ public class DodajPredmetStudentuDialog extends JDialog {
 		JPanel btnPnl = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		btnPnl.setPreferredSize(dimBtn);
 		
-		dodajBtn = new JButton("Dodaj");
+		dodajBtn = new JButton(MyApp.resourceBundle.getString("dodaj"));
 		dodajBtn.setEnabled(false);
-		odustaniBTN = new JButton("Odustani");
+		odustaniBTN = new JButton(MyApp.resourceBundle.getString("odustani"));
 		btnPnl.add(dodajBtn);
 		btnPnl.add(odustaniBTN);
 

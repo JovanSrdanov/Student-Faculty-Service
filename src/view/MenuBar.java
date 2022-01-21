@@ -321,17 +321,21 @@ public class MenuBar extends JMenuBar {
 		sr.setBackground(Color.white);
 		sr.setPreferredSize(new Dimension(30, 30));
 		sr.setIcon(icon);
+		
+	
 
 		sr.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (!Locale.getDefault().equals(new Locale("sr", "RS"))) {
+					
 					Locale.setDefault(new Locale("sr", "RS"));
 					MyApp.resourceBundle = ResourceBundle.getBundle("gui.MessageResources.MessageResources",
 							new Locale("sr", "RS"));
 					MyFrame.getInstance().changeLanguage();
 					MyApp.reinitialize();
+					
 				}
 			}
 		});
@@ -346,7 +350,7 @@ public class MenuBar extends JMenuBar {
 							new Locale("en", "US"));
 					MyFrame.getInstance().changeLanguage();
 					MyApp.reinitialize();
-
+					
 				}
 
 			}
