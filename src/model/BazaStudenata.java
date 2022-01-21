@@ -325,15 +325,28 @@ public class BazaStudenata {
 
 	}
 
-	public void fixLoad() {
-		/*
-		 * for(Student studIzListeSvih : studenti) { for(Ocena predmetIzListeNepolozenih
-		 * : studIzListeSvih.getSpisakNePolozenihIspita()) { for(Predmet
-		 * predmetIzListeSvih : BazaPredmeta.getInstance().getPredmeti()) {
-		 * if(predmetIzListeNepolozenih.equals(predmetIzListeSvih)) {
-		 * 
-		 * } } } }
-		 */
+	public void loadFix() {
+		for(Predmet sviPred : BazaPredmeta.getInstance().getPredmeti()) {
+			for(Student studIzSpiskaNep : sviPred.getSpisakStudenataKojiNisuPoloziliPredmet()) {
+				for(Student sviStud : studenti) {
+					if(sviStud.equals(studIzSpiskaNep)) {
+						for(Ocena o : sviStud.getSpisakNePolozenihIspita()) {
+							o.setPredmet(sviPred);
+						}
+					}
+				}
+			}
+			
+			for(Student studIzSpiskaNep : sviPred.getSpisakStudenataKojiSuPoloziliPredmet()) {
+				for(Student sviStud : studenti) {
+					if(sviStud.equals(studIzSpiskaNep)) {
+						for(Ocena o : sviStud.getSpisakPolozenihIspita()) {
+							o.setPredmet(sviPred);
+						}
+					}
+				}
+			}
+		}
 	}
 
 }
