@@ -11,6 +11,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import controller.MyApp;
 import model.BazaKatedri;
 
 import model.Katedra;
@@ -44,8 +45,8 @@ public class KatedraDijalog extends JDialog {
 		JScrollPane scrollPaneKatedra = new JScrollPane(katedreTable);
 
 		JPanel btnPan = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JButton postaviSefaKatedreBtn = new JButton("Postavi sefa katedre");
-		JButton odustaniBtn = new JButton("Odustani");
+		JButton postaviSefaKatedreBtn = new JButton( MyApp.resourceBundle.getString("setSef"));
+		JButton odustaniBtn = new JButton(MyApp.resourceBundle.getString("odustani"));
 
 		odustaniBtn.addActionListener(new ActionListener() {
 			@Override
@@ -65,7 +66,7 @@ public class KatedraDijalog extends JDialog {
 					Katedra k = BazaKatedri.getInstance().getRow(a);
 					
 					DodajSefaKatedriDialog dijag = new DodajSefaKatedriDialog(null,
-							"Postavljanje sefa katedre", true,k);
+							 MyApp.resourceBundle.getString("setSef"), true,k);
 					dijag.setLocationRelativeTo(prozor);
 					dijag.setVisible(true);
 				}

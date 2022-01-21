@@ -7,6 +7,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.MyApp;
+
 public class BazaKatedri {
 
 	private static BazaKatedri instance = null;
@@ -35,11 +37,20 @@ public class BazaKatedri {
 		initBazaKatedri();
 
 		this.kolone = new ArrayList<String>();
-		this.kolone.add("Sifra katedre");
-		this.kolone.add("Naziv Katedre");
-		this.kolone.add("Ime i prezime");
+		this.kolone.add( MyApp.resourceBundle.getString("sifKat"));
+		this.kolone.add( MyApp.resourceBundle.getString("nazKat"));
+		this.kolone.add( MyApp.resourceBundle.getString("sefKat"));
 
 	}
+	
+	public void izmeniJezikKolonaKatedri() {
+		this.kolone.set(0, MyApp.resourceBundle.getString("sifKat"));
+		this.kolone.set(1, MyApp.resourceBundle.getString("nazKat"));
+		this.kolone.set(2, MyApp.resourceBundle.getString("sefKat"));
+	
+		
+	};
+
 
 	private void initBazaKatedri() {
 		this.katedre = new ArrayList<Katedra>();
@@ -169,6 +180,7 @@ public class BazaKatedri {
 			e1.getStackTrace();
 		}
 
-	};
+	}
+
 
 }

@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import controller.MyApp;
 import model.BazaKatedri;
 import model.Katedra;
 
@@ -44,8 +45,8 @@ public class DodajSefaKatedriDialog extends JDialog {
 		JPanel btnPan = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		btnPan.setPreferredSize(dimBtn);
 
-		JButton postaviSefaKatedreBtn = new JButton("Postavi");
-		JButton odustaniBtn = new JButton("Odustani");
+		JButton postaviSefaKatedreBtn = new JButton(MyApp.resourceBundle.getString("setSef"));
+		JButton odustaniBtn = new JButton(MyApp.resourceBundle.getString("odustani"));
 		postaviSefaKatedreBtn.setEnabled(false);
 
 		btnPan.add(postaviSefaKatedreBtn);
