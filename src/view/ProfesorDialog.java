@@ -24,6 +24,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import model.Adresa;
+import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.Predmet;
 import model.Profesor;
@@ -345,6 +346,10 @@ public class ProfesorDialog extends JDialog {
 						if (input == 0) {
 							Predmet p = selectedProfesor.getSpisakPredmetaNaKojimaJeProfesor().get(rowSelectedIndex);
 							selectedProfesor.getSpisakPredmetaNaKojimaJeProfesor().remove(p);
+							for(Predmet predmetIzListeSvih : BazaPredmeta.getInstance().getPredmeti()) {
+								if(p.equals(predmetIzListeSvih))
+									predmetIzListeSvih.setPredmetniProfesor(null);
+							}
 							ProfesorDialog.azurirajPrikazPredaje();
 						}
 					}

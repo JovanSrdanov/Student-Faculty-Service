@@ -227,6 +227,9 @@ public class MyFrame extends JFrame {
 		BazaKatedri.getInstance().loadKatedre("katedre.txt");
 		BazaPredmeta.getInstance().loadPredmeti("predmeti.txt");
 		BazaStudenata.getInstance().loadStudenti("studenti.txt");
+		
+		BazaPredmeta.getInstance().loadFix();
+		BazaProfesora.getInstance().loadFix();
 	};
 	
 	public void changeLanguage() {
