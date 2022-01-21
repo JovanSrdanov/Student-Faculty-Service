@@ -82,7 +82,7 @@ public class BazaKatedri {
 		this.katedre.add(pom3);*/
 		
 		
-		katedre.add(new Katedra("e42", "Katedra za matematiku", null, null));
+		/*katedre.add(new Katedra("e42", "Katedra za matematiku", null, null));
 		katedre.add(new Katedra("e43", "Katedra za fiziku", null, null));
 		katedre.add(new Katedra("e44", "Katedra za elektrotehniku", null, null));
 		katedre.add(new Katedra("e45", "Katedra za primenjene računarske nauke", null, null));
@@ -112,7 +112,7 @@ public class BazaKatedri {
 		
 		katedre.get(5).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(5));
 		katedre.get(5).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(11));
-		katedre.get(5).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(17));
+		katedre.get(5).getSpisakProfesoraKojiSuNaKatedri().add(BazaProfesora.getInstance().getProfesori().get(17));*/
 
 
 	}
@@ -180,6 +180,30 @@ public class BazaKatedri {
 			e1.getStackTrace();
 		}
 
+	}
+	
+	public void loadFix() {
+		ArrayList<Profesor> realProf = new ArrayList<Profesor>();
+		
+		for(Katedra sveKat : katedre) {
+			/*int brProf = 0;
+			if(sveKat.getSpisakProfesoraKojiSuNaKatedri() != null)
+				brProf = sveKat.getSpisakProfesoraKojiSuNaKatedri().size();*/
+			
+			for(Profesor profNaKat : sveKat.getSpisakProfesoraKojiSuNaKatedri()) {
+				for(Profesor sviProf : BazaProfesora.getInstance().getProfesori()) {
+					if(sviProf.equals(profNaKat)) {
+						System.out.println(sviProf.getIme() + " sa " + profNaKat.getIme());
+						realProf.add(sviProf);
+					}
+				}
+			}
+			
+			sveKat.getSpisakProfesoraKojiSuNaKatedri().clear();
+			sveKat.setSpisakProfesoraKojiSuNaKatedri(realProf);
+			realProf.clear();
+			System.out.println("*************************************************");
+		}
 	}
 
 
