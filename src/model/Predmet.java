@@ -123,5 +123,10 @@ public class Predmet implements Serializable{
 	public void setSpisakStudenataKojiNisuPoloziliPredmet(ArrayList<Student> spisakStudenataKojiNisuPoloziliPredmet) {
 		this.spisakStudenataKojiNisuPoloziliPredmet = spisakStudenataKojiNisuPoloziliPredmet;
 	}
-
+	
+	@Override
+    public boolean equals(Object o) {
+		Predmet ppap = (Predmet) o;
+		return this.sifrPredmeta.equals(ppap.getSifrPredmeta());
+	}
 }

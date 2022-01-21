@@ -30,6 +30,7 @@ public class PredmetDialog extends JDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = -3432403525611046701L;
+	
 	private JButton okBtn;
 	private JButton cancleBtn;
 	private char tip;
@@ -219,13 +220,13 @@ public class PredmetDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				for (Profesor p : BazaProfesora.getInstance().getProfesori()) {
 					if (p.getBrojLicneKarte() == selectedPredmet.getPredmetniProfesor().getBrojLicneKarte()) {
+						//System.out.println(p.getIme() + p.getPrezime() + " sa " + selectedPredmet.getPredmetniProfesor().getIme() + selectedPredmet.getPredmetniProfesor().getPrezime());
 						p.getSpisakPredmetaNaKojimaJeProfesor().remove(selectedPredmet);
 					}
 				}
 				selectedPredmet.setPredmetniProfesor(null);
 				azurirajProf();
 			}
-
 		});
 
 		centerPanel.add(sifraPredmetaPnl);

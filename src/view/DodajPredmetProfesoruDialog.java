@@ -18,7 +18,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import model.BazaPredmeta;
+import model.BazaProfesora;
 import model.Predmet;
+import model.Profesor;
 
 public class DodajPredmetProfesoruDialog extends JDialog {
 
@@ -111,6 +113,20 @@ public class DodajPredmetProfesoruDialog extends JDialog {
 				p = listaMogucihPredmeta.get(listBox.getSelectedIndex());
 
 				ProfesorDialog.getSelectedProfesor().getSpisakPredmetaNaKojimaJeProfesor().add(p);
+				for(Predmet predmet : BazaPredmeta.getInstance().getPredmeti()) {
+					if(predmet.getPredmetniProfesor() == null) {
+						predmet.setPredmetniProfesor(ProfesorDialog.getSelectedProfesor());
+					}
+					else 
+					{
+						for (Profesor sviProf : BazaProfesora.getInstance().getProfesori()) {
+							if (sviProf.getBrojLicneKarte() == predmet.getPredmetniProfesor().getBrojLicneKarte()) {
+								sviProf.getSpisakPredmetaNaKojimaJeProfesor().remove(predmet);
+							}
+						}
+						predmet.setPredmetniProfesor(ProfesorDialog.getSelectedProfesor());
+					}
+				}
 				ProfesorDialog.azurirajPrikazPredaje();
 				dispose();
 			}

@@ -170,5 +170,11 @@ public class Student implements Serializable{
 				+ prosecnaOcena + ", spisakPolozenihIspita=" + spisakPolozenihIspita + ", spisakNePolozenihIspita="
 				+ spisakNePolozenihIspita + "]";
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+		Student ppap = (Student) o;
+		return this.getBrojIndexa().equals(ppap.getBrojIndexa());
+	}
 
 }

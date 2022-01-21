@@ -145,5 +145,11 @@ public class Profesor implements Serializable{
 				+ ", zvanje=" + zvanje + ", godineStaza=" + godineStaza + ", spisakPredmetaNaKojimaJeProfesor="
 				+ spisakPredmetaNaKojimaJeProfesor + "]";
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+		Profesor ppap = (Profesor) o;
+		return this.getBrojLicneKarte() == ppap.getBrojLicneKarte();
+	}
 
 }
