@@ -120,6 +120,12 @@ public class DodajPredmetStudentuDialog extends JDialog {
 				p = listaMogucihPredmeta.get(listBox.getSelectedIndex());
 				Ocena ocena = new Ocena(StudentDijalog.getSelectedStudent(), p, 5, null);
 				StudentDijalog.getSelectedStudent().getSpisakNePolozenihIspita().add(ocena);
+				
+				for(Predmet sviPredmeti : BazaPredmeta.getInstance().getPredmeti()) {
+					if(p.equals(sviPredmeti)) {
+						p.getSpisakStudenataKojiNisuPoloziliPredmet().add(StudentDijalog.getSelectedStudent());
+					}
+				}
 				StudentDijalog.azurirajPrikazNepolozenih();
 				dispose();
 			}

@@ -25,10 +25,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import model.Adresa;
-
+import model.BazaPredmeta;
 import model.BazaStudenata;
 import model.Ocena;
-
+import model.Predmet;
 import model.Status;
 import model.Student;
 
@@ -343,6 +343,12 @@ public class StudentDijalog extends JDialog {
 						if (o.getBrojcanaVrednostOcene() > 5) {
 							selectedStudent.getSpisakPolozenihIspita().add(o);
 							selectedStudent.getSpisakNePolozenihIspita().remove(o);
+							for(Predmet predmetiSvi : BazaPredmeta.getInstance().getPredmeti()) {
+								if(predmetiSvi.equals(o.getPredmet())) {
+									predmetiSvi.getSpisakStudenataKojiNisuPoloziliPredmet().remove(selectedStudent);
+									predmetiSvi.getSpisakStudenataKojiSuPoloziliPredmet().add(selectedStudent);
+								}
+							}
 							StudentDijalog.azurirajPrikazNepolozenih();
 							StudentDijalog.azurirajPrikazPolozenih();
 						}
@@ -363,6 +369,11 @@ public class StudentDijalog extends JDialog {
 						if (input == 0) {
 							Ocena o = selectedStudent.getSpisakNePolozenihIspita().get(rowSelectedIndex);
 							selectedStudent.getSpisakNePolozenihIspita().remove(o);
+							for(Predmet predmetiSvi : BazaPredmeta.getInstance().getPredmeti()) {
+								if(predmetiSvi.equals(o.getPredmet())) {
+									predmetiSvi.getSpisakStudenataKojiNisuPoloziliPredmet().remove(selectedStudent);
+								}
+							}
 							StudentDijalog.azurirajPrikazNepolozenih();
 						}
 					}
@@ -394,6 +405,12 @@ public class StudentDijalog extends JDialog {
 							o.setDatumPolaganjaIspita(null);
 							selectedStudent.getSpisakNePolozenihIspita().add(o);
 							selectedStudent.getSpisakPolozenihIspita().remove(o);
+							for(Predmet predmetiSvi : BazaPredmeta.getInstance().getPredmeti()) {
+								if(predmetiSvi.equals(o.getPredmet())) {
+									predmetiSvi.getSpisakStudenataKojiNisuPoloziliPredmet().add(selectedStudent);
+									predmetiSvi.getSpisakStudenataKojiSuPoloziliPredmet().remove(selectedStudent);
+								}
+							}
 							StudentDijalog.azurirajPrikazNepolozenih();
 							StudentDijalog.azurirajPrikazPolozenih();
 							MyFrame.getInstance().azurirajPrikazStudenata();
