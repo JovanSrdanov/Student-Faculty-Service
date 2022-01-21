@@ -258,9 +258,9 @@ public class BazaStudenata {
 
 		if (rec.matches("[^,]+,[^,]+,[^,]+")) {
 			String[] parts = rec.split(",");
-			prezime = parts[0].trim();
+			prezime = parts[2].trim();
 			ime = parts[1].trim();
-			index = parts[2].trim();
+			index = parts[0].trim();
 
 			for (Student s : studenti) {
 				if (s.getPrezime().toUpperCase().contains(prezime.toUpperCase())

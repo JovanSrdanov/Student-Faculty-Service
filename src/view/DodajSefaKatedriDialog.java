@@ -71,10 +71,13 @@ public class DodajSefaKatedriDialog extends JDialog {
 
 			if (p.getZvanje() != Zvanje.DOCENT && p.getGodineStaza() >= 5)
 				for (Katedra pom : BazaKatedri.getInstance().getKatedre()) {
-					if (pom.getSefKatedre() == p)
+					if (pom.getSefKatedre().equals(p))
 						nalazi = true;
 
 				}
+			else {
+				nalazi = true;
+			}
 
 			if (nalazi == false)
 				listaMogucihProfesora.add(p);
