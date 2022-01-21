@@ -404,7 +404,10 @@ public class StudentDijalog extends JDialog {
 							Ocena o = selectedStudent.getSpisakPolozenihIspita().get(rowSelectedIndex);
 							o.setBrojcanaVrednostOcene(5);
 							o.setDatumPolaganjaIspita(null);
-							selectedStudent.getSpisakNePolozenihIspita().add(o);
+							
+							if(!o.getPredmet().getSifrPredmeta().equals("NaN"))
+								selectedStudent.getSpisakNePolozenihIspita().add(o);
+							
 							selectedStudent.getSpisakPolozenihIspita().remove(o);
 							for(Predmet predmetiSvi : BazaPredmeta.getInstance().getPredmeti()) {
 								if(predmetiSvi.equals(o.getPredmet())) {
