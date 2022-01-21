@@ -106,7 +106,7 @@ public class MenuBar extends JMenuBar {
 		icon = new ImageIcon("icons" + File.separator + "predmeti.png");
 		JMenuItem Predmeti = new JMenuItem(MyApp.resourceBundle.getString("predmeti"), icon);
 		Predmeti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
-		Predmeti.setMnemonic(KeyEvent.VK_R);
+		Predmeti.setMnemonic(KeyEvent.VK_M);
 		Predmeti.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
