@@ -80,6 +80,8 @@ public class MenuBar extends JMenuBar {
 				BazaProfesora.getInstance().saveProfesore(fileName2);
 				BazaPredmeta.getInstance().savePredmete(fileName3);
 				BazaKatedri.getInstance().saveKatedre(fileName4);
+				
+				JOptionPane.showMessageDialog(null, "Uspesno sacuvano", "Poruka", JOptionPane.PLAIN_MESSAGE);
 			}
 		});
 
@@ -154,7 +156,25 @@ public class MenuBar extends JMenuBar {
 		close.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				Object[] options = {  "Save", "Don't save", "Cancle"};
+				int input = JOptionPane.showOptionDialog(null, "Da li zelite da sacuvate izmene?",  MyApp.resourceBundle.getString("potvrda"),
+						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+
+				if (input == 0) {
+					String fileName1 = "studenti.txt";
+					String fileName2 = "profesori.txt";
+					String fileName3 = "predmeti.txt";
+					String fileName4 = "katedre.txt";
+					BazaStudenata.getInstance().saveStudente(fileName1);
+					BazaProfesora.getInstance().saveProfesore(fileName2);
+					BazaPredmeta.getInstance().savePredmete(fileName3);
+					BazaKatedri.getInstance().saveKatedre(fileName4);
+					
+					System.exit(0);
+		        }
+				else if (input == 1) {
+					System.exit(0);
+		        }
 			}
 		});
 
