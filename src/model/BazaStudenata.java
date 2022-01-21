@@ -334,7 +334,8 @@ public class BazaStudenata {
 				for(Student sviStud : studenti) {
 					if(sviStud.equals(studIzSpiskaNep)) {
 						for(Ocena o : sviStud.getSpisakNePolozenihIspita()) {
-							o.setPredmet(sviPred);
+							if(o.getPredmet().equals(sviPred))
+								o.setPredmet(sviPred);
 						}
 					}
 				}
@@ -344,7 +345,8 @@ public class BazaStudenata {
 				for(Student sviStud : studenti) {
 					if(sviStud.equals(studIzSpiskaNep)) {
 						for(Ocena o : sviStud.getSpisakPolozenihIspita()) {
-							o.setPredmet(sviPred);
+							if(o.getPredmet().equals(sviPred))
+								o.setPredmet(sviPred);
 						}
 					}
 				}
