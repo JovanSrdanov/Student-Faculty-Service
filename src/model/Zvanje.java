@@ -1,10 +1,21 @@
 package model;
 
+import controller.MyApp;
+
 public enum Zvanje {
 
-	REDOVNI_PROFESOR(1), VANREDNI_PROFESOR(2), DOCENT(3);
+	REDOVNI_PROFESOR("redProf"), VANREDNI_PROFESOR("vanProf"), DOCENT("docent");
 
-	Zvanje(int i) {
+	String string;
+
+	Zvanje(String string) {
+		this.string = string;
+	}
+	
+	@Override
+	public String toString() {
+		return MyApp.resourceBundle.getString(string);
+		
 	}
 
 }

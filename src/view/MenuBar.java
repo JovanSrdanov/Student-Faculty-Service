@@ -28,7 +28,6 @@ import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.BazaStudenata;
 
-
 public class MenuBar extends JMenuBar {
 
 	/**
@@ -37,13 +36,13 @@ public class MenuBar extends JMenuBar {
 	private static final long serialVersionUID = -5511353684955783810L;
 
 	public MenuBar() {
-	
+
 		JMenu file = new JMenu(MyApp.resourceBundle.getString("file"));
 		file.setMnemonic(KeyEvent.VK_F);
 		Icon icon = new ImageIcon();
 
 		icon = new ImageIcon("icons" + File.separator + "new.png");
-		JMenuItem miNew = new JMenuItem("New", icon);
+		JMenuItem miNew = new JMenuItem(MyApp.resourceBundle.getString("new"), icon);
 		miNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		miNew.setMnemonic(KeyEvent.VK_W);
 		miNew.addActionListener(new ActionListener() {
@@ -65,7 +64,7 @@ public class MenuBar extends JMenuBar {
 		});
 
 		icon = new ImageIcon("icons" + File.separator + "save.png");
-		JMenuItem save = new JMenuItem("Save", icon);
+		JMenuItem save = new JMenuItem(MyApp.resourceBundle.getString("save"), icon);
 		save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		save.setMnemonic(KeyEvent.VK_V);
 		save.addActionListener(new ActionListener() {
@@ -82,13 +81,13 @@ public class MenuBar extends JMenuBar {
 			}
 		});
 
-		JMenu open = new JMenu("Open");
+		JMenu open = new JMenu(MyApp.resourceBundle.getString("open"));
 		open.setMnemonic(KeyEvent.VK_P);
 		icon = new ImageIcon("icons" + File.separator + "open.png");
 		open.setIcon(icon);
 
 		icon = new ImageIcon("icons" + File.separator + "studenti.png");
-		JMenuItem Studenti = new JMenuItem("Studenti", icon);
+		JMenuItem Studenti = new JMenuItem(MyApp.resourceBundle.getString("studenti"), icon);
 		Studenti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
 		Studenti.setMnemonic(KeyEvent.VK_U);
 		Studenti.addActionListener(new ActionListener() {
@@ -100,7 +99,7 @@ public class MenuBar extends JMenuBar {
 		});
 
 		icon = new ImageIcon("icons" + File.separator + "predmeti.png");
-		JMenuItem Predmeti = new JMenuItem("Predmeti", icon);
+		JMenuItem Predmeti = new JMenuItem(MyApp.resourceBundle.getString("predmeti"), icon);
 		Predmeti.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
 		Predmeti.setMnemonic(KeyEvent.VK_R);
 		Predmeti.addActionListener(new ActionListener() {
@@ -112,7 +111,7 @@ public class MenuBar extends JMenuBar {
 		});
 
 		icon = new ImageIcon("icons" + File.separator + "profesori.png");
-		JMenuItem Profesori = new JMenuItem("Profesori", icon);
+		JMenuItem Profesori = new JMenuItem(MyApp.resourceBundle.getString("profesori"), icon);
 		Profesori.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
 		Profesori.setMnemonic(KeyEvent.VK_P);
 		Profesori.addActionListener(new ActionListener() {
@@ -124,14 +123,14 @@ public class MenuBar extends JMenuBar {
 		});
 
 		icon = new ImageIcon("icons" + File.separator + "katedra.png");
-		JMenuItem Katedre = new JMenuItem("Katedre", icon);
+		JMenuItem Katedre = new JMenuItem(MyApp.resourceBundle.getString("katedre"), icon);
 		Katedre.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
 		Katedre.setMnemonic(KeyEvent.VK_K);
 
 		Katedre.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				KatedraDijalog KD = new KatedraDijalog(null, "Katedre", true);
+				KatedraDijalog KD = new KatedraDijalog(null, MyApp.resourceBundle.getString("katedre"), true);
 				KD.setLocationRelativeTo(MyFrame.getInstance());
 				KD.setVisible(true);
 
@@ -147,7 +146,7 @@ public class MenuBar extends JMenuBar {
 		open.add(Katedre);
 
 		icon = new ImageIcon("icons" + File.separator + "close.png");
-		JMenuItem close = new JMenuItem("Close", icon);
+		JMenuItem close = new JMenuItem(MyApp.resourceBundle.getString("close"), icon);
 		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
 		close.setMnemonic(KeyEvent.VK_C);
 		close.addActionListener(new ActionListener() {
@@ -167,11 +166,11 @@ public class MenuBar extends JMenuBar {
 
 		add(file);
 
-		JMenu edit = new JMenu("Edit");
+		JMenu edit = new JMenu(MyApp.resourceBundle.getString("edit"));
 		edit.setMnemonic(KeyEvent.VK_E);
 
 		icon = new ImageIcon("icons" + File.separator + "editPom.png");
-		JMenuItem editPom = new JMenuItem("Edit", icon);
+		JMenuItem editPom = new JMenuItem(MyApp.resourceBundle.getString("edit"), icon);
 		editPom.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK));
 		editPom.setMnemonic(KeyEvent.VK_D);
 		editPom.addActionListener(new ActionListener() {
@@ -203,7 +202,7 @@ public class MenuBar extends JMenuBar {
 		});
 
 		icon = new ImageIcon("icons" + File.separator + "delete.png");
-		JMenuItem delete = new JMenuItem("Delete", icon);
+		JMenuItem delete = new JMenuItem(MyApp.resourceBundle.getString("delete"), icon);
 		delete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
 		delete.setMnemonic(KeyEvent.VK_L);
 
@@ -235,23 +234,23 @@ public class MenuBar extends JMenuBar {
 		edit.add(delete);
 		add(edit);
 
-		JMenu help = new JMenu("Help");
+		JMenu help = new JMenu(MyApp.resourceBundle.getString("help"));
 		help.setMnemonic(KeyEvent.VK_H);
 
 		icon = new ImageIcon("icons" + File.separator + "helpPom.png");
-		JMenuItem helpPom = new JMenuItem("Help", icon);
+		JMenuItem helpPom = new JMenuItem(MyApp.resourceBundle.getString("help"), icon);
 		helpPom.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, ActionEvent.CTRL_MASK));
 		helpPom.setMnemonic(KeyEvent.VK_E);
 
 		icon = new ImageIcon("icons" + File.separator + "about.png");
-		JMenuItem about = new JMenuItem("About", icon);
+		JMenuItem about = new JMenuItem(MyApp.resourceBundle.getString("about"), icon);
 		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
 		about.setMnemonic(KeyEvent.VK_B);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		about.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AboutDijalog AD = new AboutDijalog(null,"About",true);
+				AboutDijalog AD = new AboutDijalog(null, MyApp.resourceBundle.getString("about"), true);
 				AD.setLocationRelativeTo(MyFrame.getInstance());
 				AD.setVisible(true);
 			}
@@ -261,7 +260,7 @@ public class MenuBar extends JMenuBar {
 		helpPom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				HelpDialog HD = new HelpDialog(null,"Help", true);
+				HelpDialog HD = new HelpDialog(null, "Help", true);
 				HD.setLocationRelativeTo(MyFrame.getInstance());
 				HD.setVisible(true);
 
@@ -278,38 +277,42 @@ public class MenuBar extends JMenuBar {
 		add(Box.createHorizontalGlue());
 
 		icon = new ImageIcon("icons" + File.separator + "en.png");
-		
-		en.setBackground(Color.white);		
+
+		en.setBackground(Color.white);
 		en.setPreferredSize(new Dimension(30, 30));
 		en.setIcon(icon);
-		
+
 		icon = new ImageIcon("icons" + File.separator + "sr.png");
 		sr.setBackground(Color.white);
 		sr.setPreferredSize(new Dimension(30, 30));
 		sr.setIcon(icon);
-		
+
 		sr.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Locale.setDefault(new Locale("sr", "RS"));
-				MyApp.reinitialize();
-				MyFrame.getInstance().changeLanguage();
-
+				if (!Locale.getDefault().equals(new Locale("sr", "RS"))) {
+					Locale.setDefault(new Locale("sr", "RS"));
+					MyApp.reinitialize();
+					MyFrame.getInstance().changeLanguage();
+				}
 			}
 		});
-		
+
 		en.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Locale.setDefault(new Locale("en", "US"));
-				MyApp.reinitialize();
-				MyFrame.getInstance().changeLanguage();
+				if (!Locale.getDefault().equals(new Locale("en", "US"))) {
+
+					Locale.setDefault(new Locale("en", "US"));
+					MyApp.reinitialize();
+					MyFrame.getInstance().changeLanguage();
+
+				}
 
 			}
 		});
-		
 
 		add(sr);
 		add(en);
