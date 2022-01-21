@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -58,6 +59,31 @@ public class MyFrame extends JFrame {
 		this.createStatusBar();
 		this.createMenuBar();
 		this.createTabbedPane();
+		
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		    	Object[] options = {  "Save", "Don't save", "Cancle"};
+				int input = JOptionPane.showOptionDialog(null, "Da li zelite da sacuvate izmene?",  MyApp.resourceBundle.getString("potvrda"),
+						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+
+				if (input == 0) {
+					String fileName1 = "studenti.txt";
+					String fileName2 = "profesori.txt";
+					String fileName3 = "predmeti.txt";
+					String fileName4 = "katedre.txt";
+					BazaStudenata.getInstance().saveStudente(fileName1);
+					BazaProfesora.getInstance().saveProfesore(fileName2);
+					BazaPredmeta.getInstance().savePredmete(fileName3);
+					BazaKatedri.getInstance().saveKatedre(fileName4);
+					
+					System.exit(0);
+		        }
+				else if (input == 1) {
+					System.exit(0);
+		        }
+		    }
+		});
 	}
 
 	public static MyFrame getInstance() {
@@ -94,7 +120,7 @@ public class MyFrame extends JFrame {
 		int screenWidith = screenSize.width;
 
 		setSize((screenWidith / 4) * 3, (screenHeight / 4) * 3);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
 
 		Color color = new Color(0, 95, 105);
