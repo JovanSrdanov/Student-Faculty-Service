@@ -40,8 +40,8 @@ public class BazaProfesora {
 	
 	public void izmeniJezikKolonaProfesori() {
 
-		this.kolone.set(0, MyApp.resourceBundle.getString("index"));
-		this.kolone.set(1, MyApp.resourceBundle.getString("ime"));
+		this.kolone.set(0, MyApp.resourceBundle.getString("ime"));
+		this.kolone.set(1, MyApp.resourceBundle.getString("prezime"));
 		this.kolone.set(2, MyApp.resourceBundle.getString("zvanje"));
 		this.kolone.set(3, MyApp.resourceBundle.getString("email"));
 		

@@ -24,6 +24,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
+import controller.MyApp;
 import model.Adresa;
 import model.BazaPredmeta;
 import model.BazaStudenata;
@@ -86,7 +87,7 @@ public class StudentDijalog extends JDialog {
 		Dimension dimTextBox = new Dimension(280, 20);
 
 		JPanel przezimePnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel przezimeLbl = new JLabel("Prezime:");
+		JLabel przezimeLbl = new JLabel( MyApp.resourceBundle.getString("prezime"));
 		przezimeLbl.setPreferredSize(dimLabela);
 		prezimeTxt = new JTextField();
 		prezimeTxt.setPreferredSize(dimTextBox);
@@ -94,7 +95,7 @@ public class StudentDijalog extends JDialog {
 		przezimePnl.add(prezimeTxt);
 
 		JPanel imePnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel imeLbl = new JLabel("Ime:");
+		JLabel imeLbl = new JLabel( MyApp.resourceBundle.getString("ime"));
 		imeLbl.setPreferredSize(dimLabela);
 		imeTxt = new JTextField();
 		imeTxt.setPreferredSize(dimTextBox);
@@ -102,7 +103,7 @@ public class StudentDijalog extends JDialog {
 		imePnl.add(imeTxt);
 
 		JPanel datPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel datLbl = new JLabel("Datum rođenja (DD.MM.GGGG.):");
+		JLabel datLbl = new JLabel( MyApp.resourceBundle.getString("datRodj"));
 		datLbl.setPreferredSize(dimLabela);
 		datumTxt = new JTextField();
 		datumTxt.setPreferredSize(dimTextBox);
@@ -110,7 +111,7 @@ public class StudentDijalog extends JDialog {
 		datPnl.add(datumTxt);
 
 		JPanel adrPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel adrLbl = new JLabel("Adresa (ulica,broj,grad,drzava):");
+		JLabel adrLbl = new JLabel(MyApp.resourceBundle.getString("adresaStanovanja"));
 		adrLbl.setPreferredSize(dimLabela);
 		adresaTxt = new JTextField();
 		adresaTxt.setPreferredSize(dimTextBox);
@@ -118,7 +119,7 @@ public class StudentDijalog extends JDialog {
 		adrPnl.add(adresaTxt);
 
 		JPanel telPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel telLbl = new JLabel("Telefon:");
+		JLabel telLbl = new JLabel(MyApp.resourceBundle.getString("telefon"));
 		telLbl.setPreferredSize(dimLabela);
 		telTxt = new JTextField();
 		telTxt.setPreferredSize(dimTextBox);
@@ -126,7 +127,7 @@ public class StudentDijalog extends JDialog {
 		telPnl.add(telTxt);
 
 		JPanel mailPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel mailLbl = new JLabel("eMail:");
+		JLabel mailLbl = new JLabel(MyApp.resourceBundle.getString("email"));
 		mailLbl.setPreferredSize(dimLabela);
 		eMailTxt = new JTextField();
 		eMailTxt.setPreferredSize(dimTextBox);
@@ -134,7 +135,7 @@ public class StudentDijalog extends JDialog {
 		mailPnl.add(eMailTxt);
 
 		JPanel brojIndexaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel brojIndexaLbl = new JLabel("Broj indeksa (xx yyy/zzzz) :");
+		JLabel brojIndexaLbl = new JLabel(MyApp.resourceBundle.getString("index"));
 		brojIndexaLbl.setPreferredSize(dimLabela);
 		brojIndexaTxt = new JTextField();
 		brojIndexaTxt.setPreferredSize(dimTextBox);
@@ -142,7 +143,7 @@ public class StudentDijalog extends JDialog {
 		brojIndexaPnl.add(brojIndexaTxt);
 
 		JPanel godinaUpisaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel godinaUpisaLbl = new JLabel("Godina upisa:");
+		JLabel godinaUpisaLbl = new JLabel(MyApp.resourceBundle.getString("godina_upisa"));
 		godinaUpisaLbl.setPreferredSize(dimLabela);
 		godinaUpisaTxt = new JTextField();
 		godinaUpisaTxt.setPreferredSize(dimTextBox);
@@ -150,28 +151,28 @@ public class StudentDijalog extends JDialog {
 		godinaUpisaPnl.add(godinaUpisaTxt);
 
 		JPanel godinaStudijaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel godinaStudijaLbl = new JLabel("Trenutna godina studija:");
+		JLabel godinaStudijaLbl = new JLabel(MyApp.resourceBundle.getString("godina_studija"));
 		godinaStudijaLbl.setPreferredSize(dimLabela);
-		String[] stepenStudijaLista = { "1. (PRVA)", "2. (DRUGA)", "3. (TREĆA)", "4. (ČETVRTA)" };
+		String[] stepenStudijaLista = { "I", "II", "III", "IV" };
 		godinaStudijaCB = new JComboBox<String>(stepenStudijaLista);
 		godinaStudijaCB.setPreferredSize(dimTextBox);
 		godinaStudijaPnl.add(godinaStudijaLbl);
 		godinaStudijaPnl.add(godinaStudijaCB);
 
 		JPanel nacinFinansiranjaPnl = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel nacinFinansiranjaLbl = new JLabel("Način finansiranja:");
+		JLabel nacinFinansiranjaLbl = new JLabel(MyApp.resourceBundle.getString("status"));
 		nacinFinansiranjaLbl.setPreferredSize(dimLabela);
-		String[] nacinFinansiranjaLista = { "BUDŽET", "SAMOFINANSIRANJE" };
+		String[] nacinFinansiranjaLista = { MyApp.resourceBundle.getString("budzet"), MyApp.resourceBundle.getString("samofinansiranje") };
 		nacinFinansiranjaCB = new JComboBox<String>(nacinFinansiranjaLista);
 		nacinFinansiranjaCB.setPreferredSize(dimTextBox);
 		nacinFinansiranjaPnl.add(nacinFinansiranjaLbl);
 		nacinFinansiranjaPnl.add(nacinFinansiranjaCB);
 
 		JPanel btnPnl = new JPanel();
-		okBtn = new JButton("Potvrda");
+		okBtn = new JButton(MyApp.resourceBundle.getString("apply"));
 		okBtn.setEnabled(false);
 
-		cancleBtn = new JButton("Odustani");
+		cancleBtn = new JButton( MyApp.resourceBundle.getString("odustani") );
 
 		btnPnl.add(okBtn);
 		btnPnl.add(cancleBtn);
@@ -189,18 +190,18 @@ public class StudentDijalog extends JDialog {
 		if (tip == 'i' && rowSelectedIndex >= 0) {
 			okBtn.setEnabled(true);
 			kolone = new ArrayList<String>();
-			kolone.add("Sifra predmeta");
-			kolone.add("Naziv predmeta");
-			kolone.add("espb");
-			kolone.add("Godina studija");
-			kolone.add("Semestar");
+			kolone.add(MyApp.resourceBundle.getString("sifra"));
+			kolone.add(MyApp.resourceBundle.getString("nazivP"));
+			kolone.add(MyApp.resourceBundle.getString("espb"));
+			kolone.add(MyApp.resourceBundle.getString("godina_studija"));
+			kolone.add(MyApp.resourceBundle.getString("semestar"));
 
 			kolonePolozeni = new ArrayList<String>();
-			kolonePolozeni.add("Sifra predmeta");
-			kolonePolozeni.add("Naziv predmeta");
-			kolonePolozeni.add("ESPB");
-			kolonePolozeni.add("OCENA");
-			kolonePolozeni.add("DATUM");
+			kolonePolozeni.add(MyApp.resourceBundle.getString("sifra"));
+			kolonePolozeni.add(MyApp.resourceBundle.getString("nazivP"));
+			kolonePolozeni.add(MyApp.resourceBundle.getString("espb"));
+			kolonePolozeni.add(MyApp.resourceBundle.getString("ocena"));
+			kolonePolozeni.add(MyApp.resourceBundle.getString("datPol"));
 
 			int a = MyFrame.getTabelaStduenti().convertRowIndexToModel(rowSelectedIndex);
 			Student s = BazaStudenata.getInstance().getRow(a);
@@ -296,15 +297,15 @@ public class StudentDijalog extends JDialog {
 
 		if (tip == 'i') {
 			tabbedPane = new JTabbedPane();
-			tabbedPane.addTab("Informacije", centerPanel);
+			tabbedPane.addTab(MyApp.resourceBundle.getString("informacije"), centerPanel);
 
 			JPanel panNepolozeni = new JPanel();
 			panNepolozeni.setLayout(new BoxLayout(panNepolozeni, BoxLayout.Y_AXIS));
 			
 			JPanel panBtn = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			JButton dodajBtn = new JButton("Dodaj");
-			JButton obrisiBtn = new JButton("Obrisi");
-			JButton polaganjeBtn = new JButton("Polaganje");
+			JButton dodajBtn = new JButton(MyApp.resourceBundle.getString("dodaj"));
+			JButton obrisiBtn = new JButton(MyApp.resourceBundle.getString("obrisi"));
+			JButton polaganjeBtn = new JButton(MyApp.resourceBundle.getString("ispit"));
 			
 			nepolozeniTabel = new Tabela(new AbstractTableModelNepolozeni());
 			/*nepolozeniTabel.getColumnModel().getColumn(1).setPreferredWidth(50);
@@ -325,7 +326,7 @@ public class StudentDijalog extends JDialog {
 			dodajBtn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					DodajPredmetStudentuDialog dpsd = new DodajPredmetStudentuDialog(null, "Dodavanje", true);
+					DodajPredmetStudentuDialog dpsd = new DodajPredmetStudentuDialog(null, MyApp.resourceBundle.getString("dodaj"), true);
 					dpsd.setLocationRelativeTo(prozor);
 					dpsd.setVisible(true);
 				}
@@ -337,7 +338,7 @@ public class StudentDijalog extends JDialog {
 					int rowSelectedIndex = nepolozeniTabel.getSelectedRow();
 					if (rowSelectedIndex != -1) {
 						Ocena o = selectedStudent.getSpisakNePolozenihIspita().get(rowSelectedIndex);
-						DodajOcenuStudentuDialog polaganjeDialog = new DodajOcenuStudentuDialog(null, "Polaganje", true, o);
+						DodajOcenuStudentuDialog polaganjeDialog = new DodajOcenuStudentuDialog(null, MyApp.resourceBundle.getString("ispit"), true, o);
 						polaganjeDialog.setLocationRelativeTo(prozor);
 						polaganjeDialog.setVisible(true);
 						if (o.getBrojcanaVrednostOcene() > 5) {
@@ -361,9 +362,9 @@ public class StudentDijalog extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					int rowSelectedIndex = nepolozeniTabel.getSelectedRow();
 					if (rowSelectedIndex != -1) {
-						Object[] options = { "Da", "Ne" };
+						Object[] options = {  MyApp.resourceBundle.getString("yes"), MyApp.resourceBundle.getString("no")};
 						int input = JOptionPane.showOptionDialog(null,
-								"Da li ste sigurni da želite da obrišete predmet?", "Potvrda",
+								MyApp.resourceBundle.getString("pitanjeZaBrisanje"),  MyApp.resourceBundle.getString("potvrda"),
 								JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 
 						if (input == 0) {
@@ -389,15 +390,15 @@ public class StudentDijalog extends JDialog {
 			JScrollPane scrollPanePolozeni = new JScrollPane(polozeniTabel);
 
 			JPanel panPonisti = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			JButton ponistiBtn = new JButton("Ponisti ocenu");
+			JButton ponistiBtn = new JButton(MyApp.resourceBundle.getString("ponistiO"));
 			ponistiBtn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					int rowSelectedIndex = polozeniTabel.getSelectedRow();
 					if (rowSelectedIndex != -1) {
-						Object[] options = { "Da", "Ne" };
+						Object[] options = { MyApp.resourceBundle.getString("yes"), MyApp.resourceBundle.getString("no") };
 						int input = JOptionPane.showOptionDialog(null,
-								"Da li ste sigurni da želite da ponistite ocenu?", "Potvrda", JOptionPane.YES_NO_OPTION,
+								MyApp.resourceBundle.getString("pitanjePonisti"),  MyApp.resourceBundle.getString("potvrda"), JOptionPane.YES_NO_OPTION,
 								JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 						if (input == 0) {
 							Ocena o = selectedStudent.getSpisakPolozenihIspita().get(rowSelectedIndex);
@@ -436,8 +437,8 @@ public class StudentDijalog extends JDialog {
 			panPolozeni.add(panProsOc);
 			panPolozeni.add(panUkESPB);
 
-			tabbedPane.addTab("Položeni predmeti", panPolozeni);
-			tabbedPane.addTab("Nepoloženi predmeti", panNepolozeni);
+			tabbedPane.addTab( MyApp.resourceBundle.getString("polP"), panPolozeni);
+			tabbedPane.addTab( MyApp.resourceBundle.getString("nePolP"), panNepolozeni);
 			this.add(tabbedPane);
 		} 
 		else {
@@ -604,8 +605,8 @@ public class StudentDijalog extends JDialog {
 
 		selectedStudent.setProsecnaOcena(avgOcn);
 
-		panProsOcLbl.setText("Prosecna ocena: " + selectedStudent.getProsecnaOcena());
-		panUkESPBLbl.setText("Ukupno espb: " + sumaE);
+		panProsOcLbl.setText(MyApp.resourceBundle.getString("prosek")+": " + selectedStudent.getProsecnaOcena());
+		panUkESPBLbl.setText(MyApp.resourceBundle.getString("espb")+": " +sumaE);
 	}
 	
 	private void dodajListenere(JTextField txt) {
