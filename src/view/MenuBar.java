@@ -295,7 +295,7 @@ public class MenuBar extends JMenuBar {
 		helpPom.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				HelpDialog HD = new HelpDialog(null, MyApp.resourceBundle.getString("help"), true);
+				HelpDialog HD = new HelpDialog(null, MyApp.resourceBundle.getString("help"), false);
 				HD.setLocationRelativeTo(MyFrame.getInstance());
 				HD.setVisible(true);
 
