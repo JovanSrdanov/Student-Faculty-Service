@@ -1,4 +1,9 @@
-# OISISI_JovanSrdanov_StrahinjaErakovic
+# OISISI Godina 2021-2022 FTN E2 PRNII
+Projekat iz predmeta Osnovi informacionih sistema i softverskog inženjerstva
+Fakultet tehničkih nauka
+Računarstvo i automatika
+Primenjene računarske nauke i informatika
+
 Studentska sluzba 
 
 Ikonice preuzimane sa :https://iconscout.com/icons    
