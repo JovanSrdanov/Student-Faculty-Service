@@ -1,23 +1,24 @@
-# OISISI Godina 2021-2022 FTN E2 PRNII
-Projekat iz predmeta Osnovi informacionih sistema i softverskog inženjerstva    
-Fakultet tehničkih nauka    
-Računarstvo i automatika    
-Primenjene računarske nauke i informatika     
+# OISISI Year 2021-2022 FTN E2 PRNII
+Project for the subject Fundamentals of Information Systems and Software Engineering
+Faculty of Technical Sciences
+Computer Science and Automation
+Applied Computer Science and Informatics
 
-Studentska sluzba 
+Student Services
+An information system for the Student Services at the Faculty of Technical Sciences has been successfully modeled and implemented. The system is presented as an application tailored for use by the administrative staff of the Student Services department.
 
-Ikonice preuzimane sa :https://iconscout.com/icons    
+Icons sourced from: [https://iconscout.com/icons](https://iconscout.com/icons)
 
-Jovan Srdanov RA 145 2019 :    
-Eclipse IDE for Java Developers (includes Incubating components)    
-Version: 2021-09 (4.21.0 )   
-Build id: 20210910-1417   
-javac 17.0.1  
+Jovan Srdanov RA 145/2019:
+- Eclipse IDE for Java Developers (includes Incubating components)
+  - Version: 2021-09 (4.21.0)
+  - Build id: 20210910-1417
+- javac 17.0.1
 
-Strahinja Eraković RA 152/2019 :  
-Eclipse IDE for Java Developers (includes Incubating components)  
-Version: 2021-09 (4.21.0)  
-Build id: 20210910-1417  
-javac 17.0.1  
+Strahinja Eraković RA 152/2019:
+- Eclipse IDE for Java Developers (includes Incubating components)
+  - Version: 2021-09 (4.21.0)
+  - Build id: 20210910-1417
+- javac 17.0.1
 
-Pracena je raspodela funkcioonalnosti koja je bila predlozena u specifikaciji    
+The distribution of functionality proposed in the specification has been followed.
