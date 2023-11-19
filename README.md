@@ -4,7 +4,7 @@ Faculty of Technical Sciences
 Computer Science and Automation
 Applied Computer Science and Informatics
 
-Student Services
+Student Services  
 An information system for the Student Services at the Faculty of Technical Sciences has been successfully modeled and implemented. The system is presented as an application tailored for use by the administrative staff of the Student Services department.
 
 Icons sourced from: [https://iconscout.com/icons](https://iconscout.com/icons)
