@@ -1,8 +1,8 @@
-# OISISI Year 2021-2022 FTN E2 PRNII
-Project for the subject Fundamentals of Information Systems and Software Engineering
-Faculty of Technical Sciences
-Computer Science and Automation
-Applied Computer Science and Informatics
+# OISISI Year 2021-2022 FTN E2 PRNII 
+Project for the subject Fundamentals of Information Systems and Software Engineering  
+Faculty of Technical Sciences  
+Computer Science and Automation  
+Applied Computer Science and Informatics  
 
 Student Services  
 An information system for the Student Services at the Faculty of Technical Sciences has been successfully modeled and implemented. The system is presented as an application tailored for use by the administrative staff of the Student Services department.
